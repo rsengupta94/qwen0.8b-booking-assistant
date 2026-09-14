@@ -45,6 +45,8 @@ Session type (therapy/follow-up) is a booking field only. It does not change doc
 
 Tools, all mocked against local fixtures: `fetch_patient(phone)`, `fetch_availability(doctor_id, days)`, `create_booking(...)`.
 
+Hand-off: after 3 failed re-asks in one state, or 3 rounds with no slots, the session ends. The reply is a fixed template: the bot did not understand the request, and the user can call customer care at the clinic phone number. The number is a dummy value from `fixtures/clinic.json`. No transfer, ticket, or notification in v1. Every hand-off is logged with its reason.
+
 ## 3. Global intent: correction
 
 Runs on every turn before state-specific NLU. If the user changes an earlier answer ("actually Wednesday", "I meant Dr. Rao"), code rewinds to the state that owns that field, clears downstream state (offered and chosen slots), and re-runs from there.
@@ -155,7 +157,7 @@ qwen0.8b-booking-assistant/
     v1/nlu/{name}.md
     v1/nlg/{name}.md
   fixtures/
-    doctors.json, patients.json, slots.json, faq.json
+    doctors.json, patients.json, slots.json, clinic.json, faq.json
   models/
     registry.json       model_id -> GGUF path, quant, source
     (GGUF files gitignored, pulled from Hugging Face at startup)
