@@ -24,7 +24,7 @@ These are not preferences. Do not deviate without asking.
 
 ## Layout
 
-Follow the repo layout in design.md section 10 exactly. Prompts are markdown files in `prompts/nlu/` and `prompts/nlg/`, one per prompt, each starting with a `version:` header. Never embed prompt text in Python. Validators are one module each in `app/nlu/` and `app/nlg/`, each exporting `VERSION`, `validate()`, and (for NLG) `template()`.
+Follow the repo layout in design.md section 10 exactly. Prompts are markdown files in `prompts/nlu/` and `prompts/nlg/`, one per prompt. Never embed prompt text in Python. Validators are one module each in `app/nlu/` and `app/nlg/`, each exporting `VERSION`, `validate()`, and (for NLG) `template()`.
 
 ## How we work
 

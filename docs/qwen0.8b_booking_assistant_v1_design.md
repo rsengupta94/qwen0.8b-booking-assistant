@@ -70,7 +70,7 @@ The rewind map is a dict from field to state. Corrections are capped at 3 per se
 | `slot_choice` | CAPTURE_CHOICE | choice_index, wants_other, other |
 | `off_script` | any state on intent=other | is_question, topic |
 
-Each prompt is a markdown file with a `version` header, then: role line, the question the bot asked, the user turn, output schema, 3 to 5 few-shot examples. Instructions do little for a model this size; few-shots do most of the work.
+Prompts live in prompts/{version}/, one directory per version, all NLU and NLG prompts together. A session picks one version. Each prompt is a markdown file with: role line, the question the bot asked, the user turn, output schema, 3 to 5 few-shot examples. Instructions do little for a model this size; few-shots do most of the work.
 
 ### 4.2 NLG (one prompt per reply type)
 
@@ -111,7 +111,7 @@ Validators are deterministic: enum membership, regex (phone), set containment (s
 Log line per call, JSONL:
 `{session_id, turn, state, model_id, prompt_name, prompt_version, validator_version, ok, reason_code, raw_output, latency_ms}`
 
-Every prompt file carries a `version` header and every validator module a `VERSION` constant. Both are stamped into each log line so eval-phase queries can compare `extract_days` v1 against v2 without reconstructing which commit was live.
+`prompt_version` is the prompt directory in use; every validator module carries a VERSION constant. Both are stamped into each log line so eval-phase queries can compare `extract_days` v1 against v2 without reconstructing which commit was live.
 
 Reading this file after 200 simulated sessions tells you which task the model fails most, how often code rescues it, and whether a prompt change helped. Formal evals build on top of this file.
 
@@ -130,11 +130,11 @@ Why not Ollama: same llama.cpp underneath, but it needs a daemon a Space cannot 
 
 Bot is an HTTP API. Everything else is a client.
 
-`POST /message {session_id, model_id, text}` returns `{reply, state, debug: {nlu_output, validator_results, fallback_used, latency_ms}}`
+`POST /message {session_id, model_id, prompt_version, text}` returns `{reply, state, debug: {nlu_output, validator_results, fallback_used, latency_ms}}`
 
-`model_id` selects the served model per session so the UI can put prompt-only, fine-tuned, and baseline models side by side.
+`model_id` selects the served model per session so the UI can put prompt-only, fine-tuned, and baseline models side by side. `prompt_version` selects the prompt directory, so the Space can pair any prompt version with any model.
 
-Build order: CLI client, then simulator client, then a thin web UI with a model dropdown and the debug field shown in a side panel. The UI is one static HTML file with vanilla JS, served by FastAPI from the same process as the API. No frontend build step. On CPU each turn takes 3 to 4 model calls at 2 to 5 seconds each, so the UI streams per-call progress (classifying, extracting, writing reply). The wait should read as a debugger, not a stalled chat.
+Build order: CLI client, then simulator client, then a thin web UI with a model and prompt-version dropdown and the debug field shown in a side panel. The UI is one static HTML file with vanilla JS, served by FastAPI from the same process as the API. No frontend build step. On CPU each turn takes 3 to 4 model calls at 2 to 5 seconds each, so the UI streams per-call progress (classifying, extracting, writing reply). The wait should read as a debugger, not a stalled chat.
 
 Simulator: a strong model (Claude or Gemini) plays the user from a persona card plus a hidden goal (patient type, target doctor or any, acceptable days, whether to reject the first slot offer). The bot never sees the goal. Persona dimensions and goal sampling are designed after the system works, but the simulator schema carries a `goal` field from the start so eval scoring is additive later.
 
@@ -152,8 +152,8 @@ qwen0.8b-booking-assistant/
     tools/              mock_backend.py, fixtures loader
     logging.py          JSONL writer
   prompts/
-    nlu/{name}.md
-    nlg/{name}.md
+    v1/nlu/{name}.md
+    v1/nlg/{name}.md
   fixtures/
     doctors.json, patients.json, slots.json, faq.json
   models/
@@ -184,7 +184,7 @@ All states, transitions, session store, mock tools, fixtures. NLU stubbed to ret
 `checks/phase_1.sh`: pytest walks both workflows end to end with stubbed NLU and asserts a booking record exists.
 
 **Phase 2: NLU**
-Ten NLU prompts with version headers, schemas, validators with version constants, JSONL logging, template fallbacks for NLU failures.
+Ten NLU prompts, schemas, validators with version constants, JSONL logging, template fallbacks for NLU failures.
 `checks/phase_2.sh`: replays two scripted CLI conversations (one per workflow), asserts a booking, and asserts the JSONL log has one line per model call with all required fields.
 
 **Phase 3: NLG**
@@ -200,7 +200,7 @@ Turn classifier, rewind map, downstream clearing.
 `checks/phase_5.sh`: scripted "what are your fees?" at ASK_FIRST_CONSULT asserts a FAQ answer plus re-ask in one reply and state unchanged; scripted "you decide" asserts a doctor_id from the shortlist with a non-empty reason.
 
 **Phase 6: simulator and UI**
-Simulator client with persona card and goal field; thin web UI with model dropdown, debug panel, per-call progress.
+Simulator client with persona card and goal field; thin web UI with model and prompt-version dropdowns, debug panel, per-call progress.
 `checks/phase_6.sh`: runs 20 simulated sessions unattended, asserts a JSONL log with 20 session ids; curls the UI route and asserts it serves the static file.
 
 **Phase 7: Spaces deploy**
