@@ -1,0 +1,10 @@
+{
+  "qwen3.5-0.8b-q8": {
+    "path": "models/Qwen3.5-0.8B-Q8_0.gguf",
+    "quant": "Q8_0",
+    "source": {
+      "repo": "ggml-org/Qwen3.5-0.8B-GGUF",
+      "filename": "Qwen3.5-0.8B-Q8_0.gguf"
+    }
+  }
+}
