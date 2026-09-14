@@ -236,3 +236,55 @@ def test_reask_limit_hands_off():
     r = run(s, nlu, ["hi", "?", "??", "???"])
     assert r[1].reply["kind"] == "ask_question" and r[1].reply["reask"] is True
     assert r[3].reply["kind"] == "handoff" and s.state == State.END
+
+
+def test_empty_phone_reasks_then_accepts():
+    nlu = ScriptedNLU({
+        "yes_no": [{"intent": "no"}],
+        "extract_phone": [{"digits": ""}, {"digits": "9876543210"}],
+    })
+    s = Session("t12")
+    r = run(s, nlu, ["hi", "no", "I don't remember"])
+    assert r[2].state == State.ASK_PHONE and r[2].reply == {"kind": "ask_question", "question": "phone", "reask": True, "reason": "no_phone"}
+    assert s.phone is None
+    r4 = step(s, "9876543210", nlu)
+    assert r4.state == State.ASK_SESSION_TYPE and s.phone == "9876543210" and s.doctor_id == "d_rao"
+    assert s.loop_counts["reask"] == {}
+
+
+def test_other_session_type_reasks_then_accepts():
+    nlu = ScriptedNLU({
+        "yes_no": [{"intent": "no"}],
+        "extract_phone": [{"digits": "9876543210"}],
+        "session_type": [{"type": "other"}, {"type": "therapy"}],
+    })
+    s = Session("t13")
+    r = run(s, nlu, ["hi", "no", "9876543210", "what do you mean?"])
+    assert r[3].state == State.ASK_SESSION_TYPE and r[3].reply["reask"] is True and r[3].reply["reason"] == "not_session_type"
+    assert s.session_type is None
+    r5 = step(s, "therapy", nlu)
+    assert r5.state == State.ASK_DAYS and s.session_type == "therapy"
+
+
+def test_invalid_slot_choice_represents_slots_then_accepts():
+    nlu = ScriptedNLU({
+        "yes_no": [{"intent": "no"}],
+        "extract_phone": [{"digits": "9876543210"}],
+        "session_type": [{"type": "therapy"}],
+        "extract_days": [{"days": ["monday"], "time_pref": None}],
+        "slot_choice": [
+            {"choice_index": 7, "wants_other": False, "other": None},      # out of range
+            {"choice_index": None, "wants_other": False, "other": "hmm"},  # no choice at all
+            {"choice_index": 2, "wants_other": False, "other": None},
+        ],
+    })
+    s = Session("t14")
+    r = run(s, nlu, ["hi", "no", "9876543210", "therapy", "monday", "seven", "hmm", "the second"])
+    offered = r[4].reply["slots"]
+    for i in (5, 6):
+        assert r[i].state == State.CAPTURE_CHOICE
+        assert r[i].reply["kind"] == "present_slots" and r[i].reply["reask"] is True and r[i].reply["reason"] == "no_valid_choice"
+        assert r[i].reply["slots"] == offered
+    assert r[7].state == State.END
+    b = mock_backend.bookings()
+    assert len(b) == 1 and b[0]["start"] == offered[1]["start"] == "2026-09-21T11:00"
