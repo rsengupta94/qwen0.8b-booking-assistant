@@ -1,6 +1,6 @@
 """Phase 1: walk both workflows end to end with a stubbed NLU and assert a booking exists."""
 
-from datetime import date
+from datetime import date, datetime
 
 import pytest
 
@@ -8,7 +8,8 @@ from app.session import Session
 from app.state_machine import MAX_LOOPS, State, step
 from app.tools import mock_backend
 
-TODAY = date(2026, 9, 21)  # a Monday
+NOW = datetime(2026, 9, 21, 8, 0)  # a Monday, 08:00
+TODAY = NOW.date()
 
 
 class ScriptedNLU:
@@ -25,7 +26,7 @@ class ScriptedNLU:
 
 @pytest.fixture(autouse=True)
 def clean_backend(monkeypatch):
-    monkeypatch.setattr(mock_backend, "today", lambda: TODAY)
+    monkeypatch.setattr(mock_backend, "now", lambda: NOW)
     mock_backend.reset()
     yield
     mock_backend.reset()
@@ -288,3 +289,9 @@ def test_invalid_slot_choice_represents_slots_then_accepts():
     assert r[7].state == State.END
     b = mock_backend.bookings()
     assert len(b) == 1 and b[0]["start"] == offered[1]["start"] == "2026-09-21T11:00"
+
+
+def test_slots_already_started_today_are_not_offered(monkeypatch):
+    monkeypatch.setattr(mock_backend, "now", lambda: datetime(2026, 9, 21, 10, 30))  # Monday 10:30
+    slots = mock_backend.fetch_availability("d_rao", [TODAY])
+    assert [sl["start"] for sl in slots] == ["2026-09-21T11:00"]  # 10:00 has started, 11:00 has not

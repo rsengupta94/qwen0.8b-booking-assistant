@@ -1,8 +1,8 @@
 """Mock clinic backend. Three tools the state machine calls at transitions.
 
 Availability is a weekly pattern from fixtures, expanded to concrete dates for
-the next HORIZON_DAYS starting today. today() is a module attribute so tests
-can pin it. Booked slots leave the pool for the life of the process; reset()
+the next HORIZON_DAYS starting today. Slots that already started are dropped.
+now() is a module attribute so tests can pin it. Booked slots leave the pool for the life of the process; reset()
 clears bookings.
 """
 
@@ -22,8 +22,12 @@ _booked_slot_ids: set[str] = set()
 _ids = count(1)
 
 
+def now() -> datetime:
+    return datetime.now()
+
+
 def today() -> date:
-    return date.today()
+    return now().date()
 
 
 def reset() -> None:
@@ -37,7 +41,8 @@ def fetch_patient(phone: str) -> dict | None:
 
 def _expand_slots(doctor_id: str) -> list[dict]:
     """Concrete open slots for one doctor over the horizon, from the weekly pattern."""
-    start = today()
+    current = now()
+    start = current.date()
     by_weekday: dict[str, list[str]] = {}
     for p in fixtures.slot_patterns():
         if p["doctor_id"] == doctor_id:
@@ -48,6 +53,8 @@ def _expand_slots(doctor_id: str) -> list[dict]:
         for t in by_weekday.get(WEEKDAYS[d.weekday()], []):
             h, m = map(int, t.split(":"))
             s = datetime(d.year, d.month, d.day, h, m)
+            if s <= current:
+                continue  # already started today
             slot_id = f"{doctor_id}_{s.strftime('%Y%m%dT%H%M')}"
             if slot_id in _booked_slot_ids:
                 continue

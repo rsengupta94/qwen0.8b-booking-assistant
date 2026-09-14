@@ -154,8 +154,9 @@ qwen0.8b-booking-assistant/
     tools/              mock_backend.py, fixtures loader
     logging.py          JSONL writer
   prompts/
-    v1/nlu/{name}.md
-    v1/nlg/{name}.md
+    baseline/nlu/{name}.md
+    baseline/nlg/{name}.md
+    persona/...           same prompts, examples written in persona voice (later)
   fixtures/
     doctors.json, patients.json, slots.json, clinic.json, faq.json
   models/
