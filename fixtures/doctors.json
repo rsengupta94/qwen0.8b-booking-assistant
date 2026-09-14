@@ -1,0 +1,60 @@
+[
+  {
+    "id": "d_rao",
+    "name": "Dr. Meera Rao",
+    "degree": "MD Psychiatry",
+    "years_experience": 14,
+    "categories": [
+      "anxiety",
+      "depression"
+    ],
+    "skills": "Anxiety disorders, panic, low mood. Medication review and CBT-informed therapy."
+  },
+  {
+    "id": "d_iyer",
+    "name": "Dr. Arjun Iyer",
+    "degree": "PhD Clinical Psychology",
+    "years_experience": 9,
+    "categories": [
+      "anxiety",
+      "stress",
+      "sleep"
+    ],
+    "skills": "Work stress, burnout, insomnia. Short-term structured therapy."
+  },
+  {
+    "id": "d_khan",
+    "name": "Dr. Sana Khan",
+    "degree": "MD Psychiatry",
+    "years_experience": 20,
+    "categories": [
+      "depression",
+      "grief",
+      "relationships"
+    ],
+    "skills": "Depression, grief and loss, relationship difficulties. Long-term therapy."
+  },
+  {
+    "id": "d_mehta",
+    "name": "Dr. Vikram Mehta",
+    "degree": "MPhil Clinical Psychology",
+    "years_experience": 6,
+    "categories": [
+      "stress",
+      "relationships",
+      "sleep"
+    ],
+    "skills": "Couples and family issues, stress management, sleep routines."
+  },
+  {
+    "id": "d_arao",
+    "name": "Dr. Anil Rao",
+    "degree": "MD Psychiatry",
+    "years_experience": 11,
+    "categories": [
+      "stress",
+      "anxiety"
+    ],
+    "skills": "Workplace stress, anxiety in young adults. Medication and brief therapy."
+  }
+]

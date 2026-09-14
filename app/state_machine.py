@@ -1,0 +1,326 @@
+"""Owns the workflow: states, transitions, session updates and all tool calls.
+
+The model never decides a transition. Code calls an NLU function at the states
+that need one, reads the fields it returns, and picks the next state.
+
+NLU contract (Phase 2 supplies the real one; tests supply a stub):
+
+    nlu(prompt_name, session, text, context) -> dict
+
+`prompt_name` is a row from design.md section 4.1. `context` carries the facts
+that call needs, such as the doctor shortlist or the offered slots.
+
+Two kinds of state. Waiting states consume one user turn. Auto states run in
+code inside the same turn until the session reaches the next waiting state.
+
+step() returns reply *facts* for the next state, not text. Phase 3 NLG and
+templates turn facts into a reply.
+"""
+
+from dataclasses import dataclass
+from datetime import date, timedelta
+from enum import StrEnum
+from typing import Callable
+
+from app.session import Session
+from app.tools import fixtures, mock_backend
+
+NLU = Callable[[str, Session, str, dict], dict]
+
+MAX_LOOPS = 3  # re-asks per state, and no-slot rounds at ASK_DAYS, before hand-off
+SLOTS_PER_OFFER = 3
+NEW_PATIENT_SESSION_TYPE = "first_consultation"  # set by code; ASK_SESSION_TYPE is for returning patients only
+
+RELATIVE_DAYS = {"today": 0, "tomorrow": 1, "day_after_tomorrow": 2}
+DAY_TERMS = list(RELATIVE_DAYS) + mock_backend.WEEKDAYS  # enum for extract_days.days[]
+
+
+class State(StrEnum):
+    GREET = "GREET"
+    ASK_FIRST_CONSULT = "ASK_FIRST_CONSULT"
+    ASK_PROBLEM = "ASK_PROBLEM"
+    ASK_DOCTOR_PREF = "ASK_DOCTOR_PREF"
+    CAPTURE_DOCTOR = "CAPTURE_DOCTOR"
+    PICK_DOCTOR = "PICK_DOCTOR"
+    ASK_PHONE = "ASK_PHONE"
+    ASK_SESSION_TYPE = "ASK_SESSION_TYPE"
+    ASK_DAYS = "ASK_DAYS"
+    SHOW_SLOTS = "SHOW_SLOTS"
+    CAPTURE_CHOICE = "CAPTURE_CHOICE"
+    CONFIRM = "CONFIRM"
+    END = "END"
+
+
+# Question intent the bot asks when it lands on a waiting state.
+QUESTION_FOR_STATE = {
+    State.ASK_FIRST_CONSULT: "first_consult",
+    State.ASK_PROBLEM: "problem",
+    State.ASK_DOCTOR_PREF: "doctor_pref",
+    State.ASK_PHONE: "phone",
+    State.ASK_SESSION_TYPE: "session_type",
+    State.ASK_DAYS: "days",
+}
+
+
+@dataclass
+class TurnResult:
+    state: str
+    reply: dict  # facts for NLG, always has "kind"
+    nlu_output: dict | None
+
+
+# --- helpers -----------------------------------------------------------------
+
+
+def _advance(session: Session, new_state: State) -> None:
+    """Leave the current state successfully: clear its re-ask count, move on."""
+    session.loop_counts["reask"].pop(session.state, None)
+    session.state = new_state
+
+
+def _ask(session: Session, **extra) -> dict:
+    return {"kind": "ask_question", "question": QUESTION_FOR_STATE[State(session.state)], **extra}
+
+
+def _reask(session: Session, reason: str) -> dict:
+    """Stay in the current state and ask again. Past MAX_LOOPS, hand off and end."""
+    counts = session.loop_counts["reask"]
+    counts[session.state] = counts.get(session.state, 0) + 1
+    if counts[session.state] >= MAX_LOOPS:
+        session.state = State.END
+        return {"kind": "handoff", "reason": f"reask_limit:{reason}"}
+    if session.state == State.CAPTURE_CHOICE:
+        return _present_slots(session, reask=True, reason=reason)
+    return _ask(session, reask=True, reason=reason)
+
+
+def _present_slots(session: Session, **extra) -> dict:
+    doctor = fixtures.doctor_by_id(session.doctor_id)
+    return {"kind": "present_slots", "doctor_name": doctor["name"], "slots": list(session.offered_slots), **extra}
+
+
+def _resolve_doctor(name: str | None) -> tuple[dict | None, list[dict]]:
+    """Match name tokens against doctor names, case-insensitive. Code, not model.
+
+    Returns (doctor, candidates). Exactly one best match gives (doctor, [doctor]).
+    A tie, e.g. "Dr Rao" with two Raos, gives (None, [both]). No match gives (None, []).
+    """
+    if not name:
+        return None, []
+    tokens = {t.strip(".,").lower() for t in name.split()} - {"dr", "doctor"}
+    scored = []
+    for d in fixtures.doctors():
+        doc_tokens = {t.strip(".,").lower() for t in d["name"].split()}
+        hits = len(tokens & doc_tokens)
+        if hits:
+            scored.append((hits, d))
+    if not scored:
+        return None, []
+    best = max(h for h, _ in scored)
+    candidates = [d for h, d in scored if h == best]
+    return (candidates[0] if len(candidates) == 1 else None), candidates
+
+
+def _resolve_days(terms: list[str]) -> list[date]:
+    """Turn extract_days terms into concrete dates inside the booking horizon. Unknown terms are dropped.
+    A weekday name gives every matching date in the horizon, nearest first, today included."""
+    start = mock_backend.today()
+    out: set[date] = set()
+    for term in terms:
+        term = term.lower()
+        if term in RELATIVE_DAYS:
+            out.add(start + timedelta(days=RELATIVE_DAYS[term]))
+        elif term in mock_backend.WEEKDAYS:
+            for offset in range(mock_backend.HORIZON_DAYS):
+                d = start + timedelta(days=offset)
+                if mock_backend.WEEKDAYS[d.weekday()] == term:
+                    out.add(d)
+    return sorted(out)
+
+
+def _shortlist(category: str | None) -> list[dict]:
+    """Doctors whose tags include the category. Falls back to all doctors when nothing matches."""
+    matched = [d for d in fixtures.doctors() if category in d["categories"]]
+    return matched or list(fixtures.doctors())
+
+
+# --- waiting-state handlers: (session, text, nlu) -> (nlu_output, reply or None)
+
+
+def _on_greet(session: Session, text: str, nlu: NLU):
+    _advance(session, State.ASK_FIRST_CONSULT)
+    return None, _ask(session, greeting=True)
+
+
+def _on_first_consult(session: Session, text: str, nlu: NLU):
+    out = nlu("yes_no", session, text, {})
+    if out.get("intent") == "yes":
+        session.patient_type = "new"
+        session.session_type = NEW_PATIENT_SESSION_TYPE
+        _advance(session, State.ASK_PROBLEM)
+    elif out.get("intent") == "no":
+        session.patient_type = "returning"
+        _advance(session, State.ASK_PHONE)
+    else:
+        return out, _reask(session, "not_yes_no")
+    return out, None
+
+
+def _on_problem(session: Session, text: str, nlu: NLU):
+    out = nlu("extract_problem", session, text, {"categories": fixtures.categories()})
+    session.problem = out.get("summary") or text
+    session.category = out.get("category")
+    _advance(session, State.ASK_DOCTOR_PREF)
+    return out, None
+
+
+def _on_doctor_pref(session: Session, text: str, nlu: NLU):
+    out = nlu("doctor_pref", session, text, {})
+    mode = out.get("mode")
+    if mode == "named":
+        session.state = State.CAPTURE_DOCTOR
+        doctor, candidates = _resolve_doctor(out.get("doctor_name"))
+        if doctor is None:
+            session.state = State.ASK_DOCTOR_PREF
+            if candidates:
+                reply = _reask(session, "doctor_ambiguous")
+                reply["candidates"] = [d["name"] for d in candidates]
+                return out, reply
+            return out, _reask(session, "doctor_not_found")
+        session.doctor_id = doctor["id"]
+        session.loop_counts["reask"].pop(State.ASK_DOCTOR_PREF, None)
+        session.state = State.ASK_DAYS
+        return out, None
+    if mode == "you_decide":
+        _advance(session, State.PICK_DOCTOR)
+        return out, None
+    return out, _reask(session, "no_doctor_pref")
+
+
+def _on_phone(session: Session, text: str, nlu: NLU):
+    out = nlu("extract_phone", session, text, {})
+    digits = out.get("digits") or ""
+    if not digits:
+        return out, _reask(session, "no_phone")
+    session.phone = digits
+    patient = mock_backend.fetch_patient(digits)
+    if patient is None:
+        # Unknown number: treat as a new patient and take the new-patient path.
+        session.patient_type = "new"
+        session.session_type = NEW_PATIENT_SESSION_TYPE
+        _advance(session, State.ASK_PROBLEM)
+        return out, _ask(session, phone_not_found=True)
+    session.doctor_id = patient["doctor_id"]
+    _advance(session, State.ASK_SESSION_TYPE)
+    return out, None
+
+
+def _on_session_type(session: Session, text: str, nlu: NLU):
+    out = nlu("session_type", session, text, {})
+    kind = out.get("type")
+    if kind not in ("therapy", "followup"):
+        return out, _reask(session, "not_session_type")
+    session.session_type = kind
+    _advance(session, State.ASK_DAYS)
+    return out, None
+
+
+def _on_days(session: Session, text: str, nlu: NLU):
+    out = nlu("extract_days", session, text, {"day_terms": DAY_TERMS})
+    dates = _resolve_days(out.get("days") or [])
+    if not dates:
+        return out, _reask(session, "no_days")
+    session.days = [d.isoformat() for d in dates]
+    slots = mock_backend.fetch_availability(session.doctor_id, dates, out.get("time_pref"))
+    if not slots:
+        session.loop_counts["no_slots"] += 1
+        if session.loop_counts["no_slots"] >= MAX_LOOPS:
+            session.state = State.END
+            return out, {"kind": "handoff", "reason": "no_slots_limit"}
+        return out, {"kind": "no_slots", "days": list(session.days)}
+    session.offered_slots = slots[:SLOTS_PER_OFFER]
+    _advance(session, State.SHOW_SLOTS)
+    return out, None
+
+
+def _on_choice(session: Session, text: str, nlu: NLU):
+    out = nlu("slot_choice", session, text, {"offered_slots": list(session.offered_slots)})
+    if out.get("wants_other"):
+        session.offered_slots = []
+        _advance(session, State.ASK_DAYS)
+        return out, _ask(session, other_slots=True)
+    idx = out.get("choice_index")  # 1-based: the number shown next to the slot
+    if isinstance(idx, int) and 1 <= idx <= len(session.offered_slots):
+        session.chosen_slot = session.offered_slots[idx - 1]
+        _advance(session, State.CONFIRM)
+        return out, None
+    return out, _reask(session, "no_valid_choice")
+
+
+WAITING_HANDLERS = {
+    State.GREET: _on_greet,
+    State.ASK_FIRST_CONSULT: _on_first_consult,
+    State.ASK_PROBLEM: _on_problem,
+    State.ASK_DOCTOR_PREF: _on_doctor_pref,
+    State.ASK_PHONE: _on_phone,
+    State.ASK_SESSION_TYPE: _on_session_type,
+    State.ASK_DAYS: _on_days,
+    State.CAPTURE_CHOICE: _on_choice,
+}
+
+
+# --- auto-state handlers: (session, nlu) -> reply or None
+
+
+def _auto_pick_doctor(session: Session, nlu: NLU):
+    shortlist = _shortlist(session.category)
+    out = nlu("doctor_pick", session, session.problem or "", {"shortlist": shortlist})
+    ids = [d["id"] for d in shortlist]
+    chosen = out.get("doctor_id")
+    session.doctor_id = chosen if chosen in ids else ids[0]
+    _advance(session, State.ASK_DAYS)
+    return None
+
+
+def _auto_show_slots(session: Session, nlu: NLU):
+    _advance(session, State.CAPTURE_CHOICE)
+    return _present_slots(session)
+
+
+def _auto_confirm(session: Session, nlu: NLU):
+    session.booking = mock_backend.create_booking(
+        doctor_id=session.doctor_id,
+        slot=session.chosen_slot,
+        phone=session.phone,
+        session_type=session.session_type,
+        patient_type=session.patient_type,
+    )
+    _advance(session, State.END)
+    return {"kind": "confirm_booking", "booking": dict(session.booking)}
+
+
+AUTO_HANDLERS = {
+    State.PICK_DOCTOR: _auto_pick_doctor,
+    State.SHOW_SLOTS: _auto_show_slots,
+    State.CONFIRM: _auto_confirm,
+}
+
+
+# --- entry point -------------------------------------------------------------
+
+
+def step(session: Session, text: str, nlu: NLU) -> TurnResult:
+    """Process one user turn. Mutates `session`. Returns the new state and reply facts."""
+    session.turn += 1
+    if session.state == State.END:
+        return TurnResult(State.END, {"kind": "ended"}, None)
+
+    nlu_output, reply = WAITING_HANDLERS[State(session.state)](session, text, nlu)
+
+    while session.state in AUTO_HANDLERS:
+        auto_reply = AUTO_HANDLERS[State(session.state)](session, nlu)
+        reply = auto_reply or reply
+
+    if reply is None:
+        reply = _ask(session)
+    return TurnResult(session.state, reply, nlu_output)
