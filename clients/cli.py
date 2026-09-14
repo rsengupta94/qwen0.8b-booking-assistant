@@ -23,9 +23,12 @@ def send(client: httpx.Client, url: str, session_id: str, model: str, version: s
 def show(text: str, resp: dict) -> None:
     d = resp["debug"]
     print(f"you:  {text}")
-    print(f"bot:  {resp['reply'] or json.dumps(d['reply_facts'])}")
-    calls = ", ".join(f"{c['prompt_name']}{'' if c['ok'] else ' FALLBACK:' + c['reason_code']}" for c in d["validator_results"])
-    print(f"      [{resp['state']}] {calls} ({d['latency_ms']} ms)")
+    print(f"bot:  {resp['reply']}")
+    calls = [f"{c['prompt_name']}{'' if c['ok'] else ' FALLBACK:' + c['reason_code']}" for c in d["validator_results"]]
+    if d.get("nlg"):
+        n = d["nlg"]
+        calls.append(f"nlg:{n['prompt_name']}{'' if n['ok'] else ' TEMPLATE:' + n['reason_code']}")
+    print(f"      [{resp['state']}] {d['reply_facts']['kind']} | {', '.join(calls)} ({d['latency_ms']} ms)")
 
 
 def main() -> None:

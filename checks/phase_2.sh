@@ -51,7 +51,7 @@ for conv in ("check_new_patient", "check_returning_patient"):
 # 2. one log line per model call, every required field present
 required = ["session_id", "turn", "state", "model_id", "prompt_name", "prompt_version",
             "validator_version", "ok", "reason_code", "raw_output", "latency_ms"]
-expected_calls = sum(len(t["debug"]["validator_results"]) for t in turns)
+expected_calls = sum(len(t["debug"]["validator_results"]) + (1 if t["debug"].get("nlg") else 0) for t in turns)  # NLU + NLG calls
 assert len(log) == expected_calls, f"log has {len(log)} lines, expected {expected_calls} model calls"
 for line in log:
     missing = [k for k in required if k not in line]

@@ -2,6 +2,7 @@ from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 
 from app import prompts
+from app.nlg.runner import render_reply
 from app.nlu.runner import NLURunner
 from app.session import SessionStore
 from app.state_machine import step
@@ -30,14 +31,17 @@ def message(msg: MessageIn) -> dict:
     nlu = NLURunner(msg.model_id, msg.prompt_version)
     nlu.start_turn()
     result = step(session, msg.text, nlu)
+    reply, nlg_debug = render_reply(result.reply, session, msg.model_id, msg.prompt_version)
+    calls = nlu.turn_debug + ([nlg_debug] if nlg_debug else [])
     return {
-        "reply": None,  # Phase 3 NLG fills this; until then clients render debug.reply_facts
+        "reply": reply,
         "state": str(result.state),
         "debug": {
             "reply_facts": result.reply,
             "nlu_output": result.nlu_output,
             "validator_results": nlu.turn_debug,
-            "fallback_used": any(not d["ok"] for d in nlu.turn_debug),
-            "latency_ms": sum(d["latency_ms"] for d in nlu.turn_debug),
+            "nlg": nlg_debug,
+            "fallback_used": any(not d["ok"] for d in calls),
+            "latency_ms": sum(d["latency_ms"] for d in calls),
         },
     }

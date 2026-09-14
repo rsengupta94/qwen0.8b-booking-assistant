@@ -33,3 +33,8 @@ def categories() -> list[str]:
 
 def doctor_by_id(doctor_id: str) -> dict | None:
     return next((d for d in doctors() if d["id"] == doctor_id), None)
+
+
+def clinic() -> dict:
+    with (FIXTURES_DIR / "clinic.json").open() as f:
+        return json.load(f)
