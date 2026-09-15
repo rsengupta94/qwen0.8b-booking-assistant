@@ -16,14 +16,17 @@ MODULES = {
 TEMPLATE_ONLY = {"handoff", "ended"}
 
 
-def render_reply(facts: dict, session: Session, model_id: str, prompt_version: str) -> tuple[str, dict | None]:
-    """Returns (reply_text, debug). debug is None for template-only kinds."""
+def render_reply(facts: dict, session: Session, model_id: str, prompt_version: str, on_call=None) -> tuple[str, dict | None]:
+    """Returns (reply_text, debug). debug is None for template-only kinds.
+    `on_call(prompt_name)`, if given, is invoked before the model call."""
     kind = facts["kind"]
     if kind in TEMPLATE_ONLY:
         return handoff.template(facts), None
     module = MODULES[kind]
     inputs = module.inputs(facts)
     prompt = prompts.render(prompt_version, "nlg", kind, **inputs)
+    if on_call:
+        on_call(kind)
 
     raw, output, latency_ms, error = "", None, 0, None
     started = time.perf_counter()

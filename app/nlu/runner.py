@@ -31,9 +31,10 @@ MODULES: dict[str, ModuleType] = {
 
 
 class NLURunner:
-    def __init__(self, model_id: str, prompt_version: str):
+    def __init__(self, model_id: str, prompt_version: str, on_call=None):
         self.model_id = model_id
         self.prompt_version = prompt_version
+        self.on_call = on_call  # optional callable(prompt_name), invoked before each model call
         self.turn_debug: list[dict] = []
 
     def start_turn(self) -> None:
@@ -44,6 +45,8 @@ class NLURunner:
         ctx = {**context, "user_text": text, "category": session.category}
         prompt = prompts.render(self.prompt_version, "nlu", prompt_name, **ctx)
         schema = module.schema(ctx)
+        if self.on_call:
+            self.on_call(prompt_name)
 
         raw, output, latency_ms, error = "", None, 0, None
         started = time.perf_counter()

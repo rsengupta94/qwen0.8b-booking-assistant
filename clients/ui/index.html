@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Booking assistant debugger</title>
+<style>
+  :root { --bg: #f6f7f9; --panel: #fff; --line: #d9dde3; --ink: #1c2024; --muted: #6b7280; --ok: #157347; --bad: #b42318; --warn: #b54708; --bot: #eef2ff; --you: #e8f5e9; }
+  * { box-sizing: border-box; }
+  body { margin: 0; font: 14px/1.45 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; color: var(--ink); background: var(--bg); }
+  header { display: flex; flex-wrap: wrap; gap: 10px 16px; align-items: center; padding: 10px 16px; background: var(--panel); border-bottom: 1px solid var(--line); }
+  header h1 { font-size: 15px; margin: 0 8px 0 0; }
+  header label { color: var(--muted); font-size: 12px; display: flex; gap: 6px; align-items: center; }
+  select, button, input { font: inherit; }
+  select { padding: 4px 6px; border: 1px solid var(--line); border-radius: 6px; background: #fff; }
+  button { padding: 5px 12px; border: 1px solid var(--line); border-radius: 6px; background: #fff; cursor: pointer; }
+  button:disabled { opacity: .5; cursor: default; }
+  #session { color: var(--muted); font-size: 12px; margin-left: auto; font-family: ui-monospace, Menlo, monospace; }
+  main { display: grid; grid-template-columns: minmax(320px, 1fr) minmax(360px, 1.1fr); gap: 0; height: calc(100vh - 51px); }
+  @media (max-width: 800px) { main { grid-template-columns: 1fr; height: auto; } }
+  #chat { display: flex; flex-direction: column; border-right: 1px solid var(--line); background: var(--panel); min-height: 300px; }
+  #log { flex: 1; overflow-y: auto; padding: 16px; display: flex; flex-direction: column; gap: 10px; }
+  .msg { max-width: 85%; padding: 8px 12px; border-radius: 10px; white-space: pre-wrap; }
+  .msg.you { align-self: flex-end; background: var(--you); }
+  .msg.bot { align-self: flex-start; background: var(--bot); }
+  .msg.bot.template { border-left: 3px solid var(--warn); }
+  .state { align-self: flex-start; color: var(--muted); font-size: 11px; font-family: ui-monospace, Menlo, monospace; margin-top: -6px; }
+  #progress { align-self: flex-start; color: var(--muted); font-size: 12px; font-family: ui-monospace, Menlo, monospace; }
+  #progress span { display: inline-block; margin-right: 8px; }
+  #progress span.running::after { content: "…"; }
+  #progress span.done { color: var(--ok); }
+  form { display: flex; gap: 8px; padding: 12px 16px; border-top: 1px solid var(--line); }
+  form input { flex: 1; padding: 8px 10px; border: 1px solid var(--line); border-radius: 6px; }
+  #debug { overflow-y: auto; padding: 12px 16px; background: var(--bg); }
+  #debug h2 { font-size: 12px; text-transform: uppercase; letter-spacing: .04em; color: var(--muted); margin: 0 0 8px; }
+  .turn { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 10px 12px; margin-bottom: 10px; }
+  .turn .head { display: flex; flex-wrap: wrap; gap: 6px 12px; align-items: baseline; font-family: ui-monospace, Menlo, monospace; font-size: 12px; }
+  .turn .head b { font-size: 13px; }
+  .tag { padding: 1px 6px; border-radius: 4px; background: #eef0f3; }
+  .tag.bad { background: #fde8e6; color: var(--bad); }
+  .tag.ok { background: #e6f4ea; color: var(--ok); }
+  .tag.warn { background: #fff3e0; color: var(--warn); }
+  table { width: 100%; border-collapse: collapse; margin-top: 8px; font-size: 12px; }
+  th, td { text-align: left; vertical-align: top; padding: 4px 6px; border-top: 1px solid var(--line); }
+  th { color: var(--muted); font-weight: 500; border-top: 0; }
+  td.mono, .mono { font-family: ui-monospace, Menlo, monospace; word-break: break-all; }
+  details { margin-top: 8px; font-size: 12px; }
+  summary { cursor: pointer; color: var(--muted); }
+  pre { margin: 6px 0 0; padding: 8px; background: #f1f3f5; border-radius: 6px; overflow-x: auto; font-size: 11px; }
+  .empty { color: var(--muted); font-size: 13px; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Booking assistant</h1>
+  <label>model <select id="model"></select></label>
+  <label>prompts <select id="prompt_version"></select></label>
+  <button id="new_session" type="button">new session</button>
+  <span id="session"></span>
+</header>
+<main>
+  <section id="chat">
+    <div id="log"></div>
+    <form id="form">
+      <input id="text" autocomplete="off" placeholder="Type a message" required>
+      <button id="send" type="submit">send</button>
+    </form>
+  </section>
+  <aside id="debug"><h2>Debug</h2><p class="empty">Each turn shows every model call: prompt, validator result, latency, and the raw output.</p></aside>
+</main>
+
+<script>
+(() => {
+  const $ = (id) => document.getElementById(id);
+  const modelSel = $("model"), versionSel = $("prompt_version"), log = $("log"), debug = $("debug");
+  const form = $("form"), input = $("text"), sendBtn = $("send");
+  let sessionId = null, turnNo = 0, busy = false;
+
+  const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+  const el = (tag, cls, html) => { const e = document.createElement(tag); if (cls) e.className = cls; if (html != null) e.innerHTML = html; return e; };
+
+  function newSession() {
+    sessionId = "ui_" + Math.random().toString(36).slice(2, 10);
+    turnNo = 0;
+    $("session").textContent = sessionId;
+    log.innerHTML = "";
+    debug.innerHTML = '<h2>Debug</h2><p class="empty">Each turn shows every model call: prompt, validator result, latency, and the raw output.</p>';
+    log.appendChild(el("div", "msg bot", "New session. Say hi to start."));
+    input.focus();
+  }
+
+  async function loadOptions() {
+    const [models, versions] = await Promise.all([fetch("/models").then((r) => r.json()), fetch("/prompts").then((r) => r.json())]);
+    modelSel.innerHTML = "";
+    for (const m of models) {
+      const o = new Option(`${m.model_id} (${m.quant || "?"})${m.available ? "" : " — GGUF missing"}`, m.model_id);
+      o.disabled = !m.available;
+      modelSel.add(o);
+    }
+    const first = models.find((m) => m.available);
+    if (first) modelSel.value = first.model_id;
+    versionSel.innerHTML = "";
+    for (const v of versions) versionSel.add(new Option(v, v));
+    if (versions.includes("baseline")) versionSel.value = "baseline";
+  }
+
+  function setBusy(b) {
+    busy = b;
+    sendBtn.disabled = b; input.disabled = b; modelSel.disabled = b; versionSel.disabled = b;
+  }
+
+  // --- rendering -----------------------------------------------------------
+
+  function addProgress() {
+    const p = el("div", "", "");
+    p.id = "progress";
+    p.appendChild(el("span", "running", "thinking"));
+    log.appendChild(p);
+    log.scrollTop = log.scrollHeight;
+    return p;
+  }
+
+  function progressCall(p, name) {
+    for (const s of p.querySelectorAll("span.running")) { s.classList.remove("running"); s.classList.add("done"); }
+    const label = ["ask_question", "present_slots", "no_slots", "confirm_booking", "clarify"].includes(name) ? `writing reply: ${name}` : name;
+    p.appendChild(el("span", "running", esc(label)));
+    log.scrollTop = log.scrollHeight;
+  }
+
+  function renderReply(body) {
+    const d = body.debug;
+    const usedTemplate = !d.nlg || !d.nlg.ok;
+    const m = el("div", "msg bot" + (usedTemplate && d.nlg ? " template" : ""), esc(body.reply));
+    log.appendChild(m);
+    const calls = d.validator_results.map((c) => c.prompt_name + (c.ok ? "" : " FALLBACK:" + c.reason_code));
+    if (d.nlg) calls.push("nlg:" + d.nlg.prompt_name + (d.nlg.ok ? "" : " TEMPLATE:" + d.nlg.reason_code));
+    const corr = d.correction ? ` | REWIND ${d.correction.field} -> ${d.correction.rewound_to}` : "";
+    log.appendChild(el("div", "state", esc(`[${body.state}] ${d.reply_facts.kind} | ${calls.join(", ") || "no model calls"}${corr} (${d.latency_ms} ms)`)));
+    log.scrollTop = log.scrollHeight;
+  }
+
+  function renderDebug(text, body) {
+    const d = body.debug;
+    debug.querySelector(".empty")?.remove();
+    const t = el("div", "turn");
+    const head = el("div", "head");
+    head.appendChild(el("b", "", `turn ${turnNo}`));
+    head.appendChild(el("span", "", `you: ${esc(text)}`));
+    head.appendChild(el("span", "tag", esc(body.state)));
+    head.appendChild(el("span", "tag", esc(d.reply_facts.kind)));
+    if (d.correction) head.appendChild(el("span", "tag warn", esc(`rewind ${d.correction.field} → ${d.correction.rewound_to}`)));
+    head.appendChild(el("span", "tag " + (d.fallback_used ? "bad" : "ok"), d.fallback_used ? "fallback used" : "all ok"));
+    head.appendChild(el("span", "", `${d.latency_ms} ms`));
+    t.appendChild(head);
+
+    const rows = d.validator_results.map((c) => ({ kind: "nlu", ...c }));
+    if (d.nlg) rows.push({ kind: "nlg", ...d.nlg });
+    if (rows.length) {
+      const table = el("table", "", "<thead><tr><th>call</th><th>validator</th><th>ms</th><th>raw output</th></tr></thead>");
+      const tb = el("tbody");
+      for (const r of rows) {
+        const tr = el("tr");
+        tr.appendChild(el("td", "mono", `${r.kind}:${esc(r.prompt_name)}`));
+        tr.appendChild(el("td", "", `<span class="tag ${r.ok ? "ok" : "bad"}">${r.ok ? "ok" : esc(r.reason_code)}</span>`));
+        tr.appendChild(el("td", "", String(r.latency_ms)));
+        tr.appendChild(el("td", "mono", esc(r.raw_output || "")));
+        tb.appendChild(tr);
+      }
+      table.appendChild(tb);
+      t.appendChild(table);
+    } else {
+      t.appendChild(el("div", "empty", "no model calls this turn"));
+    }
+    const det = el("details");
+    det.appendChild(el("summary", "", "reply facts, nlu output"));
+    det.appendChild(el("pre", "", esc(JSON.stringify({ reply_facts: d.reply_facts, nlu_output: d.nlu_output }, null, 2))));
+    t.appendChild(det);
+    debug.insertBefore(t, debug.children[1] || null);
+  }
+
+  // --- streaming turn --------------------------------------------------------
+
+  async function sendTurn(text) {
+    setBusy(true);
+    turnNo += 1;
+    log.appendChild(el("div", "msg you", esc(text)));
+    const progress = addProgress();
+    try {
+      const res = await fetch("/message/stream", {
+        method: "POST", headers: { "content-type": "application/json" },
+        body: JSON.stringify({ session_id: sessionId, model_id: modelSel.value, prompt_version: versionSel.value, text }),
+      });
+      if (!res.ok) throw new Error(`${res.status} ${await res.text()}`);
+      const reader = res.body.getReader(), dec = new TextDecoder();
+      let buf = "", done = null;
+      while (true) {
+        const { value, done: eof } = await reader.read();
+        if (eof) break;
+        buf += dec.decode(value, { stream: true });
+        let i;
+        while ((i = buf.indexOf("\n\n")) >= 0) {
+          const block = buf.slice(0, i); buf = buf.slice(i + 2);
+          const ev = {}; for (const line of block.split("\n")) { const j = line.indexOf(": "); if (j > 0) ev[line.slice(0, j)] = line.slice(j + 2); }
+          const data = ev.data ? JSON.parse(ev.data) : {};
+          if (ev.event === "call") progressCall(progress, data.prompt_name);
+          else if (ev.event === "done") done = data;
+          else if (ev.event === "error") throw new Error(data.error);
+        }
+      }
+      progress.remove();
+      if (!done) throw new Error("stream ended without a done event");
+      renderReply(done);
+      renderDebug(text, done);
+      if (done.state === "END") log.appendChild(el("div", "state", "session ended. Click “new session” to start another."));
+    } catch (e) {
+      progress.remove();
+      log.appendChild(el("div", "msg bot template", "Error: " + esc(e.message)));
+    } finally {
+      setBusy(false);
+      input.focus();
+    }
+  }
+
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const text = input.value.trim();
+    if (!text || busy) return;
+    input.value = "";
+    sendTurn(text);
+  });
+  $("new_session").addEventListener("click", newSession);
+
+  loadOptions().then(newSession).catch((e) => { log.appendChild(el("div", "msg bot template", "Could not load /models or /prompts: " + esc(e.message))); });
+})();
+</script>
+</body>
+</html>
