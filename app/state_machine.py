@@ -28,6 +28,7 @@ from app.tools import fixtures, mock_backend
 NLU = Callable[[str, Session, str, dict], dict]
 
 MAX_LOOPS = 3  # re-asks per state, and no-slot rounds at ASK_DAYS, before hand-off
+MAX_CORRECTIONS = 3  # per session; past this the classifier is not called and turns are taken as answers
 SLOTS_PER_OFFER = 3
 NEW_PATIENT_SESSION_TYPE = "first_consultation"  # set by code; ASK_SESSION_TYPE is for returning patients only
 
@@ -62,11 +63,31 @@ QUESTION_FOR_STATE = {
 }
 
 
+# Correction intent (design.md section 3): field -> the waiting state that owns it.
+REWIND_MAP = {
+    "problem": State.ASK_PROBLEM,
+    "doctor": State.ASK_DOCTOR_PREF,
+    "phone": State.ASK_PHONE,
+    "session_type": State.ASK_SESSION_TYPE,
+    "days": State.ASK_DAYS,
+}
+
+# Session fields cleared on rewind: the owned field plus everything downstream in workflow order.
+CLEAR_ON_REWIND = {
+    State.ASK_PROBLEM: ["problem", "category", "doctor_id", "days", "offered_slots", "chosen_slot"],
+    State.ASK_DOCTOR_PREF: ["doctor_id", "days", "offered_slots", "chosen_slot"],
+    State.ASK_PHONE: ["phone", "doctor_id", "session_type", "days", "offered_slots", "chosen_slot"],
+    State.ASK_SESSION_TYPE: ["session_type", "days", "offered_slots", "chosen_slot"],
+    State.ASK_DAYS: ["days", "offered_slots", "chosen_slot"],
+}
+
+
 @dataclass
 class TurnResult:
     state: str
     reply: dict  # facts for NLG, always has "kind"
     nlu_output: dict | None
+    correction: dict | None = None  # {"field", "rewound_to"} when this turn rewound
 
 
 # --- helpers -----------------------------------------------------------------
@@ -136,6 +157,31 @@ def _resolve_days(terms: list[str]) -> list[date]:
                 if mock_backend.WEEKDAYS[d.weekday()] == term:
                     out.add(d)
     return sorted(out)
+
+
+def _correctable_fields(session: Session) -> set[str]:
+    """Fields the user answered earlier, so a correction can apply. Code-set values do not count."""
+    out = set()
+    if session.problem is not None:
+        out.add("problem")
+    if session.doctor_id is not None:
+        out.add("doctor")
+    if session.phone is not None:
+        out.add("phone")
+    if session.session_type in ("therapy", "followup"):
+        out.add("session_type")
+    if session.days:
+        out.add("days")
+    return out
+
+
+def _rewind(session: Session, target: State) -> None:
+    """Leave the current state, clear the target's field and everything downstream, land on target."""
+    session.loop_counts["reask"].pop(session.state, None)
+    for name in CLEAR_ON_REWIND[target]:
+        default = [] if name in ("days", "offered_slots") else None
+        setattr(session, name, default)
+    session.state = target
 
 
 def _shortlist(category: str | None) -> list[dict]:
@@ -315,6 +361,16 @@ def step(session: Session, text: str, nlu: NLU) -> TurnResult:
     if session.state == State.END:
         return TurnResult(State.END, {"kind": "ended"}, None)
 
+    correction = None
+    correctable = _correctable_fields(session)
+    if correctable and session.loop_counts["corrections"] < MAX_CORRECTIONS:
+        out = nlu("turn_classifier", session, text, {})
+        field = out.get("correction_field")
+        if out.get("is_correction") and field in correctable and REWIND_MAP[field] != session.state:
+            _rewind(session, REWIND_MAP[field])
+            session.loop_counts["corrections"] += 1
+            correction = {"field": field, "rewound_to": str(session.state)}
+
     nlu_output, reply = WAITING_HANDLERS[State(session.state)](session, text, nlu)
 
     while session.state in AUTO_HANDLERS:
@@ -323,4 +379,4 @@ def step(session: Session, text: str, nlu: NLU) -> TurnResult:
 
     if reply is None:
         reply = _ask(session)
-    return TurnResult(session.state, reply, nlu_output)
+    return TurnResult(session.state, reply, nlu_output, correction)

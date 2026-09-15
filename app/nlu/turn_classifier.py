@@ -1,4 +1,4 @@
-"""turn_classifier: is this turn a correction of an earlier answer? Wired into the state machine in Phase 4."""
+"""turn_classifier: is this turn a correction of an earlier answer? Runs before state NLU; see state_machine.step()."""
 
 VERSION = "1"
 FIELDS = ["doctor", "days", "session_type", "phone", "problem"]

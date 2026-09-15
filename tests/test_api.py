@@ -43,6 +43,7 @@ def test_returning_patient_books_over_http(client, monkeypatch):
         "session_type": '{"type": "followup"}',
         "extract_days": '{"time_pref": "morning", "days": ["monday"]}',
         "slot_choice": '{"choice_index": 1, "wants_other": false, "other": null}',
+        "turn_classifier": '{"is_correction": false, "correction_field": null, "new_value": null}',
     }))
     states = [post(client, t)["state"] for t in ["hi", "no", "9876543210", "follow up", "monday morning"]]
     assert states == ["ASK_FIRST_CONSULT", "ASK_PHONE", "ASK_SESSION_TYPE", "ASK_DAYS", "CAPTURE_CHOICE"]
@@ -52,8 +53,9 @@ def test_returning_patient_books_over_http(client, monkeypatch):
     assert last["debug"]["nlg"]["prompt_name"] == "confirm_booking"
     assert last["debug"]["reply_facts"]["kind"] == "confirm_booking"
     assert last["debug"]["reply_facts"]["booking"]["start"] == "2026-09-21T10:00"
-    assert last["debug"]["validator_results"][0]["prompt_name"] == "slot_choice"
-    assert last["debug"]["latency_ms"] == 6  # one NLU call + one NLG call
+    assert [c["prompt_name"] for c in last["debug"]["validator_results"]] == ["turn_classifier", "slot_choice"]
+    assert last["debug"]["correction"] is None
+    assert last["debug"]["latency_ms"] == 9  # classifier + one NLU call + one NLG call
 
 
 def test_fallback_is_reported_in_debug(client, monkeypatch):

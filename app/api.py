@@ -41,6 +41,7 @@ def message(msg: MessageIn) -> dict:
             "nlu_output": result.nlu_output,
             "validator_results": nlu.turn_debug,
             "nlg": nlg_debug,
+            "correction": result.correction,
             "fallback_used": any(not d["ok"] for d in calls),
             "latency_ms": sum(d["latency_ms"] for d in calls),
         },

@@ -28,7 +28,9 @@ def show(text: str, resp: dict) -> None:
     if d.get("nlg"):
         n = d["nlg"]
         calls.append(f"nlg:{n['prompt_name']}{'' if n['ok'] else ' TEMPLATE:' + n['reason_code']}")
-    print(f"      [{resp['state']}] {d['reply_facts']['kind']} | {', '.join(calls)} ({d['latency_ms']} ms)")
+    corr = d.get("correction")
+    tag = f" | REWIND {corr['field']} -> {corr['rewound_to']}" if corr else ""
+    print(f"      [{resp['state']}] {d['reply_facts']['kind']} | {', '.join(calls)}{tag} ({d['latency_ms']} ms)")
 
 
 def main() -> None:

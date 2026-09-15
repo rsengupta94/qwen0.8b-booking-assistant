@@ -21,6 +21,8 @@ class ScriptedNLU:
 
     def __call__(self, prompt_name, session, text, context):
         self.calls.append((prompt_name, text, context))
+        if prompt_name == "turn_classifier" and not self.answers.get(prompt_name):
+            return {"is_correction": False, "correction_field": None, "new_value": None}
         return self.answers[prompt_name].pop(0)
 
 
