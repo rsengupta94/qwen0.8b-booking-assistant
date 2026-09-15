@@ -131,7 +131,7 @@ def test_no_slots_three_times_hands_off():
     s = Session("t5")
     r = run(s, nlu, ["hi", "yes", "stress", "Meera Rao", "sunday", "sunday", "sunday"])
 
-    assert r[4].reply == {"kind": "no_slots", "days": ["2026-09-27", "2026-10-04"]} and r[4].state == State.ASK_DAYS
+    assert r[4].reply == {"kind": "no_slots", "days": ["2026-09-27", "2026-10-04"], "doctor_id": "d_rao"} and r[4].state == State.ASK_DAYS
     assert r[5].reply["kind"] == "no_slots"
     assert r[6].reply["kind"] == "handoff" and r[6].state == State.END
     assert mock_backend.bookings() == []
@@ -205,8 +205,7 @@ def test_relative_days_and_time_pref():
         "session_type": [{"type": "therapy"}],
         "extract_days": [
             {"days": ["tomorrow", "day_after_tomorrow"], "time_pref": None},
-            {"days": ["today"], "time_pref": "morning"},   # d_khan has only 16:00 on Monday -> no slots
-            {"days": ["today"], "time_pref": "afternoon"},
+            {"days": ["today"], "time_pref": "morning"},   # d_khan has only 16:00 on Monday -> morning missed, day offered
         ],
         "slot_choice": [
             {"choice_index": None, "wants_other": True, "other": None},
@@ -214,11 +213,13 @@ def test_relative_days_and_time_pref():
         ],
     })
     s = Session("t10")
-    r = run(s, nlu, ["hi", "no", "9123456780", "therapy", "tomorrow or the day after", "other", "today morning", "today afternoon", "1"])
+    r = run(s, nlu, ["hi", "no", "9123456780", "therapy", "tomorrow or the day after", "other", "today morning", "1"])
     # tomorrow = Tue 22nd (10:00, 10:30); day after = Wed 23rd (none for d_khan)
     assert [sl["start"] for sl in r[4].reply["slots"]] == ["2026-09-22T10:00", "2026-09-22T10:30"]
-    assert r[6].reply == {"kind": "no_slots", "days": ["2026-09-21"]}
-    assert [sl["start"] for sl in r[7].reply["slots"]] == ["2026-09-21T16:00"]
+    assert "time_pref_missed" not in r[4].reply
+    assert r[6].reply["kind"] == "present_slots" and r[6].reply["time_pref_missed"] == "morning"
+    assert [sl["start"] for sl in r[6].reply["slots"]] == ["2026-09-21T16:00"] and r[6].state == State.CAPTURE_CHOICE
+    assert s.loop_counts["no_slots"] == 0
     b = mock_backend.bookings()
     assert len(b) == 1 and b[0]["start"] == "2026-09-21T16:00"
 

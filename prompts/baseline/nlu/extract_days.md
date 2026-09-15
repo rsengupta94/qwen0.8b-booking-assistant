@@ -21,5 +21,11 @@ JSON: {"time_pref": "evening", "days": ["today"]}
 Reply: fri
 JSON: {"time_pref": null, "days": ["friday"]}
 
+Reply: the day after tomorrow, around 10am
+JSON: {"time_pref": "morning", "days": ["day_after_tomorrow"]}
+
+Reply: saturday
+JSON: {"time_pref": null, "days": ["saturday"]}
+
 Reply: {{ user_text }}
 JSON:

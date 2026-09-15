@@ -2,16 +2,25 @@
 
 from app.nlg import basic_checks, format_date, format_slot, format_time, reply_schema, time_tokens
 
-VERSION = "1"
+VERSION = "2"
 MAX_CHARS = 400
 MAX_TOKENS = 160
+
+
+def _lead(facts: dict) -> str:
+    """Sentence before the list. Empty when there is nothing to acknowledge."""
+    if facts.get("reask"):
+        return "Sorry, I didn't catch which one."
+    if facts.get("time_pref_missed"):
+        return f"There are no {facts['time_pref_missed']} slots on those days, but here is what is open."
+    return ""
 
 
 def inputs(facts: dict) -> dict:
     return {
         "doctor_name": facts["doctor_name"],
         "slots": [format_slot(s) for s in facts["slots"]],
-        "reask": bool(facts.get("reask")),
+        "lead": _lead(facts),
     }
 
 
@@ -34,11 +43,13 @@ def validate(output, facts: dict) -> tuple[str, bool, str]:
         return template(facts), False, "doctor_missing"
     if "?" not in reply:
         return template(facts), False, "no_question"
+    if facts.get("time_pref_missed") and facts["time_pref_missed"] not in reply.lower():
+        return template(facts), False, "missed_window_not_mentioned"
     return reply, True, "ok"
 
 
 def template(facts: dict) -> str:
     i = inputs(facts)
-    lead = "Sorry, I didn't catch which one. " if i["reask"] else ""
+    lead = i["lead"] + " " if i["lead"] else ""
     lines = "\n".join(f"{n}. {s}" for n, s in enumerate(i["slots"], 1))
     return f"{lead}{i['doctor_name']} is available at:\n{lines}\nWhich one would you like?"

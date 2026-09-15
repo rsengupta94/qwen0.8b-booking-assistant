@@ -306,16 +306,23 @@ def _on_days(session: Session, text: str, nlu: NLU):
     if not dates:
         return out, _reask(session, "no_days", text, nlu)
     session.days = [d.isoformat() for d in dates]
-    slots = mock_backend.fetch_availability(session.doctor_id, dates, out.get("time_pref"))
+    time_pref = out.get("time_pref")
+    slots = mock_backend.fetch_availability(session.doctor_id, dates, time_pref)
+    time_pref_missed = None
+    if not slots and time_pref:
+        # Nothing in the preferred window: offer whatever the day has, and say the window was missed.
+        slots = mock_backend.fetch_availability(session.doctor_id, dates)
+        time_pref_missed = time_pref if slots else None
     if not slots:
         session.loop_counts["no_slots"] += 1
         if session.loop_counts["no_slots"] >= MAX_LOOPS:
             session.state = State.END
             return out, {"kind": "handoff", "reason": "no_slots_limit"}
-        return out, {"kind": "no_slots", "days": list(session.days)}
+        return out, {"kind": "no_slots", "days": list(session.days), "doctor_id": session.doctor_id}
     session.offered_slots = slots[:SLOTS_PER_OFFER]
     _advance(session, State.SHOW_SLOTS)
-    return out, None
+    extra = {"time_pref_missed": time_pref_missed} if time_pref_missed else {}
+    return out, _present_slots(session, **extra)
 
 
 def _on_choice(session: Session, text: str, nlu: NLU):
@@ -359,7 +366,7 @@ def _auto_pick_doctor(session: Session, nlu: NLU):
 
 def _auto_show_slots(session: Session, nlu: NLU):
     _advance(session, State.CAPTURE_CHOICE)
-    return _present_slots(session)
+    return None  # _on_days built the present_slots facts (with any time_pref_missed note); step() keeps them
 
 
 def _auto_confirm(session: Session, nlu: NLU):
