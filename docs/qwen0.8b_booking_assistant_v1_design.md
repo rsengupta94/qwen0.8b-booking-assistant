@@ -136,9 +136,7 @@ Bot is an HTTP API. Everything else is a client.
 
 `model_id` selects the served model per session so the UI can put prompt-only, fine-tuned, and baseline models side by side. `prompt_version` selects the prompt directory, so the Space can pair any prompt version with any model.
 
-Build order: CLI client, then simulator client, then a thin web UI with a model and prompt-version dropdown and the debug field shown in a side panel. The UI is one static HTML file with vanilla JS, served by FastAPI from the same process as the API. No frontend build step. On CPU each turn takes 3 to 4 model calls at 2 to 5 seconds each, so the UI streams per-call progress (classifying, extracting, writing reply). The wait should read as a debugger, not a stalled chat.
-
-Simulator: a strong model (Claude or Gemini) plays the user from a persona card plus a hidden goal (patient type, target doctor or any, acceptable days, whether to reject the first slot offer). The bot never sees the goal. Persona dimensions and goal sampling are designed after the system works, but the simulator schema carries a `goal` field from the start so eval scoring is additive later.
+Build order: CLI client, then a thin web UI with model and prompt-version dropdowns and the debug field shown in a side panel. The UI is one static HTML file with vanilla JS, served by FastAPI from the same process as the API. No frontend build step. On CPU each turn takes 3 to 4 model calls at 2 to 5 seconds each, so the UI streams per-call progress (classifying, extracting, writing reply). The wait should read as a debugger, not a stalled chat.
 
 ## 10. Repo layout
 
@@ -164,7 +162,6 @@ qwen0.8b-booking-assistant/
     (GGUF files gitignored, pulled from Hugging Face at startup)
   clients/
     cli.py
-    simulator/
     ui/
   tests/
   checks/
@@ -202,9 +199,9 @@ Turn classifier, rewind map, downstream clearing.
 `off_script` prompt, FAQ fixture, `clarify`; `doctor_pick` with filter flag.
 `checks/phase_5.sh`: scripted "what are your fees?" at ASK_FIRST_CONSULT asserts a FAQ answer plus re-ask in one reply and state unchanged; scripted "you decide" asserts a doctor_id from the shortlist with a non-empty reason.
 
-**Phase 6: simulator and UI**
-Simulator client with persona card and goal field; thin web UI with model and prompt-version dropdowns, debug panel, per-call progress.
-`checks/phase_6.sh`: runs 20 simulated sessions unattended, asserts a JSONL log with 20 session ids; curls the UI route and asserts it serves the static file.
+**Phase 6: UI**
+Thin web UI with model and prompt-version dropdowns, debug panel, per-call progress. `/models` and `/prompts` endpoints to populate dropdowns.
+`checks/phase_6.sh`: curls `/`, `/models`, `/prompts`; asserts the static file is served and both lists are non-empty.
 
 **Phase 7: Spaces deploy**
 Dockerfile, GGUF download at startup, Space secrets if any, README model card.
@@ -220,6 +217,7 @@ Adding a fine-tuned model later: train with TRL, convert to GGUF with the llama.
 
 ## Appendix: parked for later
 
+- Simulator client: a strong model plays the user from a persona card and hidden goal, posting to `/message` and writing transcripts. Built with the persona design at the start of the eval phase.
 - Safety and distress handling, designed from scratch
 - Eval suite: LLM-as-judge on transcripts, goal completion against the simulator's hidden goal, per-prompt pass rates from the JSONL log
 - Persona dimensions and goal sampling for the simulator
