@@ -30,6 +30,11 @@ NLU = Callable[[str, Session, str, dict], dict]
 MAX_LOOPS = 3  # re-asks per state, and no-slot rounds at ASK_DAYS, before hand-off
 MAX_CORRECTIONS = 3  # per session; past this the classifier is not called and turns are taken as answers
 SLOTS_PER_OFFER = 3
+# Doctor matching (design.md section 5). True: doctor_pick sees only doctors tagged with the category.
+# False: full ranking over all doctors, category matches listed first so the validator fallback is still code's top candidate.
+FILTER_SHORTLIST = True
+# Re-ask reasons where the user did name something, so an FAQ detour makes no sense.
+NO_DETOUR_REASONS = {"doctor_not_found", "doctor_ambiguous"}
 NEW_PATIENT_SESSION_TYPE = "first_consultation"  # set by code; ASK_SESSION_TYPE is for returning patients only
 
 RELATIVE_DAYS = {"today": 0, "tomorrow": 1, "day_after_tomorrow": 2}
@@ -60,6 +65,7 @@ QUESTION_FOR_STATE = {
     State.ASK_PHONE: "phone",
     State.ASK_SESSION_TYPE: "session_type",
     State.ASK_DAYS: "days",
+    State.CAPTURE_CHOICE: "slot_choice",  # only used by clarify; CAPTURE_CHOICE re-asks via present_slots
 }
 
 
@@ -103,8 +109,25 @@ def _ask(session: Session, **extra) -> dict:
     return {"kind": "ask_question", "question": QUESTION_FOR_STATE[State(session.state)], **extra}
 
 
-def _reask(session: Session, reason: str) -> dict:
-    """Stay in the current state and ask again. Past MAX_LOOPS, hand off and end."""
+def _reask(session: Session, reason: str, text: str, nlu: NLU) -> dict:
+    """Stay in the current state and ask again. Past MAX_LOOPS, hand off and end.
+
+    Off-script (design.md section 6): before counting a re-ask, allow one detour per state. If
+    off_script says the user asked a question, reply with the FAQ answer (matched in code) plus the
+    pending question, and do not spend a re-ask.
+    """
+    detours = session.loop_counts["detour"]
+    if reason not in NO_DETOUR_REASONS and not detours.get(session.state):
+        out = nlu("off_script", session, text, {})
+        if out.get("is_question"):
+            detours[session.state] = True
+            topic = out.get("topic")
+            return {
+                "kind": "clarify",
+                "question": QUESTION_FOR_STATE[State(session.state)],
+                "faq_answer": fixtures.faq_answer(topic),
+                "topic": topic,
+            }
     counts = session.loop_counts["reask"]
     counts[session.state] = counts.get(session.state, 0) + 1
     if counts[session.state] >= MAX_LOOPS:
@@ -185,9 +208,15 @@ def _rewind(session: Session, target: State) -> None:
 
 
 def _shortlist(category: str | None) -> list[dict]:
-    """Doctors whose tags include the category. Falls back to all doctors when nothing matches."""
+    """Doctors whose tags include the category, code's top candidate first.
+
+    FILTER_SHORTLIST on: only matches (all doctors when nothing matches). Off: matches first, then the rest.
+    """
     matched = [d for d in fixtures.doctors() if category in d["categories"]]
-    return matched or list(fixtures.doctors())
+    rest = [d for d in fixtures.doctors() if category not in d["categories"]]
+    if FILTER_SHORTLIST:
+        return matched or list(fixtures.doctors())
+    return matched + rest
 
 
 # --- waiting-state handlers: (session, text, nlu) -> (nlu_output, reply or None)
@@ -208,7 +237,7 @@ def _on_first_consult(session: Session, text: str, nlu: NLU):
         session.patient_type = "returning"
         _advance(session, State.ASK_PHONE)
     else:
-        return out, _reask(session, "not_yes_no")
+        return out, _reask(session, "not_yes_no", text, nlu)
     return out, None
 
 
@@ -229,10 +258,10 @@ def _on_doctor_pref(session: Session, text: str, nlu: NLU):
         if doctor is None:
             session.state = State.ASK_DOCTOR_PREF
             if candidates:
-                reply = _reask(session, "doctor_ambiguous")
+                reply = _reask(session, "doctor_ambiguous", text, nlu)
                 reply["candidates"] = [d["name"] for d in candidates]
                 return out, reply
-            return out, _reask(session, "doctor_not_found")
+            return out, _reask(session, "doctor_not_found", text, nlu)
         session.doctor_id = doctor["id"]
         session.loop_counts["reask"].pop(State.ASK_DOCTOR_PREF, None)
         session.state = State.ASK_DAYS
@@ -240,14 +269,14 @@ def _on_doctor_pref(session: Session, text: str, nlu: NLU):
     if mode == "you_decide":
         _advance(session, State.PICK_DOCTOR)
         return out, None
-    return out, _reask(session, "no_doctor_pref")
+    return out, _reask(session, "no_doctor_pref", text, nlu)
 
 
 def _on_phone(session: Session, text: str, nlu: NLU):
     out = nlu("extract_phone", session, text, {})
     digits = out.get("digits") or ""
     if not digits:
-        return out, _reask(session, "no_phone")
+        return out, _reask(session, "no_phone", text, nlu)
     session.phone = digits
     patient = mock_backend.fetch_patient(digits)
     if patient is None:
@@ -265,7 +294,7 @@ def _on_session_type(session: Session, text: str, nlu: NLU):
     out = nlu("session_type", session, text, {})
     kind = out.get("type")
     if kind not in ("therapy", "followup"):
-        return out, _reask(session, "not_session_type")
+        return out, _reask(session, "not_session_type", text, nlu)
     session.session_type = kind
     _advance(session, State.ASK_DAYS)
     return out, None
@@ -275,7 +304,7 @@ def _on_days(session: Session, text: str, nlu: NLU):
     out = nlu("extract_days", session, text, {"day_terms": DAY_TERMS})
     dates = _resolve_days(out.get("days") or [])
     if not dates:
-        return out, _reask(session, "no_days")
+        return out, _reask(session, "no_days", text, nlu)
     session.days = [d.isoformat() for d in dates]
     slots = mock_backend.fetch_availability(session.doctor_id, dates, out.get("time_pref"))
     if not slots:
@@ -300,7 +329,7 @@ def _on_choice(session: Session, text: str, nlu: NLU):
         session.chosen_slot = session.offered_slots[idx - 1]
         _advance(session, State.CONFIRM)
         return out, None
-    return out, _reask(session, "no_valid_choice")
+    return out, _reask(session, "no_valid_choice", text, nlu)
 
 
 WAITING_HANDLERS = {
@@ -325,7 +354,7 @@ def _auto_pick_doctor(session: Session, nlu: NLU):
     chosen = out.get("doctor_id")
     session.doctor_id = chosen if chosen in ids else ids[0]
     _advance(session, State.ASK_DAYS)
-    return None
+    return _ask(session, suggested_doctor=fixtures.doctor_by_id(session.doctor_id)["name"])
 
 
 def _auto_show_slots(session: Session, nlu: NLU):

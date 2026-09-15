@@ -74,5 +74,5 @@ def test_every_nlg_prompt_renders(monkeypatch, log_file):
     render_reply(FACTS, s, "m", "baseline")
     render_reply({"kind": "no_slots", "doctor_id": "d_rao", "days": ["2026-09-27"]}, s, "m", "baseline")
     render_reply({"kind": "confirm_booking", "booking": {"booking_id": "b1", "doctor_name": "Dr. X", "start": "2026-09-23T14:00", "session_type": "therapy"}}, s, "m", "baseline")
-    render_reply({"kind": "clarify", "faq_answer": "Fees are 1500.", "question": "Which days work for you?"}, s, "m", "baseline")
+    render_reply({"kind": "clarify", "faq_answer": "Fees are 1500.", "question": "days", "topic": "fees"}, s, "m", "baseline")
     assert len(seen) == 5 and all(p.rstrip().endswith("JSON:") for p in seen)

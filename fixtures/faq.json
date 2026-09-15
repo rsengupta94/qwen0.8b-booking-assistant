@@ -1,0 +1,17 @@
+[
+  {
+    "topic": "fees",
+    "keywords": ["fee", "cost", "price", "charge", "pay", "rupee"],
+    "answer": "A session costs 1500 rupees, payable at the clinic."
+  },
+  {
+    "topic": "hours",
+    "keywords": ["hour", "open", "timing", "time", "weekend", "close"],
+    "answer": "We are open Monday to Saturday, 9am to 7pm."
+  },
+  {
+    "topic": "first_visit",
+    "keywords": ["first", "visit", "consult", "new patient"],
+    "answer": "Your first appointment with us counts as a first consultation; any later appointment is a follow-up or therapy session."
+  }
+]

@@ -3,7 +3,7 @@
 from app.nlg import basic_checks, reply_schema
 from app.tools import fixtures
 
-VERSION = "1"
+VERSION = "2"
 MAX_CHARS = 240
 MAX_TOKENS = 96
 APOLOGY_MARKERS = ("sorry", "didn't catch", "did not catch", "apolog")
@@ -26,6 +26,8 @@ def _note(facts: dict) -> str:
         return "I couldn't find that number in our records, so let's set you up as a new patient."
     if facts.get("other_slots"):
         return "Sure, let's look at other days."
+    if facts.get("suggested_doctor"):
+        return f"We suggest {facts['suggested_doctor']}."
     reason = facts.get("reason", "")
     if reason == "doctor_not_found":
         return "I couldn't find a doctor by that name."
@@ -63,6 +65,8 @@ def validate(output, facts: dict) -> tuple[str, bool, str]:
     for name in facts.get("candidates", []):
         if name not in reply:
             return template(facts), False, "candidate_missing"
+    if facts.get("suggested_doctor") and facts["suggested_doctor"] not in reply:
+        return template(facts), False, "doctor_missing"
     return reply, True, "ok"
 
 

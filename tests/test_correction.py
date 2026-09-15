@@ -27,6 +27,8 @@ class ScriptedNLU:
         self.calls.append((prompt_name, text, str(session.state)))
         if prompt_name == "turn_classifier" and not self.answers.get(prompt_name):
             return NOT
+        if prompt_name == "off_script" and not self.answers.get(prompt_name):
+            return {"is_question": False, "topic": None}
         return self.answers[prompt_name].pop(0)
 
     def names(self):

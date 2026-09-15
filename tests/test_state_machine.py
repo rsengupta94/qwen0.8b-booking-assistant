@@ -23,6 +23,8 @@ class ScriptedNLU:
         self.calls.append((prompt_name, text, context))
         if prompt_name == "turn_classifier" and not self.answers.get(prompt_name):
             return {"is_correction": False, "correction_field": None, "new_value": None}
+        if prompt_name == "off_script" and not self.answers.get(prompt_name):
+            return {"is_question": False, "topic": None}
         return self.answers[prompt_name].pop(0)
 
 

@@ -38,3 +38,19 @@ def doctor_by_id(doctor_id: str) -> dict | None:
 def clinic() -> dict:
     with (FIXTURES_DIR / "clinic.json").open() as f:
         return json.load(f)
+
+
+def faq() -> list[dict]:
+    """FAQ entries: {topic, keywords, answer}. The answer is the only text a clarify reply may contain."""
+    return _load("faq")
+
+
+def faq_answer(topic: str | None) -> str | None:
+    """Deterministic match of an off_script topic against FAQ keywords. None when nothing matches."""
+    if not topic:
+        return None
+    t = topic.lower()
+    for entry in faq():
+        if any(k in t for k in entry["keywords"]):
+            return entry["answer"]
+    return None

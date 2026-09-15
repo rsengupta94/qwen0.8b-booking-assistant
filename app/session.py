@@ -18,8 +18,9 @@ class Session:
     offered_slots: list[dict] = field(default_factory=list)
     chosen_slot: dict | None = None
     booking: dict | None = None
-    # Re-ask counts per state, the ASK_DAYS no-slots loop, and corrections taken. Reset rules live in state_machine.py.
-    loop_counts: dict = field(default_factory=lambda: {"reask": {}, "no_slots": 0, "corrections": 0})
+    # Re-ask counts per state, the ASK_DAYS no-slots loop, corrections taken, and the FAQ detour used per state.
+    # Reset rules live in state_machine.py.
+    loop_counts: dict = field(default_factory=lambda: {"reask": {}, "no_slots": 0, "corrections": 0, "detour": {}})
 
 
 class SessionStore:

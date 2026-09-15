@@ -47,3 +47,12 @@ def test_apology_without_a_reask_falls_back():
     out, ok, reason = m.validate({"reply": "I'm sorry, I didn't catch that. Which days work for you?"}, {"question": "days"})
     assert (ok, reason) == (False, "false_apology") and out == "Which days work for you?"
     assert m.validate({"reply": "Sorry, I didn't catch that. Which days work for you?"}, {"question": "days", "reask": True, "reason": "no_days"})[1] is True
+
+
+def test_suggested_doctor_note_and_check():
+    facts = {"question": "days", "suggested_doctor": "Dr. Arjun Iyer"}
+    assert m.template(facts) == "We suggest Dr. Arjun Iyer. Which days work for you?"
+    out, ok, reason = m.validate({"reply": "Great. Which days work for you?"}, facts)
+    assert (ok, reason) == (False, "doctor_missing") and out == m.template(facts)
+    r = "We suggest Dr. Arjun Iyer. Which days work for you?"
+    assert m.validate({"reply": r}, facts) == (r, True, "ok")
