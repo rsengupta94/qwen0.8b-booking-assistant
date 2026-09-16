@@ -56,8 +56,8 @@ def test_new_patient_named_doctor_books():
         State.ASK_DAYS, State.CAPTURE_CHOICE, State.END,
     ]
     assert r[4].reply["kind"] == "present_slots"
-    # both Wednesdays in the 14-day horizon, nearest first, capped at 3
-    assert [sl["start"] for sl in r[4].reply["slots"]] == ["2026-09-23T14:00", "2026-09-23T15:00", "2026-09-30T14:00"]
+    # nearest Wednesday first, capped at 3
+    assert [sl["start"] for sl in r[4].reply["slots"]] == ["2026-09-23T14:00", "2026-09-23T15:00", "2026-09-23T16:00"]
     assert s.days == ["2026-09-23", "2026-09-30"]
     assert r[5].reply["kind"] == "confirm_booking"
 
@@ -94,19 +94,19 @@ def test_returning_patient_books_with_own_doctor():
 def test_you_decide_picks_from_category_shortlist():
     nlu = ScriptedNLU({
         "yes_no": [{"intent": "yes"}],
-        "extract_problem": [{"summary": "cannot sleep", "category": "sleep"}],
+        "extract_problem": [{"summary": "low mood", "category": "depression"}],
         "doctor_pref": [{"mode": "you_decide", "doctor_name": None}],
-        "doctor_pick": [{"doctor_id": "d_mehta", "reason": "sleep routines"}],
-        "extract_days": [{"days": ["wednesday"], "time_pref": None}],
+        "doctor_pick": [{"doctor_id": "d_khan", "reason": "long-term therapy for low mood"}],
+        "extract_days": [{"days": ["thursday"], "time_pref": None}],
         "slot_choice": [{"choice_index": 1, "wants_other": False, "other": None}],
     })
     s = Session("t3")
-    run(s, nlu, ["hi", "yes", "cannot sleep", "you decide", "wednesday", "1"])
+    run(s, nlu, ["hi", "yes", "low mood", "you decide", "thursday", "1"])
 
     pick_call = next(c for c in nlu.calls if c[0] == "doctor_pick")
-    assert [d["id"] for d in pick_call[2]["shortlist"]] == ["d_iyer", "d_mehta"]
+    assert [d["id"] for d in pick_call[2]["shortlist"]] == ["d_rao", "d_khan"]  # depression is the one shared tag
     b = mock_backend.bookings()
-    assert len(b) == 1 and b[0]["doctor_id"] == "d_mehta" and b[0]["start"] == "2026-09-23T09:00"
+    assert len(b) == 1 and b[0]["doctor_id"] == "d_khan" and b[0]["start"] == "2026-09-24T14:00"
 
 
 def test_doctor_pick_outside_shortlist_falls_back_to_top_candidate():
@@ -205,7 +205,7 @@ def test_relative_days_and_time_pref():
         "session_type": [{"type": "therapy"}],
         "extract_days": [
             {"days": ["tomorrow", "day_after_tomorrow"], "time_pref": None},
-            {"days": ["today"], "time_pref": "morning"},   # d_khan has only 16:00 on Monday -> morning missed, day offered
+            {"days": ["today"], "time_pref": "morning"},   # d_khan has only 16:00-18:00 on Monday -> morning missed, day offered
         ],
         "slot_choice": [
             {"choice_index": None, "wants_other": True, "other": None},
@@ -215,10 +215,10 @@ def test_relative_days_and_time_pref():
     s = Session("t10")
     r = run(s, nlu, ["hi", "no", "9123456780", "therapy", "tomorrow or the day after", "other", "today morning", "1"])
     # tomorrow = Tue 22nd (10:00, 10:30); day after = Wed 23rd (none for d_khan)
-    assert [sl["start"] for sl in r[4].reply["slots"]] == ["2026-09-22T10:00", "2026-09-22T10:30"]
+    assert [sl["start"] for sl in r[4].reply["slots"]] == ["2026-09-22T10:00", "2026-09-22T10:30", "2026-09-22T11:00"]
     assert "time_pref_missed" not in r[4].reply
     assert r[6].reply["kind"] == "present_slots" and r[6].reply["time_pref_missed"] == "morning"
-    assert [sl["start"] for sl in r[6].reply["slots"]] == ["2026-09-21T16:00"] and r[6].state == State.CAPTURE_CHOICE
+    assert [sl["start"] for sl in r[6].reply["slots"]] == ["2026-09-21T16:00", "2026-09-21T17:00", "2026-09-21T18:00"] and r[6].state == State.CAPTURE_CHOICE
     assert s.loop_counts["no_slots"] == 0
     b = mock_backend.bookings()
     assert len(b) == 1 and b[0]["start"] == "2026-09-21T16:00"
@@ -299,4 +299,4 @@ def test_invalid_slot_choice_represents_slots_then_accepts():
 def test_slots_already_started_today_are_not_offered(monkeypatch):
     monkeypatch.setattr(mock_backend, "now", lambda: datetime(2026, 9, 21, 10, 30))  # Monday 10:30
     slots = mock_backend.fetch_availability("d_rao", [TODAY])
-    assert [sl["start"] for sl in slots] == ["2026-09-21T11:00"]  # 10:00 has started, 11:00 has not
+    assert [sl["start"] for sl in slots] == ["2026-09-21T11:00", "2026-09-21T12:00"]  # 10:00 has started, 11:00 and 12:00 have not

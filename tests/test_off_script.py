@@ -154,14 +154,16 @@ def test_detour_at_capture_choice_reasks_slot_choice():
 def test_you_decide_reply_names_the_suggested_doctor():
     nlu = ScriptedNLU({
         "yes_no": [{"intent": "yes"}],
-        "extract_problem": [{"summary": "cannot sleep", "category": "sleep"}],
+        "extract_problem": [{"summary": "low mood", "category": "depression"}],
         "doctor_pref": [{"mode": "you_decide", "doctor_name": None}],
-        "doctor_pick": [{"doctor_id": "d_mehta", "reason": "sleep routines"}],
+        "doctor_pick": [{"doctor_id": "d_khan", "reason": "long-term therapy"}],
     })
     s = Session("o8")
-    r = run(s, nlu, ["hi", "yes", "cannot sleep", "you decide"])
+    r = run(s, nlu, ["hi", "yes", "low mood", "you decide"])
+    pick = next(c for c in nlu.calls if c[0] == "doctor_pick")
+    assert [d["id"] for d in pick[2]["shortlist"]] == ["d_rao", "d_khan"]  # the one deliberate overlap: depression
     assert r[3].state == State.ASK_DAYS
-    assert r[3].reply == {"kind": "ask_question", "question": "days", "suggested_doctor": "Dr. Vikram Mehta"}
+    assert r[3].reply == {"kind": "ask_question", "question": "days", "suggested_doctor": "Dr. Sana Khan"}
 
 
 def test_filter_flag_on_passes_only_category_matches():

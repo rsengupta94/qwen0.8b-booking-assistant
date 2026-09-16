@@ -62,7 +62,8 @@ print(f"faq_fees: detour at ASK_FIRST_CONSULT answered '{fees}' and re-asked; bo
 t = next(t for t in turns if t["text"] == "you decide")
 pick = next(c for c in t["debug"]["validator_results"] if c["prompt_name"] == "doctor_pick")
 doctors = {d["id"]: d for d in json.load(open("fixtures/doctors.json"))}
-shortlist = [d["id"] for d in doctors.values() if "sleep" in d["categories"]]
+shortlist = [d["id"] for d in doctors.values() if "depression" in d["categories"]]
+assert len(shortlist) == 2, shortlist  # the one deliberate overlap: a real pick, not a single candidate
 assert pick["result"]["doctor_id"] in shortlist, (pick["result"], shortlist)
 assert pick["ok"] and isinstance(pick["result"]["reason"], str) and pick["result"]["reason"].strip(), pick
 assert t["state"] == "ASK_DAYS" and t["debug"]["reply_facts"]["kind"] == "ask_question"

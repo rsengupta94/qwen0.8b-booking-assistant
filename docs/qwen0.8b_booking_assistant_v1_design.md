@@ -93,6 +93,14 @@ Prompts live in prompts/{version}/, one directory per version, all NLU and NLG p
 
 The filter step has a flag. Turning it off gives full ranking over all doctors, kept as an eval-phase experiment.
 
+### 5.1 Fixture sizing
+
+- **Doctors: 7**, each with a subspecialty, category tags, a `conditions` list of common presenting problems, and a one-line skills summary. Subspecialties: general adult, mood/trauma/loss, stress and sleep, child and adolescent, de-addiction, geriatric, perinatal. Every category tag maps to exactly one doctor except `depression`, shared by two, so `doctor_pick` has one real judgment call and every other shortlist is a single candidate.
+- **Categories: 12** (`extract_problem` enum, derived from the doctor tags): anxiety, depression, ocd, grief, trauma, relationships, stress, sleep, addiction, child_adolescent, geriatric, perinatal.
+- **Slots: 4 working days per doctor, 2 to 3 slots per day, 13 to 16 per week.** Monday to Saturday within clinic hours, Sunday closed for everyone so the no-slots hand-off stays reachable. Patterns differ across doctors so morning, afternoon, and evening preferences matter.
+- **Returning patients: 8**, at least one per doctor.
+- **FAQ: 3 entries** (fees, hours, first visit).
+
 ## 6. Off-script handling
 
 Default: re-ask the question. Exception: if `off_script` says `is_question`, allow one detour. `clarify` answers from a small FAQ fixture (hours, fees, what counts as a first visit) and re-asks. One detour per state.
@@ -221,7 +229,7 @@ Adding a fine-tuned model later: train with TRL, convert to GGUF with the llama.
 - Safety and distress handling, designed from scratch
 - Eval suite: LLM-as-judge on transcripts, goal completion against the simulator's hidden goal, per-prompt pass rates from the JSONL log
 - Persona dimensions and goal sampling for the simulator
-- Fixture sizing: number of doctors, slot density, FAQ entries
+- Child and adolescent bookings: the caller is a parent, but v1 treats the caller as the patient. Needs a "booking for someone else" field
 - Full-ranking doctor matching (filter flag exists, experiment later)
 - Logprob-based confidence (returned by `complete()`, unused in v1)
 - Fine-tuning path (TRL to GGUF) and side-by-side model comparison on the Space

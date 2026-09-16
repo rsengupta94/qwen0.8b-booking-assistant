@@ -4,7 +4,8 @@
     "weekday": "monday",
     "times": [
       "10:00",
-      "11:00"
+      "11:00",
+      "12:00"
     ]
   },
   {
@@ -12,44 +13,34 @@
     "weekday": "wednesday",
     "times": [
       "14:00",
-      "15:00"
+      "15:00",
+      "16:00"
     ]
   },
   {
     "doctor_id": "d_rao",
     "weekday": "friday",
     "times": [
-      "10:00"
+      "10:00",
+      "11:00"
     ]
   },
   {
-    "doctor_id": "d_iyer",
-    "weekday": "tuesday",
-    "times": [
-      "09:00",
-      "09:30"
-    ]
-  },
-  {
-    "doctor_id": "d_iyer",
-    "weekday": "thursday",
-    "times": [
-      "16:00"
-    ]
-  },
-  {
-    "doctor_id": "d_iyer",
+    "doctor_id": "d_rao",
     "weekday": "saturday",
     "times": [
-      "11:00",
-      "11:30"
+      "09:00",
+      "09:30",
+      "10:00"
     ]
   },
   {
     "doctor_id": "d_khan",
     "weekday": "monday",
     "times": [
-      "16:00"
+      "16:00",
+      "17:00",
+      "18:00"
     ]
   },
   {
@@ -57,21 +48,76 @@
     "weekday": "tuesday",
     "times": [
       "10:00",
-      "10:30"
+      "10:30",
+      "11:00"
     ]
   },
   {
     "doctor_id": "d_khan",
     "weekday": "thursday",
     "times": [
-      "14:00"
+      "14:00",
+      "15:00"
+    ]
+  },
+  {
+    "doctor_id": "d_khan",
+    "weekday": "saturday",
+    "times": [
+      "11:00",
+      "12:00"
+    ]
+  },
+  {
+    "doctor_id": "d_iyer",
+    "weekday": "tuesday",
+    "times": [
+      "09:00",
+      "09:30",
+      "10:00"
+    ]
+  },
+  {
+    "doctor_id": "d_iyer",
+    "weekday": "thursday",
+    "times": [
+      "16:00",
+      "17:00",
+      "18:00"
+    ]
+  },
+  {
+    "doctor_id": "d_iyer",
+    "weekday": "friday",
+    "times": [
+      "17:00",
+      "18:00"
+    ]
+  },
+  {
+    "doctor_id": "d_iyer",
+    "weekday": "saturday",
+    "times": [
+      "11:00",
+      "11:30",
+      "12:00"
+    ]
+  },
+  {
+    "doctor_id": "d_mehta",
+    "weekday": "monday",
+    "times": [
+      "15:00",
+      "16:00",
+      "17:00"
     ]
   },
   {
     "doctor_id": "d_mehta",
     "weekday": "wednesday",
     "times": [
-      "09:00"
+      "09:00",
+      "10:00"
     ]
   },
   {
@@ -79,21 +125,32 @@
     "weekday": "friday",
     "times": [
       "17:00",
-      "17:30"
+      "17:30",
+      "18:00"
     ]
   },
   {
     "doctor_id": "d_mehta",
     "weekday": "saturday",
     "times": [
-      "10:00"
+      "10:00",
+      "10:30"
     ]
   },
   {
     "doctor_id": "d_arao",
     "weekday": "tuesday",
     "times": [
-      "18:00"
+      "18:00",
+      "18:30"
+    ]
+  },
+  {
+    "doctor_id": "d_arao",
+    "weekday": "wednesday",
+    "times": [
+      "11:00",
+      "12:00"
     ]
   },
   {
@@ -102,6 +159,81 @@
     "times": [
       "09:00",
       "18:30"
+    ]
+  },
+  {
+    "doctor_id": "d_arao",
+    "weekday": "saturday",
+    "times": [
+      "14:00",
+      "15:00",
+      "16:00"
+    ]
+  },
+  {
+    "doctor_id": "d_nair",
+    "weekday": "monday",
+    "times": [
+      "09:00",
+      "09:30",
+      "10:00"
+    ]
+  },
+  {
+    "doctor_id": "d_nair",
+    "weekday": "tuesday",
+    "times": [
+      "14:00",
+      "15:00"
+    ]
+  },
+  {
+    "doctor_id": "d_nair",
+    "weekday": "thursday",
+    "times": [
+      "10:00",
+      "11:00"
+    ]
+  },
+  {
+    "doctor_id": "d_nair",
+    "weekday": "friday",
+    "times": [
+      "09:00",
+      "09:30"
+    ]
+  },
+  {
+    "doctor_id": "d_siddiqui",
+    "weekday": "tuesday",
+    "times": [
+      "12:00",
+      "13:00"
+    ]
+  },
+  {
+    "doctor_id": "d_siddiqui",
+    "weekday": "wednesday",
+    "times": [
+      "17:00",
+      "18:00"
+    ]
+  },
+  {
+    "doctor_id": "d_siddiqui",
+    "weekday": "friday",
+    "times": [
+      "12:00",
+      "13:00",
+      "14:00"
+    ]
+  },
+  {
+    "doctor_id": "d_siddiqui",
+    "weekday": "saturday",
+    "times": [
+      "09:00",
+      "10:00"
     ]
   }
 ]

@@ -84,7 +84,7 @@ def test_change_doctor_at_capture_choice_rewinds_clears_and_refetches():
         ("doctor_pref", "actually Dr Sana Khan instead", "ASK_DOCTOR_PREF"),
     ]
     assert r[6].reply["kind"] == "present_slots" and r[6].reply["doctor_name"] == "Dr. Sana Khan"
-    assert [sl["start"] for sl in r[6].reply["slots"]] == ["2026-09-24T14:00", "2026-10-01T14:00"]
+    assert [sl["start"] for sl in r[6].reply["slots"]] == ["2026-09-24T14:00", "2026-09-24T15:00", "2026-10-01T14:00"]
     b = mock_backend.bookings()
     assert len(b) == 1 and b[0]["doctor_id"] == "d_khan" and b[0]["start"] == "2026-09-24T14:00"
     assert s.loop_counts["corrections"] == 1
@@ -102,7 +102,7 @@ def test_change_days_at_capture_choice_keeps_doctor():
     r = run(s, nlu, ["hi", "no", "9876543210", "follow up", "monday", "actually friday"])
     assert r[5].correction == {"field": "days", "rewound_to": "ASK_DAYS"}
     assert s.doctor_id == "d_rao" and s.session_type == "followup" and s.phone == "9876543210"
-    assert r[5].state == State.CAPTURE_CHOICE and [sl["start"] for sl in r[5].reply["slots"]] == ["2026-09-25T10:00", "2026-10-02T10:00"]
+    assert r[5].state == State.CAPTURE_CHOICE and [sl["start"] for sl in r[5].reply["slots"]] == ["2026-09-25T10:00", "2026-09-25T11:00", "2026-10-02T10:00"]
     assert s.offered_slots == r[5].reply["slots"]
 
 

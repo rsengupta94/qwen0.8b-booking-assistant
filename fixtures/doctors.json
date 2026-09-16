@@ -4,57 +4,132 @@
     "name": "Dr. Meera Rao",
     "degree": "MD Psychiatry",
     "years_experience": 14,
+    "subspecialty": "General adult psychiatry",
     "categories": [
       "anxiety",
-      "depression"
+      "depression",
+      "ocd"
     ],
-    "skills": "Anxiety disorders, panic, low mood. Medication review and CBT-informed therapy."
-  },
-  {
-    "id": "d_iyer",
-    "name": "Dr. Arjun Iyer",
-    "degree": "PhD Clinical Psychology",
-    "years_experience": 9,
-    "categories": [
-      "anxiety",
-      "stress",
-      "sleep"
+    "conditions": [
+      "generalised anxiety",
+      "panic attacks",
+      "social anxiety",
+      "OCD",
+      "major depression",
+      "medication review"
     ],
-    "skills": "Work stress, burnout, insomnia. Short-term structured therapy."
+    "skills": "Anxiety disorders, panic, OCD and depression in adults. Medication review and CBT-informed therapy."
   },
   {
     "id": "d_khan",
     "name": "Dr. Sana Khan",
     "degree": "MD Psychiatry",
     "years_experience": 20,
+    "subspecialty": "Mood, trauma and loss",
     "categories": [
       "depression",
       "grief",
+      "trauma",
       "relationships"
     ],
-    "skills": "Depression, grief and loss, relationship difficulties. Long-term therapy."
+    "conditions": [
+      "persistent or recurrent depression",
+      "bereavement",
+      "PTSD",
+      "adjustment after divorce or job loss",
+      "couples conflict"
+    ],
+    "skills": "Long-standing depression, grief and loss, trauma, relationship difficulties. Long-term therapy."
+  },
+  {
+    "id": "d_iyer",
+    "name": "Dr. Arjun Iyer",
+    "degree": "PhD Clinical Psychology",
+    "years_experience": 9,
+    "subspecialty": "Stress and sleep psychology",
+    "categories": [
+      "stress",
+      "sleep"
+    ],
+    "conditions": [
+      "work burnout",
+      "exam or performance stress",
+      "insomnia",
+      "irregular sleep",
+      "CBT for insomnia"
+    ],
+    "skills": "Work stress, burnout, insomnia. Short-term structured therapy including CBT for insomnia."
   },
   {
     "id": "d_mehta",
     "name": "Dr. Vikram Mehta",
     "degree": "MPhil Clinical Psychology",
     "years_experience": 6,
+    "subspecialty": "Child and adolescent",
     "categories": [
-      "stress",
-      "relationships",
-      "sleep"
+      "child_adolescent"
     ],
-    "skills": "Couples and family issues, stress management, sleep routines."
+    "conditions": [
+      "ADHD",
+      "school refusal",
+      "exam anxiety in teenagers",
+      "behavioural problems",
+      "autism-related support for families"
+    ],
+    "skills": "Children and teenagers: attention, school and behaviour difficulties. Works with the whole family."
   },
   {
     "id": "d_arao",
     "name": "Dr. Anil Rao",
     "degree": "MD Psychiatry",
     "years_experience": 11,
+    "subspecialty": "De-addiction",
     "categories": [
-      "stress",
-      "anxiety"
+      "addiction"
     ],
-    "skills": "Workplace stress, anxiety in young adults. Medication and brief therapy."
+    "conditions": [
+      "alcohol dependence",
+      "tobacco cessation",
+      "cannabis use",
+      "gaming or phone overuse",
+      "relapse prevention"
+    ],
+    "skills": "Alcohol, tobacco, cannabis and behavioural addictions. Medication-assisted treatment and relapse prevention."
+  },
+  {
+    "id": "d_nair",
+    "name": "Dr. Lakshmi Nair",
+    "degree": "MD Psychiatry, DM Geriatric Psychiatry",
+    "years_experience": 17,
+    "subspecialty": "Geriatric psychiatry",
+    "categories": [
+      "geriatric"
+    ],
+    "conditions": [
+      "memory complaints and dementia",
+      "late-life depression",
+      "loneliness after retirement",
+      "caregiver stress",
+      "mood changes in Parkinson's"
+    ],
+    "skills": "Older adults: memory and dementia assessment, late-life depression, support for caregivers."
+  },
+  {
+    "id": "d_siddiqui",
+    "name": "Dr. Farah Siddiqui",
+    "degree": "MD Psychiatry",
+    "years_experience": 8,
+    "subspecialty": "Perinatal and women's mental health",
+    "categories": [
+      "perinatal"
+    ],
+    "conditions": [
+      "postpartum depression",
+      "anxiety in pregnancy",
+      "PMDD",
+      "fertility-related distress",
+      "menopause mood changes"
+    ],
+    "skills": "Mental health in pregnancy, after childbirth, and across women's hormonal transitions."
   }
 ]
