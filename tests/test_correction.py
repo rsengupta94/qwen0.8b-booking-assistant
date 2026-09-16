@@ -78,11 +78,11 @@ def test_change_doctor_at_capture_choice_rewinds_clears_and_refetches():
     assert r[5].state == State.ASK_DAYS and r[5].reply == {"kind": "ask_question", "question": "days"}
     assert s.doctor_id == "d_khan" and s.days == [] and s.offered_slots == [] and s.chosen_slot is None
     r += run(s, nlu, ["thursday", "1"])
-    # the correction turn ran the classifier, then the owning state's NLU on the same text
+    # the correction turn ran the classifier; the roster name in the text then resolved the doctor in code, no doctor_pref call
     assert [c for c in nlu.calls if c[1] == "actually Dr Sana Khan instead"] == [
         ("turn_classifier", "actually Dr Sana Khan instead", "CAPTURE_CHOICE"),
-        ("doctor_pref", "actually Dr Sana Khan instead", "ASK_DOCTOR_PREF"),
     ]
+    assert r[5].nlu_output == {"mode": "named", "doctor_name": "Dr. Sana Khan", "source": "roster_match"}
     assert r[6].reply["kind"] == "present_slots" and r[6].reply["doctor_name"] == "Dr. Sana Khan"
     assert [sl["start"] for sl in r[6].reply["slots"]] == ["2026-09-24T14:00", "2026-09-24T15:00", "2026-10-01T14:00"]
     b = mock_backend.bookings()

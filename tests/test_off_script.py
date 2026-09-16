@@ -206,3 +206,80 @@ def test_filter_off_validator_mismatch_falls_back_to_code_top_candidate():
         state_machine.FILTER_SHORTLIST = True
     out, ok, reason = doctor_pick.validate({"doctor_id": "d_iyer", "reason": "x"}, {"shortlist": shortlist, "category": "grief"})
     assert (ok, reason) == (False, "category_mismatch") and out["doctor_id"] == "d_khan"
+
+
+# --- harness gates (no few-shots): schema narrowing, roster-first, question-shape gate, validator-failure gate
+
+
+def test_roster_name_in_text_resolves_in_code_without_a_model_call():
+    nlu = ScriptedNLU({"yes_no": [{"intent": "yes"}], "extract_problem": [{"summary": "stress", "category": "stress"}]})
+    s = Session("h1")
+    r = run(s, nlu, ["hi", "yes", "stress", "I'd like to see Sana Khan again please"])
+    assert "doctor_pref" not in nlu.names()
+    assert r[3].nlu_output == {"mode": "named", "doctor_name": "Dr. Sana Khan", "source": "roster_match"}
+    assert r[3].state == State.ASK_DAYS and s.doctor_id == "d_khan"
+
+
+def test_ambiguous_roster_name_in_text_reasks_without_a_model_call():
+    nlu = ScriptedNLU({"yes_no": [{"intent": "yes"}], "extract_problem": [{"summary": "stress", "category": "stress"}]})
+    s = Session("h2")
+    r = run(s, nlu, ["hi", "yes", "stress", "Dr Rao please"])
+    assert "doctor_pref" not in nlu.names() and "off_script" not in nlu.names()
+    assert r[3].reply["reason"] == "doctor_ambiguous" and r[3].reply["candidates"] == ["Dr. Meera Rao", "Dr. Anil Rao"]
+
+
+def test_no_roster_name_removes_named_from_the_model_enum():
+    nlu = ScriptedNLU({
+        "yes_no": [{"intent": "yes"}], "extract_problem": [{"summary": "stress", "category": "stress"}],
+        "doctor_pref": [{"mode": "you_decide", "doctor_name": None}],
+        "doctor_pick": [{"doctor_id": "d_iyer", "reason": "stress"}],
+    })
+    s = Session("h3")
+    r = run(s, nlu, ["hi", "yes", "stress", "please suggest one"])
+    call = next(c for c in nlu.calls if c[0] == "doctor_pref")
+    assert call[2] == {"name_in_text": False}
+    from app.nlu import doctor_pref
+    assert doctor_pref.schema(call[2])["properties"]["mode"]["enum"] == ["you_decide", "other"]
+    assert r[3].state == State.ASK_DAYS and s.doctor_id == "d_iyer"
+
+
+def test_request_shaped_text_never_reaches_off_script():
+    """'please suggest one' misread as other: plain re-ask, no off_script call, no FAQ detour."""
+    nlu = ScriptedNLU({
+        "yes_no": [{"intent": "yes"}], "extract_problem": [{"summary": "stress", "category": "stress"}],
+        "doctor_pref": [{"mode": "other", "doctor_name": None}],
+        "off_script": [question("first_visit")],  # must not be consumed
+    })
+    s = Session("h4")
+    r = run(s, nlu, ["hi", "yes", "stress", "please suggest one"])
+    assert "off_script" not in nlu.names()
+    assert r[3].reply == {"kind": "ask_question", "question": "doctor_pref", "reask": True, "reason": "no_doctor_pref"}
+
+
+def test_validator_fallback_never_reaches_off_script():
+    """The state NLU failed validation (last_ok False): that is a model error, not an off-script user."""
+    class FailingNLU(ScriptedNLU):
+        last_ok = True
+        def __call__(self, prompt_name, session, text, context):
+            out = super().__call__(prompt_name, session, text, context)
+            self.last_ok = prompt_name != "yes_no"
+            return out
+    nlu = FailingNLU({"yes_no": [{"intent": "other"}], "off_script": [question("fees")]})
+    s = Session("h5")
+    r = run(s, nlu, ["hi", "what are your fees?"])
+    assert "off_script" not in nlu.names() and r[1].reply["kind"] == "ask_question" and r[1].reply["reask"] is True
+
+
+def test_off_script_gets_the_asked_question_as_context():
+    nlu = ScriptedNLU({"yes_no": [{"intent": "other"}], "off_script": [question("fees")]})
+    s = Session("h6")
+    run(s, nlu, ["hi", "how much do you charge?"])
+    call = next(c for c in nlu.calls if c[0] == "off_script")
+    assert call[2] == {"question": "Is this your first consultation with us?"}
+
+
+def test_looks_like_question():
+    assert state_machine._looks_like_question("what are your fees?")
+    assert state_machine._looks_like_question("are you open on weekends")
+    assert not state_machine._looks_like_question("please suggest one")
+    assert not state_machine._looks_like_question("the first one")

@@ -55,7 +55,8 @@ assert corr["debug"]["correction"] == {"field": "doctor", "rewound_to": "ASK_DOC
 assert corr["state"] == "ASK_DAYS", corr["state"]
 assert corr["debug"]["reply_facts"] == {"kind": "ask_question", "question": "days"}, corr["debug"]["reply_facts"]
 names = [c["prompt_name"] for c in corr["debug"]["validator_results"]]
-assert names == ["turn_classifier", "doctor_pref"], names
+assert names == ["turn_classifier"], names  # roster name in the text: doctor resolved in code, no doctor_pref call
+assert corr["debug"]["nlu_output"]["source"] == "roster_match", corr["debug"]["nlu_output"]
 print(f"correction turn: rewound to ASK_DOCTOR_PREF, now ASK_DAYS, NLU calls {names}")
 
 # 3. availability re-fetched for the new doctor

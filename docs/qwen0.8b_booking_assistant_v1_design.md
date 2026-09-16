@@ -118,6 +118,8 @@ log(session_id, turn, state, prompt_name, ok, reason, raw_output)
 
 Validators are deterministic: enum membership, regex (phone), set containment (slots in reply), length caps, tag overlap (doctor). Fallbacks are hand-written templates or a safe default (re-ask).
 
+Narrow before you ask. Before each NLU call, code removes from the schema whatever it already knows to be impossible, and skips the call when it already knows the answer. Examples: `doctor_pref` loses the `named` mode when no roster name appears in the user text, and is not called at all when one does; `off_script` is only called when the text is shaped like a question and the state's own NLU passed validation. Schema field order puts evidence before labels (`doctor_name` before `mode`, `time_pref` before `days`). The model only decides what code cannot.
+
 Log line per call, JSONL:
 `{session_id, turn, state, model_id, prompt_name, prompt_version, validator_version, ok, reason_code, raw_output, latency_ms}`
 

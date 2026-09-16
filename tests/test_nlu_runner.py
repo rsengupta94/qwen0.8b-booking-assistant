@@ -63,7 +63,8 @@ def test_every_prompt_renders_for_every_module(monkeypatch, log_file):
     monkeypatch.setattr(llm_client, "complete", capture)
     docs = fixtures.doctors()
     ctx = {"categories": fixtures.categories(), "shortlist": docs[:2], "day_terms": DAY_TERMS,
-           "offered_slots": [{"weekday": "monday", "start": "2026-09-21T10:00"}]}
+           "offered_slots": [{"weekday": "monday", "start": "2026-09-21T10:00"}],
+           "question": "Which days work for you?", "name_in_text": False}
     s = Session("s4")
     r = NLURunner("m", "baseline")
     for name in MODULES:

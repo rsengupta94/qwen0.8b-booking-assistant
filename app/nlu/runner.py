@@ -36,6 +36,7 @@ class NLURunner:
         self.prompt_version = prompt_version
         self.on_call = on_call  # optional callable(prompt_name), invoked before each model call
         self.turn_debug: list[dict] = []
+        self.last_ok = True  # did the most recent call pass its validator? The state machine reads this.
 
     def start_turn(self) -> None:
         self.turn_debug = []
@@ -75,6 +76,7 @@ class NLURunner:
             "raw_output": raw if not error else error,
             "latency_ms": latency_ms,
         })
+        self.last_ok = ok
         self.turn_debug.append({
             "prompt_name": prompt_name, "ok": ok, "reason_code": reason,
             "raw_output": raw, "result": result, "latency_ms": latency_ms,

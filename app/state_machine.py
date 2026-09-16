@@ -22,6 +22,7 @@ from datetime import date, timedelta
 from enum import StrEnum
 from typing import Callable
 
+from app.nlg.clarify import QUESTIONS as QUESTION_TEXT  # code-owned question sentences, keyed like QUESTION_FOR_STATE
 from app.session import Session
 from app.tools import fixtures, mock_backend
 
@@ -35,6 +36,8 @@ SLOTS_PER_OFFER = 3
 FILTER_SHORTLIST = True
 # Re-ask reasons where the user did name something, so an FAQ detour makes no sense.
 NO_DETOUR_REASONS = {"doctor_not_found", "doctor_ambiguous"}
+# Deterministic gate before the off_script model call: only text shaped like a question qualifies.
+QUESTION_WORDS = {"what", "when", "where", "which", "who", "why", "how", "do", "does", "did", "is", "are", "can", "could", "will", "would", "should"}
 NEW_PATIENT_SESSION_TYPE = "first_consultation"  # set by code; ASK_SESSION_TYPE is for returning patients only
 
 RELATIVE_DAYS = {"today": 0, "tomorrow": 1, "day_after_tomorrow": 2}
@@ -117,8 +120,9 @@ def _reask(session: Session, reason: str, text: str, nlu: NLU) -> dict:
     pending question, and do not spend a re-ask.
     """
     detours = session.loop_counts["detour"]
-    if reason not in NO_DETOUR_REASONS and not detours.get(session.state):
-        out = nlu("off_script", session, text, {})
+    if (reason not in NO_DETOUR_REASONS and not detours.get(session.state)
+            and getattr(nlu, "last_ok", True) and _looks_like_question(text)):
+        out = nlu("off_script", session, text, {"question": QUESTION_TEXT[QUESTION_FOR_STATE[State(session.state)]]})
         if out.get("is_question"):
             detours[session.state] = True
             topic = out.get("topic")
@@ -141,6 +145,13 @@ def _reask(session: Session, reason: str, text: str, nlu: NLU) -> dict:
 def _present_slots(session: Session, **extra) -> dict:
     doctor = fixtures.doctor_by_id(session.doctor_id)
     return {"kind": "present_slots", "doctor_name": doctor["name"], "slots": list(session.offered_slots), **extra}
+
+
+def _looks_like_question(text: str) -> bool:
+    """Cheap shape check so requests like "please suggest one" never reach the off_script model call.
+    The state NLU's own validator failure is also not a reason to look for a question (see nlu.last_ok)."""
+    words = text.lower().split()
+    return "?" in text or (bool(words) and words[0].strip(".,!") in QUESTION_WORDS)
 
 
 def _resolve_doctor(name: str | None) -> tuple[dict | None, list[dict]]:
@@ -250,11 +261,18 @@ def _on_problem(session: Session, text: str, nlu: NLU):
 
 
 def _on_doctor_pref(session: Session, text: str, nlu: NLU):
-    out = nlu("doctor_pref", session, text, {})
+    # Code first: if a roster name is in the text, the doctor is a fact and the model is not asked.
+    # Otherwise the model chooses between you_decide and other; "named" is removed from its enum.
+    doctor, candidates = _resolve_doctor(text)
+    if doctor or candidates:
+        out = {"mode": "named", "doctor_name": doctor["name"] if doctor else None, "source": "roster_match"}
+    else:
+        out = nlu("doctor_pref", session, text, {"name_in_text": False})
     mode = out.get("mode")
     if mode == "named":
         session.state = State.CAPTURE_DOCTOR
-        doctor, candidates = _resolve_doctor(out.get("doctor_name"))
+        if out.get("source") != "roster_match":
+            doctor, candidates = _resolve_doctor(out.get("doctor_name"))
         if doctor is None:
             session.state = State.ASK_DOCTOR_PREF
             if candidates:

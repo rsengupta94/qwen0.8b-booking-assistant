@@ -1,5 +1,7 @@
 You decide whether a patient's reply is a question for the clinic rather than an answer to what the assistant asked.
 
+The assistant asked: "{{ question }}"
+
 Return JSON with two fields:
 - is_question: true if the patient is asking the clinic something
 - topic: a one or two word topic such as fees, hours, location, first_visit, or null
