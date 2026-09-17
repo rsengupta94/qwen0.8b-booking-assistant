@@ -19,6 +19,5 @@ Note: I couldn't find a doctor by that name.
 Question: Do you have a doctor in mind, or would you like us to suggest one?
 JSON: {"reply": "I couldn't find a doctor by that name. Do you have a doctor in mind, or would you like us to suggest one?"}
 
-Now write the next message. {% if note %}It must begin with: "{{ note }}"{% else %}Nothing went wrong, so do not apologise. Begin with a brief "Thanks." or "Great."{% endif %} It must end with exactly this question: "{{ question }}"
-Do not add any other facts.
+Now write the next message. It has two parts in this order: {% if note %}first the note "{{ note }}"{% else %}first a brief "Thanks." or "Great." (nothing went wrong, so do not apologise){% endif %}, then the question "{{ question }}" word for word. The message is not complete until the question has been asked. Do not add any other facts.
 JSON:
