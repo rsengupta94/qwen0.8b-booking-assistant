@@ -217,7 +217,7 @@ Thin web UI with model and prompt-version dropdowns, debug panel, per-call progr
 Dockerfile, GGUF download at startup, Space secrets if any, README model card.
 `checks/phase_7.sh`: builds the Docker image locally, starts it, runs `checks/phase_2.sh` against the container. Manual: open the Space URL, pick a model, book an appointment.
 
-Eval phases (cards, transcript generation, fidelity gate, scoring and replay, judge, Evals tab) follow Phase 7. Their design is `eval_design_v1.md`; their phase numbers and checks are added here when that work starts.
+Eval phases E1 to E5 live in `eval_phases_v1.md`, with design in `eval_design_v1.md`. They are kept out of this file.
 
 ## 11a. Hugging Face Spaces
 
@@ -229,7 +229,7 @@ Adding a fine-tuned model later: train with TRL, convert to GGUF with the llama.
 
 ## Appendix: parked for later
 
-- Simulator, persona cards, and eval suite: designed in `eval_design_v1.md` (2026-09-17). No longer parked. Eval build phases will be added to section 11 when the eval phase starts.
+- Simulator, persona cards, and eval suite: designed in `eval_design_v1.md` (2026-09-17). No longer parked. Build phases in `eval_phases_v1.md`.
 - Safety and distress handling, designed from scratch
 - Child and adolescent bookings: the caller is a parent, but v1 treats the caller as the patient. Needs a "booking for someone else" field
 - Full-ranking doctor matching (filter flag exists, experiment later)

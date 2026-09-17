@@ -1,6 +1,6 @@
 # CLAUDE.md
 
-Appointment booking assistant for a fictional mental health clinic, run on a 0.8B Qwen model with prompting only. Read `docs/qwen0.8b_booking_assistant_v1_design.md` (called "design.md" below) before starting any task. It is the source of truth; if a task conflicts with it, stop and ask. For eval work, `docs/eval_design_v1.md` is the source of truth alongside it.
+Appointment booking assistant for a fictional mental health clinic, run on a 0.8B Qwen model with prompting only. Read `docs/qwen0.8b_booking_assistant_v1_design.md` (called "design.md" below) before starting any task. It is the source of truth; if a task conflicts with it, stop and ask. For eval work, `docs/eval_design_v1.md` (design) and `docs/eval_phases_v1.md` (phases E1 to E5, checks in `checks/eval_N.sh`) are the source of truth alongside it.
 
 ## Stack
 
