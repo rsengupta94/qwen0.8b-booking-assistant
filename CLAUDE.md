@@ -1,6 +1,6 @@
 # CLAUDE.md
 
-Appointment booking assistant for a fictional mental health clinic, run on a 0.8B Qwen model with prompting only. Read `docs/qwen0.8b_booking_assistant_v1_design.md` (called "design.md" below) before starting any task. It is the source of truth; if a task conflicts with it, stop and ask.
+Appointment booking assistant for a fictional mental health clinic, run on a 0.8B Qwen model with prompting only. Read `docs/qwen0.8b_booking_assistant_v1_design.md` (called "design.md" below) before starting any task. It is the source of truth; if a task conflicts with it, stop and ask. For eval work, `docs/eval_design_v1.md` is the source of truth alongside it.
 
 ## Stack
 
@@ -21,6 +21,7 @@ These are not preferences. Do not deviate without asking.
 5. Facts (doctors, slots, dates, phone) come from code and fixtures. NLG wraps them; validators confirm they were not altered.
 6. Every model call writes one JSONL log line with the fields in design.md section 7, including `prompt_version` and `validator_version`.
 7. All model calls go through `app/llm_client.complete(model_id, prompt, schema, params)`. No other module imports llama-cpp-python.
+8. Eval code is isolated from the product. `app/` never imports from the eval package. The eval package reaches the product only over `/message` and by reading its JSONL and results files. Held-out persona cards and their transcripts are never opened while writing prompts, and no few-shot copies a held-out utterance.
 
 ## Layout
 
@@ -38,7 +39,7 @@ Follow the repo layout in design.md section 10 exactly. Prompts are markdown fil
 
 ## Things not in v1
 
-Do not implement or scaffold any of these, even as stubs: safety or distress handling, evals, persona generation, multilingual input, fine-tuning, logprob-based confidence. They are listed in the design.md appendix and will get their own design pass.
+Do not implement or scaffold any of these, even as stubs: safety or distress handling, multilingual input, fine-tuning, logprob-based confidence, booking for someone else. They are listed in the design.md appendix and will get their own design pass. Evals and the simulator are designed in `docs/eval_design_v1.md` and are built only in the eval phases, when asked.
 
 ## End-of-phase report
 

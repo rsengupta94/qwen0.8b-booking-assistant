@@ -217,6 +217,8 @@ Thin web UI with model and prompt-version dropdowns, debug panel, per-call progr
 Dockerfile, GGUF download at startup, Space secrets if any, README model card.
 `checks/phase_7.sh`: builds the Docker image locally, starts it, runs `checks/phase_2.sh` against the container. Manual: open the Space URL, pick a model, book an appointment.
 
+Eval phases (cards, transcript generation, fidelity gate, scoring and replay, judge, Evals tab) follow Phase 7. Their design is `eval_design_v1.md`; their phase numbers and checks are added here when that work starts.
+
 ## 11a. Hugging Face Spaces
 
 Free tier is 2 vCPU, 16GB RAM, no GPU. A 0.8B GGUF at Q8 is about 1GB, so two or three models fit in memory at once. Expect 2 to 5 seconds per model call, 10 to 15 seconds per turn.
@@ -227,10 +229,8 @@ Adding a fine-tuned model later: train with TRL, convert to GGUF with the llama.
 
 ## Appendix: parked for later
 
-- Simulator client: a strong model plays the user from a persona card and hidden goal, posting to `/message` and writing transcripts. Built with the persona design at the start of the eval phase.
+- Simulator, persona cards, and eval suite: designed in `eval_design_v1.md` (2026-09-17). No longer parked. Eval build phases will be added to section 11 when the eval phase starts.
 - Safety and distress handling, designed from scratch
-- Eval suite: LLM-as-judge on transcripts, goal completion against the simulator's hidden goal, per-prompt pass rates from the JSONL log
-- Persona dimensions and goal sampling for the simulator
 - Child and adolescent bookings: the caller is a parent, but v1 treats the caller as the patient. Needs a "booking for someone else" field
 - Full-ranking doctor matching (filter flag exists, experiment later)
 - Logprob-based confidence (returned by `complete()`, unused in v1)
