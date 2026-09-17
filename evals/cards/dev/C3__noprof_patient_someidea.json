@@ -1,0 +1,80 @@
+{
+  "card_id": "C3__noprof_patient_someidea",
+  "persona_id": "noprof_patient_someidea",
+  "scenario_id": "C3",
+  "pool": "dev",
+  "eval_set_version": 1,
+  "persona": {
+    "proficiency": "not_proficient",
+    "personality": "patient",
+    "clarity": "some_idea",
+    "behaviors": [
+      "Write full sentences, and type the phone with spaces or a +91 prefix.",
+      "Ask one meta question during the chat, for example \"is this a real person?\".",
+      "Describe the problem with a lay term you would say out loud, such as \"panic attacks\" or \"cannot stop drinking\", or name a doctor; never use a clinical label.",
+      "Never pick a slot by number; describe the time, for example \"the later one\".",
+      "Answer exactly what was asked and nothing more.",
+      "If the same question comes again, answer it again calmly with the same fact."
+    ]
+  },
+  "facts": {
+    "patient_type": "new",
+    "phone": null,
+    "problem_category": "stress",
+    "symptom_brief": [
+      "deadlines keep me wound up",
+      "I grind my teeth at night"
+    ],
+    "doctor_pref": {
+      "mode": "you_decide"
+    },
+    "session_type": null,
+    "days": [
+      "tuesday"
+    ],
+    "time_pref": null,
+    "slot_rule": "first"
+  },
+  "scripted_events": [
+    {
+      "at_state": "ASK_DOCTOR_PREF",
+      "act": "correction",
+      "payload": {
+        "field": "problem",
+        "new_value": {
+          "problem_category": "depression",
+          "symptom_brief": [
+            "I feel empty most of the day",
+            "I have stopped going out"
+          ]
+        }
+      }
+    },
+    {
+      "at_state": "ASK_DAYS",
+      "act": "correction",
+      "payload": {
+        "field": "doctor",
+        "new_value": "Dr. Sana Khan"
+      }
+    },
+    {
+      "at_state": "SHOW_SLOTS",
+      "act": "correction",
+      "payload": {
+        "field": "days",
+        "new_value": "thursday"
+      }
+    },
+    {
+      "at_state": "CAPTURE_CHOICE",
+      "act": "correction",
+      "payload": {
+        "field": "days",
+        "new_value": "saturday"
+      }
+    }
+  ],
+  "verbatim": {},
+  "stop_after": "booking_confirmed"
+}

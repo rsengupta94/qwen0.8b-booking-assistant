@@ -1,0 +1,56 @@
+{
+  "card_id": "B4__noprof_patient_noidea",
+  "persona_id": "noprof_patient_noidea",
+  "scenario_id": "B4",
+  "pool": "dev",
+  "eval_set_version": 1,
+  "persona": {
+    "proficiency": "not_proficient",
+    "personality": "patient",
+    "clarity": "no_idea",
+    "behaviors": [
+      "Write full sentences, and type the phone with spaces or a +91 prefix.",
+      "Ask one meta question during the chat, for example \"is this a real person?\".",
+      "Describe the problem with symptoms and life events only, never a clinical label, and say the clinic can decide the doctor.",
+      "Never pick a slot by number; describe the time, for example \"the later one\".",
+      "Answer exactly what was asked and nothing more.",
+      "If the same question comes again, answer it again calmly with the same fact."
+    ]
+  },
+  "facts": {
+    "patient_type": "new",
+    "phone": null,
+    "problem_category": "stress",
+    "symptom_brief": [
+      "work has me wound up all week",
+      "my shoulders ache from tension"
+    ],
+    "doctor_pref": {
+      "mode": "you_decide"
+    },
+    "session_type": null,
+    "days": [
+      "saturday"
+    ],
+    "time_pref": "afternoon",
+    "slot_rule": "first"
+  },
+  "scripted_events": [
+    {
+      "at_state": "ASK_DOCTOR_PREF",
+      "act": "correction",
+      "payload": {
+        "field": "problem",
+        "new_value": {
+          "problem_category": "addiction",
+          "symptom_brief": [
+            "I cannot stop drinking after work",
+            "I hid bottles from my family"
+          ]
+        }
+      }
+    }
+  ],
+  "verbatim": {},
+  "stop_after": "booking_confirmed"
+}

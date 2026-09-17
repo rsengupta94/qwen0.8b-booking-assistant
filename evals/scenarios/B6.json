@@ -1,0 +1,55 @@
+{
+  "scenario_id": "B6",
+  "group": "B",
+  "title": "FAQ detour: hours",
+  "facts": {
+    "patient_type": "new",
+    "phone": null,
+    "problem_category": "trauma",
+    "symptom_brief": [
+      "I flinch at loud noises since the crash",
+      "I get flashbacks while driving"
+    ],
+    "doctor_pref": {
+      "mode": "you_decide"
+    },
+    "session_type": null,
+    "days": [
+      "saturday"
+    ],
+    "time_pref": null,
+    "slot_rule": "first"
+  },
+  "scripted_events": [
+    {
+      "at_state": "ASK_FIRST_CONSULT",
+      "act": "faq_question",
+      "payload": {
+        "topic": "hours"
+      }
+    }
+  ],
+  "verbatim": {},
+  "stop_after": "booking_confirmed",
+  "expected": {
+    "outcome": "booking",
+    "booking": {
+      "doctor_id": "d_khan",
+      "session_type": null,
+      "weekday": "saturday",
+      "slot_rule": "first"
+    },
+    "handoff_reason": null,
+    "path_notes": "At ASK_FIRST_CONSULT the persona asks whether the clinic opens at the weekend. clarify answers Mon to Sat, 9am to 7pm, then ASK_FIRST_CONSULT is re-asked. Booking is the first Saturday slot with Dr. Sana Khan (11:00)."
+  },
+  "prompts_exercised": [
+    "turn_classifier",
+    "off_script",
+    "clarify",
+    "yes_no",
+    "extract_problem",
+    "doctor_pref",
+    "extract_days",
+    "slot_choice"
+  ]
+}

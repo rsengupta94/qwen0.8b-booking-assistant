@@ -1,0 +1,42 @@
+{
+  "card_id": "A3__prof_inattentive_noidea",
+  "persona_id": "prof_inattentive_noidea",
+  "scenario_id": "A3",
+  "pool": "heldout",
+  "eval_set_version": 1,
+  "persona": {
+    "proficiency": "proficient",
+    "personality": "inattentive",
+    "clarity": "no_idea",
+    "behaviors": [
+      "Keep every turn terse; skip small talk and type the phone as ten plain digits.",
+      "Answering the wrong question dominates the terse habit of packing facts into one turn.",
+      "Describe the problem with symptoms and life events only, never a clinical label, and say the clinic can decide the doctor.",
+      "Pick a slot by its number, for example \"2\".",
+      "At least once, answer a different question than the one asked, and name a time of your own instead of an offered slot.",
+      "If the same question comes again, raise another detail first, then answer it."
+    ]
+  },
+  "facts": {
+    "patient_type": "new",
+    "phone": null,
+    "problem_category": "depression",
+    "symptom_brief": [
+      "nothing I used to enjoy interests me",
+      "I cry most days",
+      "I cannot get out of bed"
+    ],
+    "doctor_pref": {
+      "mode": "you_decide"
+    },
+    "session_type": null,
+    "days": [
+      "monday"
+    ],
+    "time_pref": null,
+    "slot_rule": "first"
+  },
+  "scripted_events": [],
+  "verbatim": {},
+  "stop_after": "booking_confirmed"
+}

@@ -1,0 +1,36 @@
+{
+  "card_id": "A5__prof_inattentive_someidea",
+  "persona_id": "prof_inattentive_someidea",
+  "scenario_id": "A5",
+  "pool": "heldout",
+  "eval_set_version": 1,
+  "persona": {
+    "proficiency": "proficient",
+    "personality": "inattentive",
+    "clarity": "some_idea",
+    "behaviors": [
+      "Keep every turn terse; skip small talk and type the phone as ten plain digits.",
+      "Answering the wrong question dominates the terse habit of packing facts into one turn.",
+      "Describe the problem with a lay term you would say out loud, such as \"panic attacks\" or \"cannot stop drinking\", or name a doctor; never use a clinical label.",
+      "Pick a slot by its number, for example \"2\".",
+      "At least once, answer a different question than the one asked, and name a time of your own instead of an offered slot.",
+      "If the same question comes again, raise another detail first, then answer it."
+    ]
+  },
+  "facts": {
+    "patient_type": "returning",
+    "phone": "9811100234",
+    "problem_category": null,
+    "symptom_brief": [],
+    "doctor_pref": null,
+    "session_type": "followup",
+    "days": [
+      "thursday"
+    ],
+    "time_pref": "evening",
+    "slot_rule": "last"
+  },
+  "scripted_events": [],
+  "verbatim": {},
+  "stop_after": "booking_confirmed"
+}

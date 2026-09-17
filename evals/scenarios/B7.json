@@ -1,0 +1,60 @@
+{
+  "scenario_id": "B7",
+  "group": "B",
+  "title": "Second question in same state",
+  "facts": {
+    "patient_type": "new",
+    "phone": null,
+    "problem_category": "relationships",
+    "symptom_brief": [
+      "my partner and I fight every evening",
+      "we have stopped talking to each other"
+    ],
+    "doctor_pref": {
+      "mode": "you_decide"
+    },
+    "session_type": null,
+    "days": [
+      "tuesday"
+    ],
+    "time_pref": "morning",
+    "slot_rule": "first"
+  },
+  "scripted_events": [
+    {
+      "at_state": "ASK_DAYS",
+      "act": "faq_question",
+      "payload": {
+        "topic": "fees"
+      }
+    },
+    {
+      "at_state": "ASK_DAYS",
+      "act": "faq_question",
+      "payload": {
+        "topic": "first_visit"
+      }
+    }
+  ],
+  "verbatim": {},
+  "stop_after": "booking_confirmed",
+  "expected": {
+    "outcome": "booking",
+    "booking": {
+      "doctor_id": "d_khan",
+      "session_type": null,
+      "weekday": "tuesday",
+      "slot_rule": "first"
+    },
+    "handoff_reason": null,
+    "path_notes": "Two FAQ questions land back to back in ASK_DAYS. The first gets a clarify answer, the second gets a plain re-ask with no clarify. Booking is the first Tuesday morning slot (10:00)."
+  },
+  "prompts_exercised": [
+    "turn_classifier",
+    "off_script",
+    "clarify",
+    "ask_question",
+    "extract_days",
+    "slot_choice"
+  ]
+}

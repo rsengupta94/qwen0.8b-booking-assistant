@@ -1,0 +1,43 @@
+{
+  "scenario_id": "A3",
+  "group": "A",
+  "title": "New, you-decide, real judgment",
+  "facts": {
+    "patient_type": "new",
+    "phone": null,
+    "problem_category": "depression",
+    "symptom_brief": [
+      "nothing I used to enjoy interests me",
+      "I cry most days",
+      "I cannot get out of bed"
+    ],
+    "doctor_pref": {
+      "mode": "you_decide"
+    },
+    "session_type": null,
+    "days": [
+      "monday"
+    ],
+    "time_pref": null,
+    "slot_rule": "first"
+  },
+  "scripted_events": [],
+  "verbatim": {},
+  "stop_after": "booking_confirmed",
+  "expected": {
+    "outcome": "booking",
+    "booking": {
+      "doctor_id": null,
+      "session_type": null,
+      "weekday": "monday",
+      "slot_rule": "first"
+    },
+    "handoff_reason": null,
+    "path_notes": "Depression is the only category with two tagged doctors, so the shortlist is Dr. Meera Rao and Dr. Sana Khan and PICK_DOCTOR runs doctor_pick. Either d_rao or d_khan is a correct booking; both have Monday slots. doctor_id is null because the pick is the judgment under test."
+  },
+  "prompts_exercised": [
+    "extract_problem",
+    "doctor_pref",
+    "doctor_pick"
+  ]
+}

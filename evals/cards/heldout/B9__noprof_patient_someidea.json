@@ -1,0 +1,44 @@
+{
+  "card_id": "B9__noprof_patient_someidea",
+  "persona_id": "noprof_patient_someidea",
+  "scenario_id": "B9",
+  "pool": "heldout",
+  "eval_set_version": 1,
+  "persona": {
+    "proficiency": "not_proficient",
+    "personality": "patient",
+    "clarity": "some_idea",
+    "behaviors": [
+      "Write full sentences, and type the phone with spaces or a +91 prefix.",
+      "Ask one meta question during the chat, for example \"is this a real person?\".",
+      "Describe the problem with a lay term you would say out loud, such as \"panic attacks\" or \"cannot stop drinking\", or name a doctor; never use a clinical label.",
+      "Never pick a slot by number; describe the time, for example \"the later one\".",
+      "Answer exactly what was asked and nothing more.",
+      "If the same question comes again, answer it again calmly with the same fact."
+    ]
+  },
+  "facts": {
+    "patient_type": "new",
+    "phone": null,
+    "problem_category": "depression",
+    "symptom_brief": [
+      "I have no energy for anything",
+      "I stopped seeing my friends"
+    ],
+    "doctor_pref": {
+      "mode": "named",
+      "name": "Dr. Sana Khan"
+    },
+    "session_type": null,
+    "days": [
+      "thursday"
+    ],
+    "time_pref": "afternoon",
+    "slot_rule": "first"
+  },
+  "scripted_events": [],
+  "verbatim": {
+    "ASK_DOCTOR_PREF": "Wednesday afternoon with Dr. Khan"
+  },
+  "stop_after": "booking_confirmed"
+}

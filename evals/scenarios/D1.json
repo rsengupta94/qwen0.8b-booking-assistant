@@ -1,0 +1,46 @@
+{
+  "scenario_id": "D1",
+  "group": "D",
+  "title": "Ambiguous category",
+  "facts": {
+    "patient_type": "new",
+    "phone": null,
+    "problem_category": "grief",
+    "symptom_brief": [
+      "my father died in June",
+      "I lie awake going over it"
+    ],
+    "doctor_pref": {
+      "mode": "you_decide"
+    },
+    "session_type": null,
+    "days": [
+      "saturday"
+    ],
+    "time_pref": null,
+    "slot_rule": "first"
+  },
+  "scripted_events": [],
+  "verbatim": {
+    "ASK_PROBLEM": "I can't sleep since my father died"
+  },
+  "stop_after": "booking_confirmed",
+  "expected": {
+    "outcome": "booking",
+    "booking": {
+      "doctor_id": "d_khan",
+      "session_type": null,
+      "weekday": "saturday",
+      "slot_rule": "first"
+    },
+    "handoff_reason": null,
+    "path_notes": "The card fixes the category as grief, so routing to the sleep doctor is a failure. This is the fidelity-audit case: extract_problem must choose grief, which sends the patient to Dr. Sana Khan. Booking is the first Saturday slot (11:00)."
+  },
+  "prompts_exercised": [
+    "extract_problem",
+    "doctor_pref",
+    "extract_days",
+    "slot_choice",
+    "confirm_booking"
+  ]
+}

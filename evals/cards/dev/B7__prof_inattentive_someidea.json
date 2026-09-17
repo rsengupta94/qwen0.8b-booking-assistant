@@ -1,0 +1,56 @@
+{
+  "card_id": "B7__prof_inattentive_someidea",
+  "persona_id": "prof_inattentive_someidea",
+  "scenario_id": "B7",
+  "pool": "dev",
+  "eval_set_version": 1,
+  "persona": {
+    "proficiency": "proficient",
+    "personality": "inattentive",
+    "clarity": "some_idea",
+    "behaviors": [
+      "Keep every turn terse; skip small talk and type the phone as ten plain digits.",
+      "Answering the wrong question dominates the terse habit of packing facts into one turn.",
+      "Describe the problem with a lay term you would say out loud, such as \"panic attacks\" or \"cannot stop drinking\", or name a doctor; never use a clinical label.",
+      "Pick a slot by its number, for example \"2\".",
+      "At least once, answer a different question than the one asked, and name a time of your own instead of an offered slot.",
+      "If the same question comes again, raise another detail first, then answer it."
+    ]
+  },
+  "facts": {
+    "patient_type": "new",
+    "phone": null,
+    "problem_category": "relationships",
+    "symptom_brief": [
+      "my partner and I fight every evening",
+      "we have stopped talking to each other"
+    ],
+    "doctor_pref": {
+      "mode": "you_decide"
+    },
+    "session_type": null,
+    "days": [
+      "tuesday"
+    ],
+    "time_pref": "morning",
+    "slot_rule": "first"
+  },
+  "scripted_events": [
+    {
+      "at_state": "ASK_DAYS",
+      "act": "faq_question",
+      "payload": {
+        "topic": "fees"
+      }
+    },
+    {
+      "at_state": "ASK_DAYS",
+      "act": "faq_question",
+      "payload": {
+        "topic": "first_visit"
+      }
+    }
+  ],
+  "verbatim": {},
+  "stop_after": "booking_confirmed"
+}

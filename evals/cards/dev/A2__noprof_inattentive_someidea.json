@@ -1,0 +1,41 @@
+{
+  "card_id": "A2__noprof_inattentive_someidea",
+  "persona_id": "noprof_inattentive_someidea",
+  "scenario_id": "A2",
+  "pool": "dev",
+  "eval_set_version": 1,
+  "persona": {
+    "proficiency": "not_proficient",
+    "personality": "inattentive",
+    "clarity": "some_idea",
+    "behaviors": [
+      "Write full sentences, and type the phone with spaces or a +91 prefix.",
+      "Ask one meta question during the chat, for example \"is this a real person?\".",
+      "Describe the problem with a lay term you would say out loud, such as \"panic attacks\" or \"cannot stop drinking\", or name a doctor; never use a clinical label.",
+      "Never pick a slot by number; describe the time, for example \"the later one\".",
+      "At least once, answer a different question than the one asked, and name a time of your own instead of an offered slot.",
+      "If the same question comes again, raise another detail first, then answer it."
+    ]
+  },
+  "facts": {
+    "patient_type": "new",
+    "phone": null,
+    "problem_category": "sleep",
+    "symptom_brief": [
+      "I am awake until four most nights",
+      "I wake up four or five times"
+    ],
+    "doctor_pref": {
+      "mode": "you_decide"
+    },
+    "session_type": null,
+    "days": [
+      "tuesday"
+    ],
+    "time_pref": "morning",
+    "slot_rule": "first"
+  },
+  "scripted_events": [],
+  "verbatim": {},
+  "stop_after": "booking_confirmed"
+}

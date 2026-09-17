@@ -1,0 +1,51 @@
+{
+  "scenario_id": "B11",
+  "group": "B",
+  "title": "Wants other slots",
+  "facts": {
+    "patient_type": "new",
+    "phone": null,
+    "problem_category": "sleep",
+    "symptom_brief": [
+      "I lie awake for hours",
+      "I am exhausted by lunchtime"
+    ],
+    "doctor_pref": {
+      "mode": "you_decide"
+    },
+    "session_type": null,
+    "days": [
+      "tuesday",
+      "thursday"
+    ],
+    "time_pref": null,
+    "slot_rule": "first"
+  },
+  "scripted_events": [
+    {
+      "at_state": "CAPTURE_CHOICE",
+      "act": "wants_other",
+      "payload": {}
+    }
+  ],
+  "verbatim": {},
+  "stop_after": "booking_confirmed",
+  "expected": {
+    "outcome": "booking",
+    "booking": {
+      "doctor_id": "d_iyer",
+      "session_type": null,
+      "weekday": "thursday",
+      "slot_rule": "first"
+    },
+    "handoff_reason": null,
+    "path_notes": "Round one offers Tuesday slots for Dr. Arjun Iyer. At CAPTURE_CHOICE the persona says none of them work, the no_slots count increments to 1, and ASK_DAYS is re-asked. Round two gives Thursday and the first slot (16:00) is booked. No hand-off, because the limit is 3 rounds."
+  },
+  "prompts_exercised": [
+    "extract_days",
+    "present_slots",
+    "slot_choice",
+    "no_slots",
+    "confirm_booking"
+  ]
+}

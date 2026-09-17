@@ -1,0 +1,41 @@
+{
+  "scenario_id": "A2",
+  "group": "A",
+  "title": "New, you-decide, single candidate",
+  "facts": {
+    "patient_type": "new",
+    "phone": null,
+    "problem_category": "sleep",
+    "symptom_brief": [
+      "I am awake until four most nights",
+      "I wake up four or five times"
+    ],
+    "doctor_pref": {
+      "mode": "you_decide"
+    },
+    "session_type": null,
+    "days": [
+      "tuesday"
+    ],
+    "time_pref": "morning",
+    "slot_rule": "first"
+  },
+  "scripted_events": [],
+  "verbatim": {},
+  "stop_after": "booking_confirmed",
+  "expected": {
+    "outcome": "booking",
+    "booking": {
+      "doctor_id": "d_iyer",
+      "session_type": null,
+      "weekday": "tuesday",
+      "slot_rule": "first"
+    },
+    "handoff_reason": null,
+    "path_notes": "Only Dr. Arjun Iyer carries the category tag, so code picks him and PICK_DOCTOR plus the doctor_pick prompt are skipped. Booking is the first Tuesday morning slot (09:00)."
+  },
+  "prompts_exercised": [
+    "extract_problem",
+    "doctor_pref"
+  ]
+}

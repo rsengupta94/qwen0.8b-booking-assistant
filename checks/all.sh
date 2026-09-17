@@ -3,7 +3,7 @@
 set -euo pipefail
 cd "$(dirname "$0")/.."
 
-for f in $(ls checks/phase_*.sh | sort -t_ -k2 -n); do
+for f in $(ls checks/phase_*.sh | sort -t_ -k2 -n) $(ls checks/eval_*.sh 2>/dev/null | sort -t_ -k2 -n); do
   echo "=== $f ==="
   bash "$f"
 done

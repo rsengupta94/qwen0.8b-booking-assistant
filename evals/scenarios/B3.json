@@ -1,0 +1,49 @@
+{
+  "scenario_id": "B3",
+  "group": "B",
+  "title": "Correction: phone",
+  "facts": {
+    "patient_type": "returning",
+    "phone": "9876543210",
+    "problem_category": null,
+    "symptom_brief": [],
+    "doctor_pref": null,
+    "session_type": "therapy",
+    "days": [
+      "monday"
+    ],
+    "time_pref": "morning",
+    "slot_rule": "first"
+  },
+  "scripted_events": [
+    {
+      "at_state": "ASK_SESSION_TYPE",
+      "act": "correction",
+      "payload": {
+        "field": "phone",
+        "new_value": "9844400567"
+      }
+    }
+  ],
+  "verbatim": {},
+  "stop_after": "booking_confirmed",
+  "expected": {
+    "outcome": "booking",
+    "booking": {
+      "doctor_id": "d_nair",
+      "session_type": "therapy",
+      "weekday": "monday",
+      "slot_rule": "first"
+    },
+    "handoff_reason": null,
+    "path_notes": "The first number matches Priya Nair and Dr. Meera Rao. The correction at ASK_SESSION_TYPE rewinds to ASK_PHONE, refetches the patient as Kamala Krishnan, and the doctor becomes Dr. Lakshmi Nair. Booking is the first Monday morning slot (09:00)."
+  },
+  "prompts_exercised": [
+    "extract_phone",
+    "turn_classifier",
+    "session_type",
+    "extract_days",
+    "slot_choice",
+    "confirm_booking"
+  ]
+}

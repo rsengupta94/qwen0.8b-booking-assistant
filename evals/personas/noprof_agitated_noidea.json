@@ -1,0 +1,14 @@
+{
+  "persona_id": "noprof_agitated_noidea",
+  "proficiency": "not_proficient",
+  "personality": "agitated",
+  "clarity": "no_idea",
+  "behaviors": [
+    "Write full sentences, and type the phone with spaces or a +91 prefix.",
+    "Ask one meta question during the chat, for example \"is this a real person?\".",
+    "Describe the problem with symptoms and life events only, never a clinical label, and say the clinic can decide the doctor.",
+    "Never pick a slot by number; describe the time, for example \"the later one\".",
+    "Keep replies short and demanding; skip greetings and thanks.",
+    "If the same question comes again, repeat your request in a sharper form."
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "card_id": "A5__prof_patient_noidea",
+  "persona_id": "prof_patient_noidea",
+  "scenario_id": "A5",
+  "pool": "heldout",
+  "eval_set_version": 1,
+  "persona": {
+    "proficiency": "proficient",
+    "personality": "patient",
+    "clarity": "no_idea",
+    "behaviors": [
+      "Keep every turn terse; skip small talk and type the phone as ten plain digits.",
+      "Pack two or three facts into one turn when the question allows it.",
+      "Describe the problem with symptoms and life events only, never a clinical label, and say the clinic can decide the doctor.",
+      "Pick a slot by its number, for example \"2\".",
+      "Answer exactly what was asked and nothing more.",
+      "If the same question comes again, answer it again calmly with the same fact."
+    ]
+  },
+  "facts": {
+    "patient_type": "returning",
+    "phone": "9811100234",
+    "problem_category": null,
+    "symptom_brief": [],
+    "doctor_pref": null,
+    "session_type": "followup",
+    "days": [
+      "thursday"
+    ],
+    "time_pref": "evening",
+    "slot_rule": "last"
+  },
+  "scripted_events": [],
+  "verbatim": {},
+  "stop_after": "booking_confirmed"
+}

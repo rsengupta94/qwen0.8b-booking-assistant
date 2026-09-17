@@ -1,0 +1,44 @@
+{
+  "card_id": "D2b__prof_patient_someidea",
+  "persona_id": "prof_patient_someidea",
+  "scenario_id": "D2b",
+  "pool": "dev",
+  "eval_set_version": 1,
+  "persona": {
+    "proficiency": "proficient",
+    "personality": "patient",
+    "clarity": "some_idea",
+    "behaviors": [
+      "Keep every turn terse; skip small talk and type the phone as ten plain digits.",
+      "Pack two or three facts into one turn when the question allows it.",
+      "Describe the problem with a lay term you would say out loud, such as \"panic attacks\" or \"cannot stop drinking\", or name a doctor; never use a clinical label.",
+      "Pick a slot by its number, for example \"2\".",
+      "Answer exactly what was asked and nothing more.",
+      "If the same question comes again, answer it again calmly with the same fact."
+    ]
+  },
+  "facts": {
+    "patient_type": "new",
+    "phone": null,
+    "problem_category": "anxiety",
+    "symptom_brief": [
+      "I feel dread every morning",
+      "I cannot stop picturing things going wrong"
+    ],
+    "doctor_pref": {
+      "mode": "named",
+      "name": "Dr. Meera Rao"
+    },
+    "session_type": null,
+    "days": [
+      "friday"
+    ],
+    "time_pref": "morning",
+    "slot_rule": "first"
+  },
+  "scripted_events": [],
+  "verbatim": {
+    "ASK_DOCTOR_PREF": "I want an appointment with Dr Roa"
+  },
+  "stop_after": "booking_confirmed"
+}

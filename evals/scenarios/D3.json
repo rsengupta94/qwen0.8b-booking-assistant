@@ -1,0 +1,41 @@
+{
+  "scenario_id": "D3",
+  "group": "D",
+  "title": "Phone with noise",
+  "facts": {
+    "patient_type": "returning",
+    "phone": "9876543210",
+    "problem_category": null,
+    "symptom_brief": [],
+    "doctor_pref": null,
+    "session_type": "therapy",
+    "days": [
+      "saturday"
+    ],
+    "time_pref": "morning",
+    "slot_rule": "first"
+  },
+  "scripted_events": [],
+  "verbatim": {
+    "ASK_PHONE": "it's +91 98765 43210"
+  },
+  "stop_after": "booking_confirmed",
+  "expected": {
+    "outcome": "booking",
+    "booking": {
+      "doctor_id": "d_rao",
+      "session_type": "therapy",
+      "weekday": "saturday",
+      "slot_rule": "first"
+    },
+    "handoff_reason": null,
+    "path_notes": "extract_phone must strip the +91 prefix and the spaces down to the ten digits 9876543210, which matches Priya Nair and Dr. Meera Rao. Booking is the first Saturday morning slot (09:00)."
+  },
+  "prompts_exercised": [
+    "extract_phone",
+    "session_type",
+    "extract_days",
+    "slot_choice",
+    "confirm_booking"
+  ]
+}

@@ -1,0 +1,48 @@
+{
+  "card_id": "B11__noprof_agitated_someidea",
+  "persona_id": "noprof_agitated_someidea",
+  "scenario_id": "B11",
+  "pool": "heldout",
+  "eval_set_version": 1,
+  "persona": {
+    "proficiency": "not_proficient",
+    "personality": "agitated",
+    "clarity": "some_idea",
+    "behaviors": [
+      "Write full sentences, and type the phone with spaces or a +91 prefix.",
+      "Ask one meta question during the chat, for example \"is this a real person?\".",
+      "Describe the problem with a lay term you would say out loud, such as \"panic attacks\" or \"cannot stop drinking\", or name a doctor; never use a clinical label.",
+      "Never pick a slot by number; describe the time, for example \"the later one\".",
+      "Keep replies short and demanding; skip greetings and thanks.",
+      "If the same question comes again, repeat your request in a sharper form."
+    ]
+  },
+  "facts": {
+    "patient_type": "new",
+    "phone": null,
+    "problem_category": "sleep",
+    "symptom_brief": [
+      "I lie awake for hours",
+      "I am exhausted by lunchtime"
+    ],
+    "doctor_pref": {
+      "mode": "you_decide"
+    },
+    "session_type": null,
+    "days": [
+      "tuesday",
+      "thursday"
+    ],
+    "time_pref": null,
+    "slot_rule": "first"
+  },
+  "scripted_events": [
+    {
+      "at_state": "CAPTURE_CHOICE",
+      "act": "wants_other",
+      "payload": {}
+    }
+  ],
+  "verbatim": {},
+  "stop_after": "booking_confirmed"
+}

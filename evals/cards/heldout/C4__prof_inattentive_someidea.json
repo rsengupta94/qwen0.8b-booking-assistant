@@ -1,0 +1,43 @@
+{
+  "card_id": "C4__prof_inattentive_someidea",
+  "persona_id": "prof_inattentive_someidea",
+  "scenario_id": "C4",
+  "pool": "heldout",
+  "eval_set_version": 1,
+  "persona": {
+    "proficiency": "proficient",
+    "personality": "inattentive",
+    "clarity": "some_idea",
+    "behaviors": [
+      "Keep every turn terse; skip small talk and type the phone as ten plain digits.",
+      "Answering the wrong question dominates the terse habit of packing facts into one turn.",
+      "Describe the problem with a lay term you would say out loud, such as \"panic attacks\" or \"cannot stop drinking\", or name a doctor; never use a clinical label.",
+      "Pick a slot by its number, for example \"2\".",
+      "At least once, answer a different question than the one asked, and name a time of your own instead of an offered slot.",
+      "If the same question comes again, raise another detail first, then answer it."
+    ]
+  },
+  "facts": {
+    "patient_type": "new",
+    "phone": null,
+    "problem_category": "anxiety",
+    "symptom_brief": [
+      "I get panic attacks on the train",
+      "my mind will not slow down"
+    ],
+    "doctor_pref": {
+      "mode": "you_decide"
+    },
+    "session_type": null,
+    "days": [
+      "monday"
+    ],
+    "time_pref": "morning",
+    "slot_rule": "first"
+  },
+  "scripted_events": [],
+  "verbatim": {
+    "ASK_DOCTOR_PREF": "I want to see Dr. Sharma"
+  },
+  "stop_after": "booking_confirmed"
+}

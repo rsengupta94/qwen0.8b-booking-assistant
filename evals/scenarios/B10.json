@@ -1,0 +1,45 @@
+{
+  "scenario_id": "B10",
+  "group": "B",
+  "title": "Slot by description",
+  "facts": {
+    "patient_type": "new",
+    "phone": null,
+    "problem_category": "anxiety",
+    "symptom_brief": [
+      "panic comes over me in shops",
+      "I avoid crowded places now"
+    ],
+    "doctor_pref": {
+      "mode": "you_decide"
+    },
+    "session_type": null,
+    "days": [
+      "wednesday"
+    ],
+    "time_pref": "afternoon",
+    "slot_rule": "last"
+  },
+  "scripted_events": [],
+  "verbatim": {
+    "CAPTURE_CHOICE": "the later one please"
+  },
+  "stop_after": "booking_confirmed",
+  "expected": {
+    "outcome": "booking",
+    "booking": {
+      "doctor_id": "d_rao",
+      "session_type": null,
+      "weekday": "wednesday",
+      "slot_rule": "last"
+    },
+    "handoff_reason": null,
+    "path_notes": "The slot is chosen by description, not by index, so slot_choice must map \"the later one\" to the last offered slot (16:00) out of 14:00, 15:00 and 16:00."
+  },
+  "prompts_exercised": [
+    "extract_days",
+    "present_slots",
+    "slot_choice",
+    "confirm_booking"
+  ]
+}

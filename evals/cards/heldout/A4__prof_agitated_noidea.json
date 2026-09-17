@@ -1,0 +1,36 @@
+{
+  "card_id": "A4__prof_agitated_noidea",
+  "persona_id": "prof_agitated_noidea",
+  "scenario_id": "A4",
+  "pool": "heldout",
+  "eval_set_version": 1,
+  "persona": {
+    "proficiency": "proficient",
+    "personality": "agitated",
+    "clarity": "no_idea",
+    "behaviors": [
+      "Keep every turn terse; skip small talk and type the phone as ten plain digits.",
+      "Pack two or three facts into one turn when the question allows it.",
+      "Describe the problem with symptoms and life events only, never a clinical label, and say the clinic can decide the doctor.",
+      "Pick a slot by its number, for example \"2\".",
+      "Keep replies short and demanding; skip greetings and thanks.",
+      "If the same question comes again, repeat your request in a sharper form."
+    ]
+  },
+  "facts": {
+    "patient_type": "returning",
+    "phone": "9123456780",
+    "problem_category": null,
+    "symptom_brief": [],
+    "doctor_pref": null,
+    "session_type": "therapy",
+    "days": [
+      "tuesday"
+    ],
+    "time_pref": "morning",
+    "slot_rule": "first"
+  },
+  "scripted_events": [],
+  "verbatim": {},
+  "stop_after": "booking_confirmed"
+}

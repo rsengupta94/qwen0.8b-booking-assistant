@@ -1,0 +1,44 @@
+{
+  "card_id": "B8__noprof_patient_noidea",
+  "persona_id": "noprof_patient_noidea",
+  "scenario_id": "B8",
+  "pool": "heldout",
+  "eval_set_version": 1,
+  "persona": {
+    "proficiency": "not_proficient",
+    "personality": "patient",
+    "clarity": "no_idea",
+    "behaviors": [
+      "Write full sentences, and type the phone with spaces or a +91 prefix.",
+      "Ask one meta question during the chat, for example \"is this a real person?\".",
+      "Describe the problem with symptoms and life events only, never a clinical label, and say the clinic can decide the doctor.",
+      "Never pick a slot by number; describe the time, for example \"the later one\".",
+      "Answer exactly what was asked and nothing more.",
+      "If the same question comes again, answer it again calmly with the same fact."
+    ]
+  },
+  "facts": {
+    "patient_type": "new",
+    "phone": null,
+    "problem_category": "anxiety",
+    "symptom_brief": [
+      "I cannot sit still in the office",
+      "my hands shake in the morning"
+    ],
+    "doctor_pref": {
+      "mode": "you_decide"
+    },
+    "session_type": null,
+    "days": [
+      "next week",
+      "day_after_tomorrow"
+    ],
+    "time_pref": null,
+    "slot_rule": "first"
+  },
+  "scripted_events": [],
+  "verbatim": {
+    "ASK_DAYS": "I was thinking sometime next week"
+  },
+  "stop_after": "booking_confirmed"
+}

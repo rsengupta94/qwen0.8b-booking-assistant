@@ -1,0 +1,50 @@
+{
+  "scenario_id": "D2b",
+  "group": "D",
+  "title": "Misspelled name",
+  "allowed_clarity": [
+    "some_idea"
+  ],
+  "facts": {
+    "patient_type": "new",
+    "phone": null,
+    "problem_category": "anxiety",
+    "symptom_brief": [
+      "I feel dread every morning",
+      "I cannot stop picturing things going wrong"
+    ],
+    "doctor_pref": {
+      "mode": "named",
+      "name": "Dr. Meera Rao"
+    },
+    "session_type": null,
+    "days": [
+      "friday"
+    ],
+    "time_pref": "morning",
+    "slot_rule": "first"
+  },
+  "scripted_events": [],
+  "verbatim": {
+    "ASK_DOCTOR_PREF": "I want an appointment with Dr Roa"
+  },
+  "stop_after": "booking_confirmed",
+  "expected": {
+    "outcome": "booking",
+    "booking": {
+      "doctor_id": "d_rao",
+      "session_type": null,
+      "weekday": "friday",
+      "slot_rule": "first"
+    },
+    "handoff_reason": null,
+    "path_notes": "Known product gap, kept as a probe. \"Dr Roa\" gets zero roster hits, so the model sees only you_decide and other, the doctor stays unset, and ASK_DOCTOR_PREF re-asks. That first re-ask must be recorded and counts toward the 3-loop hand-off. The persona then says \"Dr. Meera Rao\", code matches it, and the first Friday morning slot (10:00) is booked."
+  },
+  "prompts_exercised": [
+    "doctor_pref",
+    "ask_question",
+    "extract_days",
+    "slot_choice",
+    "confirm_booking"
+  ]
+}

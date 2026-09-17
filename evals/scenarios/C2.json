@@ -1,0 +1,43 @@
+{
+  "scenario_id": "C2",
+  "group": "C",
+  "title": "Non-answers x3 in one state",
+  "facts": {
+    "patient_type": "new",
+    "phone": null,
+    "problem_category": "anxiety",
+    "symptom_brief": [
+      "I am on edge all day",
+      "I cannot finish a sentence in meetings"
+    ],
+    "doctor_pref": {
+      "mode": "you_decide"
+    },
+    "session_type": null,
+    "days": [],
+    "time_pref": null,
+    "slot_rule": null
+  },
+  "scripted_events": [
+    {
+      "at_state": "ASK_PROBLEM",
+      "act": "non_answer",
+      "payload": {
+        "times": 3
+      }
+    }
+  ],
+  "verbatim": {},
+  "stop_after": "handoff",
+  "expected": {
+    "outcome": "handoff",
+    "booking": null,
+    "handoff_reason": "reask_limit",
+    "path_notes": "The persona gives three non-answers in ASK_PROBLEM. extract_problem fails or returns nothing usable each time, ASK_PROBLEM re-asks, and the third re-ask triggers hand-off. This is a pass when the sidecar shows the persona caused it."
+  },
+  "prompts_exercised": [
+    "turn_classifier",
+    "extract_problem",
+    "ask_question"
+  ]
+}

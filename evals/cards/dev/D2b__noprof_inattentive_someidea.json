@@ -1,0 +1,44 @@
+{
+  "card_id": "D2b__noprof_inattentive_someidea",
+  "persona_id": "noprof_inattentive_someidea",
+  "scenario_id": "D2b",
+  "pool": "dev",
+  "eval_set_version": 1,
+  "persona": {
+    "proficiency": "not_proficient",
+    "personality": "inattentive",
+    "clarity": "some_idea",
+    "behaviors": [
+      "Write full sentences, and type the phone with spaces or a +91 prefix.",
+      "Ask one meta question during the chat, for example \"is this a real person?\".",
+      "Describe the problem with a lay term you would say out loud, such as \"panic attacks\" or \"cannot stop drinking\", or name a doctor; never use a clinical label.",
+      "Never pick a slot by number; describe the time, for example \"the later one\".",
+      "At least once, answer a different question than the one asked, and name a time of your own instead of an offered slot.",
+      "If the same question comes again, raise another detail first, then answer it."
+    ]
+  },
+  "facts": {
+    "patient_type": "new",
+    "phone": null,
+    "problem_category": "anxiety",
+    "symptom_brief": [
+      "I feel dread every morning",
+      "I cannot stop picturing things going wrong"
+    ],
+    "doctor_pref": {
+      "mode": "named",
+      "name": "Dr. Meera Rao"
+    },
+    "session_type": null,
+    "days": [
+      "friday"
+    ],
+    "time_pref": "morning",
+    "slot_rule": "first"
+  },
+  "scripted_events": [],
+  "verbatim": {
+    "ASK_DOCTOR_PREF": "I want an appointment with Dr Roa"
+  },
+  "stop_after": "booking_confirmed"
+}

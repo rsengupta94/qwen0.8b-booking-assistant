@@ -1,0 +1,50 @@
+{
+  "scenario_id": "D2a",
+  "group": "D",
+  "title": "Ambiguous surname",
+  "allowed_clarity": [
+    "some_idea"
+  ],
+  "facts": {
+    "patient_type": "new",
+    "phone": null,
+    "problem_category": "anxiety",
+    "symptom_brief": [
+      "my heart pounds without warning",
+      "I keep expecting bad news"
+    ],
+    "doctor_pref": {
+      "mode": "named",
+      "name": "Dr. Meera Rao"
+    },
+    "session_type": null,
+    "days": [
+      "wednesday"
+    ],
+    "time_pref": "afternoon",
+    "slot_rule": "first"
+  },
+  "scripted_events": [],
+  "verbatim": {
+    "ASK_DOCTOR_PREF": "I'd like to see Dr. Rao"
+  },
+  "stop_after": "booking_confirmed",
+  "expected": {
+    "outcome": "booking",
+    "booking": {
+      "doctor_id": "d_rao",
+      "session_type": null,
+      "weekday": "wednesday",
+      "slot_rule": "first"
+    },
+    "handoff_reason": null,
+    "path_notes": "\"Rao\" matches both Dr. Meera Rao and Dr. Anil Rao by token. Code detects the tie and re-asks naming both; no model call resolves the name. The persona then says \"Meera\" and the doctor is set to d_rao. Booking is the first Wednesday afternoon slot (14:00)."
+  },
+  "prompts_exercised": [
+    "doctor_pref",
+    "ask_question",
+    "extract_days",
+    "slot_choice",
+    "confirm_booking"
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "card_id": "B8__prof_patient_noidea",
+  "persona_id": "prof_patient_noidea",
+  "scenario_id": "B8",
+  "pool": "heldout",
+  "eval_set_version": 1,
+  "persona": {
+    "proficiency": "proficient",
+    "personality": "patient",
+    "clarity": "no_idea",
+    "behaviors": [
+      "Keep every turn terse; skip small talk and type the phone as ten plain digits.",
+      "Pack two or three facts into one turn when the question allows it.",
+      "Describe the problem with symptoms and life events only, never a clinical label, and say the clinic can decide the doctor.",
+      "Pick a slot by its number, for example \"2\".",
+      "Answer exactly what was asked and nothing more.",
+      "If the same question comes again, answer it again calmly with the same fact."
+    ]
+  },
+  "facts": {
+    "patient_type": "new",
+    "phone": null,
+    "problem_category": "anxiety",
+    "symptom_brief": [
+      "I cannot sit still in the office",
+      "my hands shake in the morning"
+    ],
+    "doctor_pref": {
+      "mode": "you_decide"
+    },
+    "session_type": null,
+    "days": [
+      "next week",
+      "day_after_tomorrow"
+    ],
+    "time_pref": null,
+    "slot_rule": "first"
+  },
+  "scripted_events": [],
+  "verbatim": {
+    "ASK_DAYS": "I was thinking sometime next week"
+  },
+  "stop_after": "booking_confirmed"
+}

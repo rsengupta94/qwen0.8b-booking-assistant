@@ -1,0 +1,39 @@
+{
+  "scenario_id": "C1",
+  "group": "C",
+  "title": "Sunday only, three rounds",
+  "facts": {
+    "patient_type": "new",
+    "phone": null,
+    "problem_category": "anxiety",
+    "symptom_brief": [
+      "I worry about everything at once",
+      "my breathing goes shallow"
+    ],
+    "doctor_pref": {
+      "mode": "you_decide"
+    },
+    "session_type": null,
+    "days": [
+      "sunday",
+      "sunday",
+      "sunday"
+    ],
+    "time_pref": null,
+    "slot_rule": null
+  },
+  "scripted_events": [],
+  "verbatim": {},
+  "stop_after": "handoff",
+  "expected": {
+    "outcome": "handoff",
+    "booking": null,
+    "handoff_reason": "no_slots",
+    "path_notes": "The clinic is closed on Sunday for every doctor. Each ASK_DAYS round resolves the day, finds no slots, and runs the no_slots reply. After 3 no-slot rounds the session hands off with the clinic phone. SHOW_SLOTS must never present a slot."
+  },
+  "prompts_exercised": [
+    "extract_days",
+    "no_slots",
+    "ask_question"
+  ]
+}

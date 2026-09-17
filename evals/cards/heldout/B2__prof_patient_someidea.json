@@ -1,0 +1,51 @@
+{
+  "card_id": "B2__prof_patient_someidea",
+  "persona_id": "prof_patient_someidea",
+  "scenario_id": "B2",
+  "pool": "heldout",
+  "eval_set_version": 1,
+  "persona": {
+    "proficiency": "proficient",
+    "personality": "patient",
+    "clarity": "some_idea",
+    "behaviors": [
+      "Keep every turn terse; skip small talk and type the phone as ten plain digits.",
+      "Pack two or three facts into one turn when the question allows it.",
+      "Describe the problem with a lay term you would say out loud, such as \"panic attacks\" or \"cannot stop drinking\", or name a doctor; never use a clinical label.",
+      "Pick a slot by its number, for example \"2\".",
+      "Answer exactly what was asked and nothing more.",
+      "If the same question comes again, answer it again calmly with the same fact."
+    ]
+  },
+  "facts": {
+    "patient_type": "new",
+    "phone": null,
+    "problem_category": "depression",
+    "symptom_brief": [
+      "I feel flat all the time",
+      "I stopped answering my friends"
+    ],
+    "doctor_pref": {
+      "mode": "named",
+      "name": "Dr. Meera Rao"
+    },
+    "session_type": null,
+    "days": [
+      "monday"
+    ],
+    "time_pref": "evening",
+    "slot_rule": "first"
+  },
+  "scripted_events": [
+    {
+      "at_state": "ASK_DAYS",
+      "act": "correction",
+      "payload": {
+        "field": "doctor",
+        "new_value": "Dr. Sana Khan"
+      }
+    }
+  ],
+  "verbatim": {},
+  "stop_after": "booking_confirmed"
+}

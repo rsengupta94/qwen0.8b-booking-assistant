@@ -1,0 +1,44 @@
+{
+  "card_id": "D2a__prof_agitated_someidea",
+  "persona_id": "prof_agitated_someidea",
+  "scenario_id": "D2a",
+  "pool": "heldout",
+  "eval_set_version": 1,
+  "persona": {
+    "proficiency": "proficient",
+    "personality": "agitated",
+    "clarity": "some_idea",
+    "behaviors": [
+      "Keep every turn terse; skip small talk and type the phone as ten plain digits.",
+      "Pack two or three facts into one turn when the question allows it.",
+      "Describe the problem with a lay term you would say out loud, such as \"panic attacks\" or \"cannot stop drinking\", or name a doctor; never use a clinical label.",
+      "Pick a slot by its number, for example \"2\".",
+      "Keep replies short and demanding; skip greetings and thanks.",
+      "If the same question comes again, repeat your request in a sharper form."
+    ]
+  },
+  "facts": {
+    "patient_type": "new",
+    "phone": null,
+    "problem_category": "anxiety",
+    "symptom_brief": [
+      "my heart pounds without warning",
+      "I keep expecting bad news"
+    ],
+    "doctor_pref": {
+      "mode": "named",
+      "name": "Dr. Meera Rao"
+    },
+    "session_type": null,
+    "days": [
+      "wednesday"
+    ],
+    "time_pref": "afternoon",
+    "slot_rule": "first"
+  },
+  "scripted_events": [],
+  "verbatim": {
+    "ASK_DOCTOR_PREF": "I'd like to see Dr. Rao"
+  },
+  "stop_after": "booking_confirmed"
+}
