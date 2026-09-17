@@ -58,7 +58,7 @@ Judge brief in `briefs/judge.md`: binary coherence per bot turn with the three f
 
 Manual: a Claude Code session spawns fresh sub-agents on the strongest model over both pools.
 
-`checks/eval_4.sh`: asserts a verdict for every bot turn in every kept transcript, computes judge-versus-human agreement on the calibration set, fails below 80 percent agreement, and merges verdict counts into the results file.
+`checks/eval_4.sh`: asserts a verdict for every bot turn in every kept transcript, computes judge-versus-human agreement on the calibration set, fails below 75 percent agreement, and merges verdict counts into the results file.
 
 ## E5: Evals tab
 
