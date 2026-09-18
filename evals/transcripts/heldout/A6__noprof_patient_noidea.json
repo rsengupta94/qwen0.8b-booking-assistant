@@ -1,0 +1,112 @@
+{
+  "card_id": "A6__noprof_patient_noidea",
+  "persona_id": "noprof_patient_noidea",
+  "scenario_id": "A6",
+  "pool": "heldout",
+  "eval_set_version": 1,
+  "run": {
+    "model_id": "qwen3.5-0.8b-q8",
+    "prompt_version": "baseline",
+    "simulator_model": "claude-sonnet-5",
+    "session_id": "A6__noprof_patient_noidea__20260918T075829Z",
+    "generated_at": "20260918T075829Z"
+  },
+  "turns": [
+    {
+      "turn": 1,
+      "answering_state": "GREET",
+      "user": "Hi, I would like to book an appointment please.",
+      "sidecar": {
+        "act": "answer",
+        "field": null,
+        "value": null,
+        "slot_rule": null
+      },
+      "bot": {
+        "reply": "Welcome to Willow Lane Mental Health Clinic. Is this your first consultation with us?",
+        "state": "ASK_FIRST_CONSULT",
+        "kind": "ask_question",
+        "offered_slots": null,
+        "fallback_used": false,
+        "latency_ms": 5235
+      }
+    },
+    {
+      "turn": 2,
+      "answering_state": "ASK_FIRST_CONSULT",
+      "user": "No, I have come here before.",
+      "sidecar": {
+        "act": "answer",
+        "field": "patient_type",
+        "value": "returning",
+        "slot_rule": null
+      },
+      "bot": {
+        "reply": "Great. Could you share the phone number registered with us?",
+        "state": "ASK_PHONE",
+        "kind": "ask_question",
+        "offered_slots": null,
+        "fallback_used": false,
+        "latency_ms": 5630
+      }
+    },
+    {
+      "turn": 3,
+      "answering_state": "ASK_PHONE",
+      "user": "It is +91 90000 00001.",
+      "sidecar": {
+        "act": "answer",
+        "field": "phone",
+        "value": "+91 90000 00001",
+        "slot_rule": null
+      },
+      "bot": {
+        "reply": "Sorry, I didn't catch that. Could you share the phone number registered with us?",
+        "state": "ASK_PHONE",
+        "kind": "ask_question",
+        "offered_slots": null,
+        "fallback_used": true,
+        "latency_ms": 8882
+      }
+    },
+    {
+      "turn": 4,
+      "answering_state": "ASK_PHONE",
+      "user": "Sure, it's +91 90000 00001.",
+      "sidecar": {
+        "act": "repeat",
+        "field": "phone",
+        "value": "+91 90000 00001",
+        "slot_rule": null
+      },
+      "bot": {
+        "reply": "Sorry, I didn't catch that. Could you share the phone number registered with us?",
+        "state": "ASK_PHONE",
+        "kind": "ask_question",
+        "offered_slots": null,
+        "fallback_used": true,
+        "latency_ms": 9179
+      }
+    },
+    {
+      "turn": 5,
+      "answering_state": "ASK_PHONE",
+      "user": "It's +91 90000 00001, that's my number.",
+      "sidecar": {
+        "act": "repeat",
+        "field": "phone",
+        "value": "+91 90000 00001",
+        "slot_rule": null
+      },
+      "bot": {
+        "reply": "Sorry, I wasn't able to understand your request. Please call our customer care team on 1800-000-0000 and they will help you book an appointment.",
+        "state": "END",
+        "kind": "handoff",
+        "offered_slots": null,
+        "fallback_used": true,
+        "latency_ms": 3333
+      }
+    }
+  ],
+  "ended": "handoff"
+}

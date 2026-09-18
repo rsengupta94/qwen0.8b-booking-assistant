@@ -1,0 +1,154 @@
+{
+  "card_id": "B4__noprof_patient_noidea",
+  "persona_id": "noprof_patient_noidea",
+  "scenario_id": "B4",
+  "pool": "dev",
+  "eval_set_version": 1,
+  "run": {
+    "model_id": "qwen3.5-0.8b-q8",
+    "prompt_version": "baseline",
+    "simulator_model": "claude-sonnet-5",
+    "session_id": "B4__noprof_patient_noidea__20260918T045547Z",
+    "generated_at": "20260918T045547Z"
+  },
+  "turns": [
+    {
+      "turn": 1,
+      "answering_state": "GREET",
+      "user": "Hi, I'd like to book an appointment please.",
+      "sidecar": {
+        "act": "answer",
+        "field": null,
+        "value": null,
+        "slot_rule": null
+      },
+      "bot": {
+        "reply": "Welcome to Willow Lane Mental Health Clinic. Is this your first consultation with us?",
+        "state": "ASK_FIRST_CONSULT",
+        "kind": "ask_question",
+        "offered_slots": null,
+        "fallback_used": false,
+        "latency_ms": 5524
+      }
+    },
+    {
+      "turn": 2,
+      "answering_state": "ASK_FIRST_CONSULT",
+      "user": "Yes, this would be my first time coming in.",
+      "sidecar": {
+        "act": "answer",
+        "field": "patient_type",
+        "value": "new",
+        "slot_rule": null
+      },
+      "bot": {
+        "reply": "Great. Could you tell me briefly what you would like help with?",
+        "state": "ASK_PROBLEM",
+        "kind": "ask_question",
+        "offered_slots": null,
+        "fallback_used": false,
+        "latency_ms": 6702
+      }
+    },
+    {
+      "turn": 3,
+      "answering_state": "ASK_PROBLEM",
+      "user": "Work has me wound up all week and my shoulders keep aching from all the tension.",
+      "sidecar": {
+        "act": "answer",
+        "field": "problem",
+        "value": "stress",
+        "slot_rule": null
+      },
+      "bot": {
+        "reply": "Great. Do you have a doctor in mind, or would you like us to suggest one?",
+        "state": "ASK_DOCTOR_PREF",
+        "kind": "ask_question",
+        "offered_slots": null,
+        "fallback_used": false,
+        "latency_ms": 11665
+      }
+    },
+    {
+      "turn": 4,
+      "answering_state": "ASK_DOCTOR_PREF",
+      "user": "Sorry, actually I need to be honest, it is not just stress, I cannot stop drinking after work and I hid bottles from my family.",
+      "sidecar": {
+        "act": "correction",
+        "field": "problem",
+        "value": "addiction",
+        "slot_rule": null
+      },
+      "bot": {
+        "reply": "Great. Do you have a doctor in mind, or would you like us to suggest one?",
+        "state": "ASK_DOCTOR_PREF",
+        "kind": "ask_question",
+        "offered_slots": null,
+        "fallback_used": false,
+        "latency_ms": 19801
+      }
+    },
+    {
+      "turn": 5,
+      "answering_state": "ASK_DOCTOR_PREF",
+      "user": "I don't really know anyone, whoever you think is best is fine with me.",
+      "sidecar": {
+        "act": "answer",
+        "field": "doctor",
+        "value": null,
+        "slot_rule": null
+      },
+      "bot": {
+        "reply": "We suggest Dr. Anil Rao. Which days work for you?",
+        "state": "ASK_DAYS",
+        "kind": "ask_question",
+        "offered_slots": null,
+        "fallback_used": false,
+        "latency_ms": 22406
+      }
+    },
+    {
+      "turn": 6,
+      "answering_state": "ASK_DAYS",
+      "user": "Saturday would work best for me, in the afternoon if possible.",
+      "sidecar": {
+        "act": "answer",
+        "field": "days",
+        "value": "saturday",
+        "slot_rule": null
+      },
+      "bot": {
+        "reply": "Dr. Anil Rao is available at:\n1. Saturday 19 September, 14:00\n2. Saturday 19 September, 15:00\n3. Saturday 19 September, 16:00\nWhich one would you like?",
+        "state": "CAPTURE_CHOICE",
+        "kind": "present_slots",
+        "offered_slots": [
+          "2026-09-19T14:00",
+          "2026-09-19T15:00",
+          "2026-09-19T16:00"
+        ],
+        "fallback_used": false,
+        "latency_ms": 22151
+      }
+    },
+    {
+      "turn": 7,
+      "answering_state": "CAPTURE_CHOICE",
+      "user": "The earliest one, 2 in the afternoon, would be perfect.",
+      "sidecar": {
+        "act": "answer",
+        "field": "slot",
+        "value": "1",
+        "slot_rule": "first"
+      },
+      "bot": {
+        "reply": "Your first consultation with Dr. Anil Rao is confirmed for Saturday 19 September at 15:00. Booking reference: b0002.",
+        "state": "END",
+        "kind": "confirm_booking",
+        "offered_slots": null,
+        "fallback_used": false,
+        "latency_ms": 14027
+      }
+    }
+  ],
+  "ended": "booking_confirmed"
+}

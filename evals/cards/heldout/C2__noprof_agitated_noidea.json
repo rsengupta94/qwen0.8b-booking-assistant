@@ -29,9 +29,11 @@
       "mode": "you_decide"
     },
     "session_type": null,
-    "days": [],
+    "days": [
+      "thursday"
+    ],
     "time_pref": null,
-    "slot_rule": null
+    "slot_rule": "first"
   },
   "scripted_events": [
     {

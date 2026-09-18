@@ -1,0 +1,177 @@
+{
+  "card_id": "B8__noprof_inattentive_someidea",
+  "persona_id": "noprof_inattentive_someidea",
+  "scenario_id": "B8",
+  "pool": "heldout",
+  "eval_set_version": 1,
+  "run": {
+    "model_id": "qwen3.5-0.8b-q8",
+    "prompt_version": "baseline",
+    "simulator_model": "claude-sonnet-5",
+    "session_id": "B8__noprof_inattentive_someidea__20260918T082535Z",
+    "generated_at": "20260918T082535Z"
+  },
+  "turns": [
+    {
+      "turn": 1,
+      "answering_state": "GREET",
+      "user": "hi, i think i need to talk to someone, can i book an appointment?",
+      "sidecar": {
+        "act": "answer",
+        "field": null,
+        "value": null,
+        "slot_rule": null
+      },
+      "bot": {
+        "reply": "Welcome to Willow Lane Mental Health Clinic. Is this your first consultation with us?",
+        "state": "ASK_FIRST_CONSULT",
+        "kind": "ask_question",
+        "offered_slots": null,
+        "fallback_used": false,
+        "latency_ms": 5641
+      }
+    },
+    {
+      "turn": 2,
+      "answering_state": "ASK_FIRST_CONSULT",
+      "user": "yes, first time here",
+      "sidecar": {
+        "act": "answer",
+        "field": "patient_type",
+        "value": "new",
+        "slot_rule": null
+      },
+      "bot": {
+        "reply": "Great. Could you tell me briefly what you would like help with?",
+        "state": "ASK_PROBLEM",
+        "kind": "ask_question",
+        "offered_slots": null,
+        "fallback_used": false,
+        "latency_ms": 5357
+      }
+    },
+    {
+      "turn": 3,
+      "answering_state": "ASK_PROBLEM",
+      "user": "i just cannot sit still in the office lately and my hands shake in the morning",
+      "sidecar": {
+        "act": "answer",
+        "field": "problem",
+        "value": "anxiety",
+        "slot_rule": null
+      },
+      "bot": {
+        "reply": "Great. Do you have a doctor in mind, or would you like us to suggest one?",
+        "state": "ASK_DOCTOR_PREF",
+        "kind": "ask_question",
+        "offered_slots": null,
+        "fallback_used": false,
+        "latency_ms": 10131
+      }
+    },
+    {
+      "turn": 4,
+      "answering_state": "ASK_DOCTOR_PREF",
+      "user": "no idea honestly, just pick whoever you think is best",
+      "sidecar": {
+        "act": "answer",
+        "field": "doctor",
+        "value": null,
+        "slot_rule": null
+      },
+      "bot": {
+        "reply": "We suggest Dr. Meera Rao. Which days work for you?",
+        "state": "ASK_DAYS",
+        "kind": "ask_question",
+        "offered_slots": null,
+        "fallback_used": false,
+        "latency_ms": 20214
+      }
+    },
+    {
+      "turn": 5,
+      "answering_state": "ASK_DAYS",
+      "user": "I was thinking sometime next week, or maybe the day after tomorrow if that works better",
+      "sidecar": {
+        "act": "answer",
+        "field": "days",
+        "value": "next week,day_after_tomorrow",
+        "slot_rule": null
+      },
+      "bot": {
+        "reply": "Dr. Meera Rao is available at:\n1. Saturday 19 September, 09:00\n2. Saturday 19 September, 09:30\n3. Saturday 19 September, 10:00\nWhich one would you like?",
+        "state": "CAPTURE_CHOICE",
+        "kind": "present_slots",
+        "offered_slots": [
+          "2026-09-19T09:00",
+          "2026-09-19T09:30",
+          "2026-09-19T10:00"
+        ],
+        "fallback_used": false,
+        "latency_ms": 24223
+      }
+    },
+    {
+      "turn": 6,
+      "answering_state": "CAPTURE_CHOICE",
+      "user": "could i come in the evening instead, like around 6pm?",
+      "sidecar": {
+        "act": "non_answer",
+        "field": null,
+        "value": null,
+        "slot_rule": null
+      },
+      "bot": {
+        "reply": "Sure, let's look at other days. Which days work for you?",
+        "state": "ASK_DAYS",
+        "kind": "ask_question",
+        "offered_slots": null,
+        "fallback_used": false,
+        "latency_ms": 14194
+      }
+    },
+    {
+      "turn": 7,
+      "answering_state": "ASK_DAYS",
+      "user": "wait, is this a real person i'm talking to or a bot? anyway, next week is fine for me",
+      "sidecar": {
+        "act": "faq_question",
+        "field": "topic",
+        "value": "first_visit",
+        "slot_rule": null
+      },
+      "bot": {
+        "reply": "There are no evening slots on those days, but here is what is open. Dr. Meera Rao is available at:\n1. Saturday 19 September, 09:00\n2. Saturday 19 September, 09:30\n3. Saturday 19 September, 10:00\nWhich one would you like?",
+        "state": "CAPTURE_CHOICE",
+        "kind": "present_slots",
+        "offered_slots": [
+          "2026-09-19T09:00",
+          "2026-09-19T09:30",
+          "2026-09-19T10:00"
+        ],
+        "fallback_used": true,
+        "latency_ms": 24691
+      }
+    },
+    {
+      "turn": 8,
+      "answering_state": "CAPTURE_CHOICE",
+      "user": "okay fine, let's do the earliest one then",
+      "sidecar": {
+        "act": "answer",
+        "field": "slot",
+        "value": "1",
+        "slot_rule": "first"
+      },
+      "bot": {
+        "reply": "Your first consultation with Dr. Meera Rao is confirmed for Saturday 19 September at 09:00. Booking reference: b0001. We look forward to seeing you.",
+        "state": "END",
+        "kind": "confirm_booking",
+        "offered_slots": null,
+        "fallback_used": false,
+        "latency_ms": 16959
+      }
+    }
+  ],
+  "ended": "booking_confirmed"
+}

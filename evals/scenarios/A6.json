@@ -8,10 +8,12 @@
     "problem_category": null,
     "symptom_brief": [],
     "doctor_pref": null,
-    "session_type": null,
-    "days": [],
+    "session_type": "therapy",
+    "days": [
+      "monday"
+    ],
     "time_pref": null,
-    "slot_rule": null
+    "slot_rule": "first"
   },
   "scripted_events": [],
   "verbatim": {},
@@ -20,7 +22,7 @@
     "outcome": "handoff",
     "booking": null,
     "handoff_reason": "reask_limit",
-    "path_notes": "ASK_PHONE gets a well formed number that is not in the patient fixture. The lookup fails, the state re-asks, and the persona repeats the same number. After 3 re-asks in ASK_PHONE the session hands off with the clinic phone. No booking states are reached."
+    "path_notes": "ASK_PHONE gets a well formed number that is not in the patient fixture. The lookup fails, the state re-asks, and the persona repeats the same number. After 3 re-asks in ASK_PHONE the session hands off with the clinic phone. No booking states are reached. Fallback days/slot_rule exist only so the persona stays consistent if the product wrongly proceeds; the expected outcome is still hand-off."
   },
   "prompts_exercised": [
     "extract_phone",

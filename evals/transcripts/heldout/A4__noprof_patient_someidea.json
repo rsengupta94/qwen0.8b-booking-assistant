@@ -1,0 +1,177 @@
+{
+  "card_id": "A4__noprof_patient_someidea",
+  "persona_id": "noprof_patient_someidea",
+  "scenario_id": "A4",
+  "pool": "heldout",
+  "eval_set_version": 1,
+  "run": {
+    "model_id": "qwen3.5-0.8b-q8",
+    "prompt_version": "baseline",
+    "simulator_model": "claude-sonnet-5",
+    "session_id": "A4__noprof_patient_someidea__20260918T074639Z",
+    "generated_at": "20260918T074639Z"
+  },
+  "turns": [
+    {
+      "turn": 1,
+      "answering_state": "GREET",
+      "user": "hi, i'd like to book an appointment please",
+      "sidecar": {
+        "act": "answer",
+        "field": null,
+        "value": null,
+        "slot_rule": null
+      },
+      "bot": {
+        "reply": "Welcome to Willow Lane Mental Health Clinic. Is this your first consultation with us?",
+        "state": "ASK_FIRST_CONSULT",
+        "kind": "ask_question",
+        "offered_slots": null,
+        "fallback_used": false,
+        "latency_ms": 5642
+      }
+    },
+    {
+      "turn": 2,
+      "answering_state": "ASK_FIRST_CONSULT",
+      "user": "no, i've been here before",
+      "sidecar": {
+        "act": "answer",
+        "field": "patient_type",
+        "value": "returning",
+        "slot_rule": null
+      },
+      "bot": {
+        "reply": "Great. Could you share the phone number registered with us?",
+        "state": "ASK_PHONE",
+        "kind": "ask_question",
+        "offered_slots": null,
+        "fallback_used": false,
+        "latency_ms": 5453
+      }
+    },
+    {
+      "turn": 3,
+      "answering_state": "ASK_PHONE",
+      "user": "sure, it's +91 91234 56780",
+      "sidecar": {
+        "act": "answer",
+        "field": "phone",
+        "value": "+91 9123456780",
+        "slot_rule": null
+      },
+      "bot": {
+        "reply": "Great. Is this a therapy session or a follow-up?",
+        "state": "ASK_SESSION_TYPE",
+        "kind": "ask_question",
+        "offered_slots": null,
+        "fallback_used": false,
+        "latency_ms": 8051
+      }
+    },
+    {
+      "turn": 4,
+      "answering_state": "ASK_SESSION_TYPE",
+      "user": "it's a therapy session",
+      "sidecar": {
+        "act": "answer",
+        "field": "session_type",
+        "value": "therapy",
+        "slot_rule": null
+      },
+      "bot": {
+        "reply": "Great. Which days work for you?",
+        "state": "ASK_DAYS",
+        "kind": "ask_question",
+        "offered_slots": null,
+        "fallback_used": false,
+        "latency_ms": 8032
+      }
+    },
+    {
+      "turn": 5,
+      "answering_state": "ASK_DAYS",
+      "user": "tuesday works for me",
+      "sidecar": {
+        "act": "answer",
+        "field": "days",
+        "value": "tuesday",
+        "slot_rule": null
+      },
+      "bot": {
+        "reply": "There are no evening slots on those days, but here is what is open. Dr. Sana Khan is available at:\n1. Tuesday 22 September, 10:00\n2. Tuesday 22 September, 10:30\n3. Tuesday 22 September, 11:00\nWhich one would you like?",
+        "state": "CAPTURE_CHOICE",
+        "kind": "present_slots",
+        "offered_slots": [
+          "2026-09-22T10:00",
+          "2026-09-22T10:30",
+          "2026-09-22T11:00"
+        ],
+        "fallback_used": true,
+        "latency_ms": 21489
+      }
+    },
+    {
+      "turn": 6,
+      "answering_state": "CAPTURE_CHOICE",
+      "user": "wait, quick thing, is this actually a real person i'm talking to?",
+      "sidecar": {
+        "act": "non_answer",
+        "field": null,
+        "value": null,
+        "slot_rule": null
+      },
+      "bot": {
+        "reply": "Sure, let's look at other days. Which days work for you?",
+        "state": "ASK_DAYS",
+        "kind": "ask_question",
+        "offered_slots": null,
+        "fallback_used": false,
+        "latency_ms": 13201
+      }
+    },
+    {
+      "turn": 7,
+      "answering_state": "ASK_DAYS",
+      "user": "tuesday still works for me",
+      "sidecar": {
+        "act": "repeat",
+        "field": "days",
+        "value": "tuesday",
+        "slot_rule": null
+      },
+      "bot": {
+        "reply": "There are no evening slots on those days, but here is what is open. Dr. Sana Khan is available at:\n1. Tuesday 22 September, 10:00\n2. Tuesday 22 September, 10:30\n3. Tuesday 22 September, 11:00\nWhich one would you like?",
+        "state": "CAPTURE_CHOICE",
+        "kind": "present_slots",
+        "offered_slots": [
+          "2026-09-22T10:00",
+          "2026-09-22T10:30",
+          "2026-09-22T11:00"
+        ],
+        "fallback_used": true,
+        "latency_ms": 21282
+      }
+    },
+    {
+      "turn": 8,
+      "answering_state": "CAPTURE_CHOICE",
+      "user": "the earliest one, 10 in the morning, please",
+      "sidecar": {
+        "act": "answer",
+        "field": "slot",
+        "value": "1",
+        "slot_rule": "first"
+      },
+      "bot": {
+        "reply": "Your therapy session with Dr. Sana Khan is confirmed for Tuesday 22 September at 10:00. Booking reference: b0001.",
+        "state": "END",
+        "kind": "confirm_booking",
+        "offered_slots": null,
+        "fallback_used": false,
+        "latency_ms": 16481
+      }
+    }
+  ],
+  "ended": "booking_confirmed"
+}

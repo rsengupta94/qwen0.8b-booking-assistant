@@ -23,10 +23,12 @@
     "problem_category": null,
     "symptom_brief": [],
     "doctor_pref": null,
-    "session_type": null,
-    "days": [],
+    "session_type": "therapy",
+    "days": [
+      "monday"
+    ],
     "time_pref": null,
-    "slot_rule": null
+    "slot_rule": "first"
   },
   "scripted_events": [],
   "verbatim": {},

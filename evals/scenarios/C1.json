@@ -20,7 +20,7 @@
       "sunday"
     ],
     "time_pref": null,
-    "slot_rule": null
+    "slot_rule": "first"
   },
   "scripted_events": [],
   "verbatim": {},
@@ -29,7 +29,7 @@
     "outcome": "handoff",
     "booking": null,
     "handoff_reason": "no_slots",
-    "path_notes": "The clinic is closed on Sunday for every doctor. Each ASK_DAYS round resolves the day, finds no slots, and runs the no_slots reply. After 3 no-slot rounds the session hands off with the clinic phone. SHOW_SLOTS must never present a slot."
+    "path_notes": "The clinic is closed on Sunday for every doctor. Each ASK_DAYS round resolves the day, finds no slots, and runs the no_slots reply. After 3 no-slot rounds the session hands off with the clinic phone. SHOW_SLOTS must never present a slot. Fallback days/slot_rule exist only so the persona stays consistent if the product wrongly proceeds; the expected outcome is still hand-off."
   },
   "prompts_exercised": [
     "extract_days",

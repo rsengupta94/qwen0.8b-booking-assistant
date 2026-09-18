@@ -1,0 +1,176 @@
+{
+  "card_id": "B5__noprof_agitated_noidea",
+  "persona_id": "noprof_agitated_noidea",
+  "scenario_id": "B5",
+  "pool": "dev",
+  "eval_set_version": 1,
+  "run": {
+    "model_id": "qwen3.5-0.8b-q8",
+    "prompt_version": "baseline",
+    "simulator_model": "claude-sonnet-5",
+    "session_id": "B5__noprof_agitated_noidea__20260918T050857Z",
+    "generated_at": "20260918T050857Z"
+  },
+  "turns": [
+    {
+      "turn": 1,
+      "answering_state": "GREET",
+      "user": "I need to book an appointment, this is urgent.",
+      "sidecar": {
+        "act": "answer",
+        "field": null,
+        "value": null,
+        "slot_rule": null
+      },
+      "bot": {
+        "reply": "Welcome to Willow Lane Mental Health Clinic. Is this your first consultation with us?",
+        "state": "ASK_FIRST_CONSULT",
+        "kind": "ask_question",
+        "offered_slots": null,
+        "fallback_used": false,
+        "latency_ms": 5480
+      }
+    },
+    {
+      "turn": 2,
+      "answering_state": "ASK_FIRST_CONSULT",
+      "user": "Yes, first time here.",
+      "sidecar": {
+        "act": "answer",
+        "field": "patient_type",
+        "value": "new",
+        "slot_rule": null
+      },
+      "bot": {
+        "reply": "Great. Could you tell me briefly what you would like help with?",
+        "state": "ASK_PROBLEM",
+        "kind": "ask_question",
+        "offered_slots": null,
+        "fallback_used": false,
+        "latency_ms": 6061
+      }
+    },
+    {
+      "turn": 3,
+      "answering_state": "ASK_PROBLEM",
+      "user": "My chest tightens up every time I'm on the bus and I feel restless from morning to night, it's exhausting.",
+      "sidecar": {
+        "act": "answer",
+        "field": "problem",
+        "value": "anxiety",
+        "slot_rule": null
+      },
+      "bot": {
+        "reply": "Great. Do you have a doctor in mind, or would you like us to suggest one?",
+        "state": "ASK_DOCTOR_PREF",
+        "kind": "ask_question",
+        "offered_slots": null,
+        "fallback_used": false,
+        "latency_ms": 11089
+      }
+    },
+    {
+      "turn": 4,
+      "answering_state": "ASK_DOCTOR_PREF",
+      "user": "I don't care, just pick whoever's available.",
+      "sidecar": {
+        "act": "answer",
+        "field": "doctor",
+        "value": null,
+        "slot_rule": null
+      },
+      "bot": {
+        "reply": "We suggest Dr. Arjun Iyer. Which days work for you?",
+        "state": "ASK_DAYS",
+        "kind": "ask_question",
+        "offered_slots": null,
+        "fallback_used": false,
+        "latency_ms": 20898
+      }
+    },
+    {
+      "turn": 5,
+      "answering_state": "ASK_DAYS",
+      "user": "Wait, how much does this even cost?",
+      "sidecar": {
+        "act": "faq_question",
+        "field": "topic",
+        "value": "fees",
+        "slot_rule": null
+      },
+      "bot": {
+        "reply": "Dr. Arjun Iyer is available at:\n1. Friday 18 September, 17:00\n2. Friday 18 September, 18:00\nWhich one would you like?",
+        "state": "CAPTURE_CHOICE",
+        "kind": "present_slots",
+        "offered_slots": [
+          "2026-09-18T17:00",
+          "2026-09-18T18:00"
+        ],
+        "fallback_used": true,
+        "latency_ms": 14042
+      }
+    },
+    {
+      "turn": 6,
+      "answering_state": "CAPTURE_CHOICE",
+      "user": "The later one, just get me in.",
+      "sidecar": {
+        "act": "answer",
+        "field": "slot",
+        "value": "2",
+        "slot_rule": "last"
+      },
+      "bot": {
+        "reply": "Sure, let's look at other days. Which days work for you?",
+        "state": "ASK_DAYS",
+        "kind": "ask_question",
+        "offered_slots": null,
+        "fallback_used": false,
+        "latency_ms": 12310
+      }
+    },
+    {
+      "turn": 7,
+      "answering_state": "ASK_DAYS",
+      "user": "Friday, I already said that. Morning, ideally.",
+      "sidecar": {
+        "act": "answer",
+        "field": "days",
+        "value": "friday",
+        "slot_rule": null
+      },
+      "bot": {
+        "reply": "There are no morning slots on those days, but here is what is open. Dr. Arjun Iyer is available at:\n1. Friday 18 September, 17:00\n2. Friday 18 September, 18:00\n3. Friday 25 September, 17:00\nWhich one would you like?",
+        "state": "CAPTURE_CHOICE",
+        "kind": "present_slots",
+        "offered_slots": [
+          "2026-09-18T17:00",
+          "2026-09-18T18:00",
+          "2026-09-25T17:00"
+        ],
+        "fallback_used": true,
+        "latency_ms": 18301
+      }
+    },
+    {
+      "turn": 8,
+      "answering_state": "CAPTURE_CHOICE",
+      "user": "Fine, the one the following Friday then, 5pm.",
+      "sidecar": {
+        "act": "answer",
+        "field": "slot",
+        "value": "3",
+        "slot_rule": "last"
+      },
+      "bot": {
+        "reply": "Your first consultation with Dr. Arjun Iyer is confirmed for Friday 18 September at 18:00. Booking reference: b0001.",
+        "state": "END",
+        "kind": "confirm_booking",
+        "offered_slots": null,
+        "fallback_used": false,
+        "latency_ms": 17656
+      }
+    }
+  ],
+  "ended": "booking_confirmed"
+}

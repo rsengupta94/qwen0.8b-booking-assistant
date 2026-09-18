@@ -59,7 +59,7 @@
       }
     },
     {
-      "at_state": "SHOW_SLOTS",
+      "at_state": "CAPTURE_CHOICE",
       "act": "correction",
       "payload": {
         "field": "days",

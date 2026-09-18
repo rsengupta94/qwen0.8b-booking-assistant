@@ -35,7 +35,7 @@
       "sunday"
     ],
     "time_pref": null,
-    "slot_rule": null
+    "slot_rule": "first"
   },
   "scripted_events": [],
   "verbatim": {},

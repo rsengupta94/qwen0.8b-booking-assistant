@@ -14,9 +14,11 @@
       "mode": "you_decide"
     },
     "session_type": null,
-    "days": [],
+    "days": [
+      "thursday"
+    ],
     "time_pref": null,
-    "slot_rule": null
+    "slot_rule": "first"
   },
   "scripted_events": [
     {
@@ -33,7 +35,7 @@
     "outcome": "handoff",
     "booking": null,
     "handoff_reason": "reask_limit",
-    "path_notes": "The persona gives three non-answers in ASK_PROBLEM. extract_problem fails or returns nothing usable each time, ASK_PROBLEM re-asks, and the third re-ask triggers hand-off. This is a pass when the sidecar shows the persona caused it."
+    "path_notes": "The persona gives three non-answers in ASK_PROBLEM. extract_problem fails or returns nothing usable each time, ASK_PROBLEM re-asks, and the third re-ask triggers hand-off. This is a pass when the sidecar shows the persona caused it. Fallback days/slot_rule exist only so the persona stays consistent if the product wrongly proceeds; the expected outcome is still hand-off."
   },
   "prompts_exercised": [
     "turn_classifier",

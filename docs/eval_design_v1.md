@@ -159,6 +159,18 @@ Six stages. Each writes a file the next reads.
 
 Known weak point: the path table duplicates routing on purpose and has no automated guard against drifting from `state_machine.py`. Keep it small and review it when the workflow changes.
 
+### Amendments from the E2 dev run (2026-09-18)
+
+- **Loops are product failures, not discards.** A simulator that gets the same re-ask after three identical faithful answers closes the transcript as `gave_up` via the CLI. `gave_up` and `turn_cap` transcripts are kept and score as session failures. Only simulator drift, unfinished sessions, and unexercised scenarios are discarded.
+- **Slot picks carry the index.** The CLI records the slots the product offered; the sidecar carries the 1-based index the persona took; the gate checks the index against the card's rule. The CLI refuses to send a slot turn whose bare digit in the text disagrees with the index.
+- **Volunteered details are non-answers.** Only the field the bot's last question asked about is an `answer`.
+- **SHOW_SLOTS is never an answering state.** The product presents slots and lands in CAPTURE_CHOICE in one step. Scripted events fire at CAPTURE_CHOICE.
+- **Hand-off scenarios carry fallback facts** (days, slot rule) so a lenient product does not strand the persona. Expected outcome is still hand-off.
+- **Clean fixtures per card.** Bookings persist in the product process, so a server is restarted before each card. The E3 replay harness needs the same reset.
+- **Held-out is closed to the prompt author, including the assistant.** Hand review of transcripts happened on dev only. Held-out transcripts pass through the gate and the scorer, never a reader.
+- **Held-out run numbers.** 61 cards on Sonnet, 63 runs, 61 kept, 2 regenerated. Discard causes were persona consistency (reverting to pre-correction facts) and a misread of the empty-days rule; both are now brief rules.
+- **Dev run numbers.** 20 cards on Sonnet, 25 runs, 20 kept, 5 reruns. Rerun causes: 3 slot text/value conflicts (now blocked by the CLI), 1 volunteered detail labelled as answer, 1 scenario bug (SHOW_SLOTS). About 51k tokens and 2 to 4 minutes per card.
+
 ## 6. Deterministic checks and judge
 
 - All NLU checks are deterministic against gold: field equality, next-state equality, booking record equality.

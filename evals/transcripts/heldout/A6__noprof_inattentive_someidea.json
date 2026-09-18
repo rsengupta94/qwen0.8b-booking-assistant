@@ -1,0 +1,214 @@
+{
+  "card_id": "A6__noprof_inattentive_someidea",
+  "persona_id": "noprof_inattentive_someidea",
+  "scenario_id": "A6",
+  "pool": "heldout",
+  "eval_set_version": 1,
+  "run": {
+    "model_id": "qwen3.5-0.8b-q8",
+    "prompt_version": "baseline",
+    "simulator_model": "claude-sonnet-5",
+    "session_id": "A6__noprof_inattentive_someidea__20260918T080605Z",
+    "generated_at": "20260918T080605Z"
+  },
+  "turns": [
+    {
+      "turn": 1,
+      "answering_state": "GREET",
+      "user": "hi, i need to book an appointment please",
+      "sidecar": {
+        "act": "answer",
+        "field": null,
+        "value": null,
+        "slot_rule": null
+      },
+      "bot": {
+        "reply": "Welcome to Willow Lane Mental Health Clinic. Is this your first consultation with us?",
+        "state": "ASK_FIRST_CONSULT",
+        "kind": "ask_question",
+        "offered_slots": null,
+        "fallback_used": false,
+        "latency_ms": 5999
+      }
+    },
+    {
+      "turn": 2,
+      "answering_state": "ASK_FIRST_CONSULT",
+      "user": "no i have come here before",
+      "sidecar": {
+        "act": "answer",
+        "field": "patient_type",
+        "value": "returning",
+        "slot_rule": null
+      },
+      "bot": {
+        "reply": "Great. Could you share the phone number registered with us?",
+        "state": "ASK_PHONE",
+        "kind": "ask_question",
+        "offered_slots": null,
+        "fallback_used": false,
+        "latency_ms": 6159
+      }
+    },
+    {
+      "turn": 3,
+      "answering_state": "ASK_PHONE",
+      "user": "sure its +91 90000 00001",
+      "sidecar": {
+        "act": "answer",
+        "field": "phone",
+        "value": "9000000001",
+        "slot_rule": null
+      },
+      "bot": {
+        "reply": "Sorry, I didn't catch that. Could you share the phone number registered with us?",
+        "state": "ASK_PHONE",
+        "kind": "ask_question",
+        "offered_slots": null,
+        "fallback_used": true,
+        "latency_ms": 8784
+      }
+    },
+    {
+      "turn": 4,
+      "answering_state": "ASK_PHONE",
+      "user": "wait is this even a real person i am talking to? anyway my number is 9000000001",
+      "sidecar": {
+        "act": "repeat",
+        "field": "phone",
+        "value": "9000000001",
+        "slot_rule": null
+      },
+      "bot": {
+        "reply": "I couldn't find that number in our records, so let's set you up as a new patient. Could you tell me briefly what you would like help with?",
+        "state": "ASK_PROBLEM",
+        "kind": "ask_question",
+        "offered_slots": null,
+        "fallback_used": false,
+        "latency_ms": 10922
+      }
+    },
+    {
+      "turn": 5,
+      "answering_state": "ASK_PROBLEM",
+      "user": "honestly not totally sure what it even is, just been feeling off lately, is that ok",
+      "sidecar": {
+        "act": "non_answer",
+        "field": null,
+        "value": null,
+        "slot_rule": null
+      },
+      "bot": {
+        "reply": "Great. Do you have a doctor in mind, or would you like us to suggest one?",
+        "state": "ASK_DOCTOR_PREF",
+        "kind": "ask_question",
+        "offered_slots": null,
+        "fallback_used": false,
+        "latency_ms": 14463
+      }
+    },
+    {
+      "turn": 6,
+      "answering_state": "ASK_DOCTOR_PREF",
+      "user": "you can just pick whoever is free, i dont mind",
+      "sidecar": {
+        "act": "answer",
+        "field": "doctor",
+        "value": null,
+        "slot_rule": null
+      },
+      "bot": {
+        "reply": "We suggest Dr. Sana Khan. Which days work for you?",
+        "state": "ASK_DAYS",
+        "kind": "ask_question",
+        "offered_slots": null,
+        "fallback_used": false,
+        "latency_ms": 23259
+      }
+    },
+    {
+      "turn": 7,
+      "answering_state": "ASK_DAYS",
+      "user": "oh also this would be a therapy session not a follow up thing",
+      "sidecar": {
+        "act": "non_answer",
+        "field": null,
+        "value": null,
+        "slot_rule": null
+      },
+      "bot": {
+        "reply": "Dr. Sana Khan is available at:\n1. Saturday 19 September, 11:00\n2. Saturday 26 September, 11:00\nWhich one would you like?",
+        "state": "CAPTURE_CHOICE",
+        "kind": "present_slots",
+        "offered_slots": [
+          "2026-09-19T11:00",
+          "2026-09-26T11:00"
+        ],
+        "fallback_used": false,
+        "latency_ms": 18535
+      }
+    },
+    {
+      "turn": 8,
+      "answering_state": "CAPTURE_CHOICE",
+      "user": "can i just come monday morning instead, that works better for me",
+      "sidecar": {
+        "act": "non_answer",
+        "field": null,
+        "value": null,
+        "slot_rule": null
+      },
+      "bot": {
+        "reply": "Sure, let's look at other days. Which days work for you?",
+        "state": "ASK_DAYS",
+        "kind": "ask_question",
+        "offered_slots": null,
+        "fallback_used": false,
+        "latency_ms": 12752
+      }
+    },
+    {
+      "turn": 9,
+      "answering_state": "ASK_DAYS",
+      "user": "monday would be best for me",
+      "sidecar": {
+        "act": "answer",
+        "field": "days",
+        "value": "monday",
+        "slot_rule": null
+      },
+      "bot": {
+        "reply": "Dr. Sana Khan is available at:\n1. Monday 21 September, 16:00\n2. Monday 21 September, 17:00\n3. Monday 21 September, 18:00\nWhich one would you like?",
+        "state": "CAPTURE_CHOICE",
+        "kind": "present_slots",
+        "offered_slots": [
+          "2026-09-21T16:00",
+          "2026-09-21T17:00",
+          "2026-09-21T18:00"
+        ],
+        "fallback_used": false,
+        "latency_ms": 25155
+      }
+    },
+    {
+      "turn": 10,
+      "answering_state": "CAPTURE_CHOICE",
+      "user": "the earliest one, right after work timing",
+      "sidecar": {
+        "act": "answer",
+        "field": "slot",
+        "value": "1",
+        "slot_rule": "first"
+      },
+      "bot": {
+        "reply": "Your first consultation with Dr. Sana Khan is confirmed for Monday 21 September at 16:00. Booking reference: b0001.",
+        "state": "END",
+        "kind": "confirm_booking",
+        "offered_slots": null,
+        "fallback_used": false,
+        "latency_ms": 19357
+      }
+    }
+  ],
+  "ended": "booking_confirmed"
+}

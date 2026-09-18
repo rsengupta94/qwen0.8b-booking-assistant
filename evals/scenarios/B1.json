@@ -22,7 +22,7 @@
   },
   "scripted_events": [
     {
-      "at_state": "SHOW_SLOTS",
+      "at_state": "CAPTURE_CHOICE",
       "act": "correction",
       "payload": {
         "field": "days",
@@ -41,7 +41,7 @@
       "slot_rule": "first"
     },
     "handoff_reason": null,
-    "path_notes": "Grief tags only Dr. Sana Khan, so the doctor is fixed by code. Tuesday slots are shown, then the correction at SHOW_SLOTS rewinds to ASK_DAYS and clears offered_slots. Booking is the first Thursday slot (14:00)."
+    "path_notes": "Grief tags only Dr. Sana Khan, so the doctor is fixed by code. Tuesday slots are shown, then the correction at SHOW_SLOTS rewinds to ASK_DAYS and clears offered_slots. Booking is the first Thursday slot (14:00). (Event state is CAPTURE_CHOICE: the product presents slots and lands in CAPTURE_CHOICE in one step, so SHOW_SLOTS is never the state a user answers from.)"
   },
   "prompts_exercised": [
     "extract_problem",

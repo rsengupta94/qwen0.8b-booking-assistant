@@ -47,7 +47,7 @@
       }
     },
     {
-      "at_state": "SHOW_SLOTS",
+      "at_state": "CAPTURE_CHOICE",
       "act": "correction",
       "payload": {
         "field": "days",
@@ -74,7 +74,7 @@
       "slot_rule": "first"
     },
     "handoff_reason": null,
-    "path_notes": "Corrections one to three are accepted and rewind the machine: problem at ASK_DOCTOR_PREF, doctor at ASK_DAYS, days at SHOW_SLOTS. The fourth, at CAPTURE_CHOICE, exceeds the cap of 3, so turn_classifier is not called and the turn is handled as a plain slot answer, which produces a re-ask of the choice. Booking is the first Thursday slot with Dr. Sana Khan (14:00)."
+    "path_notes": "Corrections one to three are accepted and rewind the machine: problem at ASK_DOCTOR_PREF, doctor at ASK_DAYS, days at SHOW_SLOTS. The fourth, at CAPTURE_CHOICE, exceeds the cap of 3, so turn_classifier is not called and the turn is handled as a plain slot answer, which produces a re-ask of the choice. Booking is the first Thursday slot with Dr. Sana Khan (14:00). (Event state is CAPTURE_CHOICE: the product presents slots and lands in CAPTURE_CHOICE in one step, so SHOW_SLOTS is never the state a user answers from.)"
   },
   "prompts_exercised": [
     "turn_classifier",

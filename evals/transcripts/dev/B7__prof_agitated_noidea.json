@@ -1,0 +1,173 @@
+{
+  "card_id": "B7__prof_agitated_noidea",
+  "persona_id": "prof_agitated_noidea",
+  "scenario_id": "B7",
+  "pool": "dev",
+  "eval_set_version": 1,
+  "run": {
+    "model_id": "qwen3.5-0.8b-q8",
+    "prompt_version": "baseline",
+    "simulator_model": "claude-sonnet-5",
+    "session_id": "B7__prof_agitated_noidea__20260918T051040Z",
+    "generated_at": "20260918T051040Z"
+  },
+  "turns": [
+    {
+      "turn": 1,
+      "answering_state": "GREET",
+      "user": "Need an appointment. First time here.",
+      "sidecar": {
+        "act": "answer",
+        "field": null,
+        "value": null,
+        "slot_rule": null
+      },
+      "bot": {
+        "reply": "Welcome to Willow Lane Mental Health Clinic. Is this your first consultation with us?",
+        "state": "ASK_FIRST_CONSULT",
+        "kind": "ask_question",
+        "offered_slots": null,
+        "fallback_used": false,
+        "latency_ms": 5337
+      }
+    },
+    {
+      "turn": 2,
+      "answering_state": "ASK_FIRST_CONSULT",
+      "user": "Yes, first time.",
+      "sidecar": {
+        "act": "answer",
+        "field": "patient_type",
+        "value": "new",
+        "slot_rule": null
+      },
+      "bot": {
+        "reply": "Great. Could you tell me briefly what you would like help with?",
+        "state": "ASK_PROBLEM",
+        "kind": "ask_question",
+        "offered_slots": null,
+        "fallback_used": false,
+        "latency_ms": 6126
+      }
+    },
+    {
+      "turn": 3,
+      "answering_state": "ASK_PROBLEM",
+      "user": "My partner and I fight every evening now, we've basically stopped talking. Just get me someone, whoever's free.",
+      "sidecar": {
+        "act": "answer",
+        "field": "problem",
+        "value": "relationships",
+        "slot_rule": null
+      },
+      "bot": {
+        "reply": "Great. Do you have a doctor in mind, or would you like us to suggest one?",
+        "state": "ASK_DOCTOR_PREF",
+        "kind": "ask_question",
+        "offered_slots": null,
+        "fallback_used": false,
+        "latency_ms": 12165
+      }
+    },
+    {
+      "turn": 4,
+      "answering_state": "ASK_DOCTOR_PREF",
+      "user": "Don't care, you pick.",
+      "sidecar": {
+        "act": "answer",
+        "field": "doctor",
+        "value": null,
+        "slot_rule": null
+      },
+      "bot": {
+        "reply": "We suggest Dr. Sana Khan. Which days work for you?",
+        "state": "ASK_DAYS",
+        "kind": "ask_question",
+        "offered_slots": null,
+        "fallback_used": false,
+        "latency_ms": 19690
+      }
+    },
+    {
+      "turn": 5,
+      "answering_state": "ASK_DAYS",
+      "user": "Before that, what's this going to cost me?",
+      "sidecar": {
+        "act": "faq_question",
+        "field": "topic",
+        "value": "fees",
+        "slot_rule": null
+      },
+      "bot": {
+        "reply": "Sorry, Dr. Sana Khan has no free slots on Friday 18 September. Would another day work for you?",
+        "state": "ASK_DAYS",
+        "kind": "no_slots",
+        "offered_slots": null,
+        "fallback_used": false,
+        "latency_ms": 12699
+      }
+    },
+    {
+      "turn": 6,
+      "answering_state": "ASK_DAYS",
+      "user": "Also what happens at the first visit, what do I need to bring?",
+      "sidecar": {
+        "act": "faq_question",
+        "field": "topic",
+        "value": "first_visit",
+        "slot_rule": null
+      },
+      "bot": {
+        "reply": "Sorry, Dr. Sana Khan has no free slots on Friday 18 September. Would another day work for you?",
+        "state": "ASK_DAYS",
+        "kind": "no_slots",
+        "offered_slots": null,
+        "fallback_used": false,
+        "latency_ms": 13003
+      }
+    },
+    {
+      "turn": 7,
+      "answering_state": "ASK_DAYS",
+      "user": "Tuesday morning, that's it.",
+      "sidecar": {
+        "act": "answer",
+        "field": "days",
+        "value": "tuesday",
+        "slot_rule": null
+      },
+      "bot": {
+        "reply": "Dr. Sana Khan is available at:\n1. Tuesday 22 September, 10:00\n2. Tuesday 22 September, 10:30\n3. Tuesday 22 September, 11:00\nWhich one would you like?",
+        "state": "CAPTURE_CHOICE",
+        "kind": "present_slots",
+        "offered_slots": [
+          "2026-09-22T10:00",
+          "2026-09-22T10:30",
+          "2026-09-22T11:00"
+        ],
+        "fallback_used": false,
+        "latency_ms": 20285
+      }
+    },
+    {
+      "turn": 8,
+      "answering_state": "CAPTURE_CHOICE",
+      "user": "1.",
+      "sidecar": {
+        "act": "answer",
+        "field": "slot",
+        "value": "1",
+        "slot_rule": "first"
+      },
+      "bot": {
+        "reply": "Your first consultation with Dr. Sana Khan is confirmed for Tuesday 22 September at 10:00. Booking reference: b0001. We look forward to seeing you.",
+        "state": "END",
+        "kind": "confirm_booking",
+        "offered_slots": null,
+        "fallback_used": false,
+        "latency_ms": 18075
+      }
+    }
+  ],
+  "ended": "booking_confirmed"
+}

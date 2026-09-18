@@ -1,0 +1,188 @@
+{
+  "card_id": "C1__noprof_inattentive_someidea",
+  "persona_id": "noprof_inattentive_someidea",
+  "scenario_id": "C1",
+  "pool": "heldout",
+  "eval_set_version": 1,
+  "run": {
+    "model_id": "qwen3.5-0.8b-q8",
+    "prompt_version": "baseline",
+    "simulator_model": "claude-sonnet-5",
+    "session_id": "C1__noprof_inattentive_someidea__20260918T083051Z",
+    "generated_at": "20260918T083051Z"
+  },
+  "turns": [
+    {
+      "turn": 1,
+      "answering_state": "GREET",
+      "user": "hi, i need to book an appointment, i've been having panic attacks lately",
+      "sidecar": {
+        "act": "answer",
+        "field": null,
+        "value": null,
+        "slot_rule": null
+      },
+      "bot": {
+        "reply": "Welcome to Willow Lane Mental Health Clinic. Is this your first consultation with us?",
+        "state": "ASK_FIRST_CONSULT",
+        "kind": "ask_question",
+        "offered_slots": null,
+        "fallback_used": false,
+        "latency_ms": 6219
+      }
+    },
+    {
+      "turn": 2,
+      "answering_state": "ASK_FIRST_CONSULT",
+      "user": "yeah this is my first time here",
+      "sidecar": {
+        "act": "answer",
+        "field": "patient_type",
+        "value": "new",
+        "slot_rule": null
+      },
+      "bot": {
+        "reply": "Great. Could you tell me briefly what you would like help with?",
+        "state": "ASK_PROBLEM",
+        "kind": "ask_question",
+        "offered_slots": null,
+        "fallback_used": false,
+        "latency_ms": 5677
+      }
+    },
+    {
+      "turn": 3,
+      "answering_state": "ASK_PROBLEM",
+      "user": "i worry about everything at once and my breathing goes shallow, it's scary",
+      "sidecar": {
+        "act": "answer",
+        "field": "problem",
+        "value": "anxiety",
+        "slot_rule": null
+      },
+      "bot": {
+        "reply": "Great. Do you have a doctor in mind, or would you like us to suggest one?",
+        "state": "ASK_DOCTOR_PREF",
+        "kind": "ask_question",
+        "offered_slots": null,
+        "fallback_used": false,
+        "latency_ms": 10284
+      }
+    },
+    {
+      "turn": 4,
+      "answering_state": "ASK_DOCTOR_PREF",
+      "user": "i don't know any names, just pick whoever is good",
+      "sidecar": {
+        "act": "answer",
+        "field": "doctor",
+        "value": null,
+        "slot_rule": null
+      },
+      "bot": {
+        "reply": "We suggest Dr. Meera Rao. Which days work for you?",
+        "state": "ASK_DAYS",
+        "kind": "ask_question",
+        "offered_slots": null,
+        "fallback_used": false,
+        "latency_ms": 20950
+      }
+    },
+    {
+      "turn": 5,
+      "answering_state": "ASK_DAYS",
+      "user": "wait, is this a real person i'm talking to or a bot?",
+      "sidecar": {
+        "act": "non_answer",
+        "field": null,
+        "value": null,
+        "slot_rule": null
+      },
+      "bot": {
+        "reply": "Great. Do you have a doctor in mind, or would you like us to suggest one?",
+        "state": "ASK_DOCTOR_PREF",
+        "kind": "ask_question",
+        "offered_slots": null,
+        "fallback_used": false,
+        "latency_ms": 14870
+      }
+    },
+    {
+      "turn": 6,
+      "answering_state": "ASK_DOCTOR_PREF",
+      "user": "sorry, also i'm a new patient by the way. and like i said, just pick someone good for me",
+      "sidecar": {
+        "act": "repeat",
+        "field": "doctor",
+        "value": null,
+        "slot_rule": null
+      },
+      "bot": {
+        "reply": "We suggest Dr. Arjun Iyer. Which days work for you?",
+        "state": "ASK_DAYS",
+        "kind": "ask_question",
+        "offered_slots": null,
+        "fallback_used": false,
+        "latency_ms": 22942
+      }
+    },
+    {
+      "turn": 7,
+      "answering_state": "ASK_DAYS",
+      "user": "sunday works best for me",
+      "sidecar": {
+        "act": "answer",
+        "field": "days",
+        "value": "sunday",
+        "slot_rule": null
+      },
+      "bot": {
+        "reply": "Sorry, Dr. Arjun Iyer has no free slots on Sunday 20 September and Sunday 27 September. Would another day work for you?",
+        "state": "ASK_DAYS",
+        "kind": "no_slots",
+        "offered_slots": null,
+        "fallback_used": false,
+        "latency_ms": 17805
+      }
+    },
+    {
+      "turn": 8,
+      "answering_state": "ASK_DAYS",
+      "user": "hmm, sunday is really the only day that works for me",
+      "sidecar": {
+        "act": "repeat",
+        "field": "days",
+        "value": "sunday",
+        "slot_rule": null
+      },
+      "bot": {
+        "reply": "Sorry, Dr. Arjun Iyer has no free slots on Sunday 20 September and Sunday 27 September. Would another day work for you?",
+        "state": "ASK_DAYS",
+        "kind": "no_slots",
+        "offered_slots": null,
+        "fallback_used": false,
+        "latency_ms": 17645
+      }
+    },
+    {
+      "turn": 9,
+      "answering_state": "ASK_DAYS",
+      "user": "i really can't do any other day, sunday is the only option for me",
+      "sidecar": {
+        "act": "repeat",
+        "field": "days",
+        "value": "sunday",
+        "slot_rule": null
+      },
+      "bot": {
+        "reply": "Sorry, I wasn't able to understand your request. Please call our customer care team on 1800-000-0000 and they will help you book an appointment.",
+        "state": "END",
+        "kind": "handoff",
+        "offered_slots": null,
+        "fallback_used": false,
+        "latency_ms": 8460
+      }
+    }
+  ],
+  "ended": "handoff"
+}

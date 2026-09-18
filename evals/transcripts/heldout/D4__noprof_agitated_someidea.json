@@ -1,0 +1,207 @@
+{
+  "card_id": "D4__noprof_agitated_someidea",
+  "persona_id": "noprof_agitated_someidea",
+  "scenario_id": "D4",
+  "pool": "heldout",
+  "eval_set_version": 1,
+  "run": {
+    "model_id": "qwen3.5-0.8b-q8",
+    "prompt_version": "baseline",
+    "simulator_model": "claude-sonnet-5",
+    "session_id": "D4__noprof_agitated_someidea__20260918T085137Z",
+    "generated_at": "20260918T085137Z"
+  },
+  "turns": [
+    {
+      "turn": 1,
+      "answering_state": "GREET",
+      "user": "hi I need help with anxiety",
+      "sidecar": {
+        "act": "answer",
+        "field": null,
+        "value": null,
+        "slot_rule": null
+      },
+      "bot": {
+        "reply": "Welcome to Willow Lane Mental Health Clinic. Is this your first consultation with us?",
+        "state": "ASK_FIRST_CONSULT",
+        "kind": "ask_question",
+        "offered_slots": null,
+        "fallback_used": false,
+        "latency_ms": 4630
+      }
+    },
+    {
+      "turn": 2,
+      "answering_state": "ASK_FIRST_CONSULT",
+      "user": "Yes, first time.",
+      "sidecar": {
+        "act": "answer",
+        "field": "patient_type",
+        "value": "new",
+        "slot_rule": null
+      },
+      "bot": {
+        "reply": "Great. Could you tell me briefly what you would like help with?",
+        "state": "ASK_PROBLEM",
+        "kind": "ask_question",
+        "offered_slots": null,
+        "fallback_used": false,
+        "latency_ms": 6190
+      }
+    },
+    {
+      "turn": 3,
+      "answering_state": "ASK_PROBLEM",
+      "user": "I feel keyed up before work and I cannot relax at home at all.",
+      "sidecar": {
+        "act": "answer",
+        "field": "problem",
+        "value": "anxiety",
+        "slot_rule": null
+      },
+      "bot": {
+        "reply": "Great. Do you have a doctor in mind, or would you like us to suggest one?",
+        "state": "ASK_DOCTOR_PREF",
+        "kind": "ask_question",
+        "offered_slots": null,
+        "fallback_used": false,
+        "latency_ms": 10407
+      }
+    },
+    {
+      "turn": 4,
+      "answering_state": "ASK_DOCTOR_PREF",
+      "user": "Just pick someone, I don't care who, I just need this sorted.",
+      "sidecar": {
+        "act": "answer",
+        "field": "doctor",
+        "value": null,
+        "slot_rule": null
+      },
+      "bot": {
+        "reply": "We suggest Dr. Arjun Iyer. Which days work for you?",
+        "state": "ASK_DAYS",
+        "kind": "ask_question",
+        "offered_slots": null,
+        "fallback_used": false,
+        "latency_ms": 24631
+      }
+    },
+    {
+      "turn": 5,
+      "answering_state": "ASK_DAYS",
+      "user": "Wednesday. That's the only day that works for me.",
+      "sidecar": {
+        "act": "answer",
+        "field": "days",
+        "value": "wednesday",
+        "slot_rule": null
+      },
+      "bot": {
+        "reply": "Unfortunately Dr. Arjun Iyer is fully booked on Wednesday 23 September and Wednesday 30 September. Which other days could you do?",
+        "state": "ASK_DAYS",
+        "kind": "no_slots",
+        "offered_slots": null,
+        "fallback_used": false,
+        "latency_ms": 16490
+      }
+    },
+    {
+      "turn": 6,
+      "answering_state": "ASK_DAYS",
+      "user": "I told you, Wednesday is the only day I can do. There is no other option.",
+      "sidecar": {
+        "act": "repeat",
+        "field": null,
+        "value": null,
+        "slot_rule": null
+      },
+      "bot": {
+        "reply": "Great. Do you have a doctor in mind, or would you like us to suggest one?",
+        "state": "ASK_DOCTOR_PREF",
+        "kind": "ask_question",
+        "offered_slots": null,
+        "fallback_used": false,
+        "latency_ms": 19507
+      }
+    },
+    {
+      "turn": 7,
+      "answering_state": "ASK_DOCTOR_PREF",
+      "user": "I already said, just pick someone for me. Also, is this even a real person I'm talking to?",
+      "sidecar": {
+        "act": "answer",
+        "field": "doctor",
+        "value": null,
+        "slot_rule": null
+      },
+      "bot": {
+        "reply": "Great. Do you have a doctor in mind, or would you like us to suggest one?",
+        "state": "ASK_DOCTOR_PREF",
+        "kind": "ask_question",
+        "offered_slots": null,
+        "fallback_used": false,
+        "latency_ms": 16924
+      }
+    },
+    {
+      "turn": 8,
+      "answering_state": "ASK_DOCTOR_PREF",
+      "user": "For the third time, I don't care, just choose a doctor.",
+      "sidecar": {
+        "act": "repeat",
+        "field": null,
+        "value": null,
+        "slot_rule": null
+      },
+      "bot": {
+        "reply": "We suggest Dr. Sana Khan. Which days work for you?",
+        "state": "ASK_DAYS",
+        "kind": "ask_question",
+        "offered_slots": null,
+        "fallback_used": false,
+        "latency_ms": 18999
+      }
+    },
+    {
+      "turn": 9,
+      "answering_state": "ASK_DAYS",
+      "user": "Wednesday. Only Wednesday works.",
+      "sidecar": {
+        "act": "answer",
+        "field": "days",
+        "value": "wednesday",
+        "slot_rule": null
+      },
+      "bot": {
+        "reply": "Unfortunately Dr. Sana Khan is fully booked on Wednesday 23 September and Wednesday 30 September. Which other days could you do?",
+        "state": "ASK_DAYS",
+        "kind": "no_slots",
+        "offered_slots": null,
+        "fallback_used": false,
+        "latency_ms": 13543
+      }
+    },
+    {
+      "turn": 10,
+      "answering_state": "ASK_DAYS",
+      "user": "Wednesday is my only option, I've said it twice now.",
+      "sidecar": {
+        "act": "repeat",
+        "field": null,
+        "value": null,
+        "slot_rule": null
+      },
+      "bot": {
+        "reply": "Sorry, I wasn't able to understand your request. Please call our customer care team on 1800-000-0000 and they will help you book an appointment.",
+        "state": "END",
+        "kind": "handoff",
+        "offered_slots": null,
+        "fallback_used": false,
+        "latency_ms": 9494
+      }
+    }
+  ],
+  "ended": "handoff"
+}

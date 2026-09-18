@@ -1,0 +1,215 @@
+{
+  "card_id": "A5__prof_inattentive_someidea",
+  "persona_id": "prof_inattentive_someidea",
+  "scenario_id": "A5",
+  "pool": "heldout",
+  "eval_set_version": 1,
+  "run": {
+    "model_id": "qwen3.5-0.8b-q8",
+    "prompt_version": "baseline",
+    "simulator_model": "claude-sonnet-5",
+    "session_id": "A5__prof_inattentive_someidea__20260918T074848Z",
+    "generated_at": "20260918T074848Z"
+  },
+  "turns": [
+    {
+      "turn": 1,
+      "answering_state": "GREET",
+      "user": "hey need to book a followup",
+      "sidecar": {
+        "act": "answer",
+        "field": null,
+        "value": null,
+        "slot_rule": null
+      },
+      "bot": {
+        "reply": "Welcome to Willow Lane Mental Health Clinic. Is this your first consultation with us?",
+        "state": "ASK_FIRST_CONSULT",
+        "kind": "ask_question",
+        "offered_slots": null,
+        "fallback_used": false,
+        "latency_ms": 6080
+      }
+    },
+    {
+      "turn": 2,
+      "answering_state": "ASK_FIRST_CONSULT",
+      "user": "returning patient",
+      "sidecar": {
+        "act": "answer",
+        "field": "patient_type",
+        "value": "returning",
+        "slot_rule": null
+      },
+      "bot": {
+        "reply": "Sorry, I didn't catch that. Is this your first consultation with us?",
+        "state": "ASK_FIRST_CONSULT",
+        "kind": "ask_question",
+        "offered_slots": null,
+        "fallback_used": false,
+        "latency_ms": 5922
+      }
+    },
+    {
+      "turn": 3,
+      "answering_state": "ASK_FIRST_CONSULT",
+      "user": "no, not my first time",
+      "sidecar": {
+        "act": "repeat",
+        "field": "patient_type",
+        "value": "returning",
+        "slot_rule": null
+      },
+      "bot": {
+        "reply": "Great. Could you share the phone number registered with us?",
+        "state": "ASK_PHONE",
+        "kind": "ask_question",
+        "offered_slots": null,
+        "fallback_used": false,
+        "latency_ms": 5603
+      }
+    },
+    {
+      "turn": 4,
+      "answering_state": "ASK_PHONE",
+      "user": "9811100234",
+      "sidecar": {
+        "act": "answer",
+        "field": "phone",
+        "value": "9811100234",
+        "slot_rule": null
+      },
+      "bot": {
+        "reply": "Great. Is this a therapy session or a follow-up?",
+        "state": "ASK_SESSION_TYPE",
+        "kind": "ask_question",
+        "offered_slots": null,
+        "fallback_used": false,
+        "latency_ms": 7136
+      }
+    },
+    {
+      "turn": 5,
+      "answering_state": "ASK_SESSION_TYPE",
+      "user": "thursday evening works best for me",
+      "sidecar": {
+        "act": "non_answer",
+        "field": null,
+        "value": null,
+        "slot_rule": null
+      },
+      "bot": {
+        "reply": "Sorry, I didn't catch that. Is this a therapy session or a follow-up?",
+        "state": "ASK_SESSION_TYPE",
+        "kind": "ask_question",
+        "offered_slots": null,
+        "fallback_used": false,
+        "latency_ms": 9094
+      }
+    },
+    {
+      "turn": 6,
+      "answering_state": "ASK_SESSION_TYPE",
+      "user": "also I don't care which doctor, it's a follow-up",
+      "sidecar": {
+        "act": "answer",
+        "field": "session_type",
+        "value": "followup",
+        "slot_rule": null
+      },
+      "bot": {
+        "reply": "Great. Which days work for you?",
+        "state": "ASK_DAYS",
+        "kind": "ask_question",
+        "offered_slots": null,
+        "fallback_used": false,
+        "latency_ms": 8887
+      }
+    },
+    {
+      "turn": 7,
+      "answering_state": "ASK_DAYS",
+      "user": "thursday",
+      "sidecar": {
+        "act": "answer",
+        "field": "days",
+        "value": "thursday",
+        "slot_rule": null
+      },
+      "bot": {
+        "reply": "Dr. Arjun Iyer is available at:\n1. Thursday 24 September, 17:00\n2. Thursday 24 September, 18:00\n3. Thursday 1 October, 17:00\nWhich one would you like?",
+        "state": "CAPTURE_CHOICE",
+        "kind": "present_slots",
+        "offered_slots": [
+          "2026-09-24T17:00",
+          "2026-09-24T18:00",
+          "2026-10-01T17:00"
+        ],
+        "fallback_used": true,
+        "latency_ms": 15074
+      }
+    },
+    {
+      "turn": 8,
+      "answering_state": "CAPTURE_CHOICE",
+      "user": "can I get thursday at 8pm instead",
+      "sidecar": {
+        "act": "non_answer",
+        "field": null,
+        "value": null,
+        "slot_rule": null
+      },
+      "bot": {
+        "reply": "Sure, let's look at other days. Which days work for you?",
+        "state": "ASK_DAYS",
+        "kind": "ask_question",
+        "offered_slots": null,
+        "fallback_used": false,
+        "latency_ms": 15876
+      }
+    },
+    {
+      "turn": 9,
+      "answering_state": "ASK_DAYS",
+      "user": "still thursday",
+      "sidecar": {
+        "act": "repeat",
+        "field": "days",
+        "value": "thursday",
+        "slot_rule": null
+      },
+      "bot": {
+        "reply": "Dr. Arjun Iyer is available at:\n1. Thursday 24 September, 17:00\n2. Thursday 24 September, 18:00\n3. Thursday 1 October, 17:00\nWhich one would you like?",
+        "state": "CAPTURE_CHOICE",
+        "kind": "present_slots",
+        "offered_slots": [
+          "2026-09-24T17:00",
+          "2026-09-24T18:00",
+          "2026-10-01T17:00"
+        ],
+        "fallback_used": true,
+        "latency_ms": 14974
+      }
+    },
+    {
+      "turn": 10,
+      "answering_state": "CAPTURE_CHOICE",
+      "user": "3",
+      "sidecar": {
+        "act": "answer",
+        "field": "slot",
+        "value": "3",
+        "slot_rule": "last"
+      },
+      "bot": {
+        "reply": "Your follow-up with Dr. Arjun Iyer is confirmed for Thursday 1 October at 17:00. Booking reference: b0001.",
+        "state": "END",
+        "kind": "confirm_booking",
+        "offered_slots": null,
+        "fallback_used": false,
+        "latency_ms": 15924
+      }
+    }
+  ],
+  "ended": "booking_confirmed"
+}

@@ -1,0 +1,135 @@
+{
+  "card_id": "D3__noprof_agitated_noidea",
+  "persona_id": "noprof_agitated_noidea",
+  "scenario_id": "D3",
+  "pool": "heldout",
+  "eval_set_version": 1,
+  "run": {
+    "model_id": "qwen3.5-0.8b-q8",
+    "prompt_version": "baseline",
+    "simulator_model": "claude-sonnet-5",
+    "session_id": "D3__noprof_agitated_noidea__20260918T084926Z",
+    "generated_at": "20260918T084926Z"
+  },
+  "turns": [
+    {
+      "turn": 1,
+      "answering_state": "GREET",
+      "user": "I need an appointment. Fast.",
+      "sidecar": {
+        "act": "answer",
+        "field": null,
+        "value": null,
+        "slot_rule": null
+      },
+      "bot": {
+        "reply": "Welcome to Willow Lane Mental Health Clinic. Is this your first consultation with us?",
+        "state": "ASK_FIRST_CONSULT",
+        "kind": "ask_question",
+        "offered_slots": null,
+        "fallback_used": false,
+        "latency_ms": 5434
+      }
+    },
+    {
+      "turn": 2,
+      "answering_state": "ASK_FIRST_CONSULT",
+      "user": "No, I've been here before.",
+      "sidecar": {
+        "act": "answer",
+        "field": "patient_type",
+        "value": "returning",
+        "slot_rule": null
+      },
+      "bot": {
+        "reply": "Great. Could you share the phone number registered with us?",
+        "state": "ASK_PHONE",
+        "kind": "ask_question",
+        "offered_slots": null,
+        "fallback_used": false,
+        "latency_ms": 5241
+      }
+    },
+    {
+      "turn": 3,
+      "answering_state": "ASK_PHONE",
+      "user": "it's +91 98765 43210",
+      "sidecar": {
+        "act": "answer",
+        "field": "phone",
+        "value": "+91 98765 43210",
+        "slot_rule": null
+      },
+      "bot": {
+        "reply": "Great. Is this a therapy session or a follow-up?",
+        "state": "ASK_SESSION_TYPE",
+        "kind": "ask_question",
+        "offered_slots": null,
+        "fallback_used": false,
+        "latency_ms": 8639
+      }
+    },
+    {
+      "turn": 4,
+      "answering_state": "ASK_SESSION_TYPE",
+      "user": "Therapy. I need it soon.",
+      "sidecar": {
+        "act": "answer",
+        "field": "session_type",
+        "value": "therapy",
+        "slot_rule": null
+      },
+      "bot": {
+        "reply": "Great. Which days work for you?",
+        "state": "ASK_DAYS",
+        "kind": "ask_question",
+        "offered_slots": null,
+        "fallback_used": false,
+        "latency_ms": 9128
+      }
+    },
+    {
+      "turn": 5,
+      "answering_state": "ASK_DAYS",
+      "user": "Wait, is this even a real person or just a bot?",
+      "sidecar": {
+        "act": "non_answer",
+        "field": null,
+        "value": null,
+        "slot_rule": null
+      },
+      "bot": {
+        "reply": "Dr. Meera Rao is available at:\n1. Saturday 19 September, 09:00\n2. Saturday 19 September, 09:30\n3. Saturday 19 September, 10:00\nWhich one would you like?",
+        "state": "CAPTURE_CHOICE",
+        "kind": "present_slots",
+        "offered_slots": [
+          "2026-09-19T09:00",
+          "2026-09-19T09:30",
+          "2026-09-19T10:00"
+        ],
+        "fallback_used": false,
+        "latency_ms": 23321
+      }
+    },
+    {
+      "turn": 6,
+      "answering_state": "CAPTURE_CHOICE",
+      "user": "The earliest one, just book it.",
+      "sidecar": {
+        "act": "answer",
+        "field": "slot",
+        "value": "1",
+        "slot_rule": "first"
+      },
+      "bot": {
+        "reply": "Your therapy session with Dr. Meera Rao is confirmed for Saturday 19 September at 09:00. Booking reference: b0001.",
+        "state": "END",
+        "kind": "confirm_booking",
+        "offered_slots": null,
+        "fallback_used": false,
+        "latency_ms": 17100
+      }
+    }
+  ],
+  "ended": "booking_confirmed"
+}
