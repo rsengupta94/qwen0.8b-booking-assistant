@@ -1,0 +1,250 @@
+{
+  "card_id": "B5__noprof_agitated_someidea",
+  "persona_id": "noprof_agitated_someidea",
+  "scenario_id": "B5",
+  "pool": "dev",
+  "eval_set_version": 1,
+  "run": {
+    "model_id": "qwen3.5-0.8b-q8",
+    "prompt_version": "baseline",
+    "simulator_model": "replay",
+    "session_id": "B5__noprof_agitated_someidea__replay__20260921T051639Z",
+    "generated_at": "20260921T051639Z",
+    "replay_of": "B5__noprof_agitated_someidea__20260918T050959Z",
+    "clock": "2026-09-18T10:39:59"
+  },
+  "turns": [
+    {
+      "turn": 1,
+      "answering_state": "GREET",
+      "user": "I need to book an appointment, my chest keeps tightening on the bus and I can't calm down.",
+      "sidecar": {
+        "act": "answer",
+        "field": null,
+        "value": null,
+        "slot_rule": null
+      },
+      "bot": {
+        "reply": "Welcome to Willow Lane Mental Health Clinic. Is this your first consultation with us?",
+        "state": "ASK_FIRST_CONSULT",
+        "kind": "ask_question",
+        "offered_slots": null,
+        "booking": null,
+        "fallback_used": false
+      }
+    },
+    {
+      "turn": 2,
+      "answering_state": "ASK_FIRST_CONSULT",
+      "user": "Yes, first time, never been here before.",
+      "sidecar": {
+        "act": "answer",
+        "field": "patient_type",
+        "value": "new",
+        "slot_rule": null
+      },
+      "bot": {
+        "reply": "Great. Could you tell me briefly what you would like help with?",
+        "state": "ASK_PROBLEM",
+        "kind": "ask_question",
+        "offered_slots": null,
+        "booking": null,
+        "fallback_used": false
+      }
+    },
+    {
+      "turn": 3,
+      "answering_state": "ASK_PROBLEM",
+      "user": "My chest tightens up on the bus and I feel restless from morning to night, it's getting worse.",
+      "sidecar": {
+        "act": "answer",
+        "field": "problem",
+        "value": "anxiety",
+        "slot_rule": null
+      },
+      "bot": {
+        "reply": "Great. Do you have a doctor in mind, or would you like us to suggest one?",
+        "state": "ASK_DOCTOR_PREF",
+        "kind": "ask_question",
+        "offered_slots": null,
+        "booking": null,
+        "fallback_used": false
+      }
+    },
+    {
+      "turn": 4,
+      "answering_state": "ASK_DOCTOR_PREF",
+      "user": "I don't care, just pick someone, whoever can see me fastest.",
+      "sidecar": {
+        "act": "answer",
+        "field": "doctor",
+        "value": null,
+        "slot_rule": null
+      },
+      "bot": {
+        "reply": "We suggest Dr. Arjun Iyer. Which days work for you?",
+        "state": "ASK_DAYS",
+        "kind": "ask_question",
+        "offered_slots": null,
+        "booking": null,
+        "fallback_used": false
+      }
+    },
+    {
+      "turn": 5,
+      "answering_state": "ASK_DAYS",
+      "user": "Wait, how much does this even cost?",
+      "sidecar": {
+        "act": "faq_question",
+        "field": "topic",
+        "value": "fees",
+        "slot_rule": null
+      },
+      "bot": {
+        "reply": "Dr. Arjun Iyer is available at:\n1. Friday 18 September, 17:00\n2. Friday 18 September, 18:00\nWhich one would you like?",
+        "state": "CAPTURE_CHOICE",
+        "kind": "present_slots",
+        "offered_slots": [
+          "2026-09-18T17:00",
+          "2026-09-18T18:00"
+        ],
+        "booking": null,
+        "fallback_used": true
+      }
+    },
+    {
+      "turn": 6,
+      "answering_state": "CAPTURE_CHOICE",
+      "user": "Give me the later one, I can't do earlier.",
+      "sidecar": {
+        "act": "answer",
+        "field": "slot",
+        "value": "2",
+        "slot_rule": "last"
+      },
+      "bot": {
+        "reply": "Great. Do you have a doctor in mind, or would you like us to suggest one?",
+        "state": "ASK_DOCTOR_PREF",
+        "kind": "ask_question",
+        "offered_slots": null,
+        "booking": null,
+        "fallback_used": false
+      }
+    },
+    {
+      "turn": 7,
+      "answering_state": "ASK_DOCTOR_PREF",
+      "user": "I already said, I don't care, just pick whoever is fastest.",
+      "sidecar": {
+        "act": "repeat",
+        "field": null,
+        "value": null,
+        "slot_rule": null
+      },
+      "bot": {
+        "reply": "We suggest Dr. Anil Rao. Which days work for you?",
+        "state": "ASK_DAYS",
+        "kind": "ask_question",
+        "offered_slots": null,
+        "booking": null,
+        "fallback_used": false
+      }
+    },
+    {
+      "turn": 8,
+      "answering_state": "ASK_DAYS",
+      "user": "Friday, that's the only day I can manage.",
+      "sidecar": {
+        "act": "answer",
+        "field": "days",
+        "value": "friday",
+        "slot_rule": null
+      },
+      "bot": {
+        "reply": "Sorry, Dr. Anil Rao has no free slots on Friday 18 September and Friday 25 September. Would another day work for you?",
+        "state": "ASK_DAYS",
+        "kind": "no_slots",
+        "offered_slots": null,
+        "booking": null,
+        "fallback_used": false
+      }
+    },
+    {
+      "turn": 9,
+      "answering_state": "ASK_DAYS",
+      "user": "No, it has to be Friday, find someone else who's free then.",
+      "sidecar": {
+        "act": "repeat",
+        "field": null,
+        "value": null,
+        "slot_rule": null
+      },
+      "bot": {
+        "reply": "Sorry, Dr. Anil Rao has no free slots on Friday 18 September and Friday 25 September. Would another day work for you?",
+        "state": "ASK_DAYS",
+        "kind": "no_slots",
+        "offered_slots": null,
+        "booking": null,
+        "fallback_used": false
+      }
+    },
+    {
+      "turn": 10,
+      "answering_state": "ASK_DAYS",
+      "user": "I told you twice already, Friday is the only day, get me someone else.",
+      "sidecar": {
+        "act": "repeat",
+        "field": null,
+        "value": null,
+        "slot_rule": null
+      },
+      "bot": {
+        "reply": "Great. Do you have a doctor in mind, or would you like us to suggest one?",
+        "state": "ASK_DOCTOR_PREF",
+        "kind": "ask_question",
+        "offered_slots": null,
+        "booking": null,
+        "fallback_used": false
+      }
+    },
+    {
+      "turn": 11,
+      "answering_state": "ASK_DOCTOR_PREF",
+      "user": "Just pick whoever, I don't care who it is.",
+      "sidecar": {
+        "act": "answer",
+        "field": "doctor",
+        "value": null,
+        "slot_rule": null
+      },
+      "bot": {
+        "reply": "We suggest Dr. Sana Khan. Which days work for you?",
+        "state": "ASK_DAYS",
+        "kind": "ask_question",
+        "offered_slots": null,
+        "booking": null,
+        "fallback_used": false
+      }
+    },
+    {
+      "turn": 12,
+      "answering_state": "ASK_DAYS",
+      "user": "Friday, still Friday.",
+      "sidecar": {
+        "act": "answer",
+        "field": "days",
+        "value": "friday",
+        "slot_rule": null
+      },
+      "bot": {
+        "reply": "Sorry, I wasn't able to understand your request. Please call our customer care team on 1800-000-0000 and they will help you book an appointment.",
+        "state": "END",
+        "kind": "handoff",
+        "offered_slots": null,
+        "booking": null,
+        "fallback_used": false
+      }
+    }
+  ],
+  "ended": "handoff"
+}

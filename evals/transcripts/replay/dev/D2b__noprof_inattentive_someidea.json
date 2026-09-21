@@ -1,0 +1,265 @@
+{
+  "card_id": "D2b__noprof_inattentive_someidea",
+  "persona_id": "noprof_inattentive_someidea",
+  "scenario_id": "D2b",
+  "pool": "dev",
+  "eval_set_version": 1,
+  "run": {
+    "model_id": "qwen3.5-0.8b-q8",
+    "prompt_version": "baseline",
+    "simulator_model": "replay",
+    "session_id": "D2b__noprof_inattentive_someidea__replay__20260921T053041Z",
+    "generated_at": "20260921T053041Z",
+    "replay_of": "D2b__noprof_inattentive_someidea__20260918T045851Z",
+    "clock": "2026-09-18T10:28:51"
+  },
+  "turns": [
+    {
+      "turn": 1,
+      "answering_state": "GREET",
+      "user": "hi, i wanted to see about getting an appointment",
+      "sidecar": {
+        "act": "answer",
+        "field": null,
+        "value": null,
+        "slot_rule": null
+      },
+      "bot": {
+        "reply": "Welcome to Willow Lane Mental Health Clinic. Is this your first consultation with us?",
+        "state": "ASK_FIRST_CONSULT",
+        "kind": "ask_question",
+        "offered_slots": null,
+        "booking": null,
+        "fallback_used": false
+      }
+    },
+    {
+      "turn": 2,
+      "answering_state": "ASK_FIRST_CONSULT",
+      "user": "yes this is my first time here",
+      "sidecar": {
+        "act": "answer",
+        "field": "patient_type",
+        "value": "new",
+        "slot_rule": null
+      },
+      "bot": {
+        "reply": "Great. Could you tell me briefly what you would like help with?",
+        "state": "ASK_PROBLEM",
+        "kind": "ask_question",
+        "offered_slots": null,
+        "booking": null,
+        "fallback_used": false
+      }
+    },
+    {
+      "turn": 3,
+      "answering_state": "ASK_PROBLEM",
+      "user": "i feel dread every morning and i cannot stop picturing things going wrong",
+      "sidecar": {
+        "act": "answer",
+        "field": "problem",
+        "value": "anxiety",
+        "slot_rule": null
+      },
+      "bot": {
+        "reply": "Great. Do you have a doctor in mind, or would you like us to suggest one?",
+        "state": "ASK_DOCTOR_PREF",
+        "kind": "ask_question",
+        "offered_slots": null,
+        "booking": null,
+        "fallback_used": false
+      }
+    },
+    {
+      "turn": 4,
+      "answering_state": "ASK_DOCTOR_PREF",
+      "user": "I want an appointment with Dr Roa",
+      "sidecar": {
+        "act": "answer",
+        "field": "doctor",
+        "value": "Dr. Meera Rao",
+        "slot_rule": null
+      },
+      "bot": {
+        "reply": "Sorry, I didn't catch that. Do you have a doctor in mind, or would you like us to suggest one?",
+        "state": "ASK_DOCTOR_PREF",
+        "kind": "ask_question",
+        "offered_slots": null,
+        "booking": null,
+        "fallback_used": false
+      }
+    },
+    {
+      "turn": 5,
+      "answering_state": "ASK_DOCTOR_PREF",
+      "user": "sorry, also i can only really do mornings - but yes i meant Dr Meera Rao",
+      "sidecar": {
+        "act": "repeat",
+        "field": "doctor",
+        "value": "Dr. Meera Rao",
+        "slot_rule": null
+      },
+      "bot": {
+        "reply": "Great. Which days work for you?",
+        "state": "ASK_DAYS",
+        "kind": "ask_question",
+        "offered_slots": null,
+        "booking": null,
+        "fallback_used": false
+      }
+    },
+    {
+      "turn": 6,
+      "answering_state": "ASK_DAYS",
+      "user": "wait is this actually a real person i'm talking to?",
+      "sidecar": {
+        "act": "non_answer",
+        "field": null,
+        "value": null,
+        "slot_rule": null
+      },
+      "bot": {
+        "reply": "Great. Do you have a doctor in mind, or would you like us to suggest one?",
+        "state": "ASK_DOCTOR_PREF",
+        "kind": "ask_question",
+        "offered_slots": null,
+        "booking": null,
+        "fallback_used": false
+      }
+    },
+    {
+      "turn": 7,
+      "answering_state": "ASK_DOCTOR_PREF",
+      "user": "i already said, Dr Meera Rao please",
+      "sidecar": {
+        "act": "repeat",
+        "field": "doctor",
+        "value": "Dr. Meera Rao",
+        "slot_rule": null
+      },
+      "bot": {
+        "reply": "Great. Which days work for you?",
+        "state": "ASK_DAYS",
+        "kind": "ask_question",
+        "offered_slots": null,
+        "booking": null,
+        "fallback_used": false
+      }
+    },
+    {
+      "turn": 8,
+      "answering_state": "ASK_DAYS",
+      "user": "friday works for me, mornings ideally",
+      "sidecar": {
+        "act": "answer",
+        "field": "days",
+        "value": "friday",
+        "slot_rule": null
+      },
+      "bot": {
+        "reply": "Dr. Meera Rao is available at:\n1. Friday 18 September, 11:00\n2. Friday 25 September, 10:00\n3. Friday 25 September, 11:00\nWhich one would you like?",
+        "state": "CAPTURE_CHOICE",
+        "kind": "present_slots",
+        "offered_slots": [
+          "2026-09-18T11:00",
+          "2026-09-25T10:00",
+          "2026-09-25T11:00"
+        ],
+        "booking": null,
+        "fallback_used": false
+      }
+    },
+    {
+      "turn": 9,
+      "answering_state": "CAPTURE_CHOICE",
+      "user": "can i do like 9 in the morning instead",
+      "sidecar": {
+        "act": "non_answer",
+        "field": null,
+        "value": null,
+        "slot_rule": null
+      },
+      "bot": {
+        "reply": "Great. Do you have a doctor in mind, or would you like us to suggest one?",
+        "state": "ASK_DOCTOR_PREF",
+        "kind": "ask_question",
+        "offered_slots": null,
+        "booking": null,
+        "fallback_used": false
+      }
+    },
+    {
+      "turn": 10,
+      "answering_state": "ASK_DOCTOR_PREF",
+      "user": "sorry my phone keeps cutting out - anyway it's Dr Meera Rao like i said",
+      "sidecar": {
+        "act": "repeat",
+        "field": "doctor",
+        "value": "Dr. Meera Rao",
+        "slot_rule": null
+      },
+      "bot": {
+        "reply": "Great. Which days work for you?",
+        "state": "ASK_DAYS",
+        "kind": "ask_question",
+        "offered_slots": null,
+        "booking": null,
+        "fallback_used": false
+      }
+    },
+    {
+      "turn": 11,
+      "answering_state": "ASK_DAYS",
+      "user": "friday again, like i mentioned",
+      "sidecar": {
+        "act": "repeat",
+        "field": "days",
+        "value": "friday",
+        "slot_rule": null
+      },
+      "bot": {
+        "reply": "Dr. Meera Rao is available at:\n1. Friday 18 September, 11:00\n2. Friday 25 September, 10:00\n3. Friday 25 September, 11:00\nWhich one would you like?",
+        "state": "CAPTURE_CHOICE",
+        "kind": "present_slots",
+        "offered_slots": [
+          "2026-09-18T11:00",
+          "2026-09-25T10:00",
+          "2026-09-25T11:00"
+        ],
+        "booking": null,
+        "fallback_used": false
+      }
+    },
+    {
+      "turn": 12,
+      "answering_state": "CAPTURE_CHOICE",
+      "user": "the earlier one is fine, the 10 o'clock",
+      "sidecar": {
+        "act": "answer",
+        "field": "slot",
+        "value": "1",
+        "slot_rule": "first"
+      },
+      "bot": {
+        "reply": "Your first consultation with Dr. Meera Rao is confirmed for Friday 25 September at 10:00. Booking reference: b0001.",
+        "state": "END",
+        "kind": "confirm_booking",
+        "offered_slots": null,
+        "booking": {
+          "booking_id": "b0001",
+          "doctor_id": "d_rao",
+          "doctor_name": "Dr. Meera Rao",
+          "slot_id": "d_rao_20260925T1000",
+          "start": "2026-09-25T10:00",
+          "minutes": 30,
+          "phone": null,
+          "session_type": "first_consultation",
+          "patient_type": "new"
+        },
+        "fallback_used": false
+      }
+    }
+  ],
+  "ended": "booking_confirmed"
+}

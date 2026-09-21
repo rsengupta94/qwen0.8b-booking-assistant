@@ -6,6 +6,7 @@ now() is a module attribute so tests can pin it. Booked slots leave the pool for
 clears bookings.
 """
 
+import os
 from datetime import date, datetime, timedelta
 from itertools import count
 
@@ -23,7 +24,10 @@ _ids = count(1)
 
 
 def now() -> datetime:
-    return datetime.now()
+    """Real time, unless BOOKING_CLOCK (ISO date or datetime) is set. The eval replay harness pins it
+    to a transcript's generation date so calendar drift cannot masquerade as product change."""
+    pinned = os.environ.get("BOOKING_CLOCK")
+    return datetime.fromisoformat(pinned) if pinned else datetime.now()
 
 
 def today() -> date:

@@ -1,0 +1,227 @@
+{
+  "card_id": "B3__prof_inattentive_noidea",
+  "persona_id": "prof_inattentive_noidea",
+  "scenario_id": "B3",
+  "pool": "dev",
+  "eval_set_version": 1,
+  "run": {
+    "model_id": "qwen3.5-0.8b-q8",
+    "prompt_version": "baseline",
+    "simulator_model": "replay",
+    "session_id": "B3__prof_inattentive_noidea__replay__20260921T051151Z",
+    "generated_at": "20260921T051151Z",
+    "replay_of": "B3__prof_inattentive_noidea__20260918T050655Z",
+    "clock": "2026-09-18T10:36:55"
+  },
+  "turns": [
+    {
+      "turn": 1,
+      "answering_state": "GREET",
+      "user": "hey, i need to book a therapy session",
+      "sidecar": {
+        "act": "answer",
+        "field": null,
+        "value": null,
+        "slot_rule": null
+      },
+      "bot": {
+        "reply": "Welcome to Willow Lane Mental Health Clinic. Is this your first consultation with us?",
+        "state": "ASK_FIRST_CONSULT",
+        "kind": "ask_question",
+        "offered_slots": null,
+        "booking": null,
+        "fallback_used": false
+      }
+    },
+    {
+      "turn": 2,
+      "answering_state": "ASK_FIRST_CONSULT",
+      "user": "been here before",
+      "sidecar": {
+        "act": "answer",
+        "field": "patient_type",
+        "value": "returning",
+        "slot_rule": null
+      },
+      "bot": {
+        "reply": "Great. Could you share the phone number registered with us?",
+        "state": "ASK_PHONE",
+        "kind": "ask_question",
+        "offered_slots": null,
+        "booking": null,
+        "fallback_used": false
+      }
+    },
+    {
+      "turn": 3,
+      "answering_state": "ASK_PHONE",
+      "user": "9876543210",
+      "sidecar": {
+        "act": "answer",
+        "field": "phone",
+        "value": "9876543210",
+        "slot_rule": null
+      },
+      "bot": {
+        "reply": "Great. Is this a therapy session or a follow-up?",
+        "state": "ASK_SESSION_TYPE",
+        "kind": "ask_question",
+        "offered_slots": null,
+        "booking": null,
+        "fallback_used": false
+      }
+    },
+    {
+      "turn": 4,
+      "answering_state": "ASK_SESSION_TYPE",
+      "user": "wait, actually my number is 9844400567",
+      "sidecar": {
+        "act": "correction",
+        "field": "phone",
+        "value": "9844400567",
+        "slot_rule": null
+      },
+      "bot": {
+        "reply": "Great. Is this a therapy session or a follow-up?",
+        "state": "ASK_SESSION_TYPE",
+        "kind": "ask_question",
+        "offered_slots": null,
+        "booking": null,
+        "fallback_used": false
+      }
+    },
+    {
+      "turn": 5,
+      "answering_state": "ASK_SESSION_TYPE",
+      "user": "i've been really stressed and not sleeping lately, anyway therapy",
+      "sidecar": {
+        "act": "answer",
+        "field": "session_type",
+        "value": "therapy",
+        "slot_rule": null
+      },
+      "bot": {
+        "reply": "Great. Which days work for you?",
+        "state": "ASK_DAYS",
+        "kind": "ask_question",
+        "offered_slots": null,
+        "booking": null,
+        "fallback_used": false
+      }
+    },
+    {
+      "turn": 6,
+      "answering_state": "ASK_DAYS",
+      "user": "also i can't focus at work at all, it's affecting everything",
+      "sidecar": {
+        "act": "non_answer",
+        "field": null,
+        "value": null,
+        "slot_rule": null
+      },
+      "bot": {
+        "reply": "Sorry, Dr. Lakshmi Nair has no free slots on Friday 18 September. Would another day work for you?",
+        "state": "ASK_DAYS",
+        "kind": "no_slots",
+        "offered_slots": null,
+        "booking": null,
+        "fallback_used": false
+      }
+    },
+    {
+      "turn": 7,
+      "answering_state": "ASK_DAYS",
+      "user": "monday morning works",
+      "sidecar": {
+        "act": "answer",
+        "field": "days",
+        "value": "monday",
+        "slot_rule": null
+      },
+      "bot": {
+        "reply": "Dr. Lakshmi Nair is available at:\n1. Monday 21 September, 09:00\n2. Monday 21 September, 09:30\n3. Monday 21 September, 10:00\nWhich one would you like?",
+        "state": "CAPTURE_CHOICE",
+        "kind": "present_slots",
+        "offered_slots": [
+          "2026-09-21T09:00",
+          "2026-09-21T09:30",
+          "2026-09-21T10:00"
+        ],
+        "booking": null,
+        "fallback_used": false
+      }
+    },
+    {
+      "turn": 8,
+      "answering_state": "CAPTURE_CHOICE",
+      "user": "can you do 3pm instead",
+      "sidecar": {
+        "act": "non_answer",
+        "field": null,
+        "value": null,
+        "slot_rule": null
+      },
+      "bot": {
+        "reply": "Sure, let's look at other days. Which days work for you?",
+        "state": "ASK_DAYS",
+        "kind": "ask_question",
+        "offered_slots": null,
+        "booking": null,
+        "fallback_used": false
+      }
+    },
+    {
+      "turn": 9,
+      "answering_state": "ASK_DAYS",
+      "user": "returning patient here, still monday works for me",
+      "sidecar": {
+        "act": "repeat",
+        "field": "days",
+        "value": "monday",
+        "slot_rule": null
+      },
+      "bot": {
+        "reply": "Dr. Lakshmi Nair is available at:\n1. Monday 21 September, 09:00\n2. Monday 21 September, 09:30\n3. Monday 21 September, 10:00\nWhich one would you like?",
+        "state": "CAPTURE_CHOICE",
+        "kind": "present_slots",
+        "offered_slots": [
+          "2026-09-21T09:00",
+          "2026-09-21T09:30",
+          "2026-09-21T10:00"
+        ],
+        "booking": null,
+        "fallback_used": false
+      }
+    },
+    {
+      "turn": 10,
+      "answering_state": "CAPTURE_CHOICE",
+      "user": "1",
+      "sidecar": {
+        "act": "answer",
+        "field": "slot",
+        "value": "1",
+        "slot_rule": "first"
+      },
+      "bot": {
+        "reply": "Your therapy session with Dr. Lakshmi Nair is confirmed for Monday 21 September at 09:00. Booking reference: b0001.",
+        "state": "END",
+        "kind": "confirm_booking",
+        "offered_slots": null,
+        "booking": {
+          "booking_id": "b0001",
+          "doctor_id": "d_nair",
+          "doctor_name": "Dr. Lakshmi Nair",
+          "slot_id": "d_nair_20260921T0900",
+          "start": "2026-09-21T09:00",
+          "minutes": 30,
+          "phone": "9844400567",
+          "session_type": "therapy",
+          "patient_type": "returning"
+        },
+        "fallback_used": false
+      }
+    }
+  ],
+  "ended": "booking_confirmed"
+}

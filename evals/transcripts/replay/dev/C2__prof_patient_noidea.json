@@ -1,0 +1,148 @@
+{
+  "card_id": "C2__prof_patient_noidea",
+  "persona_id": "prof_patient_noidea",
+  "scenario_id": "C2",
+  "pool": "dev",
+  "eval_set_version": 1,
+  "run": {
+    "model_id": "qwen3.5-0.8b-q8",
+    "prompt_version": "baseline",
+    "simulator_model": "replay",
+    "session_id": "C2__prof_patient_noidea__replay__20260921T052429Z",
+    "generated_at": "20260921T052429Z",
+    "replay_of": "C2__prof_patient_noidea__20260918T045547Z",
+    "clock": "2026-09-18T10:25:47"
+  },
+  "turns": [
+    {
+      "turn": 1,
+      "answering_state": "GREET",
+      "user": "Hi, I'd like to book an appointment.",
+      "sidecar": {
+        "act": "answer",
+        "field": null,
+        "value": null,
+        "slot_rule": null
+      },
+      "bot": {
+        "reply": "Welcome to Willow Lane Mental Health Clinic. Is this your first consultation with us?",
+        "state": "ASK_FIRST_CONSULT",
+        "kind": "ask_question",
+        "offered_slots": null,
+        "booking": null,
+        "fallback_used": false
+      }
+    },
+    {
+      "turn": 2,
+      "answering_state": "ASK_FIRST_CONSULT",
+      "user": "Yes, first time.",
+      "sidecar": {
+        "act": "answer",
+        "field": "patient_type",
+        "value": "new",
+        "slot_rule": null
+      },
+      "bot": {
+        "reply": "Great. Could you tell me briefly what you would like help with?",
+        "state": "ASK_PROBLEM",
+        "kind": "ask_question",
+        "offered_slots": null,
+        "booking": null,
+        "fallback_used": false
+      }
+    },
+    {
+      "turn": 3,
+      "answering_state": "ASK_PROBLEM",
+      "user": "How much does a session cost?",
+      "sidecar": {
+        "act": "non_answer",
+        "field": null,
+        "value": null,
+        "slot_rule": null
+      },
+      "bot": {
+        "reply": "Great. Do you have a doctor in mind, or would you like us to suggest one?",
+        "state": "ASK_DOCTOR_PREF",
+        "kind": "ask_question",
+        "offered_slots": null,
+        "booking": null,
+        "fallback_used": false
+      }
+    },
+    {
+      "turn": 4,
+      "answering_state": "ASK_DOCTOR_PREF",
+      "user": "No preference, whoever you think is best.",
+      "sidecar": {
+        "act": "answer",
+        "field": "doctor",
+        "value": null,
+        "slot_rule": null
+      },
+      "bot": {
+        "reply": "We suggest Dr. Arjun Iyer. Which days work for you?",
+        "state": "ASK_DAYS",
+        "kind": "ask_question",
+        "offered_slots": null,
+        "booking": null,
+        "fallback_used": false
+      }
+    },
+    {
+      "turn": 5,
+      "answering_state": "ASK_DAYS",
+      "user": "Thursday works.",
+      "sidecar": {
+        "act": "answer",
+        "field": "days",
+        "value": "thursday",
+        "slot_rule": null
+      },
+      "bot": {
+        "reply": "Dr. Arjun Iyer is available at:\n1. Thursday 24 September, 17:00\n2. Thursday 24 September, 18:00\n3. Thursday 1 October, 17:00\nWhich one would you like?",
+        "state": "CAPTURE_CHOICE",
+        "kind": "present_slots",
+        "offered_slots": [
+          "2026-09-24T17:00",
+          "2026-09-24T18:00",
+          "2026-10-01T17:00"
+        ],
+        "booking": null,
+        "fallback_used": true
+      }
+    },
+    {
+      "turn": 6,
+      "answering_state": "CAPTURE_CHOICE",
+      "user": "1",
+      "sidecar": {
+        "act": "answer",
+        "field": "slot",
+        "value": "1",
+        "slot_rule": "first",
+        "rendered": true
+      },
+      "bot": {
+        "reply": "Your first consultation with Dr. Arjun Iyer is confirmed for Thursday 24 September at 17:00. Booking reference: b0001.",
+        "state": "END",
+        "kind": "confirm_booking",
+        "offered_slots": null,
+        "booking": {
+          "booking_id": "b0001",
+          "doctor_id": "d_iyer",
+          "doctor_name": "Dr. Arjun Iyer",
+          "slot_id": "d_iyer_20260924T1700",
+          "start": "2026-09-24T17:00",
+          "minutes": 30,
+          "phone": null,
+          "session_type": "first_consultation",
+          "patient_type": "new"
+        },
+        "fallback_used": false
+      }
+    }
+  ],
+  "ended": "booking_confirmed"
+}

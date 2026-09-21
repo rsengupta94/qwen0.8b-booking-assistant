@@ -52,6 +52,15 @@ Manual: a Claude Code session spawns one sub-agent per card on a mid-tier model 
 
 `checks/eval_3.sh`: pytest on the path table; runs the guard; replays all dev transcripts against the current product version and asserts the replay JSONL matches the generation JSONL on state and validator outcome per turn; runs the scorer over both pools and asserts a results file with non-empty counts in all three outcome classes or an explicit zero.
 
+### E3 notes (2026-09-20)
+
+- `app/tools/mock_backend.now()` honours a `BOOKING_CLOCK` environment variable so the replay harness can pin the calendar to a transcript's generation date. Off by default; the only product touch in the eval phases.
+- Backend reset stays outside the product: the replay harness starts a fresh server per card.
+- Transcripts now record the booking record on confirm turns. For the 81 E2 transcripts the scorer recovers doctor and start from the confirmation reply, which the confirm_booking validator guarantees to contain them.
+- `doctor_pick` is judged against the category the product actually extracted, so a wrong category is charged to extract_problem once, not twice.
+- The product's shortlist pick is used for slot routing only, never for the expected-doctor set.
+- Product logs from generation live in `evals/product_logs/` because `logs/` is gitignored.
+
 ## E4: judge
 
 Judge brief in `briefs/judge.md`: binary coherence per bot turn with the three failure shapes from eval design 6, one-line reason, reads transcripts only. Verdict file format. Calibration set: the human labels 30 to 50 bot turns from dev transcripts before the judge runs.

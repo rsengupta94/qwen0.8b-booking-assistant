@@ -1,0 +1,189 @@
+{
+  "card_id": "A3__prof_inattentive_someidea",
+  "persona_id": "prof_inattentive_someidea",
+  "scenario_id": "A3",
+  "pool": "dev",
+  "eval_set_version": 1,
+  "run": {
+    "model_id": "qwen3.5-0.8b-q8",
+    "prompt_version": "baseline",
+    "simulator_model": "replay",
+    "session_id": "A3__prof_inattentive_someidea__replay__20260921T050505Z",
+    "generated_at": "20260921T050505Z",
+    "replay_of": "A3__prof_inattentive_someidea__20260918T050316Z",
+    "clock": "2026-09-18T10:33:16"
+  },
+  "turns": [
+    {
+      "turn": 1,
+      "answering_state": "GREET",
+      "user": "hi, need to book an appointment",
+      "sidecar": {
+        "act": "answer",
+        "field": null,
+        "value": null,
+        "slot_rule": null
+      },
+      "bot": {
+        "reply": "Welcome to Willow Lane Mental Health Clinic. Is this your first consultation with us?",
+        "state": "ASK_FIRST_CONSULT",
+        "kind": "ask_question",
+        "offered_slots": null,
+        "booking": null,
+        "fallback_used": false
+      }
+    },
+    {
+      "turn": 2,
+      "answering_state": "ASK_FIRST_CONSULT",
+      "user": "yeah first time",
+      "sidecar": {
+        "act": "answer",
+        "field": "patient_type",
+        "value": "new",
+        "slot_rule": null
+      },
+      "bot": {
+        "reply": "Great. Could you tell me briefly what you would like help with?",
+        "state": "ASK_PROBLEM",
+        "kind": "ask_question",
+        "offered_slots": null,
+        "booking": null,
+        "fallback_used": false
+      }
+    },
+    {
+      "turn": 3,
+      "answering_state": "ASK_PROBLEM",
+      "user": "nothing I used to enjoy interests me anymore, crying most days, cant get out of bed",
+      "sidecar": {
+        "act": "answer",
+        "field": "problem",
+        "value": "depression",
+        "slot_rule": null
+      },
+      "bot": {
+        "reply": "Great. Do you have a doctor in mind, or would you like us to suggest one?",
+        "state": "ASK_DOCTOR_PREF",
+        "kind": "ask_question",
+        "offered_slots": null,
+        "booking": null,
+        "fallback_used": false
+      }
+    },
+    {
+      "turn": 4,
+      "answering_state": "ASK_DOCTOR_PREF",
+      "user": "you pick, dont care",
+      "sidecar": {
+        "act": "answer",
+        "field": "doctor",
+        "value": null,
+        "slot_rule": null
+      },
+      "bot": {
+        "reply": "We suggest Dr. Sana Khan. Which days work for you?",
+        "state": "ASK_DAYS",
+        "kind": "ask_question",
+        "offered_slots": null,
+        "booking": null,
+        "fallback_used": false
+      }
+    },
+    {
+      "turn": 5,
+      "answering_state": "ASK_DAYS",
+      "user": "monday works",
+      "sidecar": {
+        "act": "answer",
+        "field": "days",
+        "value": "monday",
+        "slot_rule": null
+      },
+      "bot": {
+        "reply": "There are no morning slots on those days, but here is what is open. Dr. Sana Khan is available at:\n1. Monday 21 September, 16:00\n2. Monday 21 September, 17:00\n3. Monday 21 September, 18:00\nWhich one would you like?",
+        "state": "CAPTURE_CHOICE",
+        "kind": "present_slots",
+        "offered_slots": [
+          "2026-09-21T16:00",
+          "2026-09-21T17:00",
+          "2026-09-21T18:00"
+        ],
+        "booking": null,
+        "fallback_used": true
+      }
+    },
+    {
+      "turn": 6,
+      "answering_state": "CAPTURE_CHOICE",
+      "user": "can we do 2pm instead",
+      "sidecar": {
+        "act": "non_answer",
+        "field": null,
+        "value": null,
+        "slot_rule": null
+      },
+      "bot": {
+        "reply": "Sure, let's look at other days. Which days work for you?",
+        "state": "ASK_DAYS",
+        "kind": "ask_question",
+        "offered_slots": null,
+        "booking": null,
+        "fallback_used": false
+      }
+    },
+    {
+      "turn": 7,
+      "answering_state": "ASK_DAYS",
+      "user": "still barely getting out of bed most days but monday is what works",
+      "sidecar": {
+        "act": "repeat",
+        "field": "days",
+        "value": "monday",
+        "slot_rule": null
+      },
+      "bot": {
+        "reply": "There are no morning slots on those days, but here is what is open. Dr. Sana Khan is available at:\n1. Monday 21 September, 16:00\n2. Monday 21 September, 17:00\n3. Monday 21 September, 18:00\nWhich one would you like?",
+        "state": "CAPTURE_CHOICE",
+        "kind": "present_slots",
+        "offered_slots": [
+          "2026-09-21T16:00",
+          "2026-09-21T17:00",
+          "2026-09-21T18:00"
+        ],
+        "booking": null,
+        "fallback_used": true
+      }
+    },
+    {
+      "turn": 8,
+      "answering_state": "CAPTURE_CHOICE",
+      "user": "1",
+      "sidecar": {
+        "act": "answer",
+        "field": "slot",
+        "value": "1",
+        "slot_rule": "first"
+      },
+      "bot": {
+        "reply": "Your first consultation with Dr. Sana Khan is confirmed for Monday 21 September at 16:00. Booking reference: b0001.",
+        "state": "END",
+        "kind": "confirm_booking",
+        "offered_slots": null,
+        "booking": {
+          "booking_id": "b0001",
+          "doctor_id": "d_khan",
+          "doctor_name": "Dr. Sana Khan",
+          "slot_id": "d_khan_20260921T1600",
+          "start": "2026-09-21T16:00",
+          "minutes": 30,
+          "phone": null,
+          "session_type": "first_consultation",
+          "patient_type": "new"
+        },
+        "fallback_used": false
+      }
+    }
+  ],
+  "ended": "booking_confirmed"
+}

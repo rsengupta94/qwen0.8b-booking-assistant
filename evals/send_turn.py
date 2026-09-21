@@ -104,12 +104,13 @@ def main() -> None:
     facts = (resp.get("debug") or {}).get("reply_facts") or {}
     kind = facts.get("kind")
     offered = [sl["start"] for sl in facts.get("slots", [])] if kind == "present_slots" else None
+    booking = facts.get("booking") if kind == "confirm_booking" else None
     turn = {
         "turn": len(t["turns"]) + 1,
         "answering_state": prev_state,
         "user": a.text,
         "sidecar": {"act": a.act, "field": a.field, "value": a.value, "slot_rule": a.slot_rule},
-        "bot": {"reply": resp["reply"], "state": resp["state"], "kind": kind, "offered_slots": offered,
+        "bot": {"reply": resp["reply"], "state": resp["state"], "kind": kind, "offered_slots": offered, "booking": booking,
                 "fallback_used": resp["debug"]["fallback_used"], "latency_ms": int((time.time() - t0) * 1000)},
     }
     t["turns"].append(turn)

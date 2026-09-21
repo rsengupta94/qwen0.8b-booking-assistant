@@ -1,0 +1,208 @@
+{
+  "card_id": "D1__noprof_inattentive_noidea",
+  "persona_id": "noprof_inattentive_noidea",
+  "scenario_id": "D1",
+  "pool": "dev",
+  "eval_set_version": 1,
+  "run": {
+    "model_id": "qwen3.5-0.8b-q8",
+    "prompt_version": "baseline",
+    "simulator_model": "replay",
+    "session_id": "D1__noprof_inattentive_noidea__replay__20260921T052747Z",
+    "generated_at": "20260921T052747Z",
+    "replay_of": "D1__noprof_inattentive_noidea__20260918T051657Z",
+    "clock": "2026-09-18T10:46:57"
+  },
+  "turns": [
+    {
+      "turn": 1,
+      "answering_state": "GREET",
+      "user": "hi, I need to book an appointment please",
+      "sidecar": {
+        "act": "answer",
+        "field": null,
+        "value": null,
+        "slot_rule": null
+      },
+      "bot": {
+        "reply": "Welcome to Willow Lane Mental Health Clinic. Is this your first consultation with us?",
+        "state": "ASK_FIRST_CONSULT",
+        "kind": "ask_question",
+        "offered_slots": null,
+        "booking": null,
+        "fallback_used": false
+      }
+    },
+    {
+      "turn": 2,
+      "answering_state": "ASK_FIRST_CONSULT",
+      "user": "yes, first time here",
+      "sidecar": {
+        "act": "answer",
+        "field": "patient_type",
+        "value": "new",
+        "slot_rule": null
+      },
+      "bot": {
+        "reply": "Great. Could you tell me briefly what you would like help with?",
+        "state": "ASK_PROBLEM",
+        "kind": "ask_question",
+        "offered_slots": null,
+        "booking": null,
+        "fallback_used": false
+      }
+    },
+    {
+      "turn": 3,
+      "answering_state": "ASK_PROBLEM",
+      "user": "I can't sleep since my father died, he passed in June and I just lie awake going over it every night",
+      "sidecar": {
+        "act": "answer",
+        "field": "problem",
+        "value": "grief",
+        "slot_rule": null
+      },
+      "bot": {
+        "reply": "Great. Do you have a doctor in mind, or would you like us to suggest one?",
+        "state": "ASK_DOCTOR_PREF",
+        "kind": "ask_question",
+        "offered_slots": null,
+        "booking": null,
+        "fallback_used": false
+      }
+    },
+    {
+      "turn": 4,
+      "answering_state": "ASK_DOCTOR_PREF",
+      "user": "wait, is this actually a real person typing or a computer?",
+      "sidecar": {
+        "act": "non_answer",
+        "field": null,
+        "value": null,
+        "slot_rule": null
+      },
+      "bot": {
+        "reply": "Great. Do you have a doctor in mind, or would you like us to suggest one?",
+        "state": "ASK_DOCTOR_PREF",
+        "kind": "ask_question",
+        "offered_slots": null,
+        "booking": null,
+        "fallback_used": false
+      }
+    },
+    {
+      "turn": 5,
+      "answering_state": "ASK_DOCTOR_PREF",
+      "user": "sorry, I don't know any of the doctors there so just have someone good pick for me, whoever you think is best",
+      "sidecar": {
+        "act": "answer",
+        "field": "doctor",
+        "value": null,
+        "slot_rule": null
+      },
+      "bot": {
+        "reply": "We suggest Dr. Arjun Iyer. Which days work for you?",
+        "state": "ASK_DAYS",
+        "kind": "ask_question",
+        "offered_slots": null,
+        "booking": null,
+        "fallback_used": false
+      }
+    },
+    {
+      "turn": 6,
+      "answering_state": "ASK_DAYS",
+      "user": "saturday works best for me",
+      "sidecar": {
+        "act": "answer",
+        "field": "days",
+        "value": "saturday",
+        "slot_rule": null
+      },
+      "bot": {
+        "reply": "Dr. Arjun Iyer is available at:\n1. Saturday 19 September, 11:00\n2. Saturday 19 September, 11:30\n3. Saturday 19 September, 12:00\nWhich one would you like?",
+        "state": "CAPTURE_CHOICE",
+        "kind": "present_slots",
+        "offered_slots": [
+          "2026-09-19T11:00",
+          "2026-09-19T11:30",
+          "2026-09-19T12:00"
+        ],
+        "booking": null,
+        "fallback_used": true
+      }
+    },
+    {
+      "turn": 7,
+      "answering_state": "CAPTURE_CHOICE",
+      "user": "can I come at 3pm instead, that's easier for me",
+      "sidecar": {
+        "act": "non_answer",
+        "field": null,
+        "value": null,
+        "slot_rule": null
+      },
+      "bot": {
+        "reply": "Sure, let's look at other days. Which days work for you?",
+        "state": "ASK_DAYS",
+        "kind": "ask_question",
+        "offered_slots": null,
+        "booking": null,
+        "fallback_used": false
+      }
+    },
+    {
+      "turn": 8,
+      "answering_state": "ASK_DAYS",
+      "user": "no still saturday is what works for me",
+      "sidecar": {
+        "act": "repeat",
+        "field": "days",
+        "value": "saturday",
+        "slot_rule": null
+      },
+      "bot": {
+        "reply": "Dr. Arjun Iyer is available at:\n1. Saturday 19 September, 11:00\n2. Saturday 19 September, 11:30\n3. Saturday 19 September, 12:00\nWhich one would you like?",
+        "state": "CAPTURE_CHOICE",
+        "kind": "present_slots",
+        "offered_slots": [
+          "2026-09-19T11:00",
+          "2026-09-19T11:30",
+          "2026-09-19T12:00"
+        ],
+        "booking": null,
+        "fallback_used": true
+      }
+    },
+    {
+      "turn": 9,
+      "answering_state": "CAPTURE_CHOICE",
+      "user": "let's do the earliest one, the 11 o'clock",
+      "sidecar": {
+        "act": "answer",
+        "field": "slot",
+        "value": "1",
+        "slot_rule": "first"
+      },
+      "bot": {
+        "reply": "Your first consultation with Dr. Arjun Iyer is confirmed for Saturday 19 September at 11:00. Booking reference: b0001.",
+        "state": "END",
+        "kind": "confirm_booking",
+        "offered_slots": null,
+        "booking": {
+          "booking_id": "b0001",
+          "doctor_id": "d_iyer",
+          "doctor_name": "Dr. Arjun Iyer",
+          "slot_id": "d_iyer_20260919T1100",
+          "start": "2026-09-19T11:00",
+          "minutes": 30,
+          "phone": null,
+          "session_type": "first_consultation",
+          "patient_type": "new"
+        },
+        "fallback_used": false
+      }
+    }
+  ],
+  "ended": "booking_confirmed"
+}

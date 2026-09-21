@@ -43,3 +43,27 @@ Discard causes, from sidecar metadata only, no transcript text read:
 Held-out is closed to readers. The observations above come from the ended kind and sidecar fields, which are metadata the gate already prints. Product findings on held-out come only from the E3 scorer.
 
 Outcome kinds visible from metadata: all three Sunday-only cards (C1) ended in hand-off as designed; all three C2 cards booked instead of handing off, matching the dev finding that a non-answer at ASK_PROBLEM is accepted; one held-out B10 card gave up in a slot-description loop, matching dev.
+
+## 2026-09-21, E3 scoring of the E2 generation run, baseline prompts, qwen3.5-0.8b-q8
+
+Results file: `evals/results/generation_baseline_qwen3.5-0.8b-q8_set1_*.json`. Replay of the 20 dev transcripts against the same product version agreed on 177 of 177 turns and 20 of 20 endings, so the harness is a faithful regression instrument.
+
+Session pass rate: dev 12/20, held-out 42/61. Held-out failure reasons: wrong doctor 8, wrong slot 6, wrong day 5, product-caused hand-off 3, gave up 1 (some sessions carry two reasons).
+
+Per model call, both pools (1051 scored calls): pass 805, rescued 78, silent-wrong 168. Silent-wrong by prompt on held-out:
+- slot_choice 26 of 79 scored: described-time picks ("the later one", "2 in the afternoon") map to the wrong index or to wants-other.
+- extract_days 23 of 104: questions and remarks at ASK_DAYS become "today" or a weekday; no re-ask ever happens at that state.
+- turn_classifier 40 of 288: off-topic remarks read as corrections and rewind state.
+- extract_problem 13 of 51: anxiety symptom descriptions land on stress; fee questions become a category because the schema has no "not a problem" option.
+- doctor_pick 7 of 38: judged against the extracted category, so these are genuine shortlist misses.
+
+Rescued (validator caught it, template used): present_slots 50 of 89 on held-out. The NLG slot list fails its own fact check more than half the time and the template carries the product.
+
+Routing: 60 of 488 held-out turns went to a state the path table did not expect. Every one traces to a silent-wrong above.
+
+Harness lessons this phase (each now a rule or code):
+- Replay must pin local wall-clock time, not just the date: the product drops past slots on "today".
+- Re-render a slot pick only when the persona typed a bare number; descriptive picks keep their words or the phenomenon disappears.
+- Never replay against a fixed port: a stale server answers /health with old bookings and the wrong clock. Fresh port per card, and refuse a port with a listener.
+- Killing a `uv run` wrapper leaves uvicorn alive with the model loaded. Kill the process group.
+- The product's shortlist pick is used for slot routing only; expected doctors come from the card.
