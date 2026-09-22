@@ -1,0 +1,39 @@
+{
+  "card_id": "D5__prof_agitated_noidea",
+  "pool": "heldout",
+  "judge_model": "claude-opus-5",
+  "judged_at": "20260921T161557Z",
+  "session_id": "D5__prof_agitated_noidea__20260918T085527Z",
+  "verdicts": [
+    {
+      "turn": 1,
+      "fits": "yes",
+      "reason": "Greeting plus a sensible first intake question after the user states a booking request."
+    },
+    {
+      "turn": 2,
+      "fits": "yes",
+      "reason": "Returning patient stated, so asking for the registered phone number follows naturally."
+    },
+    {
+      "turn": 3,
+      "fits": "no",
+      "reason": "Asks what was already answered: the user said in turn 1 it was a follow-up appointment."
+    },
+    {
+      "turn": 4,
+      "fits": "yes",
+      "reason": "Accepts the follow-up answer and moves to day preference, which fits the urgency expressed."
+    },
+    {
+      "turn": 5,
+      "fits": "yes",
+      "reason": "Offers only Monday slots, matching the stated Monday-only constraint."
+    },
+    {
+      "turn": 6,
+      "fits": "yes",
+      "reason": "Confirms the third listed slot, which is exactly what the user picked."
+    }
+  ]
+}

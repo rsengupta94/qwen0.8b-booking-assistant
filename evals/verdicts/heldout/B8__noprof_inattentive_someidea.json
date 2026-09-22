@@ -1,0 +1,49 @@
+{
+  "card_id": "B8__noprof_inattentive_someidea",
+  "pool": "heldout",
+  "judge_model": "claude-opus-5",
+  "judged_at": "20260921T161403Z",
+  "session_id": "B8__noprof_inattentive_someidea__20260918T082535Z",
+  "verdicts": [
+    {
+      "turn": 1,
+      "fits": "yes",
+      "reason": "Greeting plus a sensible first-consultation question after a booking request."
+    },
+    {
+      "turn": 2,
+      "fits": "yes",
+      "reason": "Accepts the first-time answer and asks the next unanswered question."
+    },
+    {
+      "turn": 3,
+      "fits": "yes",
+      "reason": "Takes the stated concern and moves to doctor choice; nothing invented or re-asked."
+    },
+    {
+      "turn": 4,
+      "fits": "yes",
+      "reason": "User deferred the choice, so the bot suggests a doctor and asks for days."
+    },
+    {
+      "turn": 5,
+      "fits": "yes",
+      "reason": "Offers concrete slots in response to the day preference."
+    },
+    {
+      "turn": 6,
+      "fits": "no",
+      "reason": "Asks what was already answered: re-asks which days after the user gave days in turn 5 and asked about evening times."
+    },
+    {
+      "turn": 7,
+      "fits": "no",
+      "reason": "Ignores the user: no acknowledgement that they asked whether this is a bot or a person."
+    },
+    {
+      "turn": 8,
+      "fits": "yes",
+      "reason": "Confirms the earliest listed slot, which is what the user chose."
+    }
+  ]
+}

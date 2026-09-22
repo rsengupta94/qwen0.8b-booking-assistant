@@ -5,3 +5,6 @@ __pycache__/
 models/*.gguf
 logs/
 .heldout_inflight
+
+# derived from transcripts by evals/judge_prepare.py; regenerate rather than track
+evals/judge_input/

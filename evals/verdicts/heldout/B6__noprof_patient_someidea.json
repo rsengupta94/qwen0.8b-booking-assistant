@@ -1,0 +1,44 @@
+{
+  "card_id": "B6__noprof_patient_someidea",
+  "pool": "heldout",
+  "judge_model": "claude-opus-5",
+  "judged_at": "20260921T161354Z",
+  "session_id": "B6__noprof_patient_someidea__20260918T082242Z",
+  "verdicts": [
+    {
+      "turn": 1,
+      "fits": "yes",
+      "reason": "Greeting plus booking request met with greeting and first relevant intake question."
+    },
+    {
+      "turn": 2,
+      "fits": "yes",
+      "reason": "Answers the opening-hours question, then re-asks the unanswered intake question."
+    },
+    {
+      "turn": 3,
+      "fits": "yes",
+      "reason": "Accepts the first-visit answer and moves to the next unasked question."
+    },
+    {
+      "turn": 4,
+      "fits": "yes",
+      "reason": "Receives the reason for the visit and proceeds to doctor choice; no invented content or repeated question."
+    },
+    {
+      "turn": 5,
+      "fits": "yes",
+      "reason": "User asked for a suggestion; bot suggests a doctor and asks for days."
+    },
+    {
+      "turn": 6,
+      "fits": "yes",
+      "reason": "Offers slots matching the requested Saturday and asks the user to pick."
+    },
+    {
+      "turn": 7,
+      "fits": "yes",
+      "reason": "Confirms exactly the slot the user selected."
+    }
+  ]
+}

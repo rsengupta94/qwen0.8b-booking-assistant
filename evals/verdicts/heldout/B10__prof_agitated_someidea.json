@@ -1,0 +1,69 @@
+{
+  "card_id": "B10__prof_agitated_someidea",
+  "pool": "heldout",
+  "judge_model": "claude-opus-5",
+  "judged_at": "20260921T161316Z",
+  "session_id": "B10__prof_agitated_someidea__20260918T080026Z",
+  "verdicts": [
+    {
+      "turn": 1,
+      "fits": "no",
+      "reason": "Asks what was already answered: user opened with \"First time here\" and the bot asks if this is the first consultation."
+    },
+    {
+      "turn": 2,
+      "fits": "no",
+      "reason": "Asks what was already answered: user described panic attacks in shops in turn 1, bot asks what they want help with."
+    },
+    {
+      "turn": 3,
+      "fits": "yes",
+      "reason": "Accepts the stated concern and moves to the next booking question, a sensible next step."
+    },
+    {
+      "turn": 4,
+      "fits": "yes",
+      "reason": "User asked the bot to choose; the bot names a doctor and asks for days."
+    },
+    {
+      "turn": 5,
+      "fits": "yes",
+      "reason": "User gave Wednesday afternoon; bot lists Wednesday afternoon slots."
+    },
+    {
+      "turn": 6,
+      "fits": "no",
+      "reason": "Ignores the user: user picked slot 3 and the bot restarts the doctor question already settled."
+    },
+    {
+      "turn": 7,
+      "fits": "no",
+      "reason": "Asks what was already answered: day preference was settled as Wednesday afternoon in turn 5."
+    },
+    {
+      "turn": 8,
+      "fits": "no",
+      "reason": "Invents an acknowledgement: user never asked for evening slots, bot replies about no evening availability."
+    },
+    {
+      "turn": 9,
+      "fits": "no",
+      "reason": "Ignores the user: user picked slot 3 and the bot re-asks the settled doctor question."
+    },
+    {
+      "turn": 10,
+      "fits": "no",
+      "reason": "Asks what was already answered: day preference was given twice before."
+    },
+    {
+      "turn": 11,
+      "fits": "no",
+      "reason": "Invents an acknowledgement: user never mentioned evenings, bot answers about evening slots."
+    },
+    {
+      "turn": 12,
+      "fits": "no",
+      "reason": "Ignores the user: user picked slot 3 and the bot again re-asks the settled doctor question."
+    }
+  ]
+}

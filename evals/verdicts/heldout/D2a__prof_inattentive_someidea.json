@@ -1,0 +1,59 @@
+{
+  "card_id": "D2a__prof_inattentive_someidea",
+  "pool": "heldout",
+  "judge_model": "claude-opus-5",
+  "judged_at": "20260921T161529Z",
+  "session_id": "D2a__prof_inattentive_someidea__20260918T084805Z",
+  "verdicts": [
+    {
+      "turn": 1,
+      "fits": "yes",
+      "reason": "Greeting answered with a greeting and a sensible opening question."
+    },
+    {
+      "turn": 2,
+      "fits": "yes",
+      "reason": "User confirmed first visit; bot moves to the next unanswered question."
+    },
+    {
+      "turn": 3,
+      "fits": "yes",
+      "reason": "User described the concern; bot proceeds to doctor preference without contradicting anything."
+    },
+    {
+      "turn": 4,
+      "fits": "yes",
+      "reason": "User named an ambiguous surname; bot asks which of the two doctors."
+    },
+    {
+      "turn": 5,
+      "fits": "yes",
+      "reason": "User picked Meera Rao and gave a number; bot advances to days."
+    },
+    {
+      "turn": 6,
+      "fits": "no",
+      "reason": "Invents an acknowledgement: user never mentioned Friday 18 September, and the session-type remark is ignored."
+    },
+    {
+      "turn": 7,
+      "fits": "no",
+      "reason": "Invents an acknowledgement: user never asked for morning slots."
+    },
+    {
+      "turn": 8,
+      "fits": "no",
+      "reason": "Ignores the 5pm request and re-asks which days, already settled as Wednesday."
+    },
+    {
+      "turn": 9,
+      "fits": "yes",
+      "reason": "User reconfirmed Wednesday; bot lists Wednesday options and notes no evening slot for the 5pm ask."
+    },
+    {
+      "turn": 10,
+      "fits": "yes",
+      "reason": "User chose option 1; bot confirms that exact slot."
+    }
+  ]
+}

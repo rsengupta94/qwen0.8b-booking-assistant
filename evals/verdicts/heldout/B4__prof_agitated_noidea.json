@@ -1,0 +1,44 @@
+{
+  "card_id": "B4__prof_agitated_noidea",
+  "pool": "heldout",
+  "judge_model": "claude-opus-5",
+  "judged_at": "20260921T161330Z",
+  "session_id": "B4__prof_agitated_noidea__20260918T081819Z",
+  "verdicts": [
+    {
+      "turn": 1,
+      "fits": "yes",
+      "reason": "Greeting plus a sensible first-consultation question after a booking request."
+    },
+    {
+      "turn": 2,
+      "fits": "yes",
+      "reason": "User confirmed first visit; bot moves on to ask the reason for the visit."
+    },
+    {
+      "turn": 3,
+      "fits": "yes",
+      "reason": "User gave the concern; bot advances to the doctor question, a sensible next step."
+    },
+    {
+      "turn": 4,
+      "fits": "no",
+      "reason": "Ignores the user: repeats the same doctor question verbatim and does not acknowledge the new disclosure."
+    },
+    {
+      "turn": 5,
+      "fits": "yes",
+      "reason": "User asked bot to choose; bot suggests a doctor and asks for days."
+    },
+    {
+      "turn": 6,
+      "fits": "yes",
+      "reason": "Offers Saturday afternoon slots matching the stated preference."
+    },
+    {
+      "turn": 7,
+      "fits": "yes",
+      "reason": "Confirms the slot the user selected by number."
+    }
+  ]
+}

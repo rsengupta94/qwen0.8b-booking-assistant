@@ -1,0 +1,54 @@
+{
+  "card_id": "D5__noprof_inattentive_noidea",
+  "pool": "heldout",
+  "judge_model": "claude-opus-5",
+  "judged_at": "20260921T161552Z",
+  "session_id": "D5__noprof_inattentive_noidea__20260918T085444Z",
+  "verdicts": [
+    {
+      "turn": 1,
+      "fits": "yes",
+      "reason": "Greeting reply to a greeting, then a sensible opening question."
+    },
+    {
+      "turn": 2,
+      "fits": "yes",
+      "reason": "User is a returning patient, so asking for the registered phone number follows."
+    },
+    {
+      "turn": 3,
+      "fits": "yes",
+      "reason": "Phone given, bot moves on to session type; nothing ignored or invented."
+    },
+    {
+      "turn": 4,
+      "fits": "yes",
+      "reason": "User did not answer session type, so a plain re-ask of the same question fits."
+    },
+    {
+      "turn": 5,
+      "fits": "yes",
+      "reason": "Follow-up captured, bot moves on to asking days."
+    },
+    {
+      "turn": 6,
+      "fits": "yes",
+      "reason": "User said Monday and the bot lists Monday slots."
+    },
+    {
+      "turn": 7,
+      "fits": "no",
+      "reason": "Ignores the evening-6pm request and invents a wish for other days instead of addressing evening availability."
+    },
+    {
+      "turn": 8,
+      "fits": "yes",
+      "reason": "User reconfirms Monday, bot re-lists Monday slots and asks which one, still unanswered."
+    },
+    {
+      "turn": 9,
+      "fits": "yes",
+      "reason": "User picked the 28th and the bot confirms that slot."
+    }
+  ]
+}

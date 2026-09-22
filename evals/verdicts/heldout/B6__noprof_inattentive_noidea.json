@@ -1,0 +1,54 @@
+{
+  "card_id": "B6__noprof_inattentive_noidea",
+  "pool": "heldout",
+  "judge_model": "claude-opus-5",
+  "judged_at": "20260921T161358Z",
+  "session_id": "B6__noprof_inattentive_noidea__20260918T082202Z",
+  "verdicts": [
+    {
+      "turn": 1,
+      "fits": "yes",
+      "reason": "Greeting and intake question fit an opening booking request."
+    },
+    {
+      "turn": 2,
+      "fits": "yes",
+      "reason": "Answers the hours question, then re-asks the unanswered intake question."
+    },
+    {
+      "turn": 3,
+      "fits": "yes",
+      "reason": "Accepts the first-visit answer and moves to the next intake question."
+    },
+    {
+      "turn": 4,
+      "fits": "yes",
+      "reason": "Takes the stated concern and moves on to doctor preference; nothing ignored or invented."
+    },
+    {
+      "turn": 5,
+      "fits": "yes",
+      "reason": "User asked for a suggestion, bot suggests a doctor and asks for days."
+    },
+    {
+      "turn": 6,
+      "fits": "no",
+      "reason": "Ignores the user: the question about session type gets no mention, bot just lists slots."
+    },
+    {
+      "turn": 7,
+      "fits": "yes",
+      "reason": "Responds to the evening time preference by asking which days to check."
+    },
+    {
+      "turn": 8,
+      "fits": "no",
+      "reason": "Ignores the user: the direct question about bot or human gets no acknowledgement at all."
+    },
+    {
+      "turn": 9,
+      "fits": "yes",
+      "reason": "Confirms the earlier 19 September slot the user selected."
+    }
+  ]
+}

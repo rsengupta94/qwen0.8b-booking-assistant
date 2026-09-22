@@ -1,0 +1,44 @@
+{
+  "card_id": "B1__noprof_agitated_noidea",
+  "pool": "heldout",
+  "judge_model": "claude-opus-5",
+  "judged_at": "20260921T161253Z",
+  "session_id": "B1__noprof_agitated_noidea__20260918T081044Z",
+  "verdicts": [
+    {
+      "turn": 1,
+      "fits": "no",
+      "reason": "Asks what was already answered: user said first time here, bot asks if it is their first consultation."
+    },
+    {
+      "turn": 2,
+      "fits": "yes",
+      "reason": "Accepts the confirmation and moves to the next needed detail."
+    },
+    {
+      "turn": 3,
+      "fits": "yes",
+      "reason": "User answered the help question, so moving on to doctor choice is a sensible next step."
+    },
+    {
+      "turn": 4,
+      "fits": "yes",
+      "reason": "User deferred the choice, bot picks a doctor and asks for days."
+    },
+    {
+      "turn": 5,
+      "fits": "no",
+      "reason": "Ignores the user: user said Tuesday, bot offers only Saturday slots with no mention of Tuesday."
+    },
+    {
+      "turn": 6,
+      "fits": "yes",
+      "reason": "User asked for Thursday and the bot offers Thursday slots."
+    },
+    {
+      "turn": 7,
+      "fits": "no",
+      "reason": "Invents an acknowledgement: user chose 2 o clock, bot confirms 15:00."
+    }
+  ]
+}

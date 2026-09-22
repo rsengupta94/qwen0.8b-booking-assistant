@@ -1,0 +1,54 @@
+{
+  "card_id": "A2__noprof_patient_noidea",
+  "pool": "heldout",
+  "judge_model": "claude-opus-5",
+  "judged_at": "20260921T161136Z",
+  "session_id": "A2__noprof_patient_noidea__20260918T074232Z",
+  "verdicts": [
+    {
+      "turn": 1,
+      "fits": "yes",
+      "reason": "Greeting plus a sensible first intake question after a booking request."
+    },
+    {
+      "turn": 2,
+      "fits": "yes",
+      "reason": "Accepts the first-visit answer and moves to the next intake question."
+    },
+    {
+      "turn": 3,
+      "fits": "yes",
+      "reason": "User described the concern; bot moves on to doctor preference, a sensible next step."
+    },
+    {
+      "turn": 4,
+      "fits": "yes",
+      "reason": "User deferred the choice; bot suggests a doctor and asks for days."
+    },
+    {
+      "turn": 5,
+      "fits": "no",
+      "reason": "Ignores the user question about human or computer, and re-asks the doctor question already settled."
+    },
+    {
+      "turn": 6,
+      "fits": "no",
+      "reason": "Asks what was already answered; user repeated the deferral and got the same question back."
+    },
+    {
+      "turn": 7,
+      "fits": "yes",
+      "reason": "Acts on the deferral by suggesting a doctor and asking for days."
+    },
+    {
+      "turn": 8,
+      "fits": "yes",
+      "reason": "Acknowledges no morning slots and offers the Tuesday options that exist."
+    },
+    {
+      "turn": 9,
+      "fits": "no",
+      "reason": "Invents an acknowledgement: user picked the earlier 18:00 slot, bot confirms 18:30."
+    }
+  ]
+}

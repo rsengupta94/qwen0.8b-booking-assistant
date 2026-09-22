@@ -1,0 +1,39 @@
+{
+  "card_id": "B9__prof_patient_someidea",
+  "pool": "heldout",
+  "judge_model": "claude-opus-5",
+  "judged_at": "20260921T161436Z",
+  "session_id": "B9__prof_patient_someidea__20260918T082925Z",
+  "verdicts": [
+    {
+      "turn": 1,
+      "fits": "yes",
+      "reason": "Greeting reply to a greeting, then a relevant intake question."
+    },
+    {
+      "turn": 2,
+      "fits": "yes",
+      "reason": "User confirmed first visit; bot moves to the next unanswered question."
+    },
+    {
+      "turn": 3,
+      "fits": "yes",
+      "reason": "User described the concern; bot proceeds to doctor preference, a sensible next question."
+    },
+    {
+      "turn": 4,
+      "fits": "no",
+      "reason": "Asks what was already answered: user gave Wednesday afternoon and Dr. Khan, bot re-asks which days work."
+    },
+    {
+      "turn": 5,
+      "fits": "no",
+      "reason": "Invents an acknowledgement: cites no evening slots though the user never asked for evening."
+    },
+    {
+      "turn": 6,
+      "fits": "yes",
+      "reason": "User picked option 1; bot confirms that exact slot."
+    }
+  ]
+}

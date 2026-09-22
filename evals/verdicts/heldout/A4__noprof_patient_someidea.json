@@ -1,0 +1,49 @@
+{
+  "card_id": "A4__noprof_patient_someidea",
+  "pool": "heldout",
+  "judge_model": "claude-opus-5",
+  "judged_at": "20260921T161219Z",
+  "session_id": "A4__noprof_patient_someidea__20260918T074639Z",
+  "verdicts": [
+    {
+      "turn": 1,
+      "fits": "yes",
+      "reason": "Greeting answered with a greeting and a sensible first intake question."
+    },
+    {
+      "turn": 2,
+      "fits": "yes",
+      "reason": "Returning patient stated, so asking for the registered phone number follows naturally."
+    },
+    {
+      "turn": 3,
+      "fits": "yes",
+      "reason": "Phone given, bot moves on to appointment type; no repeat question."
+    },
+    {
+      "turn": 4,
+      "fits": "yes",
+      "reason": "Session type given, bot asks for day preference, the next open slot detail."
+    },
+    {
+      "turn": 5,
+      "fits": "no",
+      "reason": "Invents an acknowledgement: claims no evening slots though the user never asked about evenings."
+    },
+    {
+      "turn": 6,
+      "fits": "no",
+      "reason": "Ignores the user question about talking to a real person and invents a request for other days."
+    },
+    {
+      "turn": 7,
+      "fits": "no",
+      "reason": "Invents an acknowledgement again: repeats the evening-slot caveat the user never raised."
+    },
+    {
+      "turn": 8,
+      "fits": "yes",
+      "reason": "Confirms the exact 10:00 slot the user picked, matching the offer list."
+    }
+  ]
+}

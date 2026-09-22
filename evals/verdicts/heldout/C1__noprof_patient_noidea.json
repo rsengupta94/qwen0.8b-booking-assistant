@@ -1,0 +1,44 @@
+{
+  "card_id": "C1__noprof_patient_noidea",
+  "pool": "heldout",
+  "judge_model": "claude-opus-5",
+  "judged_at": "20260921T161444Z",
+  "session_id": "C1__noprof_patient_noidea__20260918T083153Z",
+  "verdicts": [
+    {
+      "turn": 1,
+      "fits": "yes",
+      "reason": "Greeting plus a sensible opening intake question after a booking request."
+    },
+    {
+      "turn": 2,
+      "fits": "yes",
+      "reason": "Accepts the first-visit answer and asks the next unanswered intake question."
+    },
+    {
+      "turn": 3,
+      "fits": "yes",
+      "reason": "Acknowledges the described concern and moves on to doctor preference; nothing ignored or invented."
+    },
+    {
+      "turn": 4,
+      "fits": "no",
+      "reason": "Ignores the user: the direct question about talking to a real person gets no mention at all."
+    },
+    {
+      "turn": 5,
+      "fits": "yes",
+      "reason": "Responds to the stated day with slot availability and a sensible re-ask."
+    },
+    {
+      "turn": 6,
+      "fits": "no",
+      "reason": "Asks what was already answered: user said Sunday only, bot repeats the identical question verbatim."
+    },
+    {
+      "turn": 7,
+      "fits": "yes",
+      "reason": "Handoff after the day question genuinely stalled across three turns with no resolution possible."
+    }
+  ]
+}

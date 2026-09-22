@@ -1,0 +1,39 @@
+{
+  "card_id": "C4__prof_patient_someidea",
+  "pool": "heldout",
+  "judge_model": "claude-opus-5",
+  "judged_at": "20260921T161507Z",
+  "session_id": "C4__prof_patient_someidea__20260918T084204Z",
+  "verdicts": [
+    {
+      "turn": 1,
+      "fits": "yes",
+      "reason": "Greeting reply to a booking request, then a sensible first question."
+    },
+    {
+      "turn": 2,
+      "fits": "yes",
+      "reason": "Accepts the first-time answer and asks the next unanswered question."
+    },
+    {
+      "turn": 3,
+      "fits": "yes",
+      "reason": "Takes the stated concern and moves to doctor choice; nothing ignored or invented."
+    },
+    {
+      "turn": 4,
+      "fits": "no",
+      "reason": "Ignores the user: user named Dr. Sharma, bot suggests a different doctor with no mention of the request."
+    },
+    {
+      "turn": 5,
+      "fits": "yes",
+      "reason": "Uses the stated Monday preference and offers matching times."
+    },
+    {
+      "turn": 6,
+      "fits": "yes",
+      "reason": "Confirms the slot the user selected by number."
+    }
+  ]
+}

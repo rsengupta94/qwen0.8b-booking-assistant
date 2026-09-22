@@ -1,0 +1,115 @@
+card_id,turn,prior_bot,user,bot_reply,label
+A2__noprof_inattentive_someidea,5,We suggest Dr. Arjun Iyer. Which days work for you?,"mornings are best for me, i am useless later in the day","Sorry, Dr. Arjun Iyer has no free slots on Monday 21 September and Monday 28 September. Would another day work for you?",
+A2__noprof_inattentive_someidea,10,We suggest Dr. Arjun Iyer. Which days work for you?,tuesday works for me,"There are no evening slots on those days, but here is what is open. Dr. Arjun Iyer is available at:
+1. Tuesday 22 September, 09:00
+2. Tuesday 22 September, 09:30
+3. Tuesday 22 September, 10:00
+Which one would you like?",
+A2__noprof_inattentive_someidea,11,"There are no evening slots on those days, but here is what is open. Dr. Arjun Iyer is available at:
+1. Tuesday 22 September, 09:00
+2. Tuesday 22 September, 09:30
+3. Tuesday 22 September, 10:00
+Which one would you like?","the earliest one, 9 in the morning is fine",Your first consultation with Dr. Arjun Iyer is confirmed for Tuesday 22 September at 09:00. Booking reference: b0003.,
+A3__prof_inattentive_someidea,5,We suggest Dr. Sana Khan. Which days work for you?,monday works,"There are no morning slots on those days, but here is what is open. Dr. Sana Khan is available at:
+1. Monday 21 September, 16:00
+2. Monday 21 September, 17:00
+3. Monday 21 September, 18:00
+Which one would you like?",
+A3__prof_inattentive_someidea,7,"Sure, let's look at other days. Which days work for you?",still barely getting out of bed most days but monday is what works,"There are no morning slots on those days, but here is what is open. Dr. Sana Khan is available at:
+1. Monday 21 September, 16:00
+2. Monday 21 September, 17:00
+3. Monday 21 September, 18:00
+Which one would you like?",
+B10__prof_inattentive_noidea,1,,"hi, need to book an appointment",Welcome to Willow Lane Mental Health Clinic. Is this your first consultation with us?,
+B10__prof_inattentive_noidea,2,Welcome to Willow Lane Mental Health Clinic. Is this your first consultation with us?,yes first time,Great. Could you tell me briefly what you would like help with?,
+B10__prof_inattentive_noidea,7,"Sure, let's look at other days. Which days work for you?",my number is 5551234789. wednesday still,"There are no evening slots on those days, but here is what is open. Dr. Meera Rao is available at:
+1. Wednesday 23 September, 14:00
+2. Wednesday 23 September, 15:00
+3. Wednesday 23 September, 16:00
+Which one would you like?",
+B3__prof_inattentive_noidea,6,Great. Which days work for you?,"also i can't focus at work at all, it's affecting everything","Sorry, Dr. Lakshmi Nair has no free slots on Friday 18 September. Would another day work for you?",
+B3__prof_inattentive_noidea,9,"Sure, let's look at other days. Which days work for you?","returning patient here, still monday works for me","Dr. Lakshmi Nair is available at:
+1. Monday 21 September, 09:00
+2. Monday 21 September, 09:30
+3. Monday 21 September, 10:00
+Which one would you like?",
+B3__prof_inattentive_noidea,10,"Dr. Lakshmi Nair is available at:
+1. Monday 21 September, 09:00
+2. Monday 21 September, 09:30
+3. Monday 21 September, 10:00
+Which one would you like?",1,Your therapy session with Dr. Lakshmi Nair is confirmed for Monday 21 September at 09:00. Booking reference: b0001.,
+B4__noprof_patient_noidea,7,"Dr. Anil Rao is available at:
+1. Saturday 19 September, 14:00
+2. Saturday 19 September, 15:00
+3. Saturday 19 September, 16:00
+Which one would you like?","The earliest one, 2 in the afternoon, would be perfect.",Your first consultation with Dr. Anil Rao is confirmed for Saturday 19 September at 15:00. Booking reference: b0002.,
+B5__noprof_agitated_noidea,7,"Sure, let's look at other days. Which days work for you?","Friday, I already said that. Morning, ideally.","There are no morning slots on those days, but here is what is open. Dr. Arjun Iyer is available at:
+1. Friday 18 September, 17:00
+2. Friday 18 September, 18:00
+3. Friday 25 September, 17:00
+Which one would you like?",
+B5__noprof_agitated_someidea,1,,"I need to book an appointment, my chest keeps tightening on the bus and I can't calm down.",Welcome to Willow Lane Mental Health Clinic. Is this your first consultation with us?,
+B5__noprof_agitated_someidea,8,We suggest Dr. Anil Rao. Which days work for you?,"Friday, that's the only day I can manage.","Sorry, Dr. Anil Rao has no free slots on Friday 18 September and Friday 25 September. Would another day work for you?",
+B5__noprof_agitated_someidea,9,"Sorry, Dr. Anil Rao has no free slots on Friday 18 September and Friday 25 September. Would another day work for you?","No, it has to be Friday, find someone else who's free then.","Sorry, Dr. Anil Rao has no free slots on Friday 18 September and Friday 25 September. Would another day work for you?",
+B5__noprof_agitated_someidea,12,We suggest Dr. Sana Khan. Which days work for you?,"Friday, still Friday.","Sorry, I wasn't able to understand your request. Please call our customer care team on 1800-000-0000 and they will help you book an appointment.",
+B7__prof_agitated_noidea,5,We suggest Dr. Sana Khan. Which days work for you?,"Before that, what's this going to cost me?","Sorry, Dr. Sana Khan has no free slots on Friday 18 September. Would another day work for you?",
+B7__prof_agitated_noidea,6,"Sorry, Dr. Sana Khan has no free slots on Friday 18 September. Would another day work for you?","Also what happens at the first visit, what do I need to bring?","Sorry, Dr. Sana Khan has no free slots on Friday 18 September. Would another day work for you?",
+B7__prof_agitated_noidea,8,"Dr. Sana Khan is available at:
+1. Tuesday 22 September, 10:00
+2. Tuesday 22 September, 10:30
+3. Tuesday 22 September, 11:00
+Which one would you like?",1.,Your first consultation with Dr. Sana Khan is confirmed for Tuesday 22 September at 10:00. Booking reference: b0001. We look forward to seeing you.,
+B7__prof_inattentive_noidea,5,We suggest Dr. Sana Khan. Which days work for you?,"quick q, what does a session cost","Sorry, Dr. Sana Khan has no free slots on Friday 18 September. Would another day work for you?",
+B7__prof_inattentive_noidea,6,"Sorry, Dr. Sana Khan has no free slots on Friday 18 September. Would another day work for you?",also what should I expect at the first visit,"Sorry, Dr. Sana Khan has no free slots on Friday 18 September. Would another day work for you?",
+B7__prof_inattentive_noidea,7,"Sorry, Dr. Sana Khan has no free slots on Friday 18 September. Would another day work for you?",mornings work best for me,"There are no morning slots on those days, but here is what is open. Dr. Sana Khan is available at:
+1. Monday 21 September, 16:00
+2. Monday 21 September, 17:00
+3. Monday 21 September, 18:00
+Which one would you like?",
+B7__prof_inattentive_someidea,5,We suggest Dr. Sana Khan. Which days work for you?,wait how much does this cost,"Sorry, Dr. Sana Khan has no free slots on Friday 18 September. Would another day work for you?",
+B7__prof_inattentive_someidea,9,"Sure, let's look at other days. Which days work for you?",this needs to be a regular session not a followup,"Sorry, I wasn't able to understand your request. Please call our customer care team on 1800-000-0000 and they will help you book an appointment.",
+C2__prof_patient_noidea,3,Great. Could you tell me briefly what you would like help with?,How much does a session cost?,"Great. Do you have a doctor in mind, or would you like us to suggest one?",
+C2__prof_patient_noidea,5,We suggest Dr. Arjun Iyer. Which days work for you?,Thursday works.,"Dr. Arjun Iyer is available at:
+1. Thursday 24 September, 17:00
+2. Thursday 1 October, 17:00
+3. Thursday 1 October, 18:00
+Which one would you like?",
+C3__noprof_patient_someidea,3,Great. Could you tell me briefly what you would like help with?,"Deadlines keep me all wound up lately and I grind my teeth at night, it's just a lot.","Great. Do you have a doctor in mind, or would you like us to suggest one?",
+C3__noprof_patient_someidea,8,"There are no evening slots on those days, but here is what is open. Dr. Sana Khan is available at:
+1. Tuesday 22 September, 10:00
+2. Tuesday 22 September, 10:30
+3. Tuesday 22 September, 11:00
+Which one would you like?","Oh wait, sorry, actually Thursday would be better for me instead.","There are no morning slots on those days, but here is what is open. Dr. Sana Khan is available at:
+1. Thursday 24 September, 14:00
+2. Thursday 24 September, 15:00
+3. Thursday 1 October, 14:00
+Which one would you like?",
+C3__noprof_patient_someidea,11,"Dr. Sana Khan is available at:
+1. Saturday 19 September, 11:00
+2. Saturday 19 September, 12:00
+3. Saturday 26 September, 11:00
+Which one would you like?","Let's do the earlier one, the eleven o'clock this coming Saturday.",Your first consultation with Dr. Sana Khan is confirmed for Saturday 19 September at 11:00. Booking reference: b0001.,
+D1__noprof_inattentive_noidea,2,Welcome to Willow Lane Mental Health Clinic. Is this your first consultation with us?,"yes, first time here",Great. Could you tell me briefly what you would like help with?,
+D1__noprof_inattentive_noidea,9,"Dr. Arjun Iyer is available at:
+1. Saturday 19 September, 11:00
+2. Saturday 19 September, 11:30
+3. Saturday 19 September, 12:00
+Which one would you like?","let's do the earliest one, the 11 o'clock",Your first consultation with Dr. Arjun Iyer is confirmed for Saturday 19 September at 11:00. Booking reference: b0001.,
+D1__prof_patient_noidea,2,Welcome to Willow Lane Mental Health Clinic. Is this your first consultation with us?,"Yes, this is my first time.",Great. Could you tell me briefly what you would like help with?,
+D1__prof_patient_noidea,6,"There are no evening slots on those days, but here is what is open. Dr. Sana Khan is available at:
+1. Saturday 19 September, 12:00
+2. Saturday 26 September, 12:00
+Which one would you like?",1.,Your first consultation with Dr. Sana Khan is confirmed for Saturday 19 September at 12:00. Booking reference: b0004.,
+D2b__noprof_inattentive_someidea,12,"Dr. Meera Rao is available at:
+1. Friday 25 September, 10:00
+2. Friday 25 September, 11:00
+Which one would you like?","the earlier one is fine, the 10 o'clock",Your first consultation with Dr. Meera Rao is confirmed for Friday 25 September at 10:00. Booking reference: b0003.,
+D2b__prof_patient_someidea,3,Great. Could you tell me briefly what you would like help with?,I feel dread every morning and I cannot stop picturing things going wrong.,"Great. Do you have a doctor in mind, or would you like us to suggest one?",
+D3__prof_inattentive_noidea,3,Great. Could you share the phone number registered with us?,it's +91 98765 43210,Great. Is this a therapy session or a follow-up?,
+D3__prof_inattentive_noidea,7,"Dr. Meera Rao is available at:
+1. Saturday 19 September, 09:00
+2. Saturday 19 September, 09:30
+3. Saturday 19 September, 10:00
+Which one would you like?","can we do saturday afternoon, like 3pm",Your therapy session with Dr. Meera Rao is confirmed for Saturday 19 September at 09:30. Booking reference: b0001. We look forward to seeing you.,
+D4__noprof_patient_someidea,4,"Great. Do you have a doctor in mind, or would you like us to suggest one?","I don't know any doctors here, whoever you think is best is fine",We suggest Dr. Arjun Iyer. Which days work for you?,
+D4__noprof_patient_someidea,7,Unfortunately Dr. Arjun Iyer is fully booked on Wednesday 23 September and Wednesday 30 September. Which other days could you do?,"I understand, but Wednesday is the only day I can manage","Sorry, I wasn't able to understand your request. Please call our customer care team on 1800-000-0000 and they will help you book an appointment.",

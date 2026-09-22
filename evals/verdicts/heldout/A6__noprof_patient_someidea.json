@@ -1,0 +1,54 @@
+{
+  "card_id": "A6__noprof_patient_someidea",
+  "pool": "heldout",
+  "judge_model": "claude-opus-5",
+  "judged_at": "20260921T161248Z",
+  "session_id": "A6__noprof_patient_someidea__20260918T080005Z",
+  "verdicts": [
+    {
+      "turn": 1,
+      "fits": "yes",
+      "reason": "Greeting and booking request met with a greeting and a sensible first intake question."
+    },
+    {
+      "turn": 2,
+      "fits": "yes",
+      "reason": "User said returning patient; bot asks for the registered phone number, a sensible next step."
+    },
+    {
+      "turn": 3,
+      "fits": "no",
+      "reason": "Ignores the user: a clear phone number was given and the bot re-asks as if nothing was said."
+    },
+    {
+      "turn": 4,
+      "fits": "no",
+      "reason": "Ignores the user again: the number was restated clearly and the bot repeats the same question."
+    },
+    {
+      "turn": 5,
+      "fits": "yes",
+      "reason": "Acknowledges the number, reports no record match, and moves to new-patient intake."
+    },
+    {
+      "turn": 6,
+      "fits": "yes",
+      "reason": "User described their concern; bot moves on to doctor preference, a sensible next question."
+    },
+    {
+      "turn": 7,
+      "fits": "yes",
+      "reason": "User deferred the choice; bot suggests a doctor and asks about days."
+    },
+    {
+      "turn": 8,
+      "fits": "yes",
+      "reason": "User said Monday; bot lists Monday slots and asks which one."
+    },
+    {
+      "turn": 9,
+      "fits": "yes",
+      "reason": "User picked 4 pm; bot confirms that slot with a reference, matching what was said."
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "card_id": "A1__prof_agitated_someidea",
+  "pool": "heldout",
+  "judge_model": "claude-opus-5",
+  "judged_at": "20260921T161131Z",
+  "session_id": "A1__prof_agitated_someidea__20260918T073953Z",
+  "verdicts": [
+    {
+      "turn": 1,
+      "fits": "no",
+      "reason": "Asks what was already answered: user said New patient, bot still asks if this is the first consultation."
+    },
+    {
+      "turn": 2,
+      "fits": "yes",
+      "reason": "Confirmation received, bot moves to the next needed detail."
+    },
+    {
+      "turn": 3,
+      "fits": "yes",
+      "reason": "User gave the reason for the visit, bot advances to doctor choice, a sensible next step."
+    },
+    {
+      "turn": 4,
+      "fits": "yes",
+      "reason": "Doctor named, bot asks for days, the next unanswered detail."
+    },
+    {
+      "turn": 5,
+      "fits": "yes",
+      "reason": "Offers Wednesday afternoon slots matching the day and time the user gave."
+    },
+    {
+      "turn": 6,
+      "fits": "yes",
+      "reason": "Confirms the slot the user selected with the doctor and day already agreed."
+    }
+  ]
+}

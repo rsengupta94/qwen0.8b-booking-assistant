@@ -1,0 +1,44 @@
+{
+  "card_id": "B1__prof_patient_someidea",
+  "pool": "heldout",
+  "judge_model": "claude-opus-5",
+  "judged_at": "20260921T161259Z",
+  "session_id": "B1__prof_patient_someidea__20260918T081136Z",
+  "verdicts": [
+    {
+      "turn": 1,
+      "fits": "yes",
+      "reason": "Greeting answered with greeting plus a sensible first booking question."
+    },
+    {
+      "turn": 2,
+      "fits": "yes",
+      "reason": "User answered first-visit question; bot moves to the next needed detail."
+    },
+    {
+      "turn": 3,
+      "fits": "yes",
+      "reason": "User gave the reason for the visit; bot acknowledges receipt and asks the next unanswered question."
+    },
+    {
+      "turn": 4,
+      "fits": "yes",
+      "reason": "User deferred the choice; bot suggests a doctor and asks about days."
+    },
+    {
+      "turn": 5,
+      "fits": "no",
+      "reason": "Invents an acknowledgement: user never asked for evening slots, but reply answers an evening request."
+    },
+    {
+      "turn": 6,
+      "fits": "no",
+      "reason": "Invents an acknowledgement: user never asked for morning slots, but reply answers a morning request."
+    },
+    {
+      "turn": 7,
+      "fits": "yes",
+      "reason": "User picked option 1; bot confirms that exact slot."
+    }
+  ]
+}

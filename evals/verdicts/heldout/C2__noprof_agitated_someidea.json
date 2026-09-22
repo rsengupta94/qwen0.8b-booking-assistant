@@ -1,0 +1,49 @@
+{
+  "card_id": "C2__noprof_agitated_someidea",
+  "pool": "heldout",
+  "judge_model": "claude-opus-5",
+  "judged_at": "20260921T161443Z",
+  "session_id": "C2__noprof_agitated_someidea__20260918T083446Z",
+  "verdicts": [
+    {
+      "turn": 1,
+      "fits": "yes",
+      "reason": "Greeting plus a sensible opening intake question after a request for an appointment."
+    },
+    {
+      "turn": 2,
+      "fits": "yes",
+      "reason": "Accepts the first-time answer and asks the next unanswered question."
+    },
+    {
+      "turn": 3,
+      "fits": "yes",
+      "reason": "User declined to give a reason; moving to the doctor question is a sensible next step."
+    },
+    {
+      "turn": 4,
+      "fits": "yes",
+      "reason": "User asked the bot to pick; bot suggests a doctor and asks for days."
+    },
+    {
+      "turn": 5,
+      "fits": "yes",
+      "reason": "Offers Thursday slots matching the day the user gave."
+    },
+    {
+      "turn": 6,
+      "fits": "no",
+      "reason": "Ignores the user selecting the sooner slot and re-asks which days work, already settled as Thursday."
+    },
+    {
+      "turn": 7,
+      "fits": "yes",
+      "reason": "Acknowledges Thursday by offering Thursday slots again."
+    },
+    {
+      "turn": 8,
+      "fits": "yes",
+      "reason": "Confirms the earliest morning slot the user chose."
+    }
+  ]
+}

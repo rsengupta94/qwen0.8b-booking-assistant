@@ -1,0 +1,44 @@
+{
+  "card_id": "D2a__prof_agitated_someidea",
+  "pool": "heldout",
+  "judge_model": "claude-opus-5",
+  "judged_at": "20260921T161522Z",
+  "session_id": "D2a__prof_agitated_someidea__20260918T084702Z",
+  "verdicts": [
+    {
+      "turn": 1,
+      "fits": "yes",
+      "reason": "Greeting plus a normal first-consultation intake question is a sensible opening after a booking request."
+    },
+    {
+      "turn": 2,
+      "fits": "no",
+      "reason": "Asks what was already answered: the user stated the concern in turn 1, and the bot asks for it again."
+    },
+    {
+      "turn": 3,
+      "fits": "yes",
+      "reason": "Takes the stated concern and moves to the next open question about doctor choice."
+    },
+    {
+      "turn": 4,
+      "fits": "yes",
+      "reason": "Reasonable disambiguation of the ambiguous doctor name the user gave."
+    },
+    {
+      "turn": 5,
+      "fits": "yes",
+      "reason": "Accepts the chosen doctor and asks the next unanswered question about days."
+    },
+    {
+      "turn": 6,
+      "fits": "yes",
+      "reason": "Offers Wednesday afternoon slots, matching the day and time the user gave."
+    },
+    {
+      "turn": 7,
+      "fits": "yes",
+      "reason": "Confirms the slot the user selected with its details; no invented acknowledgement."
+    }
+  ]
+}
