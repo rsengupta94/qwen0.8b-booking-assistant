@@ -75,6 +75,32 @@ Manual: a Claude Code session spawns fresh sub-agents on the strongest model ove
 - The labelling sheet is `evals/calibration/labels.xlsx` (labels sheet plus a full-conversation trace sheet); the merge reads it directly, with the CSV as fallback.
 - Result: 90 percent agreement on 40 dev replies; 152 of 488 held-out replies judged as not fitting.
 
+## Handoff for E5 (written 2026-09-23)
+
+**Status.** E1 to E4 are done and green: `4dfe1f7`, `becb861`, `ce386c2`, `d105f5c`. E5 is next. Start it the usual way: list the files to create or change and wait for confirmation, then write `checks/eval_5.sh` first.
+
+**Current results file:** `evals/results/generation_baseline_qwen3.5-0.8b-q8_set1_20260923T230445.json`. It is the only one with a `judge` section. The two 2026-09-21 files are earlier E3 runs with identical scoring numbers and no judge data. Each E3 check run writes another results file; that accumulation is known and not yet addressed.
+
+**Numbers the UI must reproduce**, as a correctness check on the tab:
+
+| Metric | Value |
+|---|---|
+| Held-out sessions passed | 42 of 61 |
+| Calls, both pools: pass / rescued / silent-wrong / unscored | 805 / 78 / 168 / 629 |
+| Judge agreement on 40 human labels | 0.9 |
+| Held-out replies judged as not fitting | 152 of 488 |
+
+**Open questions to settle before building.** Recommendations are mine; the decisions are the user's.
+
+1. *Held-out drill-down.* The spec says a heatmap cell opens its turns and log lines. For held-out cards that puts held-out conversations on screen, which breaks the rule that held-out text is never read while writing prompts (CLAUDE.md rule 8, decision log D1 and D4). **Recommended:** dev drill-down shows everything; held-out drill-down shows structured fields only (prompt, expected versus actual value, outcome, reason code) and never user or bot text. Contamination is about phrasing, so this keeps the headline clickable without leaking it.
+2. *Which runs the run list shows.* **Recommended:** the latest run per (`prompt_version`, `model_id`, `eval_set_version`), which today is one run. Older runs stay on disk.
+3. *Rule 8 and the new routes.* E5 adds `/evals/runs` and `/evals/runs/{id}` to the product. **Recommended wording:** the product may read `evals/results/*.json` as data files; it must not import anything from the `evals` package. The eval code writes results; the product only reads JSON.
+4. *Which pool the headline shows.* The design says reported numbers come only from held-out. **Recommended:** held-out is the default view; dev is available but labelled as dev.
+
+**Before drawing the heatmap:** load the `dataviz` skill; cells are rates over calls made, with counts on hover (eval design section 8).
+
+**Working norm for the article.** At the end of every eval phase, add a dated entry to `docs/eval_findings_log.md` (numbers, harness lessons, product observations) and add any decision with its rejected alternative to `docs/eval_decision_log.md`. The user is writing an article from these two files.
+
 ## E5: Evals tab
 
 An Evals tab in the web UI reading `evals/results/`. Views: session pass rate, prompt x outcome-class heatmap with rates and hover counts, click-through from cell to turns to JSONL lines, discard rate, judge agreement. Comparison view: results format supports two runs side by side; the view is built when a second `prompt_version` exists. `/evals/runs` and `/evals/runs/{id}` endpoints.
