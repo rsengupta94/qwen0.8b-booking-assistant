@@ -1,54 +1,54 @@
 {
   "card_id": "C1__noprof_inattentive_someidea",
   "pool": "heldout",
-  "judge_model": "claude-opus-5",
-  "judged_at": "20260921T161441Z",
+  "judge_model": "claude-opus-5-5",
+  "judged_at": "20260923T165102Z",
   "session_id": "C1__noprof_inattentive_someidea__20260918T083051Z",
   "verdicts": [
     {
       "turn": 1,
       "fits": "yes",
-      "reason": "Greeting plus a relevant intake question is a sensible opening after a booking request."
+      "reason": "Greeting and booking request met with a welcome and a sensible first intake question."
     },
     {
       "turn": 2,
       "fits": "yes",
-      "reason": "Accepts the first-time answer and asks the next unsettled question."
+      "reason": "User confirmed first visit; asking them to describe what they need help with is a natural next step."
     },
     {
       "turn": 3,
       "fits": "yes",
-      "reason": "Takes the stated concern and moves to the doctor question, nothing ignored or invented."
+      "reason": "User described their concern; bot moves on to doctor preference, a sensible next question."
     },
     {
       "turn": 4,
       "fits": "yes",
-      "reason": "User asked it to pick, bot picks a doctor and asks for days."
+      "reason": "User asked bot to pick a doctor; bot suggests one and asks for days."
     },
     {
       "turn": 5,
       "fits": "no",
-      "reason": "Ignores the user question about being a bot and re-asks the doctor question already settled at turn 4."
+      "reason": "Ignores the user question about whether they are talking to a bot, and re-asks doctor preference already settled."
     },
     {
       "turn": 6,
       "fits": "yes",
-      "reason": "Responds to the repeated request to pick a doctor by naming one and asking for days."
+      "reason": "User again asked bot to pick someone; bot suggests a doctor and asks for days."
     },
     {
       "turn": 7,
       "fits": "yes",
-      "reason": "Answers the stated day with slot availability and asks for an alternative."
+      "reason": "User asked for Sunday; bot reports no Sunday slots and asks about another day."
     },
     {
       "turn": 8,
-      "fits": "no",
-      "reason": "User said no other day works; bot repeats the identical question already answered."
+      "fits": "yes",
+      "reason": "User insists on Sunday; restating no Sunday availability and asking for another day fits."
     },
     {
       "turn": 9,
       "fits": "yes",
-      "reason": "Handoff follows a genuine stall: no Sunday slots and no alternative day possible."
+      "reason": "Conversation genuinely stalled: user can only do Sunday and none is free, so a customer care handoff fits."
     }
   ]
 }

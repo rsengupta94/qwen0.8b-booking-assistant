@@ -1,39 +1,39 @@
 {
   "card_id": "B5__prof_agitated_someidea",
   "pool": "heldout",
-  "judge_model": "claude-opus-5",
-  "judged_at": "20260921T161336Z",
+  "judge_model": "claude-opus-5-5",
+  "judged_at": "20260923T164951Z",
   "session_id": "B5__prof_agitated_someidea__20260918T082120Z",
   "verdicts": [
     {
       "turn": 1,
-      "fits": "yes",
-      "reason": "Greeting plus a relevant opening question about first visit; fits the booking request."
+      "fits": "no",
+      "reason": "Asks what was already answered: user had just said it was their first time here."
     },
     {
       "turn": 2,
       "fits": "yes",
-      "reason": "User confirmed first visit; bot moves on to ask the reason for the visit."
+      "reason": "User confirmed first visit; asking what they need help with is a sensible next step."
     },
     {
       "turn": 3,
-      "fits": "yes",
-      "reason": "User described symptoms and urgency; bot sensibly moves to doctor selection."
+      "fits": "no",
+      "reason": "Asks what was already answered: user said just get me someone, so asking about a doctor preference re-asks a settled point."
     },
     {
       "turn": 4,
       "fits": "yes",
-      "reason": "User asked the bot to pick; bot suggests a doctor and asks about days."
+      "reason": "User asked the bot to pick; bot suggests a doctor and moves on to days."
     },
     {
       "turn": 5,
       "fits": "no",
-      "reason": "Ignores the user: cost question gets no mention, bot just lists time slots."
+      "reason": "Ignores the user: user asked about cost and the reply lists slots with no mention of cost."
     },
     {
       "turn": 6,
       "fits": "yes",
-      "reason": "User picked option 2; bot confirms that exact slot with a reference."
+      "reason": "User picked option 2 and the bot confirms that exact slot."
     }
   ]
 }

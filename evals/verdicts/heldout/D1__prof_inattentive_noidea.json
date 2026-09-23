@@ -1,49 +1,49 @@
 {
   "card_id": "D1__prof_inattentive_noidea",
   "pool": "heldout",
-  "judge_model": "claude-opus-5",
-  "judged_at": "20260921T161513Z",
+  "judge_model": "claude-opus-5-5",
+  "judged_at": "20260923T165158Z",
   "session_id": "D1__prof_inattentive_noidea__20260918T084418Z",
   "verdicts": [
     {
       "turn": 1,
       "fits": "yes",
-      "reason": "Greeting plus a sensible opening question after the user asks to book."
+      "reason": "Greeting reply to a booking request; asks a sensible opening question."
     },
     {
       "turn": 2,
       "fits": "yes",
-      "reason": "Accepts the first-time answer and moves to the next needed detail."
+      "reason": "User confirmed first visit; bot moves to asking what they need help with."
     },
     {
       "turn": 3,
       "fits": "yes",
-      "reason": "User answered the reason-for-visit question; bot proceeds to doctor choice, which follows."
+      "reason": "User answered the reason question; moving to doctor preference is a sensible next step (tone of Great is out of scope)."
     },
     {
       "turn": 4,
       "fits": "yes",
-      "reason": "User deferred the choice; bot suggests a doctor and asks for days."
+      "reason": "User asked bot to pick; bot suggests a doctor and asks about days."
     },
     {
       "turn": 5,
-      "fits": "no",
-      "reason": "Invents an acknowledgement: refers to no morning slots on those days when the user never named any days."
+      "fits": "yes",
+      "reason": "Addresses the morning preference by saying none are open and offering alternatives."
     },
     {
       "turn": 6,
       "fits": "no",
-      "reason": "Asks what was already answered: user said Saturday afternoon, bot asks which days work."
+      "reason": "Asks what was already answered: user just named Saturday, yet bot asks which days work."
     },
     {
       "turn": 7,
       "fits": "yes",
-      "reason": "User said Saturday; bot lists Saturday slots and asks to pick one."
+      "reason": "User said Saturday; bot lists Saturday slots."
     },
     {
       "turn": 8,
       "fits": "yes",
-      "reason": "User picked option 1; bot confirms that slot with a reference."
+      "reason": "User picked option 1; bot confirms that exact slot."
     }
   ]
 }

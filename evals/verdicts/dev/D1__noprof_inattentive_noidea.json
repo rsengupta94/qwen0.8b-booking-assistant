@@ -1,0 +1,54 @@
+{
+  "card_id": "D1__noprof_inattentive_noidea",
+  "pool": "dev",
+  "judge_model": "claude-opus-5-5",
+  "judged_at": "20260923T164707Z",
+  "session_id": "D1__noprof_inattentive_noidea__20260918T051657Z",
+  "verdicts": [
+    {
+      "turn": 1,
+      "fits": "yes",
+      "reason": "Greets and asks a sensible opening question after a booking request."
+    },
+    {
+      "turn": 2,
+      "fits": "yes",
+      "reason": "Accepts first-visit answer and moves on to ask what help is needed."
+    },
+    {
+      "turn": 3,
+      "fits": "yes",
+      "reason": "User answered the reason question; moving to doctor choice fits (the Great is a tone issue, out of scope)."
+    },
+    {
+      "turn": 4,
+      "fits": "no",
+      "reason": "Ignores the user: they asked if a real person is typing and the bot repeats the doctor question without answering."
+    },
+    {
+      "turn": 5,
+      "fits": "yes",
+      "reason": "User asked the clinic to pick; bot suggests a doctor and asks about days."
+    },
+    {
+      "turn": 6,
+      "fits": "yes",
+      "reason": "User said Saturday; bot lists Saturday slots."
+    },
+    {
+      "turn": 7,
+      "fits": "no",
+      "reason": "Invents an acknowledgement: user asked for a different time (3pm), bot treats it as wanting other days and ignores the time."
+    },
+    {
+      "turn": 8,
+      "fits": "yes",
+      "reason": "User restated Saturday; re-listing the Saturday slots is a sensible reply."
+    },
+    {
+      "turn": 9,
+      "fits": "yes",
+      "reason": "User picked the 11:00 slot and the bot confirms exactly that."
+    }
+  ]
+}

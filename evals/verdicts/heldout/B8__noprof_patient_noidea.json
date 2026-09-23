@@ -1,39 +1,39 @@
 {
   "card_id": "B8__noprof_patient_noidea",
   "pool": "heldout",
-  "judge_model": "claude-opus-5",
-  "judged_at": "20260921T161403Z",
+  "judge_model": "claude-opus-5-5",
+  "judged_at": "20260923T165050Z",
   "session_id": "B8__noprof_patient_noidea__20260918T082557Z",
   "verdicts": [
     {
       "turn": 1,
       "fits": "yes",
-      "reason": "Greeting answered with a greeting and a sensible first booking question."
+      "reason": "Greeting and booking request met with a welcome and a sensible first question."
     },
     {
       "turn": 2,
       "fits": "yes",
-      "reason": "Accepts the first-time answer and moves to the reason for the visit."
+      "reason": "User confirmed first visit; bot moves on to ask what help is needed."
     },
     {
       "turn": 3,
       "fits": "yes",
-      "reason": "Acknowledges the described concern and advances to doctor choice; nothing ignored or invented."
+      "reason": "User answered the reason question; bot sensibly moves to doctor preference (odd tone of Great is not judged)."
     },
     {
       "turn": 4,
       "fits": "yes",
-      "reason": "User asked the bot to choose, and the bot names a doctor then asks about days."
+      "reason": "User asked bot to pick; bot suggests a doctor and asks about days."
     },
     {
       "turn": 5,
       "fits": "yes",
-      "reason": "Responds to the day preference with concrete slots to pick from."
+      "reason": "User gave rough timing; bot offers concrete slots and asks which one."
     },
     {
       "turn": 6,
       "fits": "yes",
-      "reason": "Confirms the exact slot the user selected."
+      "reason": "User chose the 11:00 slot; bot confirms exactly that slot."
     }
   ]
 }

@@ -67,3 +67,18 @@ Harness lessons this phase (each now a rule or code):
 - Never replay against a fixed port: a stale server answers /health with old bookings and the wrong clock. Fresh port per card, and refuse a port with a listener.
 - Killing a `uv run` wrapper leaves uvicorn alive with the model loaded. Kill the process group.
 - The product's shortlist pick is used for slot routing only; expected doctors come from the card.
+
+## 2026-09-23, E4 judge: reply coherence, calibrated on 40 human labels
+
+Judge: `claude-opus-5-5`, one sub-agent per conversation, reading the stripped conversation only. 81 conversations, 665 bot replies.
+
+Calibration on 40 dev replies labelled by the human before any dev verdict existed: agreement 36 of 40, 90 percent, floor 75 percent. All four disagreements were human yes, judge no. The judge caught every one of the 16 human no's. Of the four, one matched a pattern the human had marked no elsewhere (a time of day the patient never asked for), one was a question the patient had already answered, and two were hand-offs, where the judge applies the brief's "hand-off after a clear answer is a no" rule more strictly than the human did. The brief and labels were not edited after the comparison.
+
+Held-out coherence: 152 of 488 replies judged as not fitting the previous patient message, 31 percent.
+
+Model pinning finding: the first held-out judging ran on the Opus model current at the time and was labelled `claude-opus-5` by the orchestrator, not by the judge. The dev calibration ran on `claude-opus-5-5`. Re-judging held-out on the calibrated model changed 33 of 488 verdicts (26 yes to no, 7 no to yes) and moved the not-fitting count from 133 to 152. Agreement between the two judge versions was 93 percent. Old verdicts remain in git at 7c42fa1.
+
+Harness lessons:
+- The judge must report its own model id from its system prompt; an orchestrator-typed label is not evidence.
+- The E4 check now fails if verdict files name more than one judge model.
+- Excel re-saves integer columns as decimals; the merge reads turn numbers through float first.

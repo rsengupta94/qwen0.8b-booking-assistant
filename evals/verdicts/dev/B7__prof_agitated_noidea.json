@@ -1,0 +1,49 @@
+{
+  "card_id": "B7__prof_agitated_noidea",
+  "pool": "dev",
+  "judge_model": "claude-opus-5-5",
+  "judged_at": "20260923T164700Z",
+  "session_id": "B7__prof_agitated_noidea__20260918T051040Z",
+  "verdicts": [
+    {
+      "turn": 1,
+      "fits": "no",
+      "reason": "Asks what was already answered: user said it is their first time, bot asks whether it is their first consultation."
+    },
+    {
+      "turn": 2,
+      "fits": "yes",
+      "reason": "User confirmed first visit; asking what they want help with is a sensible next step."
+    },
+    {
+      "turn": 3,
+      "fits": "no",
+      "reason": "Asks what was already answered: user said anyone free is fine, bot asks if they have a doctor in mind."
+    },
+    {
+      "turn": 4,
+      "fits": "yes",
+      "reason": "User asked the bot to pick; bot suggests a doctor and asks about days."
+    },
+    {
+      "turn": 5,
+      "fits": "no",
+      "reason": "Ignores the cost question and invents a Friday request the user never made."
+    },
+    {
+      "turn": 6,
+      "fits": "no",
+      "reason": "Ignores the question about the first visit and repeats an invented Friday request."
+    },
+    {
+      "turn": 7,
+      "fits": "yes",
+      "reason": "User asked for Tuesday morning; bot lists Tuesday morning slots."
+    },
+    {
+      "turn": 8,
+      "fits": "yes",
+      "reason": "User picked option 1; bot confirms that exact slot."
+    }
+  ]
+}

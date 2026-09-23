@@ -49,7 +49,7 @@ def agreement(labels_path: Path, verdicts: dict[str, dict]) -> dict:
         v = verdicts.get(r["card_id"])
         if not v:
             continue
-        j = next((x["fits"] for x in v["verdicts"] if x["turn"] == int(r["turn"])), None)
+        j = next((x["fits"] for x in v["verdicts"] if x["turn"] == int(float(r["turn"]))), None)
         if j is None:
             continue
         matched += 1

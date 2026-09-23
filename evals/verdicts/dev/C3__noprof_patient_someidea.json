@@ -1,0 +1,64 @@
+{
+  "card_id": "C3__noprof_patient_someidea",
+  "pool": "dev",
+  "judge_model": "claude-opus-5-5",
+  "judged_at": "20260923T164705Z",
+  "session_id": "C3__noprof_patient_someidea__20260918T052353Z",
+  "verdicts": [
+    {
+      "turn": 1,
+      "fits": "yes",
+      "reason": "Booking request met with a welcome and a relevant first-visit question."
+    },
+    {
+      "turn": 2,
+      "fits": "yes",
+      "reason": "User confirmed first visit; bot sensibly asks what they need help with."
+    },
+    {
+      "turn": 3,
+      "fits": "yes",
+      "reason": "User answered the help question; moving on to doctor preference is a sensible next step."
+    },
+    {
+      "turn": 4,
+      "fits": "no",
+      "reason": "Ignores the user: they asked to take back their reason and gave a new one, bot repeats prior reply with no acknowledgement."
+    },
+    {
+      "turn": 5,
+      "fits": "yes",
+      "reason": "User had no doctor in mind; bot suggests one and asks about days."
+    },
+    {
+      "turn": 6,
+      "fits": "yes",
+      "reason": "Acknowledges the doctor choice and re-asks days, which the user had not yet answered."
+    },
+    {
+      "turn": 7,
+      "fits": "no",
+      "reason": "Invents an acknowledgement: says no evening slots though the user never asked for evenings."
+    },
+    {
+      "turn": 8,
+      "fits": "no",
+      "reason": "Invents an acknowledgement: says no morning slots though the user never asked for mornings."
+    },
+    {
+      "turn": 9,
+      "fits": "no",
+      "reason": "Asks what was already answered: user just said Saturday, bot asks which days work."
+    },
+    {
+      "turn": 10,
+      "fits": "yes",
+      "reason": "User said Saturday; bot lists Saturday slots and asks which one."
+    },
+    {
+      "turn": 11,
+      "fits": "yes",
+      "reason": "User picked the 11:00 on the nearest Saturday; bot confirms that slot."
+    }
+  ]
+}

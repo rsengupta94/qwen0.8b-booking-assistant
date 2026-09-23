@@ -1,49 +1,49 @@
 {
   "card_id": "B8__noprof_inattentive_someidea",
   "pool": "heldout",
-  "judge_model": "claude-opus-5",
-  "judged_at": "20260921T161403Z",
+  "judge_model": "claude-opus-5-5",
+  "judged_at": "20260923T165053Z",
   "session_id": "B8__noprof_inattentive_someidea__20260918T082535Z",
   "verdicts": [
     {
       "turn": 1,
       "fits": "yes",
-      "reason": "Greeting plus a sensible first-consultation question after a booking request."
+      "reason": "User asks to book; bot greets and asks if first consultation, a sensible opening."
     },
     {
       "turn": 2,
       "fits": "yes",
-      "reason": "Accepts the first-time answer and asks the next unanswered question."
+      "reason": "User confirms first visit; bot asks what they need help with, a natural next step."
     },
     {
       "turn": 3,
       "fits": "yes",
-      "reason": "Takes the stated concern and moves to doctor choice; nothing invented or re-asked."
+      "reason": "User describes concern; bot moves on to doctor preference, a sensible next question."
     },
     {
       "turn": 4,
       "fits": "yes",
-      "reason": "User deferred the choice, so the bot suggests a doctor and asks for days."
+      "reason": "User asks bot to pick; bot suggests a doctor and asks about days."
     },
     {
       "turn": 5,
       "fits": "yes",
-      "reason": "Offers concrete slots in response to the day preference."
+      "reason": "User gives day preferences; bot offers slots in response."
     },
     {
       "turn": 6,
       "fits": "no",
-      "reason": "Asks what was already answered: re-asks which days after the user gave days in turn 5 and asked about evening times."
+      "reason": "Ignores the evening-time request and re-asks which days work, which the user already answered."
     },
     {
       "turn": 7,
       "fits": "no",
-      "reason": "Ignores the user: no acknowledgement that they asked whether this is a bot or a person."
+      "reason": "Ignores the user direct question about whether they are talking to a real person or a bot."
     },
     {
       "turn": 8,
       "fits": "yes",
-      "reason": "Confirms the earliest listed slot, which is what the user chose."
+      "reason": "User picks the earliest slot; bot confirms the 09:00 slot, matching the request."
     }
   ]
 }

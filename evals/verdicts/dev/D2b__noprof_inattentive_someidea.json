@@ -1,0 +1,69 @@
+{
+  "card_id": "D2b__noprof_inattentive_someidea",
+  "pool": "dev",
+  "judge_model": "claude-opus-5-5",
+  "judged_at": "20260923T164705Z",
+  "session_id": "D2b__noprof_inattentive_someidea__20260918T045851Z",
+  "verdicts": [
+    {
+      "turn": 1,
+      "fits": "yes",
+      "reason": "Greeting answered with a welcome and a sensible opening question."
+    },
+    {
+      "turn": 2,
+      "fits": "yes",
+      "reason": "User confirmed first visit; bot moves on to ask what they need help with."
+    },
+    {
+      "turn": 3,
+      "fits": "yes",
+      "reason": "User answered the reason question; bot proceeds to the next step, asking about a doctor."
+    },
+    {
+      "turn": 4,
+      "fits": "yes",
+      "reason": "Doctor name given was not recognized; a plain re-ask of the doctor question is sensible."
+    },
+    {
+      "turn": 5,
+      "fits": "yes",
+      "reason": "User named the doctor; bot moves to asking which days, compatible with the mornings note."
+    },
+    {
+      "turn": 6,
+      "fits": "no",
+      "reason": "Ignores the user asking if this is a real person, and re-asks the doctor question already answered."
+    },
+    {
+      "turn": 7,
+      "fits": "yes",
+      "reason": "User restated the doctor; bot asks which days, which was still unanswered."
+    },
+    {
+      "turn": 8,
+      "fits": "yes",
+      "reason": "User said Friday mornings; bot offers Friday morning slots with that doctor."
+    },
+    {
+      "turn": 9,
+      "fits": "no",
+      "reason": "Ignores the request for a 9am slot and re-asks the doctor question already settled."
+    },
+    {
+      "turn": 10,
+      "fits": "no",
+      "reason": "Asks which days again although the user already said Friday earlier in the conversation."
+    },
+    {
+      "turn": 11,
+      "fits": "yes",
+      "reason": "User said Friday; bot offers Friday slots with the named doctor."
+    },
+    {
+      "turn": 12,
+      "fits": "yes",
+      "reason": "User chose the 10:00 slot; bot confirms that exact slot."
+    }
+  ]
+}

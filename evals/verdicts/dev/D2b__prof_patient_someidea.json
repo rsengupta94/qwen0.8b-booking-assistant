@@ -1,0 +1,44 @@
+{
+  "card_id": "D2b__prof_patient_someidea",
+  "pool": "dev",
+  "judge_model": "claude-opus-5-5",
+  "judged_at": "20260923T164700Z",
+  "session_id": "D2b__prof_patient_someidea__20260918T051721Z",
+  "verdicts": [
+    {
+      "turn": 1,
+      "fits": "yes",
+      "reason": "User asks to book; bot welcomes and asks if first consultation, a sensible opener."
+    },
+    {
+      "turn": 2,
+      "fits": "yes",
+      "reason": "User confirms first visit; bot moves on to ask what help is needed."
+    },
+    {
+      "turn": 3,
+      "fits": "yes",
+      "reason": "User answered the help question; bot proceeds to ask about doctor preference."
+    },
+    {
+      "turn": 4,
+      "fits": "no",
+      "reason": "Asks what was already answered: user clearly named a doctor, bot re-asks whether they have one in mind."
+    },
+    {
+      "turn": 5,
+      "fits": "yes",
+      "reason": "User names Dr. Meera Rao; bot accepts and asks which days work."
+    },
+    {
+      "turn": 6,
+      "fits": "yes",
+      "reason": "User asks for Friday mornings; bot offers Friday morning slots with that doctor."
+    },
+    {
+      "turn": 7,
+      "fits": "yes",
+      "reason": "User picks option 1; bot confirms exactly that slot."
+    }
+  ]
+}

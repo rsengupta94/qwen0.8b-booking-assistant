@@ -1,59 +1,59 @@
 {
   "card_id": "D4__noprof_agitated_someidea",
   "pool": "heldout",
-  "judge_model": "claude-opus-5",
-  "judged_at": "20260921T161557Z",
+  "judge_model": "claude-opus-5-5",
+  "judged_at": "20260923T165200Z",
   "session_id": "D4__noprof_agitated_someidea__20260918T085137Z",
   "verdicts": [
     {
       "turn": 1,
       "fits": "yes",
-      "reason": "Standard intake question after a greeting; fits the opening message."
+      "reason": "Greeting plus a sensible intake question after the user opened the conversation."
     },
     {
       "turn": 2,
-      "fits": "yes",
-      "reason": "Follows the yes answer with the next intake question."
+      "fits": "no",
+      "reason": "Asks what was already answered: the user already said they need help with anxiety."
     },
     {
       "turn": 3,
       "fits": "yes",
-      "reason": "Takes the description and moves to doctor preference; nothing ignored or invented."
+      "reason": "User described the concern; moving on to doctor preference is a sensible next step."
     },
     {
       "turn": 4,
       "fits": "yes",
-      "reason": "User asked it to pick; bot names a doctor and asks for days."
+      "reason": "User asked the bot to pick; it suggests a doctor and asks for days."
     },
     {
       "turn": 5,
       "fits": "yes",
-      "reason": "Answers the Wednesday request with availability and asks for alternatives."
+      "reason": "Addresses the Wednesday request directly and asks for alternatives."
     },
     {
       "turn": 6,
       "fits": "no",
-      "reason": "Asks what was already answered: doctor choice was settled at turn 4, and the Wednesday statement is ignored."
+      "reason": "Ignores the user saying Wednesday is the only option and re-asks the settled doctor question."
     },
     {
       "turn": 7,
       "fits": "no",
-      "reason": "Ignores the user: repeats the settled doctor question and does not address the question asked."
+      "reason": "Asks what was already answered and ignores the user asking if they are talking to a real person."
     },
     {
       "turn": 8,
-      "fits": "yes",
-      "reason": "User asked it to choose; bot names a doctor and asks for days."
+      "fits": "no",
+      "reason": "Picks a doctor but asks which days work, which was already settled as Wednesday only."
     },
     {
       "turn": 9,
       "fits": "yes",
-      "reason": "Reports availability for the requested Wednesday and asks for other days."
+      "reason": "Addresses the Wednesday request for the new doctor and asks for alternatives."
     },
     {
       "turn": 10,
       "fits": "yes",
-      "reason": "Handoff after the day question stalled twice with no alternative offered."
+      "reason": "Conversation genuinely stalled on the days question, so handing off to customer care fits."
     }
   ]
 }

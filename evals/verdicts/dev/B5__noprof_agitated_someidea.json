@@ -1,0 +1,69 @@
+{
+  "card_id": "B5__noprof_agitated_someidea",
+  "pool": "dev",
+  "judge_model": "claude-opus-5-5",
+  "judged_at": "20260923T164620Z",
+  "session_id": "B5__noprof_agitated_someidea__20260918T050959Z",
+  "verdicts": [
+    {
+      "turn": 1,
+      "fits": "yes",
+      "reason": "Greeting plus first-visit question is a sensible opening after a booking request."
+    },
+    {
+      "turn": 2,
+      "fits": "no",
+      "reason": "Asks what was already answered: user described the concern in turn 1."
+    },
+    {
+      "turn": 3,
+      "fits": "yes",
+      "reason": "User gave their concern; moving to doctor preference is a sensible next step."
+    },
+    {
+      "turn": 4,
+      "fits": "yes",
+      "reason": "User asked bot to pick; bot suggests a doctor and asks for days."
+    },
+    {
+      "turn": 5,
+      "fits": "no",
+      "reason": "Ignores the user: cost question gets no mention, bot lists slots instead."
+    },
+    {
+      "turn": 6,
+      "fits": "no",
+      "reason": "Ignores the slot choice and re-asks doctor preference, which was already answered."
+    },
+    {
+      "turn": 7,
+      "fits": "yes",
+      "reason": "User said pick whoever; bot picks a doctor and asks for days."
+    },
+    {
+      "turn": 8,
+      "fits": "yes",
+      "reason": "Responds to Friday with availability for that day and offers another day."
+    },
+    {
+      "turn": 9,
+      "fits": "no",
+      "reason": "Ignores the user: request for a different doctor on Friday gets the same repeated message."
+    },
+    {
+      "turn": 10,
+      "fits": "no",
+      "reason": "Asks what was already answered: user said twice to just pick whoever."
+    },
+    {
+      "turn": 11,
+      "fits": "no",
+      "reason": "Asks what was already answered: user had repeatedly said Friday is the only day."
+    },
+    {
+      "turn": 12,
+      "fits": "no",
+      "reason": "User clearly answered Friday; handing off to customer care is not warranted."
+    }
+  ]
+}

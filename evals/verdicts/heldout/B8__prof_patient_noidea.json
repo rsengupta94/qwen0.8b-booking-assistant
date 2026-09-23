@@ -1,39 +1,39 @@
 {
   "card_id": "B8__prof_patient_noidea",
   "pool": "heldout",
-  "judge_model": "claude-opus-5",
-  "judged_at": "20260921T161407Z",
+  "judge_model": "claude-opus-5-5",
+  "judged_at": "20260923T165051Z",
   "session_id": "B8__prof_patient_noidea__20260918T082624Z",
   "verdicts": [
     {
       "turn": 1,
       "fits": "yes",
-      "reason": "Greeting answered with a welcome and a relevant first-visit question."
+      "reason": "User asks to book; bot welcomes and asks if it is a first consultation, a sensible opener."
     },
     {
       "turn": 2,
       "fits": "yes",
-      "reason": "Takes the yes answer and moves to the next unanswered question."
+      "reason": "User confirms first visit; bot moves on to ask what they need help with."
     },
     {
       "turn": 3,
       "fits": "yes",
-      "reason": "Accepts the described concern and moves to doctor preference; nothing ignored or invented."
+      "reason": "User answers the help question; bot takes it and moves to doctor preference without re-asking anything."
     },
     {
       "turn": 4,
       "fits": "yes",
-      "reason": "User deferred the choice, so the bot picks a doctor and asks about days."
+      "reason": "User has no preference; bot suggests a doctor and asks about days, which fits."
     },
     {
       "turn": 5,
       "fits": "yes",
-      "reason": "Answers the stated timing window with concrete slots and a choice."
+      "reason": "User gives timing preferences; bot offers concrete slots in response, nothing settled is re-asked."
     },
     {
       "turn": 6,
       "fits": "yes",
-      "reason": "Confirms exactly the slot the user selected."
+      "reason": "User picks option 1; bot confirms exactly that slot."
     }
   ]
 }

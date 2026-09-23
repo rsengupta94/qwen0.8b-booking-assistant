@@ -1,44 +1,44 @@
 {
   "card_id": "C1__prof_agitated_noidea",
   "pool": "heldout",
-  "judge_model": "claude-opus-5",
-  "judged_at": "20260921T161444Z",
+  "judge_model": "claude-opus-5-5",
+  "judged_at": "20260923T165052Z",
   "session_id": "C1__prof_agitated_noidea__20260918T083246Z",
   "verdicts": [
     {
       "turn": 1,
       "fits": "yes",
-      "reason": "Opens with a greeting and a relevant first-visit question after the booking request."
+      "reason": "Greeting and first-consultation question is a sensible opener to a booking request."
     },
     {
       "turn": 2,
       "fits": "yes",
-      "reason": "Accepts the first-time answer and phone, then asks the next unanswered thing."
+      "reason": "Acknowledges first visit and moves to asking what help is needed."
     },
     {
       "turn": 3,
       "fits": "no",
-      "reason": "Asks what was already answered: user said pick whichever doctor is free, bot still asks if they have one in mind."
+      "reason": "Asks what was already answered: user just said to pick whichever doctor is free."
     },
     {
       "turn": 4,
       "fits": "yes",
-      "reason": "Acts on the user leaving the choice to the bot and moves to days."
+      "reason": "User let the clinic choose; bot suggests a doctor and asks for days."
     },
     {
       "turn": 5,
       "fits": "yes",
-      "reason": "Responds directly to Sunday with no availability and asks for an alternative."
+      "reason": "Responds to Sunday with availability and asks for another day."
     },
     {
       "turn": 6,
       "fits": "yes",
-      "reason": "Plain re-ask of the alternative-day question the user did not answer."
+      "reason": "User repeats Sunday; bot restates Sunday has no slots and asks for another day, a fitting re-ask."
     },
     {
       "turn": 7,
-      "fits": "no",
-      "reason": "User answered the day question clearly, so a cannot-understand handoff does not fit."
+      "fits": "yes",
+      "reason": "Conversation genuinely stalled on the day question with no Sunday slots, so the handoff fits."
     }
   ]
 }

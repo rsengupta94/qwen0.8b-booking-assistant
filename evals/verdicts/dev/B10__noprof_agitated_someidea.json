@@ -1,0 +1,69 @@
+{
+  "card_id": "B10__noprof_agitated_someidea",
+  "pool": "dev",
+  "judge_model": "claude-opus-5-5",
+  "judged_at": "20260923T164628Z",
+  "session_id": "B10__noprof_agitated_someidea__20260918T050343Z",
+  "verdicts": [
+    {
+      "turn": 1,
+      "fits": "yes",
+      "reason": "User asks for an appointment; bot greets and starts intake with a relevant first question."
+    },
+    {
+      "turn": 2,
+      "fits": "yes",
+      "reason": "User confirms first visit; bot moves on to ask what they need help with."
+    },
+    {
+      "turn": 3,
+      "fits": "yes",
+      "reason": "User described the concern as asked; bot proceeds to doctor preference."
+    },
+    {
+      "turn": 4,
+      "fits": "yes",
+      "reason": "User asked bot to pick; bot suggests a doctor and asks for days."
+    },
+    {
+      "turn": 5,
+      "fits": "no",
+      "reason": "Ignores the user: the question about whether this is a real person or a bot goes unanswered; also invents an evening request."
+    },
+    {
+      "turn": 6,
+      "fits": "no",
+      "reason": "Invents an acknowledgement: user picked the later slot, bot responds as if they asked for other days."
+    },
+    {
+      "turn": 7,
+      "fits": "no",
+      "reason": "Ignores the user: they repeated Wednesday, bot offers only a Friday slot and cites an evening request never made."
+    },
+    {
+      "turn": 8,
+      "fits": "no",
+      "reason": "Invents an acknowledgement: user accepted the slot and said book it, bot acts as if they wanted other days."
+    },
+    {
+      "turn": 9,
+      "fits": "no",
+      "reason": "Asks what was already answered: user already chose the later Wednesday slot, bot re-lists and asks which one again."
+    },
+    {
+      "turn": 10,
+      "fits": "no",
+      "reason": "Invents an acknowledgement: user picked the later slot, bot responds as if they asked for other days."
+    },
+    {
+      "turn": 11,
+      "fits": "no",
+      "reason": "Asks what was already answered: the Wednesday slot choice was settled earlier, bot re-lists and asks which one again."
+    },
+    {
+      "turn": 12,
+      "fits": "no",
+      "reason": "Invents an acknowledgement: user clearly chose the 4pm slot and said book it, bot asks for other days."
+    }
+  ]
+}

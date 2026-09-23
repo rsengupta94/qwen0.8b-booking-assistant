@@ -1,69 +1,69 @@
 {
   "card_id": "B3__noprof_inattentive_someidea",
   "pool": "heldout",
-  "judge_model": "claude-opus-5",
-  "judged_at": "20260921T161332Z",
+  "judge_model": "claude-opus-5-5",
+  "judged_at": "20260923T164958Z",
   "session_id": "B3__noprof_inattentive_someidea__20260918T081722Z",
   "verdicts": [
     {
       "turn": 1,
       "fits": "yes",
-      "reason": "Greeting and booking request met with a greeting and a sensible first intake question."
+      "reason": "Greets and starts intake after a booking request."
     },
     {
       "turn": 2,
       "fits": "yes",
-      "reason": "User says returning patient; asking for the registered phone number follows naturally."
+      "reason": "User is returning; asking for the registered phone number is a sensible next step."
     },
     {
       "turn": 3,
       "fits": "yes",
-      "reason": "Phone given; bot moves on to appointment type, a sensible next question."
+      "reason": "Accepts the phone number and moves to the next question."
     },
     {
       "turn": 4,
-      "fits": "no",
-      "reason": "Ignores the user: the phone correction is not acknowledged at all and the prior question is repeated verbatim."
+      "fits": "yes",
+      "reason": "Briefly acknowledges the corrected number and re-asks the still-unanswered session type question."
     },
     {
       "turn": 5,
       "fits": "yes",
-      "reason": "User states therapy session; asking which days work is the sensible next step."
+      "reason": "User answered therapy; asking which days work follows naturally."
     },
     {
       "turn": 6,
       "fits": "no",
-      "reason": "Ignores the user: the bot-or-human question is unanswered and the reply raises an unrelated Saturday availability point."
+      "reason": "Ignores the question about talking to a bot and invents a Saturday request the user never made."
     },
     {
       "turn": 7,
       "fits": "yes",
-      "reason": "User says any doctor and Monday; bot offers Monday slots with a doctor, which fits."
+      "reason": "User said Monday and any doctor; bot offers Monday slots."
     },
     {
       "turn": 8,
       "fits": "no",
-      "reason": "Ignores the user: request for a 4pm time on Monday is dropped and the bot pivots to asking for other days."
+      "reason": "Ignores the 4pm request and treats it as wanting other days."
     },
     {
       "turn": 9,
       "fits": "no",
-      "reason": "Asks what was already answered: session type was settled at turn 5 and is re-asked with no reason."
+      "reason": "Asks session type, which was already answered, instead of acting on Monday morning."
     },
     {
       "turn": 10,
-      "fits": "yes",
-      "reason": "User repeats therapy session; asking which days work is a sensible next question."
+      "fits": "no",
+      "reason": "Asks which days work though the user had just said Monday."
     },
     {
       "turn": 11,
       "fits": "yes",
-      "reason": "User says Monday; bot lists Monday slots, which fits."
+      "reason": "User said Monday; bot lists Monday slots."
     },
     {
       "turn": 12,
       "fits": "yes",
-      "reason": "User picks the earliest morning slot; bot confirms that exact slot."
+      "reason": "User chose the earliest slot; bot confirms 09:00."
     }
   ]
 }

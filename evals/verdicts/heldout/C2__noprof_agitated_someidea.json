@@ -1,24 +1,24 @@
 {
   "card_id": "C2__noprof_agitated_someidea",
   "pool": "heldout",
-  "judge_model": "claude-opus-5",
-  "judged_at": "20260921T161443Z",
+  "judge_model": "claude-opus-5-5",
+  "judged_at": "20260923T165055Z",
   "session_id": "C2__noprof_agitated_someidea__20260918T083446Z",
   "verdicts": [
     {
       "turn": 1,
       "fits": "yes",
-      "reason": "Greeting plus a sensible opening intake question after a request for an appointment."
+      "reason": "User asked for an appointment; greeting plus first-visit question is a sensible opening."
     },
     {
       "turn": 2,
       "fits": "yes",
-      "reason": "Accepts the first-time answer and asks the next unanswered question."
+      "reason": "User confirmed first visit; asking what they need help with follows naturally."
     },
     {
       "turn": 3,
       "fits": "yes",
-      "reason": "User declined to give a reason; moving to the doctor question is a sensible next step."
+      "reason": "User declined to explain and asked to be booked; bot moves straight on to booking."
     },
     {
       "turn": 4,
@@ -28,22 +28,22 @@
     {
       "turn": 5,
       "fits": "yes",
-      "reason": "Offers Thursday slots matching the day the user gave."
+      "reason": "User said Thursday; bot offers Thursday slots."
     },
     {
       "turn": 6,
       "fits": "no",
-      "reason": "Ignores the user selecting the sooner slot and re-asks which days work, already settled as Thursday."
+      "reason": "Invents an acknowledgement: user picked the sooner Thursday slot, bot acts as if they wanted other days and re-asks days."
     },
     {
       "turn": 7,
       "fits": "yes",
-      "reason": "Acknowledges Thursday by offering Thursday slots again."
+      "reason": "User restated Thursday; bot lists Thursday slots and asks which one."
     },
     {
       "turn": 8,
       "fits": "yes",
-      "reason": "Confirms the earliest morning slot the user chose."
+      "reason": "User asked for the earliest morning slot; bot confirms the earliest 09:00 Thursday."
     }
   ]
 }

@@ -1,59 +1,59 @@
 {
   "card_id": "A6__noprof_inattentive_someidea",
   "pool": "heldout",
-  "judge_model": "claude-opus-5",
-  "judged_at": "20260921T161228Z",
+  "judge_model": "claude-opus-5-5",
+  "judged_at": "20260923T164903Z",
   "session_id": "A6__noprof_inattentive_someidea__20260918T080605Z",
   "verdicts": [
     {
       "turn": 1,
       "fits": "yes",
-      "reason": "Greeting and intake question is a sensible reply to a booking request."
+      "reason": "Greeting and booking request met with a welcome and a sensible first question."
     },
     {
       "turn": 2,
       "fits": "yes",
-      "reason": "Returning patient stated, so asking for the registered phone number fits."
+      "reason": "User says they are returning; asking for the registered phone number follows naturally."
     },
     {
       "turn": 3,
       "fits": "no",
-      "reason": "Ignores the user: a clear phone number was given, but the bot re-asks as if nothing was said."
+      "reason": "Asks what was already answered: user gave a clear phone number but bot claims not to catch it and re-asks."
     },
     {
       "turn": 4,
       "fits": "no",
-      "reason": "Ignores the user: the direct question about talking to a real person is never acknowledged."
+      "reason": "Ignores the user: the direct question about whether this is a real person gets no acknowledgement."
     },
     {
       "turn": 5,
       "fits": "yes",
-      "reason": "Accepts the vague concern and moves to the next intake question."
+      "reason": "Bot accepts the vague reason as fine and moves on to doctor preference, which implicitly answers is that ok."
     },
     {
       "turn": 6,
       "fits": "yes",
-      "reason": "User deferred the choice, so suggesting a doctor and asking for days fits."
+      "reason": "User lets bot pick; bot suggests a doctor and asks about days."
     },
     {
       "turn": 7,
       "fits": "no",
-      "reason": "Ignores the user: the correction that this is a therapy session is not acknowledged at all."
+      "reason": "Ignores the user: the clarification that this is a therapy session, not a follow-up, is not acknowledged."
     },
     {
       "turn": 8,
       "fits": "no",
-      "reason": "Asks what was already answered: user said Monday morning, bot asks which days work."
+      "reason": "Asks what was already answered: user just said Monday morning, yet bot asks which days work."
     },
     {
       "turn": 9,
       "fits": "yes",
-      "reason": "Monday requested, Monday slots offered."
+      "reason": "User says Monday; bot offers Monday slots and asks which one."
     },
     {
       "turn": 10,
       "fits": "yes",
-      "reason": "Confirms the earliest offered slot, which is what the user picked."
+      "reason": "User picks the earliest slot; bot confirms the 16:00 slot, which is the earliest listed."
     }
   ]
 }

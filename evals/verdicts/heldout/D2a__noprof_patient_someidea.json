@@ -1,54 +1,54 @@
 {
   "card_id": "D2a__noprof_patient_someidea",
   "pool": "heldout",
-  "judge_model": "claude-opus-5",
-  "judged_at": "20260921T161518Z",
+  "judge_model": "claude-opus-5-5",
+  "judged_at": "20260923T165154Z",
   "session_id": "D2a__noprof_patient_someidea__20260918T084445Z",
   "verdicts": [
     {
       "turn": 1,
       "fits": "yes",
-      "reason": "Booking request met with a greeting and a relevant first-visit question."
+      "reason": "Welcomes the booking request and asks a sensible opening question."
     },
     {
       "turn": 2,
       "fits": "yes",
-      "reason": "Answer accepted and a sensible next question about the reason for the visit."
+      "reason": "User confirmed first visit; bot moves on to ask what help is needed."
     },
     {
       "turn": 3,
       "fits": "yes",
-      "reason": "Symptoms taken in and conversation moves on to doctor preference."
+      "reason": "User described concerns; asking about a doctor preference is a sensible next step."
     },
     {
       "turn": 4,
       "fits": "yes",
-      "reason": "Ambiguous surname handled by asking which Dr. Rao is meant."
+      "reason": "User named Dr. Rao; bot correctly asks which of two doctors with that name."
     },
     {
       "turn": 5,
       "fits": "yes",
-      "reason": "Doctor choice accepted and the next question about days follows."
+      "reason": "User picked Dr. Meera Rao; bot moves on to ask about days."
     },
     {
       "turn": 6,
       "fits": "no",
-      "reason": "Ignores the user question about a human and re-asks the doctor question already settled in turn 5."
+      "reason": "Ignores the user: they asked if a real person is replying, and bot re-asks the already-settled doctor question."
     },
     {
       "turn": 7,
       "fits": "yes",
-      "reason": "Doctor restated and accepted, then asks for days, which was not yet answered."
+      "reason": "User restated the doctor; bot asks about days, a sensible next step."
     },
     {
       "turn": 8,
       "fits": "no",
-      "reason": "Invents an acknowledgement: replies about no evening slots when the user never mentioned evenings."
+      "reason": "Invents an acknowledgement: says no evening slots, but the user never asked for evenings, only Wednesday."
     },
     {
       "turn": 9,
       "fits": "no",
-      "reason": "Invents an acknowledgement: user asked for 2 o clock but the bot confirms 15:00."
+      "reason": "Invents an acknowledgement: user chose the 2 o clock slot but bot confirms 15:00."
     }
   ]
 }

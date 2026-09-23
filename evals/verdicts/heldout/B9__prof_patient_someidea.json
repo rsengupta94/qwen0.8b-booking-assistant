@@ -1,34 +1,34 @@
 {
   "card_id": "B9__prof_patient_someidea",
   "pool": "heldout",
-  "judge_model": "claude-opus-5",
-  "judged_at": "20260921T161436Z",
+  "judge_model": "claude-opus-5-5",
+  "judged_at": "20260923T165054Z",
   "session_id": "B9__prof_patient_someidea__20260918T082925Z",
   "verdicts": [
     {
       "turn": 1,
       "fits": "yes",
-      "reason": "Greeting reply to a greeting, then a relevant intake question."
+      "reason": "Greeting and first-visit question is a sensible reply to a booking request."
     },
     {
       "turn": 2,
       "fits": "yes",
-      "reason": "User confirmed first visit; bot moves to the next unanswered question."
+      "reason": "User confirmed first visit; bot sensibly asks what they want help with."
     },
     {
       "turn": 3,
       "fits": "yes",
-      "reason": "User described the concern; bot proceeds to doctor preference, a sensible next question."
+      "reason": "User described their concern; bot moves on to doctor preference, a sensible next step."
     },
     {
       "turn": 4,
       "fits": "no",
-      "reason": "Asks what was already answered: user gave Wednesday afternoon and Dr. Khan, bot re-asks which days work."
+      "reason": "Asks what was already answered: user just named Wednesday afternoon, bot asks which days work."
     },
     {
       "turn": 5,
       "fits": "no",
-      "reason": "Invents an acknowledgement: cites no evening slots though the user never asked for evening."
+      "reason": "Invents an acknowledgement: says no evening slots, but the user never asked for evening."
     },
     {
       "turn": 6,

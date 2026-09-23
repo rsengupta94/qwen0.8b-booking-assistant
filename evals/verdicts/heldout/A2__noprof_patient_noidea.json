@@ -1,54 +1,54 @@
 {
   "card_id": "A2__noprof_patient_noidea",
   "pool": "heldout",
-  "judge_model": "claude-opus-5",
-  "judged_at": "20260921T161136Z",
+  "judge_model": "claude-opus-5-5",
+  "judged_at": "20260923T164852Z",
   "session_id": "A2__noprof_patient_noidea__20260918T074232Z",
   "verdicts": [
     {
       "turn": 1,
       "fits": "yes",
-      "reason": "Greeting plus a sensible first intake question after a booking request."
+      "reason": "Greeting and booking request met with a welcome and a relevant first question."
     },
     {
       "turn": 2,
       "fits": "yes",
-      "reason": "Accepts the first-visit answer and moves to the next intake question."
+      "reason": "User confirmed first visit; bot sensibly asks what they need help with."
     },
     {
       "turn": 3,
       "fits": "yes",
-      "reason": "User described the concern; bot moves on to doctor preference, a sensible next step."
+      "reason": "User described their concern; bot moves to the next booking question, a sensible follow-on."
     },
     {
       "turn": 4,
       "fits": "yes",
-      "reason": "User deferred the choice; bot suggests a doctor and asks for days."
+      "reason": "User asked the clinic to choose; bot suggests a doctor and asks about days."
     },
     {
       "turn": 5,
       "fits": "no",
-      "reason": "Ignores the user question about human or computer, and re-asks the doctor question already settled."
+      "reason": "Ignores the user: they asked if they were talking to a real person, and the bot re-asks the settled doctor question."
     },
     {
       "turn": 6,
       "fits": "no",
-      "reason": "Asks what was already answered; user repeated the deferral and got the same question back."
+      "reason": "Asks what was already answered: user again said the clinic can pick, bot repeats the doctor question."
     },
     {
       "turn": 7,
       "fits": "yes",
-      "reason": "Acts on the deferral by suggesting a doctor and asking for days."
+      "reason": "User asked the clinic to choose; bot suggests a doctor and asks about days."
     },
     {
       "turn": 8,
       "fits": "yes",
-      "reason": "Acknowledges no morning slots and offers the Tuesday options that exist."
+      "reason": "User asked for Tuesday morning; bot explains no morning slots and offers Tuesday options."
     },
     {
       "turn": 9,
       "fits": "no",
-      "reason": "Invents an acknowledgement: user picked the earlier 18:00 slot, bot confirms 18:30."
+      "reason": "Invents an acknowledgement: user chose the 18:00 slot, bot confirms 18:30 instead."
     }
   ]
 }

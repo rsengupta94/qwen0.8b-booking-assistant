@@ -1,54 +1,54 @@
 {
   "card_id": "B3__noprof_agitated_noidea",
   "pool": "heldout",
-  "judge_model": "claude-opus-5",
-  "judged_at": "20260921T161326Z",
+  "judge_model": "claude-opus-5-5",
+  "judged_at": "20260923T164954Z",
   "session_id": "B3__noprof_agitated_noidea__20260918T081616Z",
   "verdicts": [
     {
       "turn": 1,
-      "fits": "yes",
-      "reason": "Greeting plus a relevant first-visit question follows sensibly from the booking request."
+      "fits": "no",
+      "reason": "Asks what was already answered: user said they had been here before, bot asks if this is their first consultation."
     },
     {
       "turn": 2,
       "fits": "yes",
-      "reason": "Accepts the returning-patient answer and asks for the registered phone number."
+      "reason": "User confirms returning patient; asking for the registered phone number is a sensible next step."
     },
     {
       "turn": 3,
-      "fits": "yes",
-      "reason": "Acknowledges the number and moves on to appointment type."
+      "fits": "no",
+      "reason": "Asks what was already answered: user said in turn 1 they need a therapy session."
     },
     {
       "turn": 4,
       "fits": "no",
-      "reason": "Ignores the user: the phone number correction is not acknowledged and the prior question is repeated verbatim."
+      "reason": "Ignores the user: user corrected their phone number and the bot says Great and repeats its question without acknowledging it."
     },
     {
       "turn": 5,
       "fits": "yes",
-      "reason": "Accepts therapy and moves on to day preference."
+      "reason": "User chose therapy; asking which days work follows naturally."
     },
     {
       "turn": 6,
       "fits": "yes",
-      "reason": "Offers Monday morning slots matching the stated preference."
+      "reason": "User asked for Monday morning and the bot offers Monday morning slots."
     },
     {
       "turn": 7,
       "fits": "no",
-      "reason": "Ignores the user question about being a bot and invents a rejection of the slots that was never said."
+      "reason": "Invents an acknowledgement: user asked if this is a real person, bot responds as if they asked for other days."
     },
     {
       "turn": 8,
       "fits": "yes",
-      "reason": "Re-presents Monday morning slots, which responds to the users restated preference."
+      "reason": "User restates Monday morning and the bot re-offers the Monday morning slots, which answers the complaint in substance."
     },
     {
       "turn": 9,
       "fits": "yes",
-      "reason": "Confirms the 09:00 slot the user chose."
+      "reason": "User picked the 9am slot and the bot confirms exactly that slot."
     }
   ]
 }

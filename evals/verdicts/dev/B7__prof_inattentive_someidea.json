@@ -1,0 +1,54 @@
+{
+  "card_id": "B7__prof_inattentive_someidea",
+  "pool": "dev",
+  "judge_model": "claude-opus-5-5",
+  "judged_at": "20260923T164705Z",
+  "session_id": "B7__prof_inattentive_someidea__20260918T051344Z",
+  "verdicts": [
+    {
+      "turn": 1,
+      "fits": "yes",
+      "reason": "Greeting and booking request met with welcome and a sensible first question."
+    },
+    {
+      "turn": 2,
+      "fits": "yes",
+      "reason": "User confirmed first visit; bot sensibly asks what they need help with."
+    },
+    {
+      "turn": 3,
+      "fits": "yes",
+      "reason": "User described their concern; bot moves on to doctor preference, a sensible next step."
+    },
+    {
+      "turn": 4,
+      "fits": "yes",
+      "reason": "User asked bot to pick; bot suggests a doctor and asks for days."
+    },
+    {
+      "turn": 5,
+      "fits": "no",
+      "reason": "Ignores the cost question and invents a Friday request the user never made."
+    },
+    {
+      "turn": 6,
+      "fits": "no",
+      "reason": "Ignores the question about what to bring and repeats an invented Friday unavailability."
+    },
+    {
+      "turn": 7,
+      "fits": "no",
+      "reason": "Offers Tuesday slots but invents an evening preference the user never stated."
+    },
+    {
+      "turn": 8,
+      "fits": "no",
+      "reason": "User asked for 9am on the same day; bot ignores it and re-asks days already settled as Tuesday."
+    },
+    {
+      "turn": 9,
+      "fits": "no",
+      "reason": "Handoff not justified: user had answered days clearly earlier; the session-type statement is ignored."
+    }
+  ]
+}

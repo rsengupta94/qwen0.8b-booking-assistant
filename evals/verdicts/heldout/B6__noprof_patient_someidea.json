@@ -1,44 +1,44 @@
 {
   "card_id": "B6__noprof_patient_someidea",
   "pool": "heldout",
-  "judge_model": "claude-opus-5",
-  "judged_at": "20260921T161354Z",
+  "judge_model": "claude-opus-5-5",
+  "judged_at": "20260923T165050Z",
   "session_id": "B6__noprof_patient_someidea__20260918T082242Z",
   "verdicts": [
     {
       "turn": 1,
       "fits": "yes",
-      "reason": "Greeting plus booking request met with greeting and first relevant intake question."
+      "reason": "Booking request met with welcome and the first-visit question, a sensible opener."
     },
     {
       "turn": 2,
       "fits": "yes",
-      "reason": "Answers the opening-hours question, then re-asks the unanswered intake question."
+      "reason": "Answers the opening-hours question, then returns to the pending first-visit question."
     },
     {
       "turn": 3,
       "fits": "yes",
-      "reason": "Accepts the first-visit answer and moves to the next unasked question."
+      "reason": "User confirmed first visit; bot moves on to ask what help is wanted."
     },
     {
       "turn": 4,
       "fits": "yes",
-      "reason": "Receives the reason for the visit and proceeds to doctor choice; no invented content or repeated question."
+      "reason": "User answered the help question; moving to doctor preference is a sensible next step (tone of Great is out of scope)."
     },
     {
       "turn": 5,
       "fits": "yes",
-      "reason": "User asked for a suggestion; bot suggests a doctor and asks for days."
+      "reason": "User has no preference; bot suggests a doctor and asks about days."
     },
     {
       "turn": 6,
       "fits": "yes",
-      "reason": "Offers slots matching the requested Saturday and asks the user to pick."
+      "reason": "User said Saturday; bot offers only Saturday slots."
     },
     {
       "turn": 7,
       "fits": "yes",
-      "reason": "Confirms exactly the slot the user selected."
+      "reason": "User picked the 19th at 11:00; bot confirms exactly that slot."
     }
   ]
 }

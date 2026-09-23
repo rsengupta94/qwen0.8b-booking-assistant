@@ -1,39 +1,39 @@
 {
   "card_id": "B1__prof_patient_someidea",
   "pool": "heldout",
-  "judge_model": "claude-opus-5",
-  "judged_at": "20260921T161259Z",
+  "judge_model": "claude-opus-5-5",
+  "judged_at": "20260923T164953Z",
   "session_id": "B1__prof_patient_someidea__20260918T081136Z",
   "verdicts": [
     {
       "turn": 1,
       "fits": "yes",
-      "reason": "Greeting answered with greeting plus a sensible first booking question."
+      "reason": "Greeting reply to a booking request; asks a sensible opening question."
     },
     {
       "turn": 2,
       "fits": "yes",
-      "reason": "User answered first-visit question; bot moves to the next needed detail."
+      "reason": "User confirmed first visit; bot moves to asking what they need help with."
     },
     {
       "turn": 3,
-      "fits": "yes",
-      "reason": "User gave the reason for the visit; bot acknowledges receipt and asks the next unanswered question."
+      "fits": "no",
+      "reason": "Ignores the user: replies Great to news of a death and moves on with no acknowledgement of what was shared."
     },
     {
       "turn": 4,
       "fits": "yes",
-      "reason": "User deferred the choice; bot suggests a doctor and asks about days."
+      "reason": "User asked the bot to pick; bot suggests a doctor and asks for days."
     },
     {
       "turn": 5,
       "fits": "no",
-      "reason": "Invents an acknowledgement: user never asked for evening slots, but reply answers an evening request."
+      "reason": "Invents an acknowledgement: says no evening slots though the user never asked for evenings."
     },
     {
       "turn": 6,
       "fits": "no",
-      "reason": "Invents an acknowledgement: user never asked for morning slots, but reply answers a morning request."
+      "reason": "Invents an acknowledgement: says no morning slots though the user only asked for Thursday, no time of day."
     },
     {
       "turn": 7,

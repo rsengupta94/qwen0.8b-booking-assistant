@@ -1,44 +1,44 @@
 {
   "card_id": "B2__prof_agitated_someidea",
   "pool": "heldout",
-  "judge_model": "claude-opus-5",
-  "judged_at": "20260921T161320Z",
+  "judge_model": "claude-opus-5-5",
+  "judged_at": "20260923T164956Z",
   "session_id": "B2__prof_agitated_someidea__20260918T081353Z",
   "verdicts": [
     {
       "turn": 1,
       "fits": "yes",
-      "reason": "Sensible opening intake question after a request for an appointment."
+      "reason": "Asking whether this is a first consultation is a sensible opening step after a booking request."
     },
     {
       "turn": 2,
-      "fits": "yes",
-      "reason": "Natural follow-up after the user confirmed it is a first visit."
+      "fits": "no",
+      "reason": "Asks what the user wants help with, which the user already described in turn 1."
     },
     {
       "turn": 3,
       "fits": "no",
-      "reason": "Asks what was already answered: user named a doctor in the same message."
+      "reason": "Asks whether the user has a doctor in mind right after the user named Dr. Meera Rao."
     },
     {
       "turn": 4,
       "fits": "yes",
-      "reason": "Moves to scheduling after the doctor is confirmed."
+      "reason": "Accepts the named doctor and moves on to asking which days work."
     },
     {
       "turn": 5,
-      "fits": "no",
-      "reason": "Ignores the user: no acknowledgement of the request to switch doctors."
+      "fits": "yes",
+      "reason": "Accepts the doctor switch and re-asks the still unanswered days question."
     },
     {
       "turn": 6,
       "fits": "yes",
-      "reason": "Addresses the stated day and time preference and explains what is open."
+      "reason": "Says no evening slots match and offers alternative slots with the chosen doctor."
     },
     {
       "turn": 7,
       "fits": "yes",
-      "reason": "Confirms the option the user selected by number."
+      "reason": "Confirms the booking for the option the user picked."
     }
   ]
 }

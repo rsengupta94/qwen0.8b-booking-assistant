@@ -1,39 +1,39 @@
 {
   "card_id": "B9__noprof_patient_someidea",
   "pool": "heldout",
-  "judge_model": "claude-opus-5",
-  "judged_at": "20260921T161415Z",
+  "judge_model": "claude-opus-5-5",
+  "judged_at": "20260923T165052Z",
   "session_id": "B9__noprof_patient_someidea__20260918T082834Z",
   "verdicts": [
     {
       "turn": 1,
       "fits": "yes",
-      "reason": "Greeting met with greeting and a sensible first booking question."
+      "reason": "Greeting and booking request met with a welcome and a sensible first question."
     },
     {
       "turn": 2,
       "fits": "yes",
-      "reason": "Answer accepted, next question about the reason for the visit follows naturally."
+      "reason": "User confirmed first visit; bot moves on to ask what they need help with."
     },
     {
       "turn": 3,
       "fits": "yes",
-      "reason": "Concern noted, bot moves to the next booking step of choosing a doctor."
+      "reason": "User answered the help question; bot proceeds to the next step (doctor preference). Odd tone is out of scope."
     },
     {
       "turn": 4,
       "fits": "no",
-      "reason": "Asks what was already answered: user gave Wednesday afternoon and Dr. Khan, bot re-asks which days work."
+      "reason": "Asks what was already answered: user just named Wednesday afternoon and Dr. Khan, bot asks which days work."
     },
     {
       "turn": 5,
       "fits": "no",
-      "reason": "Invents an acknowledgement: replies about evening slots the user never requested."
+      "reason": "Invents an acknowledgement: says no evening slots, though the user never asked for evenings (they said afternoon, then Thursday)."
     },
     {
       "turn": 6,
       "fits": "yes",
-      "reason": "Confirms exactly the slot the user selected."
+      "reason": "User clearly picked option 1; bot confirms that exact slot."
     }
   ]
 }

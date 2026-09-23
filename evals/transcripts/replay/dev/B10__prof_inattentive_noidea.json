@@ -8,8 +8,8 @@
     "model_id": "qwen3.5-0.8b-q8",
     "prompt_version": "baseline",
     "simulator_model": "replay",
-    "session_id": "B10__prof_inattentive_noidea__replay__20260921T050927Z",
-    "generated_at": "20260921T050927Z",
+    "session_id": "B10__prof_inattentive_noidea__replay__20260923T170853Z",
+    "generated_at": "20260923T170853Z",
     "replay_of": "B10__prof_inattentive_noidea__20260918T052035Z",
     "clock": "2026-09-18T10:50:35"
   },

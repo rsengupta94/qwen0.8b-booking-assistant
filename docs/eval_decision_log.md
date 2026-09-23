@@ -163,6 +163,15 @@ Companion to `eval_design_v1.md` (the rules), `eval_phases_v1.md` (the phases), 
 ### F5. Dev transcripts only for calibration
 **Why:** The person labelling is also the person who reviews prompts (D1, D4).
 
+### F6. One judge model, self-reported, for calibration and scoring alike
+**Decided:** The judge passes the model id stated in its own system prompt. Every verdict in a run must name the same model, and the E4 check fails otherwise.
+**Why:** Calibration measures one specific judge. When held-out was scored on one Opus version and dev calibrated on a newer one, re-judging on the calibrated model changed 33 of 488 held-out verdicts and moved the headline by about 4 points. An agreement number that describes a different judge than the one that produced the scores describes nothing.
+**Rejected:** Letting the orchestrator type the model label. It was wrong without anyone noticing, because the sub-agent tool picks "the latest Opus", which changed between runs.
+
+### F7. The brief is frozen once human labels exist
+**Decided:** After reading the human labels and notes, the judge brief was not edited before the dev run or after the agreement result.
+**Why:** Editing the brief to match the calibration labels tunes the judge to the calibration set, and the agreement number then measures the tuning rather than the judge. If agreement had fallen below the floor, the right move would have been a fresh calibration sample after the edit, not a rerun on the same 40.
+
 ---
 
 ## G. Scoring judgment calls
@@ -186,6 +195,8 @@ Companion to `eval_design_v1.md` (the rules), `eval_phases_v1.md` (the phases), 
 ---
 
 ## H. Open
+
+- The calibration set is 40 replies from one labeller. Agreement between two humans on the same 40 would say how much of the judge's 10 percent disagreement is judge error and how much is labeller variance.
 
 - The path table has no automated guard against drifting from the product (B2).
 - The E3 check replays dev only; held-out replay is supported but doubles runtime.

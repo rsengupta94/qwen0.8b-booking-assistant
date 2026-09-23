@@ -1,39 +1,39 @@
 {
   "card_id": "A1__noprof_agitated_someidea",
   "pool": "heldout",
-  "judge_model": "claude-opus-5",
-  "judged_at": "20260921T161126Z",
+  "judge_model": "claude-opus-5-5",
+  "judged_at": "20260923T164852Z",
   "session_id": "A1__noprof_agitated_someidea__20260918T073947Z",
   "verdicts": [
     {
       "turn": 1,
       "fits": "yes",
-      "reason": "Opening intake question is a sensible reply to a booking request."
+      "reason": "User asked to book; greeting and first-visit question is a sensible start to intake."
     },
     {
       "turn": 2,
-      "fits": "yes",
-      "reason": "Asks the next intake question after a clear yes."
+      "fits": "no",
+      "reason": "Asks what was already answered: user described what they want help with in turn 1."
     },
     {
       "turn": 3,
       "fits": "yes",
-      "reason": "Moves to doctor preference after the user described the problem."
+      "reason": "User gave their reason; moving on to doctor preference is a sensible next step."
     },
     {
       "turn": 4,
       "fits": "yes",
-      "reason": "Doctor named, so asking for days is the sensible next step."
+      "reason": "User named a doctor; asking which days work follows sensibly."
     },
     {
       "turn": 5,
       "fits": "no",
-      "reason": "Ignores the user question about whether a real person is answering."
+      "reason": "Ignores the user asking if a real person is answering, and invents an evening-slot request the user never made."
     },
     {
       "turn": 6,
       "fits": "no",
-      "reason": "Invents an acknowledgement: user chose 14:00 but the bot confirms 15:00."
+      "reason": "Invents an acknowledgement: user chose the earliest slot at 14:00 but bot confirms 15:00."
     }
   ]
 }

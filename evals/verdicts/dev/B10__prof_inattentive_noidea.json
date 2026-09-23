@@ -1,0 +1,59 @@
+{
+  "card_id": "B10__prof_inattentive_noidea",
+  "pool": "dev",
+  "judge_model": "claude-opus-5-5",
+  "judged_at": "20260923T164621Z",
+  "session_id": "B10__prof_inattentive_noidea__20260918T052035Z",
+  "verdicts": [
+    {
+      "turn": 1,
+      "fits": "yes",
+      "reason": "Welcomes the user and starts intake, a sensible reply to a booking request."
+    },
+    {
+      "turn": 2,
+      "fits": "yes",
+      "reason": "Accepts first-visit answer and moves to the next intake question."
+    },
+    {
+      "turn": 3,
+      "fits": "yes",
+      "reason": "User answered the reason question; moving on to doctor preference is a sensible next step."
+    },
+    {
+      "turn": 4,
+      "fits": "no",
+      "reason": "Asks already answered: user just said Wednesday works, yet the bot asks which days work."
+    },
+    {
+      "turn": 5,
+      "fits": "no",
+      "reason": "Invents acknowledgement: says no evening slots as if the user asked for evening, which they did not."
+    },
+    {
+      "turn": 6,
+      "fits": "no",
+      "reason": "Invents acknowledgement: user picked the later slot, bot treats it as rejecting the day and asks for other days."
+    },
+    {
+      "turn": 7,
+      "fits": "no",
+      "reason": "Ignores the phone number the user gave and again claims no evening slots the user never asked for."
+    },
+    {
+      "turn": 8,
+      "fits": "no",
+      "reason": "Ignores the user: 5pm request is not addressed; bot asks for other days as if the day were rejected."
+    },
+    {
+      "turn": 9,
+      "fits": "no",
+      "reason": "Invents acknowledgement: says no morning slots though the user asked for 5pm, and does not address 5pm."
+    },
+    {
+      "turn": 10,
+      "fits": "yes",
+      "reason": "User picked option 3; bot confirms the matching 16:00 slot."
+    }
+  ]
+}

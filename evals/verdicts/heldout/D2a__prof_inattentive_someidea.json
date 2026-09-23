@@ -1,59 +1,59 @@
 {
   "card_id": "D2a__prof_inattentive_someidea",
   "pool": "heldout",
-  "judge_model": "claude-opus-5",
-  "judged_at": "20260921T161529Z",
+  "judge_model": "claude-opus-5-5",
+  "judged_at": "20260923T165159Z",
   "session_id": "D2a__prof_inattentive_someidea__20260918T084805Z",
   "verdicts": [
     {
       "turn": 1,
       "fits": "yes",
-      "reason": "Greeting answered with a greeting and a sensible opening question."
+      "reason": "Welcomes the user and starts intake after a booking request."
     },
     {
       "turn": 2,
       "fits": "yes",
-      "reason": "User confirmed first visit; bot moves to the next unanswered question."
+      "reason": "User confirmed first visit; asking what they need help with follows naturally."
     },
     {
       "turn": 3,
       "fits": "yes",
-      "reason": "User described the concern; bot proceeds to doctor preference without contradicting anything."
+      "reason": "User described their concern; moving on to doctor preference is a sensible next step."
     },
     {
       "turn": 4,
       "fits": "yes",
-      "reason": "User named an ambiguous surname; bot asks which of the two doctors."
+      "reason": "Correctly asks the user to pick between two doctors with the name they gave."
     },
     {
       "turn": 5,
       "fits": "yes",
-      "reason": "User picked Meera Rao and gave a number; bot advances to days."
+      "reason": "User resolved the doctor choice; asking about days follows sensibly."
     },
     {
       "turn": 6,
       "fits": "no",
-      "reason": "Invents an acknowledgement: user never mentioned Friday 18 September, and the session-type remark is ignored."
+      "reason": "Invents an acknowledgement: responds about Friday when the user named no day, only the session type."
     },
     {
       "turn": 7,
       "fits": "no",
-      "reason": "Invents an acknowledgement: user never asked for morning slots."
+      "reason": "Invents an acknowledgement: says there are no morning slots though the user never asked for mornings."
     },
     {
       "turn": 8,
       "fits": "no",
-      "reason": "Ignores the 5pm request and re-asks which days, already settled as Wednesday."
+      "reason": "Ignores the user: they asked for 5pm, bot switches to asking about other days with no mention of 5pm."
     },
     {
       "turn": 9,
       "fits": "yes",
-      "reason": "User reconfirmed Wednesday; bot lists Wednesday options and notes no evening slot for the 5pm ask."
+      "reason": "User kept Wednesday; bot notes no evening slots (matching the 5pm ask) and lists Wednesday options."
     },
     {
       "turn": 10,
       "fits": "yes",
-      "reason": "User chose option 1; bot confirms that exact slot."
+      "reason": "User picked option 1; bot confirms that exact slot."
     }
   ]
 }

@@ -1,74 +1,74 @@
 {
   "card_id": "A5__noprof_inattentive_noidea",
   "pool": "heldout",
-  "judge_model": "claude-opus-5",
-  "judged_at": "20260921T161235Z",
+  "judge_model": "claude-opus-5-5",
+  "judged_at": "20260923T164906Z",
   "session_id": "A5__noprof_inattentive_noidea__20260918T074750Z",
   "verdicts": [
     {
       "turn": 1,
       "fits": "yes",
-      "reason": "Greeting plus a sensible opening question about first visit fits the booking request."
+      "reason": "Greets and asks a sensible first intake question after the booking request."
     },
     {
       "turn": 2,
       "fits": "yes",
-      "reason": "User said they are a returning patient, so asking for the registered phone number follows."
+      "reason": "User says they are returning; asking for the registered phone number fits."
     },
     {
       "turn": 3,
       "fits": "no",
-      "reason": "Asks what was already answered: user stated a follow-up appointment in turn 1."
+      "reason": "Asks what was already answered: user said follow-up in their first message."
     },
     {
       "turn": 4,
       "fits": "yes",
-      "reason": "Answers the evening request with opening hours and plainly re-asks the unanswered session-type question."
+      "reason": "Responds to the timing with opening hours and re-asks the pending question the user skipped."
     },
     {
       "turn": 5,
       "fits": "no",
-      "reason": "Asks what was already answered: user gave Thursday in turn 4."
+      "reason": "Asks what was already answered: user already said Thursday in the previous turn."
     },
     {
       "turn": 6,
-      "fits": "yes",
-      "reason": "User gave Thursday and the reply offers Thursday slots."
+      "fits": "no",
+      "reason": "Invents an acknowledgement: says no morning slots though the user asked for evening, not morning."
     },
     {
       "turn": 7,
       "fits": "no",
-      "reason": "Ignores the 9pm request and re-asks the session type already settled."
+      "reason": "Ignores the 9pm request and re-asks the already-settled appointment type."
     },
     {
       "turn": 8,
       "fits": "no",
-      "reason": "Asks what the user just answered in the same message."
+      "reason": "Asks what was already answered: user just said follow-up again in this message."
     },
     {
       "turn": 9,
       "fits": "no",
-      "reason": "Asks what was already answered: day preference was given and slots were already offered."
+      "reason": "Asks what was already answered: user had already chosen Thursday more than once."
     },
     {
       "turn": 10,
-      "fits": "yes",
-      "reason": "User repeated Thursday and the reply offers Thursday slots."
+      "fits": "no",
+      "reason": "Invents an acknowledgement: again claims no morning slots though the user never asked for morning."
     },
     {
       "turn": 11,
       "fits": "no",
-      "reason": "Ignores the human-or-bot question and invents a rejection of the slots the user never made."
+      "reason": "Ignores the real-person-or-bot question and invents a request to look at other days."
     },
     {
       "turn": 12,
       "fits": "yes",
-      "reason": "User said Thursday and the reply lists Thursday slots."
+      "reason": "User says Thursday; bot lists Thursday slots, which fits."
     },
     {
       "turn": 13,
       "fits": "yes",
-      "reason": "Confirms exactly the slot the user picked."
+      "reason": "Confirms exactly the slot the user picked, 1 October at 17:00."
     }
   ]
 }

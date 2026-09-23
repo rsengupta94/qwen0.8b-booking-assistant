@@ -1,74 +1,74 @@
 {
   "card_id": "C3__noprof_inattentive_someidea",
   "pool": "heldout",
-  "judge_model": "claude-opus-5",
-  "judged_at": "20260921T161451Z",
+  "judge_model": "claude-opus-5-5",
+  "judged_at": "20260923T165102Z",
   "session_id": "C3__noprof_inattentive_someidea__20260918T084207Z",
   "verdicts": [
     {
       "turn": 1,
       "fits": "yes",
-      "reason": "Greeting answered with a greeting and a sensible first question."
+      "reason": "Greeting reply to a booking request; asks a sensible first question."
     },
     {
       "turn": 2,
       "fits": "yes",
-      "reason": "Acknowledges first visit and asks the natural next question."
+      "reason": "User confirmed first visit; bot moves on to ask what they need help with."
     },
     {
       "turn": 3,
       "fits": "yes",
-      "reason": "Concern received, bot moves on to the doctor question."
+      "reason": "User described their concern; bot moves to the next step of choosing a doctor."
     },
     {
       "turn": 4,
       "fits": "no",
-      "reason": "Ignores the user: the patient corrects their stated concern and the bot repeats the same doctor question unchanged."
+      "reason": "Ignores the user: they corrected their concern and the bot repeats the doctor question with no acknowledgement."
     },
     {
       "turn": 5,
       "fits": "yes",
-      "reason": "User asked for a suggestion and the bot suggests one, then asks about days."
+      "reason": "User asked bot to pick; bot suggests a doctor and asks about days."
     },
     {
       "turn": 6,
       "fits": "yes",
-      "reason": "User confirms the doctor and the bot proceeds to days."
+      "reason": "User confirmed the suggested doctor; bot accepts and asks for days."
     },
     {
       "turn": 7,
-      "fits": "yes",
-      "reason": "Tuesday requested, Tuesday slots offered."
+      "fits": "no",
+      "reason": "Invents an acknowledgement: says there are no evening slots though the user never asked for evenings."
     },
     {
       "turn": 8,
-      "fits": "yes",
-      "reason": "Thursday requested, Thursday slots offered."
+      "fits": "no",
+      "reason": "Invents an acknowledgement: again refers to evening slots the user never requested, though Thursday slots fit."
     },
     {
       "turn": 9,
       "fits": "no",
-      "reason": "Asks what was already answered: user named Saturday and the bot asks which days work."
+      "reason": "Asks what was already answered: user just named Saturday, bot asks which days work."
     },
     {
       "turn": 10,
       "fits": "yes",
-      "reason": "Saturday requested, Saturday slots offered."
+      "reason": "User said Saturday; bot lists Saturday slots with the chosen doctor."
     },
     {
       "turn": 11,
       "fits": "no",
-      "reason": "Ignores the user: the 4pm time request is unaddressed and the bot asks about days again."
+      "reason": "Ignores the 4pm request and re-asks for days when Saturday was already settled."
     },
     {
       "turn": 12,
       "fits": "yes",
-      "reason": "User repeats Saturday, bot shows Saturday slots."
+      "reason": "User restated Saturday; bot lists Saturday slots."
     },
     {
       "turn": 13,
       "fits": "yes",
-      "reason": "User picks the 11:00 slot and the bot confirms that slot."
+      "reason": "User picked Saturday 11:00; bot confirms that exact slot."
     }
   ]
 }

@@ -1,0 +1,64 @@
+{
+  "card_id": "A2__noprof_inattentive_someidea",
+  "pool": "dev",
+  "judge_model": "claude-opus-5-5",
+  "judged_at": "20260923T164513Z",
+  "session_id": "A2__noprof_inattentive_someidea__20260918T045850Z",
+  "verdicts": [
+    {
+      "turn": 1,
+      "fits": "yes",
+      "reason": "Greeting and first-visit question is a sensible reply to a booking request."
+    },
+    {
+      "turn": 2,
+      "fits": "yes",
+      "reason": "Asks what help is needed after the user confirms first visit."
+    },
+    {
+      "turn": 3,
+      "fits": "yes",
+      "reason": "User answered the reason question; moving on to doctor preference is a sensible next step."
+    },
+    {
+      "turn": 4,
+      "fits": "no",
+      "reason": "Ignores the user: the question of whether they are talking to a person or a bot gets no answer."
+    },
+    {
+      "turn": 5,
+      "fits": "no",
+      "reason": "Invents an acknowledgement: reports no Monday slots though the user named mornings, not Monday."
+    },
+    {
+      "turn": 6,
+      "fits": "no",
+      "reason": "Invents an acknowledgement: says no evening slots as if the user wanted evenings, when they said they cannot do late."
+    },
+    {
+      "turn": 7,
+      "fits": "no",
+      "reason": "Invents an acknowledgement: user asked for 11 on the same day, bot agrees to look at other days and ignores 11."
+    },
+    {
+      "turn": 8,
+      "fits": "no",
+      "reason": "Asks what was already answered: doctor choice was settled earlier and the user just confirmed Tuesday."
+    },
+    {
+      "turn": 9,
+      "fits": "no",
+      "reason": "Asks what was already answered: user already said Tuesday works, yet bot asks which days again."
+    },
+    {
+      "turn": 10,
+      "fits": "no",
+      "reason": "Invents an acknowledgement: again says no evening slots though the user never asked for evenings."
+    },
+    {
+      "turn": 11,
+      "fits": "yes",
+      "reason": "Confirms the 09:00 slot the user just chose."
+    }
+  ]
+}

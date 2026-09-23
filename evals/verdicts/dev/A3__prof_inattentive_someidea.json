@@ -1,0 +1,49 @@
+{
+  "card_id": "A3__prof_inattentive_someidea",
+  "pool": "dev",
+  "judge_model": "claude-opus-5-5",
+  "judged_at": "20260923T164614Z",
+  "session_id": "A3__prof_inattentive_someidea__20260918T050316Z",
+  "verdicts": [
+    {
+      "turn": 1,
+      "fits": "yes",
+      "reason": "Booking request met with a sensible opening question about first consultation."
+    },
+    {
+      "turn": 2,
+      "fits": "yes",
+      "reason": "Acknowledges first visit and moves to asking what help is wanted."
+    },
+    {
+      "turn": 3,
+      "fits": "yes",
+      "reason": "User answered the reason question; bot advances to doctor choice. The odd Great is tone, which is out of scope."
+    },
+    {
+      "turn": 4,
+      "fits": "yes",
+      "reason": "User let the bot pick; bot suggests a doctor and asks for days."
+    },
+    {
+      "turn": 5,
+      "fits": "no",
+      "reason": "Invents an acknowledgement: says no morning slots as if the user asked for mornings, which they did not."
+    },
+    {
+      "turn": 6,
+      "fits": "no",
+      "reason": "Ignores the 2pm request and re-asks which days, already settled as Monday."
+    },
+    {
+      "turn": 7,
+      "fits": "no",
+      "reason": "Invents an acknowledgement again: claims no morning slots though the user never asked for mornings."
+    },
+    {
+      "turn": 8,
+      "fits": "yes",
+      "reason": "User picked option 1; bot confirms that exact slot."
+    }
+  ]
+}

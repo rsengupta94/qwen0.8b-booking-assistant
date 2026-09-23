@@ -1,24 +1,24 @@
 {
   "card_id": "B11__noprof_patient_someidea",
   "pool": "heldout",
-  "judge_model": "claude-opus-5",
-  "judged_at": "20260921T161309Z",
+  "judge_model": "claude-opus-5-5",
+  "judged_at": "20260923T164954Z",
   "session_id": "B11__noprof_patient_someidea__20260918T080836Z",
   "verdicts": [
     {
       "turn": 1,
       "fits": "yes",
-      "reason": "Greeting plus a relevant opening intake question after a booking request."
+      "reason": "Greets and asks a sensible opening question after a booking request."
     },
     {
       "turn": 2,
       "fits": "yes",
-      "reason": "Accepts the first-visit answer and asks the next unsettled question."
+      "reason": "Accepts the first-visit answer and moves to asking what help is needed."
     },
     {
       "turn": 3,
       "fits": "yes",
-      "reason": "Acknowledges the answer and moves to doctor choice, a sensible next step."
+      "reason": "User answered the concern question; moving on to doctor preference is a sensible next step."
     },
     {
       "turn": 4,
@@ -28,22 +28,22 @@
     {
       "turn": 5,
       "fits": "yes",
-      "reason": "Offers slots on one of the two days the user named."
+      "reason": "Offers slots on Tuesday, one of the days the user named."
     },
     {
       "turn": 6,
       "fits": "yes",
-      "reason": "Accepts the rejection and asks for other days, a reasonable re-ask."
+      "reason": "User rejected the slots and asked for more; asking about other days is a reasonable follow-up."
     },
     {
       "turn": 7,
       "fits": "no",
-      "reason": "Ignores the user: re-offers the identical three slots the user just rejected, with no new options."
+      "reason": "Ignores the user: re-offers the exact slots just rejected and does not address Thursday."
     },
     {
       "turn": 8,
       "fits": "yes",
-      "reason": "Confirms exactly the 09:00 slot the user selected."
+      "reason": "Confirms the 09:00 slot the user just chose."
     }
   ]
 }

@@ -1,59 +1,59 @@
 {
   "card_id": "A5__prof_inattentive_someidea",
   "pool": "heldout",
-  "judge_model": "claude-opus-5",
-  "judged_at": "20260921T161229Z",
+  "judge_model": "claude-opus-5-5",
+  "judged_at": "20260923T164858Z",
   "session_id": "A5__prof_inattentive_someidea__20260918T074848Z",
   "verdicts": [
     {
       "turn": 1,
       "fits": "yes",
-      "reason": "Greeting plus a sensible opening intake question after the user asks to book."
+      "reason": "Greeting plus a reasonable intake question; user had not explicitly said whether this was their first visit."
     },
     {
       "turn": 2,
       "fits": "no",
-      "reason": "Ignores the user: returning patient clearly answers the question, but the bot says it did not catch it."
+      "reason": "Ignores the user: returning patient clearly answers the question, yet bot claims it did not catch that and re-asks."
     },
     {
       "turn": 3,
       "fits": "yes",
-      "reason": "User answers the first-visit question, bot moves on to phone number."
+      "reason": "Accepts the returning-patient answer and moves to the next sensible question."
     },
     {
       "turn": 4,
       "fits": "no",
-      "reason": "Asks what was already answered: the user said follow-up in turn 1."
+      "reason": "Asks what was already answered: user said in turn 1 they need a follow-up."
     },
     {
       "turn": 5,
       "fits": "yes",
-      "reason": "Plain re-ask of the appointment type the user did not answer."
+      "reason": "Plain re-ask of the session-type question the user did not answer."
     },
     {
       "turn": 6,
       "fits": "no",
-      "reason": "Asks what was already answered: the user gave Thursday evening in turn 5."
+      "reason": "Asks what was already answered: user already said Thursday evening works best in the previous turn."
     },
     {
       "turn": 7,
       "fits": "yes",
-      "reason": "User says Thursday, bot offers Thursday slots."
+      "reason": "Offers Thursday slots matching the day the user gave."
     },
     {
       "turn": 8,
       "fits": "no",
-      "reason": "Ignores the user: the user asked for a different time on Thursday, bot switches to asking for other days."
+      "reason": "Invents an acknowledgement: user asked for Thursday at 8pm, bot treats it as wanting other days and ignores the time."
     },
     {
       "turn": 9,
       "fits": "yes",
-      "reason": "User repeats Thursday, bot re-offers the Thursday slots."
+      "reason": "User repeats Thursday and bot re-offers Thursday slots, a sensible next step."
     },
     {
       "turn": 10,
       "fits": "yes",
-      "reason": "User picks option 3, bot confirms that exact slot."
+      "reason": "Confirms option 3, exactly what the user picked."
     }
   ]
 }

@@ -1,39 +1,39 @@
 {
   "card_id": "D3__noprof_agitated_noidea",
   "pool": "heldout",
-  "judge_model": "claude-opus-5",
-  "judged_at": "20260921T161536Z",
+  "judge_model": "claude-opus-5-5",
+  "judged_at": "20260923T165150Z",
   "session_id": "D3__noprof_agitated_noidea__20260918T084926Z",
   "verdicts": [
     {
       "turn": 1,
       "fits": "yes",
-      "reason": "Sensible opening: greets and asks a relevant intake question after the appointment request."
+      "reason": "User asks for an appointment; greeting and asking about first consultation is a sensible start."
     },
     {
       "turn": 2,
       "fits": "yes",
-      "reason": "Returning patient stated, so asking for the registered phone number follows naturally."
+      "reason": "User says they are returning; asking for the registered phone number follows naturally."
     },
     {
       "turn": 3,
       "fits": "yes",
-      "reason": "Phone given, bot moves to the next unanswered question about appointment type."
+      "reason": "Phone given; moving on to ask session type fits."
     },
     {
       "turn": 4,
       "fits": "yes",
-      "reason": "Therapy stated, asking which days work is the sensible next step."
+      "reason": "User chose therapy and wants it soon; asking which days work is a sensible next step."
     },
     {
       "turn": 5,
       "fits": "no",
-      "reason": "Ignores the user question about being a bot and acts as if days were given; invents an acknowledgement."
+      "reason": "Ignores the user: they asked whether they are talking to a real person or a bot, and the reply just lists slots without addressing it."
     },
     {
       "turn": 6,
       "fits": "yes",
-      "reason": "User picked the earliest slot and the bot confirms exactly that slot."
+      "reason": "User asked for the earliest slot; bot confirms the 09:00 slot, which was the earliest offered."
     }
   ]
 }

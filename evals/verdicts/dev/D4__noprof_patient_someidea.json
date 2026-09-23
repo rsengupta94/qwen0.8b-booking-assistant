@@ -1,0 +1,44 @@
+{
+  "card_id": "D4__noprof_patient_someidea",
+  "pool": "dev",
+  "judge_model": "claude-opus-5-5",
+  "judged_at": "20260923T164706Z",
+  "session_id": "D4__noprof_patient_someidea__20260918T052004Z",
+  "verdicts": [
+    {
+      "turn": 1,
+      "fits": "yes",
+      "reason": "Welcome and intake question is a sensible opening reply to a greeting stating a need."
+    },
+    {
+      "turn": 2,
+      "fits": "no",
+      "reason": "Asks what help is wanted, which the user already said (anxiety) in turn 1: asks what was already answered."
+    },
+    {
+      "turn": 3,
+      "fits": "yes",
+      "reason": "User answered the question; moving to doctor preference is a sensible next step."
+    },
+    {
+      "turn": 4,
+      "fits": "yes",
+      "reason": "User asked for a suggestion; bot suggests a doctor and asks for days."
+    },
+    {
+      "turn": 5,
+      "fits": "yes",
+      "reason": "Responds to the Wednesday request with availability and asks for alternatives."
+    },
+    {
+      "turn": 6,
+      "fits": "no",
+      "reason": "User said Wednesday is the only option; bot repeats the same ask for other days as if not said: ignores the user."
+    },
+    {
+      "turn": 7,
+      "fits": "no",
+      "reason": "User answered clearly again; claiming not to understand and handing off to customer care does not fit."
+    }
+  ]
+}

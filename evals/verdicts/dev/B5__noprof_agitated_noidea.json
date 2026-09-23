@@ -1,0 +1,49 @@
+{
+  "card_id": "B5__noprof_agitated_noidea",
+  "pool": "dev",
+  "judge_model": "claude-opus-5-5",
+  "judged_at": "20260923T164608Z",
+  "session_id": "B5__noprof_agitated_noidea__20260918T050857Z",
+  "verdicts": [
+    {
+      "turn": 1,
+      "fits": "yes",
+      "reason": "User asks to book; bot greets and starts intake with a sensible first question."
+    },
+    {
+      "turn": 2,
+      "fits": "yes",
+      "reason": "User confirms first visit; bot moves on to ask what help is needed."
+    },
+    {
+      "turn": 3,
+      "fits": "yes",
+      "reason": "User answered the reason question; bot sensibly moves to doctor preference."
+    },
+    {
+      "turn": 4,
+      "fits": "yes",
+      "reason": "User lets bot choose; bot suggests a doctor and asks about days."
+    },
+    {
+      "turn": 5,
+      "fits": "no",
+      "reason": "Ignores the user: user asked about cost, bot lists slots with no mention of cost."
+    },
+    {
+      "turn": 6,
+      "fits": "no",
+      "reason": "Invents an acknowledgement: user picked the later slot, bot acts as if they asked for other days."
+    },
+    {
+      "turn": 7,
+      "fits": "yes",
+      "reason": "User asks for Friday morning; bot says no mornings and offers Friday slots."
+    },
+    {
+      "turn": 8,
+      "fits": "no",
+      "reason": "Invents an acknowledgement: user chose the following Friday at 5pm, bot confirms 18 September at 18:00."
+    }
+  ]
+}

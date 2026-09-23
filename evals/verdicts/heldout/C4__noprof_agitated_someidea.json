@@ -1,49 +1,49 @@
 {
   "card_id": "C4__noprof_agitated_someidea",
   "pool": "heldout",
-  "judge_model": "claude-opus-5",
-  "judged_at": "20260921T161504Z",
+  "judge_model": "claude-opus-5-5",
+  "judged_at": "20260923T165152Z",
   "session_id": "C4__noprof_agitated_someidea__20260918T083813Z",
   "verdicts": [
     {
       "turn": 1,
       "fits": "yes",
-      "reason": "Greeting plus a sensible first intake question after a request for an appointment."
+      "reason": "User asks for an appointment; bot greets and starts intake with a sensible first question."
     },
     {
       "turn": 2,
       "fits": "yes",
-      "reason": "Accepts the yes and moves to the next intake question."
+      "reason": "User confirms first visit; bot moves on to ask what they need help with."
     },
     {
       "turn": 3,
       "fits": "yes",
-      "reason": "Takes the stated concern and proceeds to the doctor question, a sensible next step."
+      "reason": "User describes their concern; bot takes it and moves to the next booking question."
     },
     {
       "turn": 4,
       "fits": "no",
-      "reason": "Ignores the user: they named Dr. Sharma clearly, but the bot re-asks as if nothing was said."
+      "reason": "Ignores the user: they clearly named a doctor, yet bot claims it did not catch that and re-asks."
     },
     {
       "turn": 5,
       "fits": "no",
-      "reason": "Ignores the user again: the doctor was named twice, yet the same question is repeated."
+      "reason": "Asks what was already answered: user repeated the doctor name and bot re-asks the same question again."
     },
     {
       "turn": 6,
       "fits": "no",
-      "reason": "Invents an acknowledgement: user said Dr. Sharma, bot suggests a different doctor with no mention of the request."
+      "reason": "Invents an acknowledgement: user asked for a named doctor, bot responds as if they wanted a suggestion."
     },
     {
       "turn": 7,
       "fits": "yes",
-      "reason": "Offers Monday morning slots matching the stated day and time preference."
+      "reason": "User gives day and time preference; bot offers matching Monday morning slots."
     },
     {
       "turn": 8,
       "fits": "yes",
-      "reason": "Confirms the exact slot the user picked."
+      "reason": "User picks the earliest Monday 10:00 slot; bot confirms exactly that slot."
     }
   ]
 }

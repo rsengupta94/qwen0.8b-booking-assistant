@@ -69,6 +69,12 @@ Manual: a Claude Code session spawns fresh sub-agents on the strongest model ove
 
 `checks/eval_4.sh`: asserts a verdict for every bot turn in every kept transcript, computes judge-versus-human agreement on the calibration set, fails below 75 percent agreement, and merges verdict counts into the results file.
 
+### E4 notes (2026-09-23)
+
+- The judge self-reports its model id; the E4 check fails if verdict files name more than one model. Held-out was re-judged once to meet this after calibration ran on a newer Opus.
+- The labelling sheet is `evals/calibration/labels.xlsx` (labels sheet plus a full-conversation trace sheet); the merge reads it directly, with the CSV as fallback.
+- Result: 90 percent agreement on 40 dev replies; 152 of 488 held-out replies judged as not fitting.
+
 ## E5: Evals tab
 
 An Evals tab in the web UI reading `evals/results/`. Views: session pass rate, prompt x outcome-class heatmap with rates and hover counts, click-through from cell to turns to JSONL lines, discard rate, judge agreement. Comparison view: results format supports two runs side by side; the view is built when a second `prompt_version` exists. `/evals/runs` and `/evals/runs/{id}` endpoints.

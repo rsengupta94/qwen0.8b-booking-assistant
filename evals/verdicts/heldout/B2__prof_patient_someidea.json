@@ -1,44 +1,44 @@
 {
   "card_id": "B2__prof_patient_someidea",
   "pool": "heldout",
-  "judge_model": "claude-opus-5",
-  "judged_at": "20260921T161325Z",
+  "judge_model": "claude-opus-5-5",
+  "judged_at": "20260923T165011Z",
   "session_id": "B2__prof_patient_someidea__20260918T081457Z",
   "verdicts": [
     {
       "turn": 1,
       "fits": "yes",
-      "reason": "Greeting plus a relevant first-consultation question fits the booking request."
+      "reason": "Greets the booking request and asks a relevant opening question."
     },
     {
       "turn": 2,
       "fits": "yes",
-      "reason": "Follows the yes answer by asking what help is needed."
+      "reason": "Acknowledges first visit and moves to asking what help is needed."
     },
     {
       "turn": 3,
       "fits": "yes",
-      "reason": "Accepts the stated concern and moves to the next booking question."
+      "reason": "User answered the help question; moving on to doctor preference is a sensible next step (tone aside)."
     },
     {
       "turn": 4,
       "fits": "yes",
-      "reason": "Takes the named doctor and asks for days, the sensible next step."
+      "reason": "Accepts the named doctor and asks about days."
     },
     {
       "turn": 5,
-      "fits": "no",
-      "reason": "Ignores the user: the doctor switch gets no acknowledgement and the reply repeats the prior question unchanged."
+      "fits": "yes",
+      "reason": "Accepts the doctor switch and re-asks the still-open days question; later slots confirm the new doctor."
     },
     {
       "turn": 6,
       "fits": "yes",
-      "reason": "Offers Monday slots for the chosen doctor after the day answer."
+      "reason": "Offers Monday slots with the requested doctor, matching the user answer."
     },
     {
       "turn": 7,
       "fits": "yes",
-      "reason": "Confirms the slot the user picked by number."
+      "reason": "Confirms option 1 exactly as the user chose."
     }
   ]
 }

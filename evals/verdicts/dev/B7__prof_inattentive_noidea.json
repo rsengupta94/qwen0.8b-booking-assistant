@@ -1,0 +1,59 @@
+{
+  "card_id": "B7__prof_inattentive_noidea",
+  "pool": "dev",
+  "judge_model": "claude-opus-5-5",
+  "judged_at": "20260923T164704Z",
+  "session_id": "B7__prof_inattentive_noidea__20260918T052253Z",
+  "verdicts": [
+    {
+      "turn": 1,
+      "fits": "yes",
+      "reason": "Greeting and first-visit question fit a request to book."
+    },
+    {
+      "turn": 2,
+      "fits": "yes",
+      "reason": "Asks what help is needed after user confirms first visit."
+    },
+    {
+      "turn": 3,
+      "fits": "no",
+      "reason": "Asks what was already answered: user just said whoever the clinic thinks is best is fine."
+    },
+    {
+      "turn": 4,
+      "fits": "yes",
+      "reason": "Suggests a doctor as asked and moves to days."
+    },
+    {
+      "turn": 5,
+      "fits": "no",
+      "reason": "Ignores the cost question and invents a Friday request the user never made."
+    },
+    {
+      "turn": 6,
+      "fits": "no",
+      "reason": "Ignores the question about the first visit and repeats the same unrelated Friday message."
+    },
+    {
+      "turn": 7,
+      "fits": "yes",
+      "reason": "Acknowledges the morning preference, says none are open, and offers alternatives."
+    },
+    {
+      "turn": 8,
+      "fits": "no",
+      "reason": "Asks what was already answered: user just named Tuesday morning, bot asks which days work."
+    },
+    {
+      "turn": 9,
+      "fits": "no",
+      "reason": "Invents an acknowledgement: says no evening slots though the user asked for mornings."
+    },
+    {
+      "turn": 10,
+      "fits": "yes",
+      "reason": "Confirms the option the user picked."
+    }
+  ]
+}

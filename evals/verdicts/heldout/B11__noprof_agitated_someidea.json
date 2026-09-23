@@ -1,84 +1,84 @@
 {
   "card_id": "B11__noprof_agitated_someidea",
   "pool": "heldout",
-  "judge_model": "claude-opus-5",
-  "judged_at": "20260921T161315Z",
+  "judge_model": "claude-opus-5-5",
+  "judged_at": "20260923T165012Z",
   "session_id": "B11__noprof_agitated_someidea__20260918T080329Z",
   "verdicts": [
     {
       "turn": 1,
       "fits": "yes",
-      "reason": "Opening greeting and first-consultation question is a sensible reply to a booking request."
+      "reason": "Sensible opening: greets and starts the booking flow after the user asks to book."
     },
     {
       "turn": 2,
       "fits": "yes",
-      "reason": "User confirmed first visit; bot moves on to ask the reason for the visit."
+      "reason": "Acknowledges first visit and asks for the reason, a sensible next step."
     },
     {
       "turn": 3,
       "fits": "yes",
-      "reason": "User answered what they need help with; asking about doctor preference is the sensible next step."
+      "reason": "Moves on to doctor preference after the user describes the problem."
     },
     {
       "turn": 4,
       "fits": "yes",
-      "reason": "User asked for any doctor soon; bot suggests one and asks for days."
+      "reason": "User asked the bot to pick; bot suggests a doctor and asks about days."
     },
     {
       "turn": 5,
       "fits": "no",
-      "reason": "Ignores the user: the question about being a bot gets no mention, and the doctor question was already settled."
+      "reason": "Ignores the user: real-person question unanswered, and re-asks the doctor preference already settled."
     },
     {
       "turn": 6,
       "fits": "yes",
-      "reason": "User repeated no preference; bot suggests a doctor and asks for days."
+      "reason": "Acts on the request to pick the soonest doctor and asks about days."
     },
     {
       "turn": 7,
       "fits": "no",
-      "reason": "Invents an acknowledgement: user never mentioned evenings, and the offered days ignore the Tuesday/Thursday request."
+      "reason": "Invents an acknowledgement: says no evening slots though the user never asked for evenings."
     },
     {
       "turn": 8,
-      "fits": "yes",
-      "reason": "User rejected the offered slots; bot re-asks which days work, a sensible recovery."
+      "fits": "no",
+      "reason": "Asks what was already answered: user just restated Tuesday or Thursday, bot asks which days."
     },
     {
       "turn": 9,
       "fits": "no",
-      "reason": "Ignores the user: repeats the same Saturday slots and the evening claim after the user rejected Saturday."
+      "reason": "Invents an evening request again and re-offers the Saturday slots the user just rejected."
     },
     {
       "turn": 10,
       "fits": "no",
-      "reason": "Ignores the user: a slot choice gets no response, and the doctor question was already answered twice."
+      "reason": "Ignores the user picking the earlier slot and re-asks the settled doctor preference."
     },
     {
       "turn": 11,
-      "fits": "yes",
-      "reason": "User again asked the bot to pick; bot suggests a doctor and asks for days."
+      "fits": "no",
+      "reason": "Picks a doctor but asks what was already answered: days were given as Tuesday or Thursday twice."
     },
     {
       "turn": 12,
       "fits": "yes",
-      "reason": "User gave days; bot lists slots on those days."
+      "reason": "Offers Tuesday and Thursday slots matching the days the user gave."
     },
     {
       "turn": 13,
       "fits": "no",
-      "reason": "Ignores the user: a clear slot selection is dropped and the already-answered day question is re-asked."
+      "reason": "Ignores the user choosing the Tuesday 18:00 slot and treats it as a rejection of the days."
     },
     {
       "turn": 14,
       "fits": "yes",
-      "reason": "User restated the days; bot lists the matching slots again."
+      "reason": "User restated days; bot re-lists the matching slots, a sensible recovery."
     },
     {
       "turn": 15,
       "fits": "yes",
-      "reason": "User picked a listed slot; bot confirms that exact slot."
+      "reason": "Confirms exactly the Tuesday 18:00 slot the user asked to book."
     }
   ]
 }

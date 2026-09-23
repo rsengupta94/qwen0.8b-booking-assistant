@@ -1,49 +1,49 @@
 {
   "card_id": "A4__noprof_patient_someidea",
   "pool": "heldout",
-  "judge_model": "claude-opus-5",
-  "judged_at": "20260921T161219Z",
+  "judge_model": "claude-opus-5-5",
+  "judged_at": "20260923T164854Z",
   "session_id": "A4__noprof_patient_someidea__20260918T074639Z",
   "verdicts": [
     {
       "turn": 1,
       "fits": "yes",
-      "reason": "Greeting answered with a greeting and a sensible first intake question."
+      "reason": "Greeting and booking request met with a welcome and a sensible first question."
     },
     {
       "turn": 2,
       "fits": "yes",
-      "reason": "Returning patient stated, so asking for the registered phone number follows naturally."
+      "reason": "Returning patient answer followed by a request for the registered phone number fits."
     },
     {
       "turn": 3,
       "fits": "yes",
-      "reason": "Phone given, bot moves on to appointment type; no repeat question."
+      "reason": "Phone number given; bot moves on to ask session type, which fits."
     },
     {
       "turn": 4,
       "fits": "yes",
-      "reason": "Session type given, bot asks for day preference, the next open slot detail."
+      "reason": "Session type answered; asking which days work is a sensible next step."
     },
     {
       "turn": 5,
       "fits": "no",
-      "reason": "Invents an acknowledgement: claims no evening slots though the user never asked about evenings."
+      "reason": "Invents an acknowledgement: says there are no evening slots as if the user asked for evenings, which they did not."
     },
     {
       "turn": 6,
       "fits": "no",
-      "reason": "Ignores the user question about talking to a real person and invents a request for other days."
+      "reason": "Ignores the user asking if they are talking to a real person, and invents a request to look at other days."
     },
     {
       "turn": 7,
       "fits": "no",
-      "reason": "Invents an acknowledgement again: repeats the evening-slot caveat the user never raised."
+      "reason": "Invents an acknowledgement: again claims no evening slots though the user never asked for evenings."
     },
     {
       "turn": 8,
       "fits": "yes",
-      "reason": "Confirms the exact 10:00 slot the user picked, matching the offer list."
+      "reason": "User picked the 10:00 slot and the bot confirms exactly that slot."
     }
   ]
 }

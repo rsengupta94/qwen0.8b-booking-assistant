@@ -1,0 +1,44 @@
+{
+  "card_id": "A3__noprof_inattentive_noidea",
+  "pool": "dev",
+  "judge_model": "claude-opus-5-5",
+  "judged_at": "20260923T164609Z",
+  "session_id": "A3__noprof_inattentive_noidea__20260918T050152Z",
+  "verdicts": [
+    {
+      "turn": 1,
+      "fits": "yes",
+      "reason": "Greets and asks a sensible first intake question after a booking request."
+    },
+    {
+      "turn": 2,
+      "fits": "yes",
+      "reason": "User confirmed first visit; asking what they need help with is a sensible next step."
+    },
+    {
+      "turn": 3,
+      "fits": "yes",
+      "reason": "User answered the question asked; moving on to doctor preference fits (the flat Great is tone, not judged)."
+    },
+    {
+      "turn": 4,
+      "fits": "yes",
+      "reason": "User deferred the choice; bot suggests a doctor and asks for days, which fits."
+    },
+    {
+      "turn": 5,
+      "fits": "no",
+      "reason": "Ignores the user: they asked whether they are talking to a person, and the bot lists a slot without addressing it."
+    },
+    {
+      "turn": 6,
+      "fits": "yes",
+      "reason": "User asked for Monday and the bot offers Monday slots."
+    },
+    {
+      "turn": 7,
+      "fits": "no",
+      "reason": "Invents an acknowledgement: user picked the earliest listed slot but the bot confirms a later one."
+    }
+  ]
+}

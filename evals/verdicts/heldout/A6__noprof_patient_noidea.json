@@ -1,34 +1,34 @@
 {
   "card_id": "A6__noprof_patient_noidea",
   "pool": "heldout",
-  "judge_model": "claude-opus-5",
-  "judged_at": "20260921T161226Z",
+  "judge_model": "claude-opus-5-5",
+  "judged_at": "20260923T164849Z",
   "session_id": "A6__noprof_patient_noidea__20260918T075829Z",
   "verdicts": [
     {
       "turn": 1,
       "fits": "yes",
-      "reason": "Greeting and booking request met with a greeting and a relevant first qualifying question."
+      "reason": "Greets and asks a sensible opening question in reply to a booking request."
     },
     {
       "turn": 2,
       "fits": "yes",
-      "reason": "User said they are a returning patient, so asking for the registered phone number follows."
+      "reason": "Acknowledges a returning patient and asks for the registered phone number."
     },
     {
       "turn": 3,
       "fits": "no",
-      "reason": "Ignores the user: the phone number was given clearly and the bot re-asks the same question."
+      "reason": "Asks what was already answered: user clearly gave a phone number, bot claims not to catch it and re-asks."
     },
     {
       "turn": 4,
       "fits": "no",
-      "reason": "Ignores the user: the same number was repeated clearly and the bot re-asks again."
+      "reason": "Asks what was already answered: user repeated the phone number clearly, bot re-asks again."
     },
     {
       "turn": 5,
       "fits": "no",
-      "reason": "Ignores the user: hands off to customer care though the user had just answered the question clearly."
+      "reason": "Customer care handoff right after the user clearly answered the phone number question; not a genuine stall."
     }
   ]
 }
