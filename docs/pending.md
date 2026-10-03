@@ -12,8 +12,9 @@ Written 2026-10-02 from design.md, `eval_design_v1.md`, the E5 handoff in `eval_
   - Your input: the labels. A decision: are unfaithful cards only reported, or also excluded from the `extract_problem` score?
   - Done 2026-10-03. Blind design: you picked a category per message without seeing the card's. Simulator wording faithful on 15 of 17, both misses on the anxiety/stress line; card-verbatim D1 sentence 2 of 2. Report only, no exclusion (decision log E9). Findings in `eval_findings_log.md` 2026-10-03; open items added to decision log section H.
 
-- [ ] **3. Results-file pile-up.** Every E3 check run writes a new file in `evals/results/`. Flagged as unaddressed in the E5 handoff.
+- [x] **3. Results-file pile-up.** Every E3 check run writes a new file in `evals/results/`. Flagged as unaddressed in the E5 handoff.
   - Your input: overwrite, keep the latest per setup, or leave as is.
+  - Done 2026-10-03. The scorer skips the write when the latest file for the same setup holds the same scores, and reports that file's run_id instead (decision log E10). The two 2026-09-21 files, identical to the 2026-09-23 file apart from run_id and judge data, were deleted; they remain in git history.
 
 ## Step 2: E5, the Evals tab
 

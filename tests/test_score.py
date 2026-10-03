@@ -1,5 +1,6 @@
 """Scorer: outcome classes per call and session verdicts on a synthetic transcript and log."""
 import copy
+import json
 
 from evals import score
 
@@ -90,3 +91,13 @@ def test_routing_flags_product_advancing_on_non_answer():
     r = score.score_transcript(CARD, t, LOGS)
     assert r["turns"][2]["routing_ok"] is False and r["turns"][2]["expected_next"] == "ASK_PROBLEM"
     assert outcomes(r, "extract_problem") == ["silent_wrong"]
+
+
+def test_unchanged_run_skips_identical_scores(tmp_path):
+    payload = {"run_id": "g_b_m_set1_20260101T000000", "source": "g", "aggregate": {"x": 1}, "sessions": []}
+    assert score.unchanged_run(tmp_path, "g_b_m_set1", payload) is None
+    (tmp_path / "g_b_m_set1_20260101T000000.json").write_text(json.dumps({**payload, "judge": {"rate": 0.9}}))
+    later = {**payload, "run_id": "g_b_m_set1_20260102T000000"}
+    assert score.unchanged_run(tmp_path, "g_b_m_set1", later) == "g_b_m_set1_20260101T000000"
+    assert score.unchanged_run(tmp_path, "g_b_m_set1", {**later, "aggregate": {"x": 2}}) is None
+    assert score.unchanged_run(tmp_path, "other_setup", later) is None

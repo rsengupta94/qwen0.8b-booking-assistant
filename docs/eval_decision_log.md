@@ -149,6 +149,11 @@ Companion to `eval_design_v1.md` (the rules), `eval_phases_v1.md` (the phases), 
 **Why:** Only dev can be audited by a human reader (D4), and held-out drives every headline number. Excluding cards would change dev numbers only and add a second scoring rule for one pool. The useful action is upstream, in the v2 design: tighten the simulator brief so anxiety and stress descriptions separate, or accept that line as fuzzy and score both answers.
 **Rejected:** Excluding unfaithful dev cards from the `extract_problem` count.
 
+### E10. A results file is written only when the scores change
+**Decided:** The scorer compares its output with the latest results file for the same source, prompt version, model and eval set. If everything but the run id and the judge section is equal, it writes nothing and reports that file's run id. The two 2026-09-21 files, duplicates of 2026-09-23, were deleted from the tree.
+**Why:** Every E3 check run rescored the same logs and added an identical file of about 730 KB to git, and the Evals tab's run list would have filled with copies of one run.
+**Rejected:** Pointing check runs at a scratch folder, which keeps checks from writing results at all but needs the E3 and E4 checks to share a path. Leaving the files and filtering them in the UI, which still grows the repo by one copy per check run.
+
 ---
 
 ## F. The judge

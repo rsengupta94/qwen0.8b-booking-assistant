@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 # E3 check: path table, scorer and guard tests pass; the held-out guard passes; replaying the dev
 # transcripts against the current product agrees with the generation run on state per turn; the
-# scorer runs over both pools and writes a results file with all three outcome classes present or
-# explicitly zero. Prints aggregates only.
+# scorer runs over both pools and writes a results file (or reuses the latest one when the scores are
+# unchanged) with all three outcome classes present or explicitly zero. Prints aggregates only.
 set -euo pipefail
 cd "$(dirname "$0")/.."
 

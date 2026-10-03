@@ -9,6 +9,8 @@ gave_up and turn_cap fail.
 
 Usage: uv run python -m evals.score --pool all [--transcripts evals/transcripts] [--logs evals/product_logs] [--source generation]
 Writes evals/results/<run_id>.json and prints aggregates only. Never prints utterances.
+Skips the write when the latest file for the same setup (source, prompt version, model, eval set) holds the
+same scores, and reports that file's run_id instead, so repeated check runs do not pile up identical files.
 """
 from __future__ import annotations
 
@@ -157,6 +159,17 @@ def score_transcript(card: dict, t: dict, logs: dict[int, list[dict]]) -> dict:
             "session": session, "turns": turns_out, "calls": calls}
 
 
+def unchanged_run(out: Path, prefix: str, payload: dict) -> str | None:
+    """run_id of the latest results file with this prefix if its scores equal payload's, else None.
+    run_id and the judge section (merged in later by judge_merge) are not part of the comparison."""
+    files = sorted(out.glob(f"{prefix}_*.json"))
+    if not files:
+        return None
+    prev = json.loads(files[-1].read_text())
+    strip = lambda d: {k: v for k, v in d.items() if k not in ("run_id", "judge")}
+    return prev["run_id"] if strip(prev) == strip(payload) else None
+
+
 def aggregate(results: list[dict]) -> dict:
     by_prompt: dict[str, Counter] = defaultdict(Counter)
     routing = Counter()
@@ -194,13 +207,21 @@ def main() -> None:
                     "eval_set_version": t["eval_set_version"], "simulator_model": t["run"]["simulator_model"]}
             results.append(score_transcript(card, t, logs.get(t["run"]["session_id"], {})))
     vv = sorted({l.get("validator_version") for s in logs.values() for ls in s.values() for l in ls if l.get("validator_version")})
-    run_id = f"{a.source}_{meta.get('prompt_version','?')}_{meta.get('model_id','?')}_set{meta.get('eval_set_version','?')}_{datetime.now().strftime('%Y%m%dT%H%M%S')}"
+    prefix = f"{a.source}_{meta.get('prompt_version','?')}_{meta.get('model_id','?')}_set{meta.get('eval_set_version','?')}"
+    run_id = f"{prefix}_{datetime.now().strftime('%Y%m%dT%H%M%S')}"
     agg = {"run_id": run_id, "source": a.source, **meta, "validator_versions": vv, "pools": pools,
            "n_sessions": len(results), "aggregate": aggregate(results),
            "per_pool": {pool: aggregate([r for r in results if r["pool"] == pool]) for pool in pools}}
-    Path(a.out).mkdir(exist_ok=True)
-    (Path(a.out) / f"{run_id}.json").write_text(json.dumps({**agg, "sessions": results}, indent=2) + "\n")
-    print(f"run_id={run_id} sessions={len(results)}")
+    out = Path(a.out)
+    out.mkdir(exist_ok=True)
+    payload = {**agg, "sessions": results}
+    same = unchanged_run(out, prefix, payload)
+    if same:
+        run_id = agg["run_id"] = same
+        print(f"run_id={run_id} sessions={len(results)} unchanged, not written")
+    else:
+        (out / f"{run_id}.json").write_text(json.dumps(payload, indent=2) + "\n")
+        print(f"run_id={run_id} sessions={len(results)}")
     for pool in pools:
         pa = agg["per_pool"][pool]
         print(f"{pool}: sessions={pa['sessions']} routing={pa['routing']}")
