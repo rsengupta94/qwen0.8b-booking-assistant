@@ -107,6 +107,12 @@ An Evals tab in the web UI reading `evals/results/`. Views: session pass rate, p
 
 `checks/eval_5.sh`: curls both endpoints, asserts the run list is non-empty and a run payload has heatmap cells for every NLU and NLG prompt name in `prompts/baseline/`.
 
+**Decisions settled before build (2026-10-03),** answering the four open questions in the handoff above. Rationale in decision log section I.
+- Held-out drill-down shows structured fields only: prompt, expected versus actual value (enum values such as categories, days and slot indices; never model free text such as summaries or replies), outcome, reason code. Dev drill-down shows everything.
+- The run list shows the latest run per (`prompt_version`, `model_id`, `eval_set_version`). Older files stay on disk.
+- The endpoints are served by a separate eval server in the `evals` package on its own port, not by the product. The product UI gets an Evals tab that fetches from that server. The product's Python never reads results files and never imports eval code, so rule 8 stands as written. `checks/eval_5.sh` curls the eval server.
+- Held-out is the default view. Dev is available behind a toggle and labelled as dev.
+
 ## Out of these phases
 
 Human trace labeling by source, comparison view, publishing transcripts as a dataset. Human traces already carry a source label from the product log; nothing to build until a second version or real users exist.

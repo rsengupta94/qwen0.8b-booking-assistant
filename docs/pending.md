@@ -18,12 +18,13 @@ Written 2026-10-02 from design.md, `eval_design_v1.md`, the E5 handoff in `eval_
 
 ## Step 2: E5, the Evals tab
 
-- [ ] **4. Settle the four open questions** from the E5 handoff. My recommendations in brackets.
-  - [ ] a. Held-out drill-down: what can it show? (Structured fields only, never conversation text.)
-  - [ ] b. Run list: which runs does it show? (Latest per prompt version, model and eval set.)
-  - [ ] c. Rule 8 in `CLAUDE.md`: may the product read `evals/results/*.json`? (Yes as data files; never import from the `evals` package.)
-  - [ ] d. Headline view: which pool is the default? (Held-out; dev available but labelled as dev.)
+- [x] **4. Settle the four open questions** from the E5 handoff. My recommendations in brackets.
+  - [x] a. Held-out drill-down: what can it show? (Structured fields only, never conversation text.) Decided as recommended.
+  - [x] b. Run list: which runs does it show? (Latest per prompt version, model and eval set.) Decided as recommended.
+  - [x] c. Rule 8 in `CLAUDE.md`: may the product read `evals/results/*.json`? (Yes as data files; never import from the `evals` package.) Decided otherwise: a separate eval server serves the endpoints; the Evals tab in the product UI fetches from it; rule 8 unchanged.
+  - [x] d. Headline view: which pool is the default? (Held-out; dev available but labelled as dev.) Decided as recommended.
   - Your input: a decision on each.
+  - Done 2026-10-03. Recorded in `eval_phases_v1.md` (E5 amendment) and decision log section I.
 
 - [ ] **5. Build E5.** I list the files and wait for your OK, write `checks/eval_5.sh` first, then build `/evals/runs`, `/evals/runs/{id}` and the tab. The tab must reproduce the handoff numbers: 42 of 61 held-out sessions passed; calls 805 / 78 / 168 / 629; judge agreement 0.9; 152 of 488 held-out replies not fitting.
   - Your input: approve the file list, review the tab, approve the commit.

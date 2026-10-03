@@ -219,3 +219,27 @@ Companion to `eval_design_v1.md` (the rules), `eval_phases_v1.md` (the phases), 
 - The comparison view exists in the results format but is unbuilt until a second prompt version exists.
 - Category coverage: the 27 scenarios fix 8 of the 12 problem categories, anxiety in 10. ocd, perinatal and geriatric are untested with no recorded reason (child_adolescent is out by design). Found during the 2026-10-03 audit.
 - The anxiety and stress line is fuzzy in simulator wording: in the audit, one disagreement in each direction. Either the simulator brief separates them, or scoring accepts both. Undecided.
+
+---
+
+## I. The Evals tab (E5), settled 2026-10-03
+
+### I1. Held-out drill-down shows structured fields, never text
+**Decided:** Clicking a held-out heatmap cell shows prompt, expected versus actual value, outcome and reason code. Values are enums only (categories, days, slot indices), never model free text such as the `extract_problem` summary, which paraphrases the patient. Dev drill-down shows everything.
+**Why:** Contamination is about phrasing (D1, D4). Structured fields say where the product fails without putting held-out wording in front of the prompt author.
+**Rejected:** Full text as on dev, which ends held-out as a held-out set. No held-out drill-down at all, which leaves the headline numbers with nowhere to click.
+
+### I2. The run list shows the latest run per setup
+**Decided:** One run per prompt version, model and eval set. Older files stay on disk.
+**Rejected:** Listing every results file. History adds nothing until a second prompt version exists, and the comparison view will be built for that.
+
+### I3. A separate eval server; the Evals tab sits in the product UI
+**Decided:** The `evals` package runs its own small server, which serves `/evals/runs` and `/evals/runs/{id}` on its own port. The product UI has an Evals tab that fetches from it. The product's Python never reads results files and never imports eval code, so rule 8 stands unchanged.
+**Why:** The product process gets no eval data path at all, while the tab stays in one place next to the chat and debug panel.
+**Rejected:** Endpoints inside the product reading the results JSON (the handoff's recommendation), which needs rule 8 loosened. A standalone page on the eval server: fully isolated, but a second place to look. A static HTML report: nothing to run, but no endpoints, so the E5 spec and check change more.
+**Cost accepted:** The product UI knows the eval server's address, and the eval server must allow cross-origin requests from the product's page. The Space runs one process, so the tab has no data there.
+
+### I4. Held-out is the default view
+**Decided:** The tab opens on held-out. Dev sits behind a toggle and is labelled as dev.
+**Why:** The design says reported numbers come only from held-out.
+**Rejected:** Held-out only, which loses the pool you are allowed to read. Dev as the default, which invites quoting dev numbers as the headline.
