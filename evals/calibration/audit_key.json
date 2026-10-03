@@ -1,0 +1,154 @@
+[
+  {
+    "row": 1,
+    "card_id": "B4__noprof_patient_noidea",
+    "turn": 4,
+    "card_category": "addiction",
+    "message_type": "changed description",
+    "source": "simulator"
+  },
+  {
+    "row": 2,
+    "card_id": "D4__noprof_patient_someidea",
+    "turn": 3,
+    "card_category": "anxiety",
+    "message_type": "first description",
+    "source": "simulator"
+  },
+  {
+    "row": 3,
+    "card_id": "A2__noprof_inattentive_someidea",
+    "turn": 3,
+    "card_category": "sleep",
+    "message_type": "first description",
+    "source": "simulator"
+  },
+  {
+    "row": 4,
+    "card_id": "D2b__prof_patient_someidea",
+    "turn": 3,
+    "card_category": "anxiety",
+    "message_type": "first description",
+    "source": "simulator"
+  },
+  {
+    "row": 5,
+    "card_id": "C3__noprof_patient_someidea",
+    "turn": 4,
+    "card_category": "depression",
+    "message_type": "changed description",
+    "source": "simulator"
+  },
+  {
+    "row": 6,
+    "card_id": "D1__noprof_inattentive_noidea",
+    "turn": 3,
+    "card_category": "grief",
+    "message_type": "first description",
+    "source": "card_verbatim"
+  },
+  {
+    "row": 7,
+    "card_id": "D1__prof_patient_noidea",
+    "turn": 3,
+    "card_category": "grief",
+    "message_type": "first description",
+    "source": "card_verbatim"
+  },
+  {
+    "row": 8,
+    "card_id": "D2b__noprof_inattentive_someidea",
+    "turn": 3,
+    "card_category": "anxiety",
+    "message_type": "first description",
+    "source": "simulator"
+  },
+  {
+    "row": 9,
+    "card_id": "B5__noprof_agitated_noidea",
+    "turn": 3,
+    "card_category": "anxiety",
+    "message_type": "first description",
+    "source": "simulator"
+  },
+  {
+    "row": 10,
+    "card_id": "A3__prof_inattentive_someidea",
+    "turn": 3,
+    "card_category": "depression",
+    "message_type": "first description",
+    "source": "simulator"
+  },
+  {
+    "row": 11,
+    "card_id": "B7__prof_inattentive_noidea",
+    "turn": 3,
+    "card_category": "relationships",
+    "message_type": "first description",
+    "source": "simulator"
+  },
+  {
+    "row": 12,
+    "card_id": "B7__prof_inattentive_someidea",
+    "turn": 3,
+    "card_category": "relationships",
+    "message_type": "first description",
+    "source": "simulator"
+  },
+  {
+    "row": 13,
+    "card_id": "B10__noprof_agitated_someidea",
+    "turn": 3,
+    "card_category": "anxiety",
+    "message_type": "first description",
+    "source": "simulator"
+  },
+  {
+    "row": 14,
+    "card_id": "B5__noprof_agitated_someidea",
+    "turn": 3,
+    "card_category": "anxiety",
+    "message_type": "first description",
+    "source": "simulator"
+  },
+  {
+    "row": 15,
+    "card_id": "B10__prof_inattentive_noidea",
+    "turn": 3,
+    "card_category": "anxiety",
+    "message_type": "first description",
+    "source": "simulator"
+  },
+  {
+    "row": 16,
+    "card_id": "C3__noprof_patient_someidea",
+    "turn": 3,
+    "card_category": "stress",
+    "message_type": "first description",
+    "source": "simulator"
+  },
+  {
+    "row": 17,
+    "card_id": "B7__prof_agitated_noidea",
+    "turn": 3,
+    "card_category": "relationships",
+    "message_type": "first description",
+    "source": "simulator"
+  },
+  {
+    "row": 18,
+    "card_id": "A3__noprof_inattentive_noidea",
+    "turn": 3,
+    "card_category": "depression",
+    "message_type": "first description",
+    "source": "simulator"
+  },
+  {
+    "row": 19,
+    "card_id": "B4__noprof_patient_noidea",
+    "turn": 3,
+    "card_category": "stress",
+    "message_type": "first description",
+    "source": "simulator"
+  }
+]

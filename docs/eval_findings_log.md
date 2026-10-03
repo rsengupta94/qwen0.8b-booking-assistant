@@ -82,3 +82,28 @@ Harness lessons:
 - The judge must report its own model id from its system prompt; an orchestrator-typed label is not evidence.
 - The E4 check now fails if verdict files name more than one judge model.
 - Excel re-saves integer columns as decimals; the merge reads turn numbers through float first.
+
+## 2026-10-03, E2 follow-up: simulator-fidelity audit, 19 dev problem descriptions, one human labeller
+
+The audit owed since E2 (eval design section 7). Every dev patient message that describes the problem: 17 first answers at ASK_PROBLEM and 2 later problem corrections. One non-answer at ASK_PROBLEM was left out. Blind: the human saw shuffled messages with no card id and picked the category they would file each under, with an optional second choice. Sheet `evals/calibration/audit.xlsx`, key `audit_key.json`, scored by `evals/audit_merge.py`.
+
+Numbers:
+- Simulator wording: 15 of 17 faithful (88 percent). 14 plain matches, 1 match where the human also named a second choice. 2 unfaithful, 0 can't tell.
+- Card-verbatim wording (the D1 sentence written into the card): 2 of 2 faithful, both with a second choice.
+- Counting hesitations, 5 of 19 rows show real category overlap.
+
+Where the human and the card disagreed:
+- D4, card anxiety: "I feel keyed up before work and I just cannot relax at home". Human: stress. The product also said stress. The scorer counts this as an `extract_problem` silent-wrong, but it is simulator wording, not a model error. It is the same anxiety-to-stress pattern behind most of the 13 held-out `extract_problem` silent-wrongs, so part of that count is likely simulator noise. How much cannot be read off 17 dev rows.
+- C3, card stress: "Deadlines keep me all wound up lately and I grind my teeth at night". Human: anxiety. The product said stress, so it scores as a pass. The line is fuzzy in both directions: the simulator anchors both categories in work and tension.
+- Second choices on matching rows: B4's changed description, addiction then stress (the persona switches from a stress problem); both D1 rows, grief then sleep (the sentence is ambiguous by design).
+
+Product observations (dev only):
+- The D1 sentence "I can't sleep since my father died" was categorised as trauma in every dev generation call: both kept transcripts plus two earlier D1 prof sessions that were not kept. That is neither the card's category nor either of the human's picks. The summary invented a symptom: "persistent insomnia and intrusive flashbacks following...". The summary is the input text to `doctor_pick`, so an invented detail can steer the shortlist pick.
+- Correction to the 2026-09-18 dev entry, which said this sentence "went to grief once and to sleep once". That reading came from the doctor offered, not the logged category. In D1 prof, trauma led to Dr. Sana Khan, who also covers grief. In D1 noprof, the next message, a non-answer at ASK_DOCTOR_PREF, was classified by `turn_classifier` as a problem correction (its new value began "real person") and re-extracted as stress, which led to Dr. Arjun Iyer (stress and sleep). That is the known `turn_classifier` rewind on off-topic remarks, not two readings of the sentence.
+
+Coverage observation: the 27 scenarios fix 8 of the 12 categories, anxiety in 10 of them. child_adolescent is out by design (booking for someone else is parked). ocd, perinatal and geriatric are never tested, and no decision records why. The rule in eval design 5a bans those words as self-diagnosis, not the categories. The `extract_problem` numbers say nothing about these four, and this audit covers the 7 categories present in dev.
+
+Harness lessons:
+- A dry run of the merge on the unlabelled sheet printed the key, row by row. The merge now prints the row list only once every row has a pick. The sheet was reshuffled with a new seed before labelling, and no row kept its position. The leaked output also showed the per-category counts, so a mild anchoring effect cannot be ruled out.
+- The first merge ignored a second choice whenever the first pick matched the card, so three second choices went unreported until the labeller noticed. It now counts `faithful_second` separately.
+- Rows whose wording comes from the card's verbatim sentence are reported apart from simulator rows: they audit the card author, not the simulator.

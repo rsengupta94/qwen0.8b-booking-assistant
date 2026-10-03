@@ -139,6 +139,16 @@ Companion to `eval_design_v1.md` (the rules), `eval_phases_v1.md` (the phases), 
 **Why:** Bookings persist in the product process, so the second run of a card saw different slots. And replaying on a later date changes what "today" means and which dates are in the 14-day horizon, so a replay mismatch could be a product change or just the calendar. Pinning removes the calendar as a variable.
 **Cost accepted:** Four lines of product code, inert unless the variable is set. The only product touch in the whole eval.
 
+### E8. The fidelity audit is blind: the labeller picks a category, never sees the card's
+**Decided:** Each audit row shows only the patient's message, shuffled, with no card id. The human picks the category they would file it under, plus an optional second choice. The card's category sits in a separate key file opened only by the merge script.
+**Rejected:** Showing the card's category and asking "faithful, yes or no". It is quicker, but the answer anchors the reader towards yes, the same failure F4 guards against for the judge.
+**Cost accepted:** A blind pick can disagree with the card for reasons that are not simulator error, such as a genuinely two-way message. The optional second choice and a separate `faithful_second` count keep those visible instead of folding them into the rate.
+
+### E9. Audit results are reported, not used to drop cards from scoring
+**Decided:** The fidelity rate and the unfaithful rows go in the findings log. No card is excluded from `extract_problem` scoring because of the audit.
+**Why:** Only dev can be audited by a human reader (D4), and held-out drives every headline number. Excluding cards would change dev numbers only and add a second scoring rule for one pool. The useful action is upstream, in the v2 design: tighten the simulator brief so anxiety and stress descriptions separate, or accept that line as fuzzy and score both answers.
+**Rejected:** Excluding unfaithful dev cards from the `extract_problem` count.
+
 ---
 
 ## F. The judge
@@ -202,3 +212,5 @@ Companion to `eval_design_v1.md` (the rules), `eval_phases_v1.md` (the phases), 
 - The E3 check replays dev only; held-out replay is supported but doubles runtime.
 - Human traces have no gold, so they will report validator-level statistics only.
 - The comparison view exists in the results format but is unbuilt until a second prompt version exists.
+- Category coverage: the 27 scenarios fix 8 of the 12 problem categories, anxiety in 10. ocd, perinatal and geriatric are untested with no recorded reason (child_adolescent is out by design). Found during the 2026-10-03 audit.
+- The anxiety and stress line is fuzzy in simulator wording: in the audit, one disagreement in each direction. Either the simulator brief separates them, or scoring accepts both. Undecided.
