@@ -11,3 +11,6 @@ evals/judge_input/
 
 # built by evals/export_space.py for the static Space; regenerate rather than track
 space_build/
+
+# local copy of Claude Code session transcripts, kept for the write-up; never tracked
+session_archive/
