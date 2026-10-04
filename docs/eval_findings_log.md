@@ -107,3 +107,25 @@ Harness lessons:
 - A dry run of the merge on the unlabelled sheet printed the key, row by row. The merge now prints the row list only once every row has a pick. The sheet was reshuffled with a new seed before labelling, and no row kept its position. The leaked output also showed the per-category counts, so a mild anchoring effect cannot be ruled out.
 - The first merge ignored a second choice whenever the first pick matched the card, so three second choices went unreported until the labeller noticed. It now counts `faithful_second` separately.
 - Rows whose wording comes from the card's verbatim sentence are reported apart from simulator rows: they audit the card author, not the simulator.
+
+## 2026-10-03, E5 Evals tab, baseline prompts, qwen3.5-0.8b-q8
+
+Built: an eval server (`evals/server.py`, its own port) and an Evals tab in the product UI that reads from it. The tab shows four headline tiles, a prompt × outcome heatmap with rates over calls made and counts on hover, a held-out / dev toggle, and a drill-down from cell to calls. On dev, a call expands to the patient message, the bot reply and the product's log lines. On held-out it stays structured fields only.
+
+Numbers shown, matching the E5 handoff exactly:
+- Held-out sessions passed: 42 of 61. Dev: 12 of 20.
+- Calls, both pools: pass 805, rescued 78, silent-wrong 168, unscored 629.
+- Judge agreement: 36 of 40 (0.9). Held-out replies judged not fitting: 152 of 488. Dev: 75 of 177.
+- Discarded by the fidelity gate: held-out 2 of 63 runs (3.2 percent), dev 0 of 20.
+
+Reading the heatmap (held-out, share of calls made):
+- Silent-wrong is the column that stands out: slot_choice 33 percent (26 of 79), extract_days 22 percent (23 of 104), extract_problem 20 percent (13 of 64), doctor_pick 17 percent (7 of 42), turn_classifier 14 percent (40 of 288).
+- Rescued: present_slots 56 percent (50 of 89), extract_phone 25 percent (6 of 24).
+- Every NLG prompt except present_slots is 100 percent unscored, because NLG phrasing has no gold. Its quality shows up only through the validator (rescued) and the judge tile.
+- The rates are over calls made, as eval design section 8 asks, so they read lower than the E3 entry's "of scored" fractions. extract_problem is 13 of 64 here and 13 of 51 there. One correction to that entry: slot_choice had 77 scored calls, not 79.
+
+Harness lessons:
+- Filter held-out on the server, not in the page. Held-out text never reaches the browser. The first draft of the server read the held-out generation logs through the scorer's shared log loader; that was caught before the first run, and the server now opens only the `eval_gen_dev*` logs and never a held-out transcript.
+- On the lightest ramp step, a zero cell looked the same as a 1 to 8 percent cell. Zero cells now render blank, which is what makes the silent-wrong column legible.
+- One step of the reference blue ramp (450) fails 4.5:1 text contrast with both dark and white text, so it is left out of the cell colours.
+- Observation, not fixed: `checks/eval_2.sh` prints a held-out discard rate of 0.0 percent today, because discarded transcripts were already moved out of the pool directory. Its 10 percent ceiling can no longer fail after regeneration. The tab computes the rate from the discard files instead.

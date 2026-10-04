@@ -243,3 +243,16 @@ Companion to `eval_design_v1.md` (the rules), `eval_phases_v1.md` (the phases), 
 **Decided:** The tab opens on held-out. Dev sits behind a toggle and is labelled as dev.
 **Why:** The design says reported numbers come only from held-out.
 **Rejected:** Held-out only, which loses the pool you are allowed to read. Dev as the default, which invites quoting dev numbers as the headline.
+
+### I5. Drill-down data rides in the run payload; no third endpoint
+**Decided:** `/evals/runs/{id}` carries the per-call fields for both pools and, for dev only, the turns and log lines. It is about 530 KB.
+**Rejected:** A third endpoint that loads one cell's calls on click. It is lighter per request, but it goes beyond the two endpoints the E5 spec names, and the size is no problem on localhost.
+
+### I6. The handoff numbers were checked once, not written into the check
+**Decided:** The four E5 handoff numbers were verified against the API and on screen at build time. `checks/eval_5.sh` asserts structure only: a non-empty run list, one run per setup, a heatmap row for every prompt, no held-out text, cross-origin reads allowed.
+**Rejected:** Asserting 42/61 and the rest inside the check. It would fail the day the baseline is rescored, for a reason that is not a bug.
+
+### I7. The discard rate counts fidelity-gate discards only
+**Decided:** The tile shows gate discards over generated runs: held-out 2 of 63, dev 0 of 20.
+**Rejected:** Also counting the 5 dev reruns in `rejected_dev/`. Those were simulator and scenario mistakes caught by hand during the first dev run (3 slot text/value conflicts, 1 volunteered detail, 1 scenario bug), since blocked by the CLI and the brief. The gate never judged them, so they are not its measure.
+

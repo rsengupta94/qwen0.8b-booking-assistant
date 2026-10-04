@@ -26,11 +26,12 @@ Written 2026-10-02 from design.md, `eval_design_v1.md`, the E5 handoff in `eval_
   - Your input: a decision on each.
   - Done 2026-10-03. Recorded in `eval_phases_v1.md` (E5 amendment) and decision log section I.
 
-- [ ] **5. Build E5.** I list the files and wait for your OK, write `checks/eval_5.sh` first, then build `/evals/runs`, `/evals/runs/{id}` and the tab. The tab must reproduce the handoff numbers: 42 of 61 held-out sessions passed; calls 805 / 78 / 168 / 629; judge agreement 0.9; 152 of 488 held-out replies not fitting.
+- [x] **5. Build E5.** I list the files and wait for your OK, write `checks/eval_5.sh` first, then build `/evals/runs`, `/evals/runs/{id}` and the tab. The tab must reproduce the handoff numbers: 42 of 61 held-out sessions passed; calls 805 / 78 / 168 / 629; judge agreement 0.9; 152 of 488 held-out replies not fitting.
   - Your input: approve the file list, review the tab, approve the commit.
 
-- [ ] **6. Log entries for the article.** A dated entry in `eval_findings_log.md`, and any new decisions with their rejected alternatives in `eval_decision_log.md`.
+- [x] **6. Log entries for the article.** A dated entry in `eval_findings_log.md`, and any new decisions with their rejected alternatives in `eval_decision_log.md`.
   - Your input: review the entries.
+  - Tasks 5 and 6 done 2026-10-04. Eval server (`evals/server.py`) plus an Evals tab in the product UI; the tab reproduces all four handoff numbers. `checks/eval_5.sh` and `checks/all.sh` pass; the full replay matched 177 of 177 turns. Findings entry dated 2026-10-03, decision log I5 to I7. Open: every full check run rewrites the 20 dev replay transcripts (timestamps only) and adds a replay log; these were discarded, not committed.
 
 ## Step 3: Phase 7, deploy to Hugging Face Spaces
 
