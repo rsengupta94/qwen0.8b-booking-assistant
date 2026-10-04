@@ -131,7 +131,7 @@ Confidence: validator-only in v1. Logprobs are a v2 experiment; `complete()` ret
 
 ## 8. Serving
 
-- llama-cpp-python loading a GGUF of the 0.8B Qwen in-process. Thinking mode off. Metal on the M4 locally, CPU on Hugging Face Spaces, same code.
+- llama-cpp-python loading a GGUF of the 0.8B Qwen in-process. Thinking mode off. Metal on the M4 locally. The v1 deploy runs no model (section 11a).
 - Constrained decoding via a grammar built from each NLU JSON schema. This zeroes out tokens that would break the schema, so output always parses and enums always match. It fixes format errors, not judgment errors.
 - All calls go through `llm_client.complete(model_id, prompt, schema, params)`. `model_id` maps to a GGUF path in `models/registry.json`, so a fine-tuned or larger model is a registry entry, not a code change.
 - llama-cpp-python exposes logprobs. v1 still uses validator-only confidence, but `complete()` returns them so the experiment needs no restructuring.
@@ -144,7 +144,7 @@ Bot is an HTTP API. Everything else is a client.
 
 `POST /message {session_id, model_id, prompt_version, text}` returns `{reply, state, debug: {nlu_output, validator_results, fallback_used, latency_ms}}`
 
-`model_id` selects the served model per session so the UI can put prompt-only, fine-tuned, and baseline models side by side. `prompt_version` selects the prompt directory, so the Space can pair any prompt version with any model.
+`model_id` selects the served model per session so the UI can put prompt-only, fine-tuned, and baseline models side by side. `prompt_version` selects the prompt directory, so the UI can pair any prompt version with any model.
 
 Build order: CLI client, then a thin web UI with model and prompt-version dropdowns and the debug field shown in a side panel. The UI is one static HTML file with vanilla JS, served by FastAPI from the same process as the API. No frontend build step. On CPU each turn takes 3 to 4 model calls at 2 to 5 seconds each, so the UI streams per-call progress (classifying, extracting, writing reply). The wait should read as a debugger, not a stalled chat.
 
@@ -177,7 +177,7 @@ qwen0.8b-booking-assistant/
   checks/
     phase_0.sh ... phase_7.sh   one executable check per phase, exit 0 on pass
     all.sh                      runs every phase check in order
-  Dockerfile            Spaces deploy, same image runs locally
+  clients/space/        static Space page: conversation replay + Evals view (section 11a)
   pyproject.toml        uv
 ```
 
@@ -213,19 +213,21 @@ Turn classifier, rewind map, downstream clearing.
 Thin web UI with model and prompt-version dropdowns, debug panel, per-call progress. `/models` and `/prompts` endpoints to populate dropdowns.
 `checks/phase_6.sh`: curls `/`, `/models`, `/prompts`; asserts the static file is served and both lists are non-empty.
 
-**Phase 7: Spaces deploy**
-Dockerfile, GGUF download at startup, Space secrets if any, README model card.
-`checks/phase_7.sh`: builds the Docker image locally, starts it, runs `checks/phase_2.sh` against the container. Manual: open the Space URL, pick a model, book an appointment.
+**Phase 7: static Space deploy** (amended 2026-10-04; the Docker version is superseded, see 11a)
+`evals/export_space.py` builds a static site from the dev transcripts, the dev product logs and the eval server's run data: a conversation replay with the per-turn debug panel, the Evals view, and a README card with the Space settings. Held-out text is never exported. Upload with the Hugging Face CLI.
+`checks/phase_7.sh`: runs the export into a temp folder, serves it with a plain static file server, fetches the page and every data file, and asserts that no held-out utterance appears in any exported file and that the README declares a static Space. Manual: open the Space URL, replay a conversation, open the Evals view.
 
 Eval phases E1 to E5 live in `eval_phases_v1.md`, with design in `eval_design_v1.md`. They are kept out of this file.
 
 ## 11a. Hugging Face Spaces
 
-Free tier is 2 vCPU, 16GB RAM, no GPU. A 0.8B GGUF at Q8 is about 1GB, so two or three models fit in memory at once. Expect 2 to 5 seconds per model call, 10 to 15 seconds per turn.
+Amended 2026-10-04. Docker and Gradio Spaces now need a paid plan (PRO for personal accounts); only static Spaces are free, and the free ZeroGPU route needs Gradio, PyTorch and a 30-day-old account. A paid plan is out, so the v1 deploy is a static Space: a hosted page with no server and no model.
 
-What the Space is for: letting a reviewer type a query and watch the NLU output, validator result, and fallback decision per turn, and switch between prompt-only and fine-tuned models on the same conversation. It is a debugger with a chat window, not a product demo.
+What the Space is for: a demo. A visitor replays the 20 recorded dev conversations and watches the NLU output, validator result and fallback decision per turn, the same debug panel as the local UI, and opens the Evals view (session pass rate, prompt × outcome heatmap, drill-down). Held-out data appears only as structured fields, exactly as in the local Evals tab (eval decision log I1). Nobody can type to the bot, which also means no live mental-health chatbot is open to the public.
 
-Adding a fine-tuned model later: train with TRL, convert to GGUF with the llama.cpp convert script, quantize, add a registry entry, redeploy.
+What it is not: a live debugger. Typing your own messages needs the local setup. A live hosted chatbot is parked in the appendix.
+
+Adding a fine-tuned model later: train with TRL, convert to GGUF with the llama.cpp convert script, quantize, add a registry entry, then re-export to show its runs.
 
 ## Appendix: parked for later
 
@@ -235,4 +237,5 @@ Adding a fine-tuned model later: train with TRL, convert to GGUF with the llama.
 - Full-ranking doctor matching (filter flag exists, experiment later)
 - Logprob-based confidence (returned by `complete()`, unused in v1)
 - Fine-tuning path (TRL to GGUF) and side-by-side model comparison on the Space
+- Live hosted chatbot: Docker Spaces need a paid plan since 2026. Options: an on-demand tunnel from the local machine, or another host; needs its own design pass and a policy check
 - Results writeup and publishing the simulated conversation set as a Hugging Face dataset

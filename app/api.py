@@ -14,6 +14,7 @@ from app.session import SessionStore
 from app.state_machine import step
 
 UI_FILE = Path(__file__).resolve().parent.parent / "clients" / "ui" / "index.html"
+EVALS_JS = UI_FILE.parent / "evals.js"
 
 app = FastAPI(title="Booking assistant")
 store = SessionStore()
@@ -34,6 +35,11 @@ def health() -> dict:
 @app.get("/")
 def ui() -> FileResponse:
     return FileResponse(UI_FILE, media_type="text/html")
+
+
+@app.get("/evals.js")
+def evals_js() -> FileResponse:
+    return FileResponse(EVALS_JS, media_type="text/javascript")
 
 
 @app.get("/models")

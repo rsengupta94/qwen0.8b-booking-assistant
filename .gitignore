@@ -8,3 +8,6 @@ logs/
 
 # derived from transcripts by evals/judge_prepare.py; regenerate rather than track
 evals/judge_input/
+
+# built by evals/export_space.py for the static Space; regenerate rather than track
+space_build/

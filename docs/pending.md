@@ -35,11 +35,13 @@ Written 2026-10-02 from design.md, `eval_design_v1.md`, the E5 handoff in `eval_
 
 ## Step 3: Phase 7, deploy to Hugging Face Spaces
 
-- [ ] **7. Deploy setup.** Dockerfile, model download at startup, README model card, `checks/phase_7.sh`.
-  - Your input: your Hugging Face account and Space name, which models to ship, whether Docker is installed locally, and explicit approval before anything is published.
+Amended 2026-10-04: Docker Spaces need a paid plan, which is out, so the deploy is a static Space (design.md 11a): conversation replay plus the Evals view, no live chat.
 
-- [ ] **8. Public or private Space.** This is a mental-health chatbot with no distress handling, which v1 deliberately excludes. If the Space is public, anyone can type a crisis message into it.
-  - Your input: a private Space, or a public one with a fixed banner text written in code, not by the model. Check with the right team before anything goes public.
+- [ ] **7. Static Space.** I build `evals/export_space.py`, the static page and `checks/phase_7.sh`. You create a Hugging Face account, a write token and a static Space; I upload after your explicit go.
+  - Your input: confirm the file list; create the account, token and Space; approve the upload.
+
+- [ ] **8. Public or private Space.** No live chatbot any more, so the distress risk is gone; the page still shows conversations about mental-health symptoms for a fictional clinic, with a fixed disclaimer.
+  - Your input: public or private, after checking with the right team.
 
 ## Step 4: the next prompt version
 

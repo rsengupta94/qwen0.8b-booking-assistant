@@ -8,7 +8,7 @@ Appointment booking assistant for a fictional mental health clinic, run on a 0.8
 - FastAPI + uvicorn. One process serves the API and the static UI.
 - llama-cpp-python loading GGUF files listed in `models/registry.json`. No Ollama, no transformers.
 - pytest for tests. Every validator has its own test file.
-- Docker for deploy to Hugging Face Spaces. The same Dockerfile runs locally.
+- Deploy is a static Hugging Face Space (no server, no model) built by `evals/export_space.py`; see design.md 11a. No Docker in v1.
 
 ## Architecture rules
 
